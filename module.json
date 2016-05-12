@@ -1,0 +1,13 @@
+{
+    "id": "evidence",
+    "name": "Evidence Module",
+    "description": "It allows users, with the click of a button and a subsequent dialogue, to gather and present evidence from their involvement in TeachConnect.",
+    "keywords": [
+        "evidence"
+    ],
+    "version": "0.1",
+    "humhub": {
+        "minVersion": "0.8"
+    },
+    "screenshots": ["assets/screen1.jpg","assets/screen2.jpg"]
+}
