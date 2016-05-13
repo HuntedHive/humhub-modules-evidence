@@ -1,0 +1,12 @@
+/*
+HumHub Evidence Module Style CSS
+*/
+
+.grid-view table.items th {
+	font-size:1.2em !important;
+}
+
+.grid-view table.items td {
+	font-size: 1em;
+	text-align:center;
+}
