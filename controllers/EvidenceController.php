@@ -23,7 +23,7 @@ class EvidenceController extends CController
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('prepare'),
+				'actions'=>array('prepare', 'sectionPrepareWord'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -37,7 +37,8 @@ class EvidenceController extends CController
 		Yii::import("application.modules.evidence.models.Evidence");
 
 		$rawData = Evidence::instance()->getAllQuery()->filterActivity()->getData();
-		
+		$sb = WBSChat::model();
+		$sb->
 		$dataProvider = new CArrayDataProvider($rawData, [
 			'sort'=>array(
 				'attributes'=>array(
@@ -51,5 +52,26 @@ class EvidenceController extends CController
 		$this->render('index', array(
 			'dataProvider'=>$dataProvider,
 		));
+	}
+
+	public function actionSectionPrepareWord()
+	{
+		Yii::import("application.modules.evidence.lib.word.PHPWord");
+		$string = '
+					<p>asdasda</p>
+					<ul>
+						<li>qweqweqw</li>
+						<li>qeqweqweqw</li>
+					</ul>
+					<div>qweqweqw</div>
+					';
+		Yii::import("application.modules.evidence.lib.html2text.Html2Text");
+		$config = new Html2Text($string);
+		$kv_phpword = new PHPWord();
+		$kv_main_section = $kv_phpword->createSection();
+		$kv_main_section->addText($config->getText());
+		$kvcodes = PHPWord_IOFactory::createWriter($kv_phpword, 'Word2007');
+		$kvcodes->save('kvcodes-test-doc.docx');
+//		die;
 	}
 }

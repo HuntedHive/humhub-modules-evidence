@@ -27,7 +27,21 @@ class Evidence extends CComponent {
 
     public function getAllQuery()
     {
-        self::$data = Yii::app()->db->createCommand('SELECT * FROM content WHERE object_model != "Post" AND created_by =' . Yii::app()->user->id)->queryAll();
+        $period= '';
+        if(isset($_POST['dateFrom']) && isset($_POST['dateTo'])) {
+            $from = str_replace("." , "-" , $_POST['dateFrom']);
+            $to = str_replace("." , "-" , $_POST['dateTo']);
+            $period = " AND created_at >= '$from' AND created_at <= '$to'";
+        }
+
+        $sql = 'SELECT * 
+                FROM content 
+                WHERE 
+                    object_model != "Post" 
+                      AND 
+                    created_by =' . Yii::app()->user->id
+                    .$period;
+        self::$data = Yii::app()->db->createCommand($sql)->queryAll();
         array_multisort(self::$data, SORT_DESC);
         return $this;
     }
