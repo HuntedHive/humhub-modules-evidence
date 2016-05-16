@@ -20,11 +20,11 @@ $(document).ready(function() {
       }
    }
 
-   $(".listOfItems").submit(function() {
+   $("body").on("click", ".second-context", function() {
       if($("input[data-select]").length == 0) {
          return false;
       }
-
+      $(".listOfItems").submit();
       return true;
    });
 });

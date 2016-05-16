@@ -3,6 +3,8 @@
 class Evidence extends CComponent {
     private static $data;
     private static $_instance;
+    private static $wordText;
+
     public static $acitvityType = [
         'ActivitySpaceCreated' => 'Mentorship Circle',
         'Question' => 'Community post',
@@ -100,5 +102,23 @@ class Evidence extends CComponent {
             default:
                 return "-";
         }
+    }
+
+    public function saveWord()
+    {
+        Yii::import("application.modules.evidence.lib.word.PHPWord");
+        $kv_phpword = new PHPWord();
+        $kv_main_section = $kv_phpword->createSection();
+        $kv_main_section->addText(self::text);
+        $kvcodes = PHPWord_IOFactory::createWriter($kv_phpword, 'Word2007');
+        $kvcodes->save('kvcodes-test-doc.docx');
+    }
+
+    public function prepareHtmlToText($text)
+    {
+        Yii::import("application.modules.evidence.lib.html2text.Html2Text");
+        $htmltoText = new Html2Text($text);
+        self::$wordText = $htmltoText->getText();
+        return $this;
     }
 }
