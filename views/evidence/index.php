@@ -7,6 +7,12 @@ $cs->registerScriptFile($assetPrefix2);
 ?>
 
 <link rel="stylesheet" type="text/css" href="<?php echo $this->module->assetsUrl; ?>/css/evidence.css"/>
+<script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" />
+
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+<link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
 <div class="row">
     <div class="col-md-12">
         <div class="panel panel-default evidence-panel">
@@ -22,16 +28,7 @@ $cs->registerScriptFile($assetPrefix2);
                 <div class="row">
                     <div class="col-xs-6">
                          <?php echo CHtml::beginForm(); ?>
-                         <div class="row">
-                             <div class='col-sm-6'>
-                                 date from <?php echo CHtml::dateField("dateFrom", isset($_POST['dateFrom'])?$_POST['dateFrom']:"",['class' => 'form-control']); ?>
-                             </div>
-                         </div>
-                         <div class="row">
-                             <div class='col-sm-6'>
-                                 date to<?php echo CHtml::dateField("dateTo", isset($_POST['dateTo'])?$_POST['dateTo']:"",['class' => 'form-control']); ?>
-                             </div>
-                         </div>
+                        <input name="daterange" type='text' class="form-control" value="<?= !empty($_POST['daterange'])?$_POST['daterange']:'' ?>">
                          <input type='submit' name='search' class="btn btn-success"  value="Search"/>
                          <?php echo CHtml::endForm(); ?>
                      </div>
@@ -93,8 +90,8 @@ $cs->registerScriptFile($assetPrefix2);
                     <?php echo CHtml::beginForm(
                         Yii::app()->createUrl('/evidence/evidence/sectionPrepareWord'),
                         "post", [
-                        'class' => 'listOfItems'
-                    ]);
+                            'class' => 'listOfItems'
+                        ]);
                     ?>
                     <?php echo CHtml::endForm() ?>
                 </div>

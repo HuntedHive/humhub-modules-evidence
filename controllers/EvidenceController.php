@@ -23,7 +23,7 @@ class EvidenceController extends CController
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('prepare', 'sectionPrepareWord'),
+				'actions'=>array('prepare', 'sectionPrepareWord', 'saveToWord'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -31,11 +31,11 @@ class EvidenceController extends CController
 			),
 		);
 	}
-	
+
 	public function actionPrepare()
 	{
 		Yii::import("application.modules.evidence.models.Evidence");
-
+		
 		$rawData = Evidence::instance()->getAllQuery()->filterActivity()->getData();
 		$dataProvider = new CArrayDataProvider($rawData, [
 			'sort'=>array(
@@ -52,7 +52,23 @@ class EvidenceController extends CController
 		));
 	}
 
-	public function actionSectionPrepareWord($text)
+	public function actionSectionPrepareWord()
 	{
+		if(!empty($_POST) && isset($_POST['activityItems'])) {
+			$itemsList = $_POST['activityItems'];
+			$html = Evidence::getPrepareObjects($itemsList);
+			$this->render("displayContext", [
+				'html' => $html,
+			]);
+		} else {
+			return $this->redirect(Yii::app()->request->urlReferrer);
+		}
+	}
+
+	public function actionSaveToWord()
+	{
+		$evidence = new Evidence;
+		$evidence->prepareHtmlToHtml($_POST['html'])->saveWord();
+		echo 'success';
 	}
 }

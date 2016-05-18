@@ -10,3 +10,11 @@ HumHub Evidence Module Style CSS
 	font-size: 1em;
 	text-align:center;
 }
+
+.block-item {
+	border: 1px solid #000;
+	width: 441px;
+	margin: 0 auto;
+	margin-bottom: 9px;
+	padding: 10px;
+}

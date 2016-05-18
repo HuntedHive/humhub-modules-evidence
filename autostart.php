@@ -8,7 +8,7 @@ Yii::app()->moduleManager->register(array(
         'application.modules.evidence.controllers.*',
         'application.modules.evidence.models.*',
         'application.modules_core.activity.models.*',
-        'application.modules_core.activity.lib.*',
+        'application.modules.evidence.lib.*',
     ),
 
     'events' => array(
