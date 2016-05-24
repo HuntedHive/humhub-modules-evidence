@@ -40,6 +40,7 @@ $(document).ready(function() {
 
    $("body").on("click", ".second-context", function() { // redirect to second step
       if($("input[data-select]").length == 0) {
+         $("#selectContributions").modal('show');
          return false;
       }
       $(".listOfItems").submit();
