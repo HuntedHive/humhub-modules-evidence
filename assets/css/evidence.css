@@ -15,7 +15,8 @@ HumHub Evidence Module Style CSS
 }
 
 .evidence-buttons-bottom{
-	margin:40px 0px;
+	margin-top:40px;
+	margin-bottom:40px;
 }
 
 .panel.panel-contribution{
@@ -226,6 +227,10 @@ table thead th.th-select{
 
 .form-select-multiple option:active, .form-select-multiple option:focus, .form-select-multiple option:checked:after{
 	background-color:#ccc !important;
+}
+
+.modal-simple .btn{
+	height:auto;
 }
 
 @media (max-width: 768px) {

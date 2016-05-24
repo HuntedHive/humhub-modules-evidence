@@ -199,3 +199,19 @@ $cs->registerScriptFile($assetPrefix2);
     </div>
   </div>
 </div><!-- /.modal -->
+
+<!-- Modal - Select Contributions Before Proceeding -->
+<div class="modal fade modal-simple" id="selectContributions" tabindex="-1" role="dialog" aria-labelledby="selectContributions">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header modal-header-margin-bottom">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="modal-body text-center">
+        <h3>No Contributions Selected</h3>
+        <p>Please select one or more contributions from the table<br> before proceeding to the next step.</p>
+        <button type="button" class="btn btn-primary btn-md" data-dismiss="modal">Ok</button>
+      </div>
+    </div>
+  </div>
+</div><!-- /.modal -->
