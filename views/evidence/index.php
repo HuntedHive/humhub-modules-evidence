@@ -47,7 +47,7 @@ $cs->registerScriptFile($assetPrefix2);
                                         'name' => 'Select',
                                         'type' => 'raw',
                                         'value' => function($data) {
-                                            return '<input class="itemSelect" type="checkbox" data-id="' . $data['id'] . '">';
+                                            return '<input class="itemSelect" data-type="'.$data['object_model'].'" type="checkbox" data-id="' . $data['id'] . '">';
                                         },
                                     ),
                                     array(
@@ -69,6 +69,7 @@ $cs->registerScriptFile($assetPrefix2);
                                         },
                                     ),
                                     array(
+                                        'type' => 'raw',
                                         'name' => 'Target/Recipient',
                                         'value' => function($data) {
                                             return Evidence::getTarget($data);

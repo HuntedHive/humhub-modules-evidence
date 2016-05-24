@@ -10,14 +10,14 @@ class Evidence extends CComponent {
         'ActivitySpaceCreated' => 'Mentorship Circle',
         'Question' => 'Community post',
         'Answer' => 'Community response',
-        'WBSChat' => 'Message',
+        'MessageEntry' => 'Message',
     ];
 
     public static $relationObject = [
-        'ActivitySpaceCreated' => 'Space',
+        'ActivitySpaceCreated' => 'Activity',
         'Question' => 'Question',
         'Answer' => 'Answer',
-        'WBSChat' => 'WBSChat',
+        'MessageEntry' => 'MessageEntry',
     ];
 
     public static function instance()
@@ -41,10 +41,11 @@ class Evidence extends CComponent {
                 WHERE 
                     object_model != "Post" 
                       AND 
+                    object_model != "WBSChat"
+                      AND
                     created_by =' . Yii::app()->user->id
                     .$period;
         self::$data = Yii::app()->db->createCommand($sql)->queryAll();
-        array_multisort(self::$data, SORT_DESC);
         return $this;
     }
 
@@ -53,16 +54,73 @@ class Evidence extends CComponent {
         foreach (self::$data as $key => $value) {
             if($value['object_model'] == "Activity" || $value['object_model'] == "Post") {
                 $activity = Activity::model()->find('id=' . $value['object_id']);
-				if(isset($activity) && $activity->type != "ActivitySpaceCreated") {
+				if(isset($activity) && $activity->type != "PostCreated") {
                     unset(self::$data[$key]);
                 } else {
                     self::$data[$key]['object_model'] = "ActivitySpaceCreated";
+                }
+
+                if($activity->type == "ChatMessage") {
+                    unset(self::$data[$key]);
                 }
             }
         }
 
         return $this;
     }
+
+    public function addEntryMessageActivity()
+    {
+        $period= '';
+        if(isset($_POST['daterange'])) {
+            $from = str_replace("/" , "-" , trim(explode( "-", $_POST['daterange'])[0]));
+            $to = str_replace("/" , "-" , trim(explode( "-", $_POST['daterange'])[1]));
+            $period = " AND created_at >= '$from' AND created_at <= '$to'";
+        }
+        $sql = 'SELECT * 
+                FROM message_entry 
+                WHERE  
+                    created_by =' . Yii::app()->user->id
+            .$period;
+        $dataMessages = Yii::app()->db->createCommand($sql)->queryAll();
+
+        foreach ($dataMessages as $key => $value) {
+            $dataMessages[$key]['object_model'] = 'MessageEntry';
+        }
+        self::$data = array_merge(self::$data, $dataMessages);
+
+        $this->sksort(self::$data, "created_at");
+        return $this;
+    }
+
+    private function sksort(&$array, $subkey="id", $sort_ascending=false) {
+
+        if (count($array))
+            $temp_array[key($array)] = array_shift($array);
+
+        foreach($array as $key => $val){
+            $offset = 0;
+            $found = false;
+            foreach($temp_array as $tmp_key => $tmp_val)
+            {
+                if(!$found and strtolower($val[$subkey]) > strtolower($tmp_val[$subkey]))
+                {
+                    $temp_array = array_merge(    (array)array_slice($temp_array,0,$offset),
+                        array($key => $val),
+                        array_slice($temp_array,$offset)
+                    );
+                    $found = true;
+                }
+                $offset++;
+            }
+            if(!$found) $temp_array = array_merge($temp_array, array($key => $val));
+        }
+
+        if ($sort_ascending) $array = array_reverse($temp_array);
+
+        else $array = $temp_array;
+    }
+
 
     public function getData() {
         return self::$data;
@@ -72,8 +130,9 @@ class Evidence extends CComponent {
     {
         $switch = self::$relationObject[$object['object_model']];
         switch($switch) {
-            case 'Space':
-                return $switch::model()->find('id=' . $object['space_id'])->description;
+            case 'Activity':
+                $idPost = $switch::model()->find('id=' . $object['object_id'])->object_id;
+                return Post::model()->find('id='. $idPost)->message;
                 break;
             case 'Question':
                 return $switch::model()->find('id=' . $object['object_id'])->post_text;
@@ -81,62 +140,60 @@ class Evidence extends CComponent {
             case 'Answer':
                 return $switch::model()->find('id=' . $object['object_id'])->post_text;
                 break;
-            case 'WBSChat':
-                return $switch::model()->find('id=' . $object['object_id'])->text;
+            case 'MessageEntry':
+                return $switch::model()->find('id=' . $object['id'])->content;
                 break;
         }
     }
 
     public static function getPrepareObjects($data)
     {
-        $splitData = implode(',', $data);
-        $listActivity = Content::model()->findAll('id IN (' . $splitData . ')');
+
+        $listActivity = $data;
         $html = '';
-        foreach ($listActivity as $objectActivity) {
-            $html .= self::getObjectHtml($objectActivity);
+        foreach ($listActivity as $objectActivityKey => $objectActivityValue) {
+            $html .= self::getObjectHtml($objectActivityKey, $objectActivityValue);
         }
 
         return $html;
     }
 
-    public static function getObjectHtml($object)
+    public static function getObjectHtml($objectKey, $objectValues)
     {
-        if($object->object_model == "Activity") {
-            $activityObject = Activity::model()->find('id=' . $object->object_id);
-            if(!empty($activityObject) && $activityObject->type == "ActivitySpaceCreated") {
-                $object->object_model = "ActivitySpaceCreated";
+        $subHtml = '';
+        foreach ($objectValues as $objectValue) {
+            switch ($objectKey) {
+                case 'ActivitySpaceCreated': // model is Post in db
+                    $mainObject = Post::model()->find('id=' . $objectValue);
+                    $lastContentPosts = Content::model()->findAll('space_id = ' . $mainObject->id . ' AND object_model = "Post" ORDER BY created_at DESC LIMIT 5');
+                    $subObject = Post::model()->findAll('id IN (' . implode(",", CHtml::listData($lastContentPosts, "object_id", "object_id")) . ')');
+                    $subHtml.= self::getHtml($object, $mainObject, $subObject);
+                    break;
+                case 'Question':
+                    $mainObject = $objectKey::model()->find('id=' . $objectValue);
+                    $subObject = Answer::model()->findAll('question_id = ' . $mainObject->id . ' AND post_type = "answer" ORDER BY created_at DESC LIMIT 5');
+                    $subHtml.= self::getHtml($mainObject, $mainObject, $subObject);
+                    break;
+                case 'Answer':
+                    $mainObject = $objectKey::model()->find('id=' . $objectValue);
+                    $subObject = Answer::model()->findAll('parent_id = ' . $mainObject->id . ' AND post_type = "comment" ORDER BY created_at DESC LIMIT 5');
+                    $subHtml.= self::getHtml($mainObject, $mainObject, $subObject);
+                    break;
+                case 'MessageEntry':
+                    $mainObject = $objectKey::model()->find('id=' . $object->id . ' AND message_id=' . $object->message_id);
+                    $preCount = 5;
+                    $subObject = null;
+                    if ($mainObject && $mainObject->id > $preCount) {
+                        $subObject = MessageEntry::model()->findAll('id between ' . ($mainObject->id - $preCount - 1) . ' AND ' . ($mainObject->id - 1) . ' AND message_id = ' . $object->message_id . ' ORDER BY created_at DESC');
+                    } else {
+                        $subObject = MessageEntry::model()->findAll('1=1 ORDER BY created_at DESC LIMIT 5');
+                    }
+                    $subHtml.= self::getHtml($object, $mainObject, $subObject);
+                    break;
             }
         }
-        $switch = self::$relationObject[$object->object_model];
-        switch($switch) {
-            case 'Space':
-                $mainObject = $switch::model()->find('id=' . $object->space_id);
-                $lastContentPosts = Content::model()->findAll('space_id = '. $mainObject->id . ' AND object_model = "Post" ORDER BY created_at DESC LIMIT 5');
-                $subObject = Post::model()->findAll('id IN (' . implode(",", CHtml::listData($lastContentPosts, "object_id", "object_id")) . ')');
-                return self::getHtml($object, $mainObject, $subObject);
-                break;
-            case 'Question':
-                $mainObject = $switch::model()->find('id=' . $object->object_id);
-                $subObject = Answer::model()->findAll('question_id = '. $mainObject->id . ' AND post_type = "answer" ORDER BY created_at DESC LIMIT 5');
-                return self::getHtml($object, $mainObject, $subObject);
-                break;
-            case 'Answer':
-                $mainObject = $switch::model()->find('id=' . $object->object_id);
-                $subObject = Answer::model()->findAll('parent_id = '. $mainObject->id . ' AND post_type = "comment" ORDER BY created_at DESC LIMIT 5');
-                return self::getHtml($object, $mainObject, $subObject);
-                break;
-            case 'WBSChat':
-                $mainObject = $switch::model()->find('id=' . $object->object_id);
-                $preCount = 5;
-                $subObject = null;
-                if($mainObject && $mainObject->id > $preCount) {
-                    $subObject = WBSChat::model()->findAll('id between '. ($mainObject->id-$preCount-1) . ' AND ' . ($mainObject->id-1) . ' ORDER BY created_at DESC');
-                } else {
-                    $subObject = WBSChat::model()->findAll('1=1 ORDER BY created_at DESC LIMIT 5');
-                }
-                return self::getHtml($object, $mainObject, $subObject);
-                break;
-        }
+
+        return $subHtml;
     }
 
     private static function getHtml($object, $mainObject, $subObject)
@@ -197,7 +254,7 @@ class Evidence extends CComponent {
                           </div>";
                 return $html;
                 break;
-            case 'WBSChat':
+            case 'MessageEntry':
                 $itemsHtml = '';
                 foreach ($subObject as $subItem) {
                     $itemsHtml .= "<li>" . $subItem->text . "</li>";
@@ -205,8 +262,8 @@ class Evidence extends CComponent {
                 $html = " <div class='block-item'>
                             <input type='checkbox' class='check-item' checked>
                             <div class='content-item'>
-                                <h1><span>Message: </span>". $mainObject->text ."</h1>
-                                <span>Last 5 messages</span>
+                                <h1><span>Message: </span>". $mainObject->content ."</h1>
+                                <span>Last 5 responses</span>
                                 <ul>
                                     ". $itemsHtml ."
                                 </ul>
@@ -226,6 +283,15 @@ class Evidence extends CComponent {
                 if(!empty($answer)) {
                     $question = $switch::model()->find('id=' . $answer->question_id);
                     return User::model()->find('id=' . $question->created_by)->username;
+                }
+                return "-";
+                break;
+            case 'MessageEntry':
+                $groupMessages = CHtml::listData(UserMessage::model()->findAll('user_id !='.Yii::app()->user->id. ' AND message_id=' . $object['message_id']),"user_id", "user_id");
+                $users = User::model()->findAll('id IN (' . implode(",", $groupMessages) . ')');
+                if(!empty($users)) {
+                    $usernames = implode("<br />" , CHtml::listData($users, "username", "username"));
+                    return $usernames;
                 }
                 return "-";
                 break;

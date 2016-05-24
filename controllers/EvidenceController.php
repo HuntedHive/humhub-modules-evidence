@@ -36,7 +36,7 @@ class EvidenceController extends CController
 	{
 		Yii::import("application.modules.evidence.models.Evidence");
 		
-		$rawData = Evidence::instance()->getAllQuery()->filterActivity()->getData();
+		$rawData = Evidence::instance()->getAllQuery()->filterActivity()->addEntryMessageActivity()->getData();
 		$dataProvider = new CArrayDataProvider($rawData, [
 			'sort'=>array(
 				'attributes'=>array(
@@ -46,7 +46,6 @@ class EvidenceController extends CController
 				),
 			),
 		]);
-
 		$this->render('index', array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -54,6 +53,7 @@ class EvidenceController extends CController
 
 	public function actionSectionPrepareWord()
 	{
+		var_dump($_POST);
 		if(!empty($_POST) && isset($_POST['activityItems'])) {
 			$itemsList = $_POST['activityItems'];
 			$html = Evidence::getPrepareObjects($itemsList);
@@ -61,7 +61,7 @@ class EvidenceController extends CController
 				'html' => $html,
 			]);
 		} else {
-			return $this->redirect(Yii::app()->request->urlReferrer);
+			return $this->redirect(Yii::app()->createUrl("/evidence/evidence/prepare"));
 		}
 	}
 

@@ -1,46 +1,53 @@
 $(document).ready(function() {
    $("body").on("click", ".itemSelect", function() {
       var id = $(this).data('id');
-      uniqueItem(id);
+      uniqueItem(id, $(this));
    });
    var listItems = [];
-   function uniqueItem(element)
+   function uniqueItem(element, currentElement)
    {
-      if($("input[data-select=" + element + "]").length == 0) {
-         $(".listOfItems").append('<input class="activityObjects" name="activityItems[]" value="' + element + '" type="hidden" data-select="' + element + '">');
+      var dataType = currentElement.data('type');
+      var dataId = currentElement.data('id');
+      var objectActivity = $("input[data-select="+dataId+"][data-type="+dataType+"]");
+
+      if(objectActivity.length == 0) {
+         $(".listOfItems").append('<input class="activityObjects" name="activityItems['+currentElement.data('type')+'][]" value="' + element + '" type="hidden" data-type="'+currentElement.data('type')+'" data-select="' + element + '">');
       } else {
-         issetItemAndRemove(element);
+         issetItemAndRemove(objectActivity);
       }
    }
 
-   function issetItemAndRemove(element)
+   function issetItemAndRemove(objectActivity)
    {
-      if($("input[data-select=" + element + "]").length == 1) {
-         $("input[data-select=" + element + "]").remove();
+      if(objectActivity.length == 1) {
+         objectActivity.remove();
       }
    }
 
-   $("body").on("click", ".pager ul.yiiPager li", function() {
+   $("body").on("click", ".pager ul.yiiPager li", function() { // check list on pagination
       setTimeout(function() {
          $.each($(".activityObjects"), function (index) {
-            var idActivity = $(this).data('select');
-            var objectActivity = $(".itemSelect[data-id=" + idActivity + "]");
+            var dataType = $(this).data('type');
+            var dataId = $(this).data('select');
+            var objectActivity = $("input[data-id="+dataId+"][data-type="+dataType+"]");
+            console.log(objectActivity);
             if (!objectActivity.is(":checked")) {
-               objectActivity.prop("checked", true);
+                  objectActivity.prop("checked", true);
             }
          });
       }, 500);
    })
 
-   $("body").on("click", ".second-context", function() {
+   $("body").on("click", ".second-context", function() { // redirect to second step
       if($("input[data-select]").length == 0) {
          return false;
       }
       $(".listOfItems").submit();
       return true;
    });
+
    var html;
-   $("body").on("click", ".htmlToWord" ,function() {
+   $("body").on("click", ".htmlToWord" ,function() { //second step convert html to docx
       html='';
       $.each($(".check-item"), function(index) {
          if($(this).is(":checked")) {
@@ -60,7 +67,7 @@ $(document).ready(function() {
       });
    });
 
-   $("body").on("click", ".htmlPreview" ,function() {
+   $("body").on("click", ".htmlPreview" ,function() { //second step preview html to docx
       html='';
       $.each($(".check-item"), function(index) {
          if($(this).is(":checked")) {
@@ -75,7 +82,7 @@ $(document).ready(function() {
    });
 
 
-   $('input[name="daterange"]').daterangepicker({
+   $('input[name="daterange"]').daterangepicker({ // set datapicker on first step
       timePicker: false,
       locale: {
          format: 'YYYY/MM/DD'
