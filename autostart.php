@@ -1,5 +1,4 @@
 <?php
-
 Yii::app()->moduleManager->register(array(
     'id' => 'evidence',
     'class' => 'application.modules.evidence.EvidenceModule',

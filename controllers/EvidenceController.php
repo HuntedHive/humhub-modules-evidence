@@ -1,6 +1,6 @@
 <?php
 
-class EvidenceController extends CController
+class EvidenceController extends Controller
 {
 
 	/**
@@ -23,7 +23,7 @@ class EvidenceController extends CController
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('prepare', 'sectionPrepareWord', 'saveToWord'),
+				'actions'=>array('prepare', 'sectionPrepareWord', 'saveToWord', 'saveExport'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -35,7 +35,7 @@ class EvidenceController extends CController
 	public function actionPrepare()
 	{
 		Yii::import("application.modules.evidence.models.Evidence");
-		
+
 		$rawData = Evidence::instance()->getAllQuery()->filterActivity()->addEntryMessageActivity()->getData();
 		$dataProvider = new CArrayDataProvider($rawData, [
 			'sort'=>array(
@@ -46,14 +46,16 @@ class EvidenceController extends CController
 				),
 			),
 		]);
+
 		$this->render('index', array(
 			'dataProvider'=>$dataProvider,
+			'modals' => $this->renderPartial("_modals"),
 		));
 	}
 
 	public function actionSectionPrepareWord()
 	{
-		var_dump($_POST);
+		var_dump($_POST);die;
 		if(!empty($_POST) && isset($_POST['activityItems'])) {
 			$itemsList = $_POST['activityItems'];
 			$html = Evidence::getPrepareObjects($itemsList);
@@ -70,5 +72,14 @@ class EvidenceController extends CController
 		$evidence = new Evidence;
 		$evidence->prepareHtmlToHtml($_POST['html'])->saveWord();
 		echo 'success';
+	}
+
+	public function actionSaveExport()
+	{
+		$saveExport = $_POST['step1'];
+
+		$model = new ExportStepEvidence;
+		$model->step1 =  $saveExport;
+		$model->save();
 	}
 }
