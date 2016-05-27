@@ -102,7 +102,11 @@ $cs->registerScriptFile($assetPrefix2);
                             'class' => 'listOfItems'
                         ]);
                     ?>
+                    <div class="contentListOfItems">
+                            <?= (CurrStepEvidence::loadHtmlCookie())?CurrStepEvidence::loadHtmlCookie()->$step:""; ?>
+                    </div>
+
                     <?php echo CHtml::endForm() ?>
                 </div>
 
-<?= $modals ?>
+<?= $this->renderPartial("_modals", ['step' => $step]); ?>

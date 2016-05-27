@@ -239,3 +239,13 @@ table thead th.th-select{
 		padding-bottom: 5px;
 	}
 }
+
+.displayErrors {
+	position: relative;
+	text-align: center;
+	color:red;
+}
+
+.displayErrors > p{
+	margin-bottom: 10px;
+}

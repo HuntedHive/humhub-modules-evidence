@@ -6,6 +6,7 @@ class m160526_133040_create_save_step_evidence extends EDbMigration
 	{
 		$this->createTable('save_steps_evidence', array(
 			'id' => 'pk',
+			'name' => 'varchar(100) NOT NULL',
 			'step1' => 'text NULL',
 			'step2' => 'text NULL',
 			'step3' => 'text NULL',

@@ -8,6 +8,9 @@
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-save fa-margin-right"></i> Save Export</h3>
                 <p>Save your export in order to modify and download at a later date.</p>
             </div>
+
+            <div class="displayErrors"></div>
+
             <div class="modal-body">
                 <div class="col-xs-12">
                     <input class="form-control" name="saveExport" id="saveExport" placeholder="Enter a name to reference your saved export" type="text">
@@ -18,6 +21,8 @@
                     <input type="button" class="btn btn-primary btn-sm buttonSaveExport" value="Save Export">
                 </div>
             </div>
+
+            <input type="hidden" name="step" value="<?= $step ?>">
             <?php echo CHtml::endForm(); ?>
         </div>
     </div>
@@ -32,22 +37,26 @@
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-folder-open-o fa-margin-right"></i> Load Saved Export</h3>
                 <p>Please select the saved export you would like to load.</p>
             </div>
+
+            <div class="displayErrors"></div>
+            
             <div class="modal-body">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <select multiple class="form-select-multiple">
-                            <option>Saved Export 1</option>
-                            <option>Saved Export 2</option>
-                            <option>Saved Export 3</option>
-                            <option>Saved Export 4</option>
-                            <option>Saved Export 5</option>
+                        <select multiple class="form-select-multiple loadExportSelect">
+                            <?php
+                                $listNames = ExportStepEvidence::getListNames();
+                                foreach ($listNames as $name) {
+                                    echo "<option value='$name->id'>$name->name</option>";
+                                }
+                            ?>
                         </select>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
                 <div class="col-xs-12">
-                    <button type="button" class="btn btn-primary btn-sm" data-dismiss="modal">Load Export</button>
+                    <button type="button" class="btn btn-primary btn-sm loadExport" data-url="<?= Yii::app()->createUrl('/evidence/evidence/loadExport') ?>">Load Export</button>
                 </div>
             </div>
         </div>

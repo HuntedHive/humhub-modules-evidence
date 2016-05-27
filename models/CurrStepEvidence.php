@@ -10,7 +10,12 @@ class CurrStepEvidence extends HActiveRecord
     {
         return 'current_step_evidence';
     }
-    
+
+    public static function model($className = __CLASS__)
+    {
+        return parent::model($className);
+    }
+
     /**
      * @return array validation rules for model attributes.
      */
@@ -32,5 +37,30 @@ class CurrStepEvidence extends HActiveRecord
         return array(
             //'module_id' => 'Module',
         );
+    }
+
+    public static function loadHtmlCookie()
+    {
+        if(isset($_COOKIE['LoadExport'])) {
+            $user_id = Yii::app()->user->id;
+            $data = CurrStepEvidence::model()->find('created_by=' . $user_id);
+            return $data;
+        } else {
+            return null;
+        }
+    }
+
+    public static function setCurrentStep($data, $step)
+    {
+        $user_id = Yii::app()->user->id;
+        $model = self::model()->find('created_by='.$user_id);
+
+        if(!empty($model)) {
+            self::model()->updateByPk($model->id, [ $step=> $data]);
+        } else {
+            $self = new self();
+            $self->$step = $data;
+            $self->save();
+        }
     }
 }

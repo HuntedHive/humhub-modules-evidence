@@ -23,7 +23,7 @@ class EvidenceController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('prepare', 'sectionPrepareWord', 'saveToWord', 'saveExport'),
+				'actions'=>array('prepare', 'sectionPrepareWord', 'saveToWord', 'saveExport', 'loadExport'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -32,10 +32,18 @@ class EvidenceController extends Controller
 		);
 	}
 
+
+
+	public function actionSaveToWord()
+	{
+		$evidence = new Evidence;
+		$evidence->prepareHtmlToHtml($_POST['html'])->saveWord();
+		echo 'success';
+	}
+
 	public function actionPrepare()
 	{
 		Yii::import("application.modules.evidence.models.Evidence");
-
 		$rawData = Evidence::instance()->getAllQuery()->filterActivity()->addEntryMessageActivity()->getData();
 		$dataProvider = new CArrayDataProvider($rawData, [
 			'sort'=>array(
@@ -49,7 +57,7 @@ class EvidenceController extends Controller
 
 		$this->render('index', array(
 			'dataProvider'=>$dataProvider,
-			'modals' => $this->renderPartial("_modals"),
+			'step' => ExportStepEvidence::STEP1
 		));
 	}
 
@@ -67,19 +75,39 @@ class EvidenceController extends Controller
 		}
 	}
 
-	public function actionSaveToWord()
-	{
-		$evidence = new Evidence;
-		$evidence->prepareHtmlToHtml($_POST['html'])->saveWord();
-		echo 'success';
-	}
-
 	public function actionSaveExport()
 	{
-		$saveExport = $_POST['step1'];
+		$output = [];
+		parse_str($_POST['exportData'], $output); // here $step and $saveExport
+
+		$currentStep = $output['step'];
+		$exportName = $output['saveExport'];
+		$exportData = $_POST['html'];
 
 		$model = new ExportStepEvidence;
-		$model->step1 =  $saveExport;
-		$model->save();
+		$model->name = trim($exportName);
+		$model->$currentStep =  trim($exportData);
+		if($model->save()) {
+			CurrStepEvidence::setCurrentStep($exportData, $currentStep);
+			setcookie("LoadExport", 1, time()+3600*24*10, "/");
+			echo json_encode(['flag' => true, 'redirect' => Yii::app()->createUrl("/evidence/evidence/prepare")]);
+			return;
+		}
+
+		echo json_encode(['flag' => false, 'error' => $model->getErrors()]);
+	}
+
+	public function actionLoadExport()
+	{
+		$exportId = $_POST['exportId'][0];
+		$model = ExportStepEvidence::model()->find('id='. $exportId);
+		if(!empty($model)) {
+			CurrStepEvidence::setCurrentStep($model->step1, ExportStepEvidence::STEP1);
+			setcookie("LoadExport", 1, time()+3600*24*10, "/");
+			echo json_encode(['flag' => true, 'redirect' => Yii::app()->createUrl("/evidence/evidence/prepare")]);
+			return;
+		}
+
+		echo json_encode(['flag' => false, 'error' => 'Export by current name not found']);
 	}
 }

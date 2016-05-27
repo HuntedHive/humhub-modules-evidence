@@ -11,7 +11,7 @@ class EvidenceEvents{
     public static function checkModulePosition()
     {
         if(Yii::app()->controller->id != "evidence" && isset($_COOKIE['LoadExport'])) {
-            setcookie("LoadExport", 0, time()-1, "/");
+//            setcookie("LoadExport", 0, time()-1, "/");
         }
     }
 }
