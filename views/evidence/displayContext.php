@@ -418,21 +418,24 @@ $cs->registerScriptFile($assetPrefix2);
     <div class="row">
       <div class="col-xs-12">
 
+      <p class="text-right"><strong>Date Range -</strong> DD/MM/YYYY to DD/MM/YYYY</p>
+
         <!-- Output Preview -->
         <div class="table-responsive">
           <div class="grid-view">
             <table class="items preview-evidence">
               <thead>
                 <tr>
-                  <th>Standard</th>
-                  <th class="evidence">Evidence</th>
-                  <th>Notes</th>
-                  <th class="supervisor-notes">Supervisor Notes</th>
+                  <th>APST standard description.</th>
+                  <th class="evidence">Artefact to be used as evidence.</th>
+                  <th>Description of how the artefact demonstrates impact upon teaching and/or student learning.</th>
+                  <th class="supervisor-notes">Description of how the artefact presented meets the standard described.
+<small>(Can be filled out later)</small></th>
                 </tr>
               </thead>
               <tbody>
                 <tr class="odd">
-                  <td><strong>[APST_short_title]</strong><br>
+                  <td><strong style="color:#1895a4;">[APST_short_title]</strong><br>
                     [APST_desc] </td>
                   <td class="text-left"><i class="fa fa-comment fa-margin-right"></i> <strong>Message -</strong> <i>A private message I have sent.</i><br>
                     <ul>
