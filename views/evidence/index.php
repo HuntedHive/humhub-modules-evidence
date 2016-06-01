@@ -14,8 +14,6 @@ $cs->registerScriptFile($assetPrefix2);
 <link rel="stylesheet" type="text/css" href="<?php echo $this->module->assetsUrl; ?>/css/evidence.css"/>
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
 
-<div class="row">
-    <div class="col-md-12">
         <div class="evidence-panel">
             <div class="container">
                 <div class="row">
