@@ -61,6 +61,10 @@ table thead th.th-select{
 	width:100px;
 }
 
+.calendar-table thead th{
+	border-radius: 0 !important;
+}
+
 .table-responsive {
 	margin-top: 15px;
 }

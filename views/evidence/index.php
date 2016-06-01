@@ -16,7 +16,7 @@ $cs->registerScriptFile($assetPrefix2);
 
 <div class="row">
     <div class="col-md-12">
-        <div class="panel panel-default evidence-panel">
+        <div class="evidence-panel">
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12">
@@ -27,6 +27,11 @@ $cs->registerScriptFile($assetPrefix2);
                             <div class="col-xs-12 col-sm-6 text-right">
                                 <btn class="btn btn-default" data-toggle="modal" data-target="#exportLoad"><i class="fa fa-folder-open-o fa-margin-right"></i> Load Saved Export</btn>
                                 <btn class="btn btn-default" data-toggle="modal" data-target="#exportSave"><i class="fa fa-save fa-margin-right"></i> Save Export</btn>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <p>This feature allows you to extract examples of your interaction within TeachConnect and produce a downloadable document as evidence of your achievement of the Australian Professional Standards for Teachers (APST) for inclusion in your professional teaching portfolio.</p>
                             </div>
                         </div>
                         <p><strong>Step 1 of 3</strong> - Select contributions.<br>

@@ -304,7 +304,7 @@ $cs->registerScriptFile($assetPrefix2);
       </div>
       <div class="modal-body">
         <div class="col-xs-12">
-            <input class="form-control" name="saveExport" id="saveExport" placeholder="Enter a name to reference your saved export" type="text">
+            <input class="form-control" name="saveExport" id="saveExport" placeholder="Enter a name to reference your saved export" type="text" value="QPST Evidence 01 May 2016 to 26 May 2016">
         </div>
       </div>
       <div class="modal-footer">
@@ -329,11 +329,11 @@ $cs->registerScriptFile($assetPrefix2);
         <div class="col-xs-12">
             <div class="form-group">
                 <select multiple class="form-select-multiple">
-                  <option>Saved Export 1</option>
-                  <option>Saved Export 2</option>
-                  <option>Saved Export 3</option>
-                  <option>Saved Export 4</option>
-                  <option>Saved Export 5</option>
+                  <option>Saved Export 1 (date/time)</option>
+                  <option>Saved Export 2 (date/time)</option>
+                  <option>Saved Export 3 (date/time)</option>
+                  <option>Saved Export 4 (date/time)</option>
+                  <option>Saved Export 5 (date/time)</option>
                 </select>
               </div>
         </div>
