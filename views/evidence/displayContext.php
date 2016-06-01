@@ -33,240 +33,59 @@ $cs->registerScriptFile($assetPrefix2);
 
     <div class="row">
       <div class="col-xs-12">
+        <?php $i=0; ?>
+        <?php foreach($dataObjects as $objectKey => $objectValue) { ?>
+          <?php foreach($objectValue as $itemKeyContext => $itemContext) { ?>
+          <!-- Contribution Panel -->
+          <div class="panel panel-default panel-contribution">
+            <div class="panel-heading">
+              <small>Contribution <?= ++$i ?></small><br>
+              <i class="fa fa-comment fa-margin-right"></i> <?= Evidence::$acitvityType[$itemKeyContext]; ?> - <i><?= $itemContext['title']; ?></i></div>
+            <div class="panel-body">
+              <div class="form-group col-xs-12">
+                <select name="apst" class="selectpicker form-control show-tick" title="Select from Australian Professional Standards for Teachers * ..." required>
+                  <optgroup label="Select from Australian Professional Standards for Teachers">
+                  <option value="APST_short_title 1">APST_short_title 1</option>
+                  <option value="APST_short_title 2">APST_short_title 2</option>
+                  <option value="APST_short_title 3">APST_short_title 3</option>
+                  <option value="APST_short_title 4">APST_short_title 4</option>
+                  <option value="APST_short_title 5">APST_short_title 5</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="form-group col-xs-12">
+                <textarea class="form-control" placeholder="Add your notes on this evidence"></textarea>
+              </div>
+            </div>
 
-      	<!-- Contribution Panel -->
-        <div class="panel panel-default panel-contribution">
-          <div class="panel-heading">
-            <small>Contribution 1</small><br>
-            <i class="fa fa-comment fa-margin-right"></i> Message - <i>A private message I have sent.</i></div>
-          <div class="panel-body">
-            <div class="form-group col-xs-12">
-              <select name="apst" class="selectpicker form-control show-tick" title="Select from Australian Professional Standards for Teachers * ..." required>
-                <optgroup label="Select from Australian Professional Standards for Teachers">
-                <option value="APST_short_title 1">APST_short_title 1</option>
-                <option value="APST_short_title 2">APST_short_title 2</option>
-                <option value="APST_short_title 3">APST_short_title 3</option>
-                <option value="APST_short_title 4">APST_short_title 4</option>
-                <option value="APST_short_title 5">APST_short_title 5</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="form-group col-xs-12">
-              <textarea class="form-control" placeholder="Add your notes on this evidence"></textarea>
-            </div>
+            <!-- Contribution Panel Table -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th class="th-select text-center">Select</th>
+                  <th>Context <small>(last 5 message responses)</small></th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php $j=0 ?>
+                <?php foreach ($itemContext['context'] as $context) { ?>
+                  <tr>
+                    <td class="text-center"><input class="itemSelect" data-id="1" type="checkbox"></td>
+                    <td> <strong>Response <?= ++$j; ?> -</strong> <?= $context->{Evidence::$contextParam[$itemKeyContext]}  ?> </td>
+                  </tr>
+                <?php } ?>
+              </tbody>
+            </table>
+            <!-- /.Contribution Panel Table -->
+
           </div>
-
-          <!-- Contribution Panel Table -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="th-select text-center">Select</th>
-                <th>Context <small>(last 5 message responses)</small></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="1" type="checkbox"></td>
-                <td> <strong>Response 1 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="2" type="checkbox"></td>
-                <td> <strong>Response 2 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="3" type="checkbox"></td>
-                <td> <strong>Response 3 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="4" type="checkbox"></td>
-                <td> <strong>Response 4 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="5" type="checkbox"></td>
-                <td> <strong>Response 5 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- /.Contribution Panel Table -->
-
-        </div>
-        <!-- /.Contribution Panel -->
-
-        <!-- Contribution Panel -->
-        <div class="panel panel-default panel-contribution">
-          <div class="panel-heading">
-            <small>Contribution 2</small><br>
-            <i class="fa fa-stack-exchange fa-margin-right"></i> Community Post - <i>A question I posted in the Community Knowledge?</i></div>
-          <div class="panel-body">
-            <div class="form-group col-xs-12">
-              <select name="apst" class="selectpicker form-control show-tick" title="Select from Australian Professional Standards for Teachers * ..." required>
-                <optgroup label="Select from Australian Professional Standards for Teachers">
-                <option value="APST_short_title 1">APST_short_title 1</option>
-                <option value="APST_short_title 2">APST_short_title 2</option>
-                <option value="APST_short_title 3">APST_short_title 3</option>
-                <option value="APST_short_title 4">APST_short_title 4</option>
-                <option value="APST_short_title 5">APST_short_title 5</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="form-group col-xs-12">
-              <textarea class="form-control" placeholder="Add your notes on this evidence"></textarea>
-            </div>
-          </div>
-
-          <!-- Contribution Panel Table -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="th-select text-center">Select</th>
-                <th>Context <small>(top 5 answers)</small></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="1" type="checkbox"></td>
-                <td> <strong>Answer 1 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="2" type="checkbox"></td>
-                <td> <strong>Answer 2 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="3" type="checkbox"></td>
-                <td> <strong>Answer 3 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="4" type="checkbox"></td>
-                <td> <strong>Answer 4 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="5" type="checkbox"></td>
-                <td> <strong>Answer 5 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- /.Contribution Panel Table -->
-
-        </div>
-        <!-- /.Contribution Panel -->
-
-        <!-- Contribution Panel -->
-        <div class="panel panel-default panel-contribution">
-          <div class="panel-heading">
-            <small>Contribution 3</small><br>
-            <i class="fa fa-stack-exchange fa-margin-right"></i> Community Response - <i>An answer I posted in the Community Knowledge.</i></div>
-          <div class="panel-body">
-            <div class="form-group col-xs-12">
-              <select name="apst" class="selectpicker form-control show-tick" title="Select from Australian Professional Standards for Teachers * ..." required>
-                <optgroup label="Select from Australian Professional Standards for Teachers">
-                <option value="APST_short_title 1">APST_short_title 1</option>
-                <option value="APST_short_title 2">APST_short_title 2</option>
-                <option value="APST_short_title 3">APST_short_title 3</option>
-                <option value="APST_short_title 4">APST_short_title 4</option>
-                <option value="APST_short_title 5">APST_short_title 5</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="form-group col-xs-12">
-              <textarea class="form-control" placeholder="Add your notes on this evidence"></textarea>
-            </div>
-          </div>
-
-          <!-- Contribution Panel Table -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="th-select text-center">Select</th>
-                <th>Context <small>(the question and up to 4 comments)</small></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="1" type="checkbox"></td>
-                <td> <strong>Question -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="2" type="checkbox"></td>
-                <td> <strong>Comment 1 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="3" type="checkbox"></td>
-                <td> <strong>Comment 2 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="4" type="checkbox"></td>
-                <td> <strong>Comment 3 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="5" type="checkbox"></td>
-                <td> <strong>Comment 4 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- /.Contribution Panel Table -->
-
-        </div>
-        <!-- /.Contribution Panel -->
-
-        <!-- Contribution Panel -->
-        <div class="panel panel-default panel-contribution">
-          <div class="panel-heading">
-            <small>Contribution 4</small><br>
-            <i class="fa fa-dot-circle-o fa-margin-right"></i> Mentorship Circle Post - <i>A post I made in the mentorship circle.</i></div>
-          <div class="panel-body">
-            <div class="form-group col-xs-12">
-              <select name="apst" class="selectpicker form-control show-tick" title="Select from Australian Professional Standards for Teachers * ..." required>
-                <optgroup label="Select from Australian Professional Standards for Teachers">
-                <option value="APST_short_title 1">APST_short_title 1</option>
-                <option value="APST_short_title 2">APST_short_title 2</option>
-                <option value="APST_short_title 3">APST_short_title 3</option>
-                <option value="APST_short_title 4">APST_short_title 4</option>
-                <option value="APST_short_title 5">APST_short_title 5</option>
-                </optgroup>
-              </select>
-            </div>
-            <div class="form-group col-xs-12">
-              <textarea class="form-control" placeholder="Add your notes on this evidence"></textarea>
-            </div>
-          </div>
-
-          <!-- Contribution Panel Table -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th class="th-select text-center">Select</th>
-                <th>Context <small>(the 2 messages either side of post in circle)</small></th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="1" type="checkbox"></td>
-                <td> <strong>Previous Message 1 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="2" type="checkbox"></td>
-                <td> <strong>Previous Message 2 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="3" type="checkbox"></td>
-                <td> <strong>Following Message 1 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-              <tr>
-                <td class="text-center"><input class="itemSelect" data-id="4" type="checkbox"></td>
-                <td> <strong>Following Message 2 -</strong> Lorem ipsum dolor sit amet. </td>
-              </tr>
-            </tbody>
-          </table>
-          <!-- /.Contribution Panel Table -->
-        </div>
-        <!-- /.Contribution Panel -->
+          <!-- /.Contribution Panel -->
+          <?php } ?>
+        <?php } ?>
 
         <div class="row evidence-buttons evidence-buttons-bottom">
           <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="#"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Contributions</a> </div>
           <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary second-context" href="#">Next Step: Preview <i class="fa fa-arrow-right fa-margin-right"></i></a> </div>
-          <div class="mainWordContent">
-            <?php echo $html; ?>
-          </div>
           <button href="" class="btn btn-primary htmlToWord">Save To Word</button>
           <button href="" class="btn btn-primary htmlPreview">Preview</button>
         </div>

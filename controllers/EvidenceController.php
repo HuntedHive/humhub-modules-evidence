@@ -63,12 +63,12 @@ class EvidenceController extends Controller
 
 	public function actionSectionPrepareWord()
 	{
-		var_dump($_POST);die;
+//		var_dump($_POST['activityItems']);die;
 		if(!empty($_POST) && isset($_POST['activityItems'])) {
 			$itemsList = $_POST['activityItems'];
-			$html = Evidence::getPrepareObjects($itemsList);
+			$dataObjects = Evidence::getPrepareObjects($itemsList);
 			$this->render("displayContext", [
-				'html' => $html,
+				'dataObjects' => $dataObjects,
 			]);
 		} else {
 			return $this->redirect(Yii::app()->createUrl("/evidence/evidence/prepare"));

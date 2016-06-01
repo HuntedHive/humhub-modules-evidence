@@ -7,7 +7,7 @@ class Evidence extends CComponent {
     private static $docx;
 
     public static $acitvityType = [
-        'ActivitySpaceCreated' => 'Mentorship Circle',
+        'ActivitySpaceCreated' => 'Mentorship Circle Post',
         'Question' => 'Community post',
         'Answer' => 'Community response',
         'MessageEntry' => 'Message',
@@ -18,6 +18,27 @@ class Evidence extends CComponent {
         'Question' => 'Question',
         'Answer' => 'Answer',
         'MessageEntry' => 'MessageEntry',
+    ];
+
+    public static $contextMess = [
+        'ActivitySpaceCreated' => '(the 2 messages either side of post in circle)',
+        'Question' => '(top 5 answers)',
+        'Answer' => '(the question and up to 4 comments)',
+        'MessageEntry' => '(last 5 message responses)',
+    ];
+
+    public static $iconObject = [
+        'ActivitySpaceCreated' => '<i class="fa fa-dot-circle-o fa-margin-right"></i>',
+        'Question' => '<i class="fa fa-stack-exchange fa-margin-right"></i>',
+        'Answer' => '<i class="fa fa-stack-exchange fa-margin-right"></i>',
+        'MessageEntry' => '<i class="fa fa-comment fa-margin-right"></i>',
+    ];
+
+    public static $contextParam = [
+        'ActivitySpaceCreated' => 'message',
+        'Question' => 'post_title',
+        'Answer' => 'post_title',
+        'MessageEntry' => 'content',
     ];
 
     public static function instance()
@@ -150,50 +171,70 @@ class Evidence extends CComponent {
     {
 
         $listActivity = $data;
-        $html = '';
+        $html = [];
         foreach ($listActivity as $objectActivityKey => $objectActivityValue) {
-            $html .= self::getObjectHtml($objectActivityKey, $objectActivityValue);
+            $html = array_merge(self::getObjectData($objectActivityKey, $objectActivityValue), $html);
         }
 
         return $html;
     }
 
-    public static function getObjectHtml($objectKey, $objectValues)
+    public static function getObjectData($objectKey, $objectValues)
     {
-        $subHtml = '';
+        $subData = [];
         foreach ($objectValues as $objectValue) {
             switch ($objectKey) {
                 case 'ActivitySpaceCreated': // model is Post in db
-                    $mainObject = Post::model()->find('id=' . $objectValue);
-                    $lastContentPosts = Content::model()->findAll('space_id = ' . $mainObject->id . ' AND object_model = "Post" ORDER BY created_at DESC LIMIT 5');
-                    $subObject = Post::model()->findAll('id IN (' . implode(",", CHtml::listData($lastContentPosts, "object_id", "object_id")) . ')');
-                    $subHtml.= self::getHtml($object, $mainObject, $subObject);
+                    $content = Content::model()->find('id=' . $objectValue);
+                    $activity = Activity::model()->find('id=' . $content->object_id);
+                    $mainObject = Post::model()->find('id='.$activity->object_id);
+                    $lastContentPosts = Content::model()->findAll('object_id >=' . ($mainObject->id - 2) . ' AND object_id<='. ($mainObject->id + 2) . ' AND object_id!='. ($mainObject->id) .' AND object_model = "Post" AND space_id='. $content->space_id);
+                    $subObject = Post::model()->findAll('id IN (' . implode(",", CHtml::listData($lastContentPosts, 'object_id', 'object_id')) . ')');
+                    $subData[] = [
+                        $objectKey => [
+                            'title' => $mainObject->message,
+                            'context' => $subObject,
+                        ]
+                    ];
                     break;
                 case 'Question':
-                    $mainObject = $objectKey::model()->find('id=' . $objectValue);
+                    $content = Content::model()->find('id=' . $objectValue);
+                    $mainObject = Question::model()->find('id=' . $content->object_id);
                     $subObject = Answer::model()->findAll('question_id = ' . $mainObject->id . ' AND post_type = "answer" ORDER BY created_at DESC LIMIT 5');
-                    $subHtml.= self::getHtml($mainObject, $mainObject, $subObject);
+                    $subData[] = [
+                        $objectKey => [
+                            'title' => $mainObject->post_text,
+                            'context' => $subObject,
+                        ]
+                    ];
                     break;
                 case 'Answer':
-                    $mainObject = $objectKey::model()->find('id=' . $objectValue);
+                    $content = Content::model()->find('id=' . $objectValue);
+                    $mainObject = $objectKey::model()->find('id=' . $content->object_id);
+                    $questionObject = Answer::model()->find('id=' . $mainObject->question_id);
                     $subObject = Answer::model()->findAll('parent_id = ' . $mainObject->id . ' AND post_type = "comment" ORDER BY created_at DESC LIMIT 5');
-                    $subHtml.= self::getHtml($mainObject, $mainObject, $subObject);
+                    $subData[] = [
+                        $objectKey => [
+                            'title' => $mainObject->post_text,
+                            'context' => array_merge([$questionObject], $subObject),
+                        ]
+                    ];
                     break;
                 case 'MessageEntry':
-                    $mainObject = $objectKey::model()->find('id=' . $object->id . ' AND message_id=' . $object->message_id);
+                    $mainObject = $objectKey::model()->find('id=' . $objectValue);
                     $preCount = 5;
-                    $subObject = null;
-                    if ($mainObject && $mainObject->id > $preCount) {
-                        $subObject = MessageEntry::model()->findAll('id between ' . ($mainObject->id - $preCount - 1) . ' AND ' . ($mainObject->id - 1) . ' AND message_id = ' . $object->message_id . ' ORDER BY created_at DESC');
-                    } else {
-                        $subObject = MessageEntry::model()->findAll('1=1 ORDER BY created_at DESC LIMIT 5');
-                    }
-                    $subHtml.= self::getHtml($object, $mainObject, $subObject);
+                    $subObject = MessageEntry::model()->findAll('1=1 ORDER BY created_at DESC LIMIT 5');
+                    $subData[] = [
+                        $objectKey => [
+                            'title' => $mainObject->content,
+                            'context' => $subObject,
+                        ]
+                    ];
                     break;
             }
         }
 
-        return $subHtml;
+        return $subData;
     }
 
     private static function getHtml($object, $mainObject, $subObject)
