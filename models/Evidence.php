@@ -189,7 +189,8 @@ class Evidence extends CComponent {
                     $activity = Activity::model()->find('id=' . $content->object_id);
                     $mainObject = Post::model()->find('id='.$activity->object_id);
                     $lastContentPosts = Content::model()->findAll('object_id >=' . ($mainObject->id - 2) . ' AND object_id<='. ($mainObject->id + 2) . ' AND object_id!='. ($mainObject->id) .' AND object_model = "Post" AND space_id='. $content->space_id);
-                    $subObject = Post::model()->findAll('id IN (' . implode(",", CHtml::listData($lastContentPosts, 'object_id', 'object_id')) . ')');
+                    $result = !empty($lastContentPosts)?implode(",", CHtml::listData($lastContentPosts, 'object_id', 'object_id')):0;
+                    $subObject = Post::model()->findAll('id IN (' . $result . ')');
                     $subData[] = [
                         $objectKey => [
                             'title' => $mainObject->message,
