@@ -30,7 +30,6 @@ $(document).ready(function() {
             var dataType = $(this).data('type');
             var dataId = $(this).data('select');
             var objectActivity = $("input[data-id="+dataId+"][data-type="+dataType+"]");
-            console.log(objectActivity);
             if (!objectActivity.is(":checked")) {
                   objectActivity.prop("checked", true);
             }
@@ -43,21 +42,12 @@ $(document).ready(function() {
          var dataType = $(this).data('type');
          var dataId = $(this).data('select');
          var objectActivity = $("input[data-id="+dataId+"][data-type="+dataType+"]");
-         console.log(objectActivity);
          if (!objectActivity.is(":checked")) {
             objectActivity.prop("checked", true);
          }
       });
    }, 500);
 
-   $("body").on("click", ".second-context", function() { // redirect to second step
-      if($("input[data-select]").length == 0) {
-         $("#selectContributions").modal('show');
-         return false;
-      }
-      $(".listOfItems").submit();
-      return true;
-   });
 
    var html;
    $("body").on("click", ".htmlToWord" ,function() { //second step convert html to docx

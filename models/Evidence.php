@@ -36,7 +36,7 @@ class Evidence extends CComponent {
 
     public static $contextParam = [
         'ActivitySpaceCreated' => 'message',
-        'Question' => 'post_title',
+        'Question' => 'post_text',
         'Answer' => 'post_title',
         'MessageEntry' => 'content',
     ];
@@ -193,6 +193,7 @@ class Evidence extends CComponent {
                     $subObject = Post::model()->findAll('id IN (' . $result . ')');
                     $subData[] = [
                         $objectKey => [
+                            'id' => $mainObject->id,
                             'title' => $mainObject->message,
                             'context' => $subObject,
                         ]
@@ -204,6 +205,7 @@ class Evidence extends CComponent {
                     $subObject = Answer::model()->findAll('question_id = ' . $mainObject->id . ' AND post_type = "answer" ORDER BY created_at DESC LIMIT 5');
                     $subData[] = [
                         $objectKey => [
+                            'id' => $mainObject->id,
                             'title' => $mainObject->post_text,
                             'context' => $subObject,
                         ]
@@ -216,6 +218,7 @@ class Evidence extends CComponent {
                     $subObject = Answer::model()->findAll('parent_id = ' . $mainObject->id . ' AND post_type = "comment" ORDER BY created_at DESC LIMIT 5');
                     $subData[] = [
                         $objectKey => [
+                            'id' => $mainObject->id,
                             'title' => $mainObject->post_text,
                             'context' => array_merge([$questionObject], $subObject),
                         ]
@@ -227,6 +230,7 @@ class Evidence extends CComponent {
                     $subObject = MessageEntry::model()->findAll('1=1 ORDER BY created_at DESC LIMIT 5');
                     $subData[] = [
                         $objectKey => [
+                            'id' => $mainObject->id,
                             'title' => $mainObject->content,
                             'context' => $subObject,
                         ]

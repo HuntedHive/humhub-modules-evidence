@@ -44,7 +44,7 @@ $cs->registerScriptFile($assetPrefix2);
                         <?php echo CHtml::endForm(); ?>
                     </div>
                     <div class="hidden-xs col-sm-6 text-right">
-                        <a class="btn btn-primary second-context" href="#">Next Step: Context <i class="fa fa-arrow-right fa-margin-right"></i></a>
+                        <a class="btn btn-primary second-context" data-url="<?= Yii::app()->createUrl("evidence/evidence/saveCurrentHtml") ?>" href="#">Next Step: Context <i class="fa fa-arrow-right fa-margin-right"></i></a>
                     </div>
                 </div>
                 <div class="row">
@@ -95,7 +95,7 @@ $cs->registerScriptFile($assetPrefix2);
                 </div>
                 <div class="row">
                     <div class="col-xs-12 text-right">
-                        <a class="btn btn-primary second-context" href="#">Next Step: Context <i class="fa fa-arrow-right fa-margin-right"></i></a>
+                        <a class="btn btn-primary second-context" data-url="<?= Yii::app()->createUrl("evidence/evidence/saveCurrentHtml") ?>" href="#">Next Step: Context <i class="fa fa-arrow-right fa-margin-right"></i></a>
                     </div>
                 </div>
                 <div class="col-sm-4">

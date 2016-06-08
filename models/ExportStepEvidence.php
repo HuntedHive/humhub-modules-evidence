@@ -48,4 +48,18 @@ class ExportStepEvidence extends HActiveRecord
     {
         return self::model()->findAll('created_by='.Yii::app()->user->id);
     }
+
+    public static function saveExport($exportName)
+    {
+        $currentStep = CurrStepEvidence::model()->find('created_by='.Yii::app()->user->id);
+//        var_dump($currentStep);die;
+        $exportStep = new self();
+        $exportStep->name = $exportName;
+        $exportStep->step1 = $currentStep->step1;
+        $exportStep->step2 = $currentStep->step2;
+
+        $exportStep->obj_step1 = $currentStep->obj_step1;
+        $exportStep->obj_step2 = $currentStep->obj_step2;
+        $exportStep->save();
+    }
 }
