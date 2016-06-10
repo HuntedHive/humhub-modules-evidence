@@ -20,6 +20,13 @@ class Evidence extends CComponent {
         'MessageEntry' => 'MessageEntry',
     ];
 
+    public static $relationPreview = [
+        'ActivitySpaceCreated' => 'Post',
+        'Question' => 'Question',
+        'Answer' => 'Answer',
+        'MessageEntry' => 'MessageEntry',
+    ];
+
     public static $contextMess = [
         'ActivitySpaceCreated' => '(the 2 messages either side of post in circle)',
         'Question' => '(top 5 answers)',
@@ -64,6 +71,8 @@ class Evidence extends CComponent {
                       AND 
                     object_model != "WBSChat"
                       AND
+                    object_model != "Comment"
+                      AND
                     created_by =' . Yii::app()->user->id
                     .$period;
         self::$data = Yii::app()->db->createCommand($sql)->queryAll();
@@ -81,7 +90,7 @@ class Evidence extends CComponent {
                     self::$data[$key]['object_model'] = "ActivitySpaceCreated";
                 }
 
-                if($activity->type == "ChatMessage") {
+                if($activity->type == "ChatMessage" && $activity->type = "KnowledgeCommentCreated") {
                     unset(self::$data[$key]);
                 }
             }
@@ -109,8 +118,9 @@ class Evidence extends CComponent {
             $dataMessages[$key]['object_model'] = 'MessageEntry';
         }
         self::$data = array_merge(self::$data, $dataMessages);
-
-        $this->sksort(self::$data, "created_at");
+        if(!empty(self::$data)) {
+            $this->sksort(self::$data, "created_at");
+        }
         return $this;
     }
 
@@ -242,84 +252,6 @@ class Evidence extends CComponent {
         return $subData;
     }
 
-    private static function getHtml($object, $mainObject, $subObject)
-    {
-        $switch = self::$relationObject[$object->object_model];
-        switch($switch) {
-            case 'Space':
-                $itemsHtml = '';
-                foreach ($subObject as $subItem) {
-                    $itemsHtml .= "<li>" . $subItem->message . "</li>";
-                }
-                $html = " <div class='block-item'>
-                            <input type='checkbox' class='check-item' checked>
-                            <div class='content-item'>
-                                <h1 style='text-align:center'><span>Space: </span>". $mainObject->name ."</h1>
-                                <span>Last 5 posts</span>
-                                <ul>
-                                    ". $itemsHtml ."
-                                </ul>
-                            </div>
-                          </div>";
-                return $html;
-                break;
-                break;
-            case 'Question':
-                $itemsHtml = '';
-                foreach ($subObject as $subItem) {
-                    $itemsHtml .= "<li>" . $subItem->post_text . "</li>";
-                }
-                $html = " <div class='block-item'>
-                            <input type='checkbox' class='check-item' checked>
-                            <div class='content-item'>
-                                <h1><span>Post: </span>". $mainObject->post_text ."</h1>
-                                <span>Last 5 responses</span>
-                                <ul>
-                                    ". $itemsHtml ."
-                                </ul>
-                            </div>
-                          </div>";
-                return $html;
-                break;
-            case 'Answer':
-                $itemsHtml = '';
-                foreach ($subObject as $subItem) {
-                    $itemsHtml .= "<li>" . $subItem->post_text . "</li>";
-                }
-                $questionObject = Question::model()->find('id = ' . $mainObject->question_id);
-                $html = " <div class='block-item'>
-                            <input type='checkbox' class='check-item' checked>
-                            <div class='content-item'>
-                                <h1><span>Post: </span>". $questionObject->post_text ."</h1>
-                                <p><span>Response: </span>". $mainObject->post_text ."<p>
-                                <span>Last 5 comments</span>
-                                <ul>
-                                    ". $itemsHtml ."
-                                </ul>
-                            </div>
-                          </div>";
-                return $html;
-                break;
-            case 'MessageEntry':
-                $itemsHtml = '';
-                foreach ($subObject as $subItem) {
-                    $itemsHtml .= "<li>" . $subItem->text . "</li>";
-                }
-                $html = " <div class='block-item'>
-                            <input type='checkbox' class='check-item' checked>
-                            <div class='content-item'>
-                                <h1><span>Message: </span>". $mainObject->content ."</h1>
-                                <span>Last 5 responses</span>
-                                <ul>
-                                    ". $itemsHtml ."
-                                </ul>
-                            </div>
-                          </div>";
-                return $html;
-                break;
-        }
-    }
-
     public static function getTarget($object)
     {
         $switch = self::$relationObject[$object['object_model']];
@@ -356,7 +288,245 @@ class Evidence extends CComponent {
         require_once dirname(__DIR__). DIRECTORY_SEPARATOR . "lib/phpdocx/classes/CreateDocx.inc";
 
         self::$docx = new CreateDocx();
+        self::$docx->setDefaultFont('Times New Roman');
         self::$docx->embedHTML($html);
         return $this;
+    }
+
+    public static function responseData($itemContext, $itemKeyContext)
+    {
+        $j=0;
+        $result = "";
+        switch($itemKeyContext) {
+            case 'ActivitySpaceCreated': // model is Post in db
+                $i=1;
+                foreach ($itemContext as $context) {
+                    $firstname = User::model()->find("id=". $context->created_by)->username;
+                    $preWord = ($i==3)?"Previous Message":"Following Message";
+                    ($i==3)?$i=1:'';
+                    $result.="<tr>";
+                        $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
+                        $result.="<td> <strong>" . $preWord ." ". $i . " (" . $firstname .")-</strong> ". $context->{Evidence::$contextParam[$itemKeyContext]} ."</td>";
+                    $result.="</tr>";
+                    $i++;
+                }
+                return $result;
+                break;
+            case 'Question':
+                foreach ($itemContext as $context) {
+                    $result.="<tr>";
+                        $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
+                        $result.="<td> <strong>Answer " . (++$j) . "-</strong> ". ($context->{Evidence::$contextParam[$itemKeyContext]}) ."</td>";
+                    $result.="</tr>";
+                }
+                return $result;
+                break;
+            case 'Answer':
+                $i = 0;
+                foreach ($itemContext as $context) {
+
+                    if($i == 0) {
+                        $text = $context->{Evidence::$contextParam[$itemKeyContext]};
+                        $preWord = "Question";
+                        $type = "checkbox_question";
+                    } else {
+                        $text = $context->post_text;
+                        $preWord = "Comment " . $i;
+                        $type = "checkbox";
+                    }
+                    $result.="<tr>";
+                        $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='".$type."' data-id='$context->id' type='checkbox'></td>";
+                        $result.="<td><strong>". $preWord  . " - </strong> ". $text ."</td>";
+                    $result.="</tr>";
+                    $i++;
+                }
+                return $result;
+                break;
+            case 'MessageEntry':
+                foreach ($itemContext as $context) {
+                    $result.="<tr>";
+                        $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
+                        $result.="<td> <strong>Response " . (++$j) . "-</strong> ". $context->{Evidence::$contextParam[$itemKeyContext]} ."</td>";
+                    $result.="</tr>";
+                }
+                return $result;
+                break;
+        }
+    }
+
+    public static function getPreparePreivew($data)
+    {
+        $listActivity = $data;
+        $objects = [];
+
+        foreach ($listActivity as $TypeAndId => $arrayData) {
+            $objects = array_merge(self::getObjectPrepareData($TypeAndId, $arrayData), $objects);
+        }
+
+        return $objects;
+    }
+
+    private static function getObjectPrepareData($TypeAndId, $arrayData) {
+        $subData = [];
+        $mainKey = explode("_", $TypeAndId)[0];
+        $mainId = explode("_", $TypeAndId)[1];
+            switch ($mainKey) {
+                case 'ActivitySpaceCreated': // model is Post in db
+                    $nameRelation = self::$relationPreview[$mainKey];
+
+                    $mainObject = $nameRelation::model()->find("id=".$mainId);
+                    $note = $arrayData['textarea'];
+                    $apsts = $arrayData['select'];
+                    $subObject = $nameRelation::model()->findAll('id IN(' . implode(",", $arrayData['checkbox']) . ')');
+
+                    $subData[$mainKey] = [
+                            'mainObject' => $mainObject,
+                            'note' => $note,
+                            'apsts' => $apsts,
+                            'subObject' => $subObject,
+                    ];
+                    break;
+                case 'Question':
+                    $nameRelation = self::$relationPreview[$mainKey];
+
+                    $mainObject = $nameRelation::model()->find("id=".$mainId);
+                    $note = $arrayData['textarea'];
+                    $apsts = $arrayData['select'];
+
+                    $subObject = Answer::model()->findAll('id IN(' . implode(",", $arrayData['checkbox']) . ')');
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                    break;
+                case 'Answer':
+                    $nameRelation = self::$relationPreview[$mainKey];
+                    $mainObject = $nameRelation::model()->find("id=".$mainId);
+                    $note = $arrayData['textarea'];
+                    $apsts = $arrayData['select'];
+                    $subObject = $nameRelation::model()->findAll('id IN(' . implode(",", $arrayData['checkbox']) . ')');
+
+                    $subQuestion = NULL;
+                    if(!empty($arrayData['checkbox_question'])) {
+                        $subObject['question'] = $nameRelation::model()->find('id='.$arrayData['checkbox_question'][0]);
+                    }
+
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                    break;
+                case 'MessageEntry':
+                    $nameRelation = self::$relationPreview[$mainKey];
+
+                    $mainObject = $nameRelation::model()->find("id=".$mainId);
+                    $note = $arrayData['textarea'];
+                    $apsts = $arrayData['select'];
+                    $subObject = $nameRelation::model()->findAll('id IN(' . implode(",", $arrayData['checkbox']) . ')');
+
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                    break;
+        }
+
+        return $subData;
+    }
+
+    public static function getPreviewUlHtml($itemValue, $itemKey) {
+        $html= "";
+        switch($itemKey) {
+            case 'ActivitySpaceCreated': // model is Post in db
+                $i=1;
+                foreach ($itemValue as $subItem) {
+                    $firstname = User::model()->find("id=". $subItem->created_by)->username;
+                    $preWord = ($i==3)?"Previous Message":"Following Message";
+                    ($i==3)?$i=1:'';
+                    $html.="<li><strong>Response ". ($i) . " - </strong>".  $subItem->{self::$contextParam[$itemKey]} ."</li>";
+                    $i++;
+                }
+                return $html;
+                break;
+            case 'Question':
+                $i=0;
+                foreach ($itemValue as $subItem) {
+                    $html.="<li><strong>Answer ". (++$i) . " - </strong>".  $subItem->{self::$contextParam[$itemKey]} ."</li>";
+                }
+                return $html;
+                break;
+            case 'Answer':
+                $i = 0;
+                if(isset($itemValue['question'])) {
+                    $question = $itemValue['question'];
+                    $html.="<li><strong>Question - </strong>".  $question->post_title ."</li>";
+                }
+                foreach ($itemValue as $subItem) {
+                    $html.="<li><strong>Comment ". (++$i) . " - </strong>".  $subItem->post_text ."</li>";
+                }
+                return $html;
+                break;
+            case 'MessageEntry':
+                $i = 0;
+                foreach ($itemValue as $subItem) {
+                    $html.="<li><strong>Response ". (++$i) . " - </strong>".  $subItem->{self::$contextParam[$itemKey]} ."</li>";
+                }
+                return $html;
+                break;
+        }
+
+    }
+
+    public static function getBody($itemValue, $itemKey)
+    {
+        if($itemKey != "Answer") {
+            return  $itemValue->{Evidence::$contextParam[$itemKey]};
+        } else {
+            return $itemValue->post_text;
+        }
+    }
+
+
+
+    public static function getFileAPSTS() {
+
+        require_once dirname(__DIR__). DIRECTORY_SEPARATOR . "lib/PHPExcel/Classes/PHPExcel.php";
+        $profile = Profile::model()->find("user_id=". Yii::app()->user->id);
+        $reg = ManageRegistration::model()->find('name="' .$profile->teacher_type. '"');
+
+        $file_name = $reg->file_name;
+        $path = Yii::getPathOfAlias("webroot") . "/uploads/file/". $file_name;
+        $objPHPExcel = PHPExcel_IOFactory::load($path);
+
+        $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+        unset($sheetData[1]);
+        if(empty($sheetData)) {
+            return [];
+        }
+        return $sheetData;
+    }
+
+    public static function getOneAPSTS($id_apsts)
+    {
+        $data = self::getFileAPSTS();
+        $title = "";
+        $descr = "";
+
+        foreach ($data as $item) {
+            if($item['A'] == $id_apsts) {
+                $title = $item['B'];
+                $descr = $item['C'];
+            }
+        }
+        return [
+            'title' => $title,
+            'descr' => $descr,
+        ];
     }
 }

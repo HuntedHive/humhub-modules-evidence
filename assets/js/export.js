@@ -64,7 +64,7 @@ $(document).ready(function() {
         var data = contextObject.val();
         var dataId = contextObject.data("id");
         var parentType = contextObject.parents(".context-part").data("type");
-        if(type == "checkbox") {
+        if(type == "checkbox" || type == "checkbox_question") {
             prepareCheckbox(data, type, parentType, dataId);
         } else if(type == "select") {
             prepareSelect(data, type, parentType, dataId);
@@ -74,8 +74,8 @@ $(document).ready(function() {
     }
 
     function prepareCheckbox(data, type, parentType, dataId) {
-        var objectActivity = $("input[name='activityItems["+parentType+"][context][]'][data-id='"+dataId+"'][data-type='"+type+"']");
-        var input = '<input class="activityObjects" name="activityItems['+parentType+'][context][]" value="' + dataId + '" data-name="'+parentType+'" type="hidden" data-type="'+type+'" data-id="' + dataId + '">';
+        var objectActivity = $("input[name='activityItems["+parentType+"]["+type+"][]'][data-id='"+dataId+"'][data-type='"+type+"']");
+        var input = '<input class="activityObjects" name="activityItems['+parentType+']['+type+'][]" value="' + dataId + '" data-name="'+parentType+'" type="hidden" data-type="'+type+'" data-id="' + dataId + '">';
         if(objectActivity.length == 0) {
             $(".contentListOfItems").append(input);
         } else {
@@ -85,8 +85,8 @@ $(document).ready(function() {
 
     function prepareSelect(data, type, parentType) {
         var dataId = 0;
-        var objectActivity = $("input[name='activityItems["+parentType+"][select][]'][data-type='"+type+"']");
-        var input = '<input class="activityObjects" name="activityItems['+parentType+'][select][]" value="' + data + '" data-name="'+parentType+'" type="hidden" data-type="'+type+'" data-id="' + data + '">';
+        var objectActivity = $("input[name='activityItems["+parentType+"][select]'][data-type='"+type+"']");
+        var input = '<input class="activityObjects" name="activityItems['+parentType+'][select]" value="' + data + '" data-name="'+parentType+'" type="hidden" data-type="'+type+'" data-id="' + data + '">';
         if(objectActivity.length == 0) {
             $(".contentListOfItems").append(input);
         } else {
@@ -98,7 +98,7 @@ $(document).ready(function() {
     function prepareTextarea(data, type, parentType) {
         var dataId = 0;
         var objectActivity = $("input[name='activityItems["+parentType+"][textarea]'][data-id='"+dataId+"'][data-type='"+type+"']");
-        var input = '<input class="activityObjects" name="activityItems['+parentType+'][textarea][]" value="' + data + '" data-name="'+parentType+'" type="hidden" data-type="'+type+'" data-id="' + dataId + '">';
+        var input = '<input class="activityObjects" name="activityItems['+parentType+'][textarea]" value="' + data + '" data-name="'+parentType+'" type="hidden" data-type="'+type+'" data-id="' + dataId + '">';
         if(objectActivity.length == 0) {
             $(".contentListOfItems").append(input);
         } else {
@@ -136,7 +136,7 @@ $(document).ready(function() {
             var dataName = $(this).data('name');
             var dataValue = $(this).val();
 
-            if(currentType == "checkbox") {
+            if(currentType == "checkbox" || currentType == "checkbox_question") {
                 var objectActivity = $(".context-part[data-type='"+dataName+"'] .itemSelect[data-type='"+currentType+"']");
                 if (!objectActivity.is(":checked")) {
                     objectActivity.prop("checked", true);
@@ -161,4 +161,19 @@ $(document).ready(function() {
             }
         });
     }
+    $(".btn-export").on("click", function() {
+        var table = $("table.items").clone();
+        table.find("td").attr("style", "font-size:8px");
+        table.find("th").attr("style", "font-size:10px");
+        var html = table[0].outerHTML;
+        $.ajax({
+            url: tableSaveExport,
+            data: {'table': html},
+            type: 'POST',
+            success: function(data) {
+                console.log(data);
+            }
+        });
+        return false;
+    });
 });

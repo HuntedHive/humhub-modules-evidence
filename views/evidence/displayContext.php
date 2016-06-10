@@ -47,11 +47,9 @@ $cs->registerScriptFile($assetPrefix);
               <div class="form-group col-xs-12">
                 <select name="apst" data-type="select" class="selectpicker form-control show-tick context-select" title="Select from Australian Professional Standards for Teachers * ..." required>
                   <optgroup label="Select from Australian Professional Standards for Teachers">
-                      <option value="1">APST_short_title 1</option>
-                      <option value="2">APST_short_title 2</option>
-                      <option value="3">APST_short_title 3</option>
-                      <option value="4">APST_short_title 4</option>
-                      <option value="5">APST_short_title 5</option>
+                      <?php foreach(Evidence::getFileAPSTS() as $apsts) { ?>
+                      <option value="<?= $apsts['A'] ?>"><?= $apsts['B']; ?></option>
+                      <?php } ?>
                   </optgroup>
                 </select>
               </div>
@@ -69,13 +67,7 @@ $cs->registerScriptFile($assetPrefix);
                 </tr>
               </thead>
               <tbody>
-                <?php $j=0 ?>
-                <?php foreach ($itemContext['context'] as $context) { ?>
-                  <tr>
-                    <td class="text-center"><input class="itemSelect context-checkbox" data-type="checkbox" data-id="<?= $context->id; ?>" type="checkbox"></td>
-                    <td> <strong>Response <?= ++$j; ?> -</strong> <?= $context->{Evidence::$contextParam[$itemKeyContext]}  ?> </td>
-                  </tr>
-                <?php } ?>
+                <?= Evidence::responseData($itemContext['context'], $itemKeyContext); ?>
               </tbody>
             </table>
             <!-- /.Contribution Panel Table -->
@@ -91,7 +83,7 @@ $cs->registerScriptFile($assetPrefix);
         </div>
           <div class="col-sm-4">
               <?php echo CHtml::beginForm(
-                  Yii::app()->createUrl($stepUrl),
+                  $stepUrl,
                   "post", [
                   'class' => 'listOfItems'
               ]);

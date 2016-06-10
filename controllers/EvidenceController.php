@@ -37,7 +37,7 @@ class EvidenceController extends Controller
 	public function actionSaveToWord()
 	{
 		$evidence = new Evidence;
-		$evidence->prepareHtmlToHtml($_POST['html'])->saveWord();
+		$evidence->prepareHtmlToHtml($_POST['table'])->saveWord();
 		echo 'success';
 	}
 
@@ -58,13 +58,26 @@ class EvidenceController extends Controller
 		$this->render('index', array(
 			'dataProvider'=>$dataProvider,
 			'step' => ExportStepEvidence::STEP1,
-			'stepUrl' => '/evidence/evidence/sectionPrepareWord',
+			'stepUrl' => Yii::app()->createUrl("/evidence/evidence/sectionPrepareWord"),
 		));
 	}
 
 	public function actionSectionPreview()
 	{
-		var_dump($_POST);die;
+		User::model()->findByPk(Yii::app()->user->id);
+		if((!empty($_POST) && isset($_POST['activityItems'])) || isset($_COOKIE['LoadExport'])) {
+			$data = CurrStepEvidence::loadHtmlCookie();
+			$itemsList = isset($_POST['activityItems'])?$_POST['activityItems']:json_decode($data->obj_step2, true);
+			CurrStepEvidence::setCurrentStep(null, json_encode($itemsList), ExportStepEvidence::STEP2);
+			$dataObjects = Evidence::getPreparePreivew($itemsList);
+			$this->render("preview", [
+				'dataObjects' => $dataObjects,
+				'step' => ExportStepEvidence::STEP3,
+				'previousUrl' => Yii::app()->createUrl("/evidence/evidence/sectionPrepareWord"),
+			]);
+		} else {
+			return $this->redirect(Yii::app()->createUrl("/evidence/evidence/prepare"));
+		}
 	}
 
 	public function actionSectionPrepareWord()
@@ -96,7 +109,6 @@ class EvidenceController extends Controller
 		$exportName = $output['saveExport'];
 		$exportData = $_POST['html'];
 		$exportObjData = json_encode($dataObj['activityItems']);
-//		var_dump($exportData);die;
 		CurrStepEvidence::setCurrentStep($exportData, $exportObjData, $currentStep);
 		ExportStepEvidence::saveExport($exportName);
 		setcookie("LoadExport", 1, time()+3600*24*10, "/");

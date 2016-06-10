@@ -1,3 +1,10 @@
+<?php
+$cs = Yii::app()->getClientScript();
+$cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js");
+?>
+<script type="text/javascript" src="<?php echo $this->module->assetsUrl; ?>/js/export.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->module->assetsUrl; ?>/css/evidence.css"/>
+
 <div class="container">
 
     <div class="row">
@@ -18,7 +25,7 @@
 
     <div class="row hidden-xs evidence-buttons-top">
         <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="#"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Context</a> </div>
-        <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary" href="#"><i class="fa fa-download fa-margin-right"></i> Export</a> </div>
+        <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary btn-export" href="#"><i class="fa fa-download fa-margin-right"></i> Export</a> </div>
     </div>
 
     <div class="row">
@@ -29,7 +36,7 @@
             <!-- Output Preview -->
             <div class="table-responsive">
                 <div class="grid-view">
-                    <table class="items preview-evidence">
+                    <table class="items preview-evidence" border="1">
                         <thead>
                         <tr>
                             <th>APST standard description.</th>
@@ -40,69 +47,22 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr class="odd">
-                            <td><strong style="color:#1895a4;">[APST_short_title]</strong><br>
-                                [APST_desc] </td>
-                            <td class="text-left"><i class="fa fa-comment fa-margin-right"></i> <strong>Message -</strong> <i>A private message I have sent.</i><br>
-                                <ul>
-                                    <li><strong>Response 1 -</strong> Lorem ipsum dolor sit amet. </li>
-                                    <li><strong>Response 2 -</strong> Lorem ipsum dolor sit amet. </li>
-                                    <li><strong>Response 3 -</strong> Lorem ipsum dolor sit amet. </li>
-                                    <li><strong>Response 4 -</strong> Lorem ipsum dolor sit amet. </li>
-                                    <li><strong>Response 5 -</strong> Lorem ipsum dolor sit amet. </li>
-                                </ul>
-                            </td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</td>
-                            <td></td>
-                        </tr>
-
-                        <tr class="even">
-                            <td><strong>[APST_short_title]</strong><br>
-                                [APST_desc] </td>
-                            <td class="text-left"><i class="fa fa-stack-exchange fa-margin-right"></i> <strong>Community Post -</strong> <i>A question I posted in the Community Knowledge?</i><br>
-                                <ul>
-                                    <li><strong>Answer 1 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Answer 2 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Answer 3 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Answer 4 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Answer 5 -</strong> Lorem ipsum dolor sit amet.</li>
-                                </ul>
-                            </td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</td>
-                            <td></td>
-                        </tr>
-
-                        <tr class="odd">
-                            <td><strong>[APST_short_title]</strong><br>
-                                [APST_desc] </td>
-                            <td class="text-left"><i class="fa fa-stack-exchange fa-margin-right"></i> <strong>Community Response -</strong> <i>An answer I posted in the Community Knowledge.</i><br>
-                                <ul>
-                                    <li><strong>Question -</strong> Lorem ipsum dolor sit amet. </li>
-                                    <li><strong>Comment 1 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Comment 2 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Comment 3 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Comment 4 -</strong> Lorem ipsum dolor sit amet.</li>
-                                </ul>
-                            </td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</td>
-                            <td></td>
-                        </tr>
-
-                        <tr class="even">
-                            <td><strong>[APST_short_title]</strong><br>
-                                [APST_desc] </td>
-                            <td class="text-left"><i class="fa fa-dot-circle-o fa-margin-right"></i> <strong>Mentorship Circle Post -</strong> <i>A post I made in the mentorship circle.</i><br>
-                                <ul>
-                                    <li><strong>Previous Message 1 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Previous Message 2 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Following Message 1 -</strong> Lorem ipsum dolor sit amet.</li>
-                                    <li><strong>Following Message 2 -</strong> Lorem ipsum dolor sit amet.</li>
-                                </ul>
-                            </td>
-                            <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</td>
-                            <td></td>
-                        </tr>
-
+                        <?php foreach ($dataObjects as $itemKey => $itemValue) { ?>
+                            <tr class="itemTr">
+                                <td>
+                                    <strong style="color:#1895a4;"><?= Evidence::getOneAPSTS($itemValue['apsts'])['title'] ?></strong>
+                                    <br>
+                                    <?= Evidence::getOneAPSTS($itemValue['apsts'])['descr'] ?>
+                                </td>
+                                <td class="text-left"><?php echo Evidence::$iconObject[$itemKey]; ?> <strong><?= Evidence::$acitvityType[$itemKey]; ?> -</strong> <i><?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?></i><br>
+                                    <ul>
+                                        <?= Evidence::getPreviewUlHtml($itemValue['subObject'], $itemKey); ?>
+                                    </ul>
+                                </td>
+                                <td class="note" style="width:50px"><?php echo $itemValue['note']; ?></td>
+                                <td class="descr" style="width:50px"></td>
+                            </tr>
+                        <?php  } ?>
                         </tbody>
                     </table>
                 </div>
@@ -114,7 +74,11 @@
 
     <div class="row evidence-buttons evidence-buttons-bottom">
         <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="#"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Context</a> </div>
-        <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary" href="#"><i class="fa fa-download fa-margin-right"></i> Export</a> </div>
+        <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary btn-export" href="#"><i class="fa fa-download fa-margin-right"></i> Export</a> </div>
     </div>
 
 </div>
+
+<script>
+   var tableSaveExport = '<?= Yii::app()->createUrl("/evidence/evidence/saveToWord"); ?>';
+</script>

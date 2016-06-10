@@ -100,7 +100,7 @@ $cs->registerScriptFile($assetPrefix2);
                 </div>
                 <div class="col-sm-4">
                     <?php echo CHtml::beginForm(
-                        Yii::app()->createUrl('/evidence/evidence/sectionPrepareWord'),
+                        $stepUrl,
                         "post", [
                             'class' => 'listOfItems'
                         ]);
