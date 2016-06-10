@@ -29,7 +29,7 @@ $cs->registerScriptFile($assetPrefix);
 
     <div class="row hidden-xs evidence-buttons-top">
       <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="<?= $previousUrl ?>"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Contributions</a> </div>
-      <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary second-context" href="#">Next Step: Preview <i class="fa fa-arrow-right fa-margin-right"></i></a> </div>
+      <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary second-context" data-url="<?= Yii::app()->createUrl("evidence/evidence/saveCurrentHtml") ?>" href="#">Next Step: Preview <i class="fa fa-arrow-right fa-margin-right"></i></a> </div>
     </div>
 
     <div class="row">
@@ -79,7 +79,7 @@ $cs->registerScriptFile($assetPrefix);
 
         <div class="row evidence-buttons evidence-buttons-bottom">
           <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="<?= $previousUrl ?>"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Contributions</a> </div>
-          <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary second-context" href="#">Next Step: Preview <i class="fa fa-arrow-right fa-margin-right"></i></a> </div>
+          <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary second-context" data-url="<?= Yii::app()->createUrl("evidence/evidence/saveCurrentHtml") ?>" href="#">Next Step: Preview <i class="fa fa-arrow-right fa-margin-right"></i></a> </div>
         </div>
           <div class="col-sm-4">
               <?php echo CHtml::beginForm(

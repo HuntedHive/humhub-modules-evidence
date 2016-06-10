@@ -24,7 +24,7 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
     </div>
 
     <div class="row hidden-xs evidence-buttons-top">
-        <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="#"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Context</a> </div>
+        <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="<?= $previousUrl ?>"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Context</a> </div>
         <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary btn-export" href="#"><i class="fa fa-download fa-margin-right"></i> Export</a> </div>
     </div>
 
@@ -73,12 +73,12 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
     </div>
 
     <div class="row evidence-buttons evidence-buttons-bottom">
-        <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="#"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Context</a> </div>
+        <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="<?= $previousUrl ?>"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Context</a> </div>
         <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary btn-export" href="#"><i class="fa fa-download fa-margin-right"></i> Export</a> </div>
     </div>
 
 </div>
-
+<?= $this->renderPartial("_modals", ['step' => $step]); ?>
 <script>
    var tableSaveExport = '<?= Yii::app()->createUrl("/evidence/evidence/saveToWord"); ?>';
 </script>
