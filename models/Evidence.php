@@ -290,7 +290,7 @@ class Evidence extends CComponent {
 
     public function prepareHtmlToHtml($html)
     {
-        require_once dirname(__DIR__). DIRECTORY_SEPARATOR . "lib/phpdocx/classes/CreateDocx.inc";
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . "lib/phpdocx/classes/CreateDocx.inc";
 
         self::$docx = new CreateDocx();
         self::$docx->setDefaultFont('Arial');

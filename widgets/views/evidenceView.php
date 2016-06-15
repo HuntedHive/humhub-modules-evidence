@@ -14,3 +14,80 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
         })
     </script>
 <?php } ?>
+
+<?php if(!isset($_COOKIE['teacher_type'])) { ?>
+    <!-- Modal - Select Teacher Type -->
+    <div class="modal fade" id="selectTeacherType" tabindex="-1" role="dialog" aria-labelledby="selectTeacherType">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header modal-header-margin-bottom">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h3 class="modal-title" id="myModalLabel">Select Teacher Type</h3>
+                    <p>Please select your teacher type in order to gain access to the appropriate Australian Professional Standards for Teachers when exporting your evidence.</p>
+                    <p><small>You will be requested to update your teacher type once every 12 months.</small></p>
+                </div>
+                <div class="modal-body">
+                    <?php echo CHtml::beginForm('', 'post', ['class' => 'form_teacher_type']) ?>
+                        <div class="form-group col-xs-12">
+                            <select name="teachertype" class="selectpicker form-control show-tick" required title="Select teacher type * ..." required>
+                                <optgroup label="Select teacher type *">
+                                    <?php
+                                        $types = ManageRegistration::model()->findAll('type='.ManageRegistration::TYPE_TEACHER_TYPE . ' AND `default`='. ManageRegistration::DEFAULT_ADDED);
+                                        foreach ($types as $item) {
+                                            echo "<option value='$item->name'>$item->name</option>";
+                                        }
+                                    ?>
+                                    <option value="other">other</option>
+                                </optgroup>
+                            </select>
+                        </div>
+    <!--                    <div class="" id="teachertype-other">-->
+    <!--                        <div class="form-group col-xs-2 col-sm-1 indent-other">-->
+    <!--                            <i class="fa fa-arrow-right"></i>-->
+    <!--                        </div>-->
+    <!--                        <div class="form-group col-xs-10 col-sm-11">-->
+    <!--                            <input class="form-control" id="teachertype-other" placeholder="Enter 'other' teacher type *" name="teacherTypeOther" type="text" required>-->
+    <!--                        </div>-->
+    <!--                    </div>-->
+                    <?php echo CHtml::endForm(); ?>
+                </div>
+                <div class="modal-footer">
+                    <div class="col-xs-12">
+                        <button type="button" class="btn btn-primary btn-sm btn-primary-modal">Save Teacher Type</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- /.modal -->
+
+    <script>
+        $(document).ready(function() {
+            $("#selectTeacherType").modal('show');
+
+            $("#selectTeacherType .close").on("click", function() {
+                $("#selectTeacherType").modal('hide');
+                setCookie("teacher_type", 1);
+            });
+
+            function setCookie(key, value) {
+                var expires = new Date();
+                expires.setTime(expires.getTime() + (86400 * 30 * 12));
+                document.cookie = key + '=' + value + ';path=/;expires=' + expires.toUTCString();
+            }
+
+            $(".btn-primary-modal").on("click", function() {
+                var form = $(".form_teacher_type").serialize();
+                $.ajax({
+                    url: "<?php echo Yii::app()->createUrl("/registration/registration/updateUserTeacherType"); ?>",
+                    data: form,
+                    type: 'POST',
+                    success: function(data) {
+                        setCookie("teacher_type", 1);
+                        window.location.href = "";
+                    }
+                });
+                return false;
+            });
+        });
+    </script>
+<?php } ?>
