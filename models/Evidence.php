@@ -332,67 +332,6 @@ class Evidence extends CComponent {
         return $this;
     }
 
-    public static function responseData($itemContext, $itemKeyContext)
-    {
-        $j=0;
-        $result = "";
-        switch($itemKeyContext) {
-            case 'ActivitySpaceCreated': // model is Post in db
-                $i=1;
-                foreach ($itemContext as $context) {
-                    $firstname = User::model()->find("id=". $context->created_by)->username;
-                    $preWord = ($i==3)?"Previous Message":"Following Message";
-                    ($i==3)?$i=1:'';
-                    $result.="<tr>";
-                        $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
-                        $result.="<td> <strong>" . $preWord ." ". $i . " (" . $firstname .")-</strong> ". $context->{Evidence::$contextParam[$itemKeyContext]} ."</td>";
-                    $result.="</tr>";
-                    $i++;
-                }
-                return $result;
-                break;
-            case 'Question':
-                foreach ($itemContext as $context) {
-                    $result.="<tr>";
-                        $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
-                        $result.="<td> <strong>Answer " . (++$j) . "-</strong> ". ($context->{Evidence::$contextParam[$itemKeyContext]}) ."</td>";
-                    $result.="</tr>";
-                }
-                return $result;
-                break;
-            case 'Answer':
-                $i = 0;
-                foreach ($itemContext as $context) {
-
-                    if($i == 0) {
-                        $text = $context->{Evidence::$contextParam[$itemKeyContext]};
-                        $preWord = "Question";
-                        $type = "checkbox_question";
-                    } else {
-                        $text = $context->post_text;
-                        $preWord = "Comment " . $i;
-                        $type = "checkbox";
-                    }
-                    $result.="<tr>";
-                        $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='".$type."' data-id='$context->id' type='checkbox'></td>";
-                        $result.="<td><strong>". $preWord  . " - </strong> ". $text ."</td>";
-                    $result.="</tr>";
-                    $i++;
-                }
-                return $result;
-                break;
-            case 'MessageEntry':
-                foreach ($itemContext as $context) {
-                    $result.="<tr>";
-                        $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
-                        $result.="<td> <strong>Response " . (++$j) . "-</strong> ". $context->{Evidence::$contextParam[$itemKeyContext]} ."</td>";
-                    $result.="</tr>";
-                }
-                return $result;
-                break;
-        }
-    }
-
     public static function getPreparePreivew($data)
     {
         $listActivity = $data;
@@ -479,6 +418,67 @@ class Evidence extends CComponent {
         return $subData;
     }
 
+    public static function responseData($itemContext, $itemKeyContext)
+    {
+        $j=0;
+        $result = "";
+        switch($itemKeyContext) {
+            case 'ActivitySpaceCreated': // model is Post in db
+                $i=1;
+                foreach ($itemContext as $context) {
+                    $firstname = User::model()->find("id=". $context->created_by)->username;
+                    $preWord = ($i==3)?"Previous Message":"Following Message";
+                    ($i==3)?$i=1:'';
+                    $result.="<tr>";
+                    $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
+                    $result.="<td> <strong>" . $preWord ." ". $i . " (" . $firstname .")-</strong> ". $context->{Evidence::$contextParam[$itemKeyContext]} ."</td>";
+                    $result.="</tr>";
+                    $i++;
+                }
+                return $result;
+                break;
+            case 'Question':
+                foreach ($itemContext as $context) {
+                    $result.="<tr>";
+                    $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
+                    $result.="<td> <strong>Answer " . (++$j) . "-</strong> ". ($context->{Evidence::$contextParam[$itemKeyContext]}) ."</td>";
+                    $result.="</tr>";
+                }
+                return $result;
+                break;
+            case 'Answer':
+                $i = 0;
+                foreach ($itemContext as $context) {
+
+                    if($i == 0) {
+                        $text = $context->{Evidence::$contextParam[$itemKeyContext]};
+                        $preWord = "Question";
+                        $type = "checkbox_question";
+                    } else {
+                        $text = $context->post_text;
+                        $preWord = "Comment " . $i;
+                        $type = "checkbox";
+                    }
+                    $result.="<tr>";
+                    $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='".$type."' data-id='$context->id' type='checkbox'></td>";
+                    $result.="<td><strong>". $preWord  . " - </strong> ". $text ."</td>";
+                    $result.="</tr>";
+                    $i++;
+                }
+                return $result;
+                break;
+            case 'MessageEntry':
+                foreach ($itemContext as $context) {
+                    $result.="<tr>";
+                    $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
+                    $result.="<td> <strong>Response " . (++$j) . "-</strong> ". $context->{Evidence::$contextParam[$itemKeyContext]} ."</td>";
+                    $result.="</tr>";
+                }
+                return $result;
+                break;
+        }
+    }
+
     public static function getPreviewUlHtml($itemValue, $itemKey) {
         $html= "";
         switch($itemKey) {
@@ -488,7 +488,7 @@ class Evidence extends CComponent {
                     $firstname = User::model()->find("id=". $subItem->created_by)->username;
                     $preWord = ($i==3)?"Previous Message":"Following Message";
                     ($i==3)?$i=1:'';
-                    $html.="<li><strong>Response ". ($i) . " - </strong>".  $subItem->{self::$contextParam[$itemKey]} ."</li>";
+                    $html.="<li><strong>$preWord ". ($i) . " (" . $firstname .") - </strong>".  $subItem->{self::$contextParam[$itemKey]} ."</li>";
                     $i++;
                 }
                 return $html;
