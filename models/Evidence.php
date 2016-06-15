@@ -282,6 +282,7 @@ class Evidence extends CComponent {
     {
         $path = Yii::getPathOfAlias('webroot') . '/uploads/file/evidenceDoc';
         self::$docx->modifyPageLayout('A3');
+        self::$docx->modifyPageLayout('A3');
         self::$docx->createDocx($path);
         $absolutePath = Yii::app()->request->hostInfo . "/". Yii::app()->request->baseUrl . "/uploads/file/evidenceDoc.docx";
         return $absolutePath;
@@ -292,7 +293,7 @@ class Evidence extends CComponent {
         require_once dirname(__DIR__). DIRECTORY_SEPARATOR . "lib/phpdocx/classes/CreateDocx.inc";
 
         self::$docx = new CreateDocx();
-        self::$docx->setDefaultFont('Times New Roman');
+        self::$docx->setDefaultFont('Arial');
         $options = array(
             'src' => Yii::getPathOfAlias("webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-header.png',
             'imageAlign' => 'left',
@@ -305,7 +306,6 @@ class Evidence extends CComponent {
             'borderWidth' => 0,
         );
         self::$docx->addImage($options);
-
         self::$docx->addText("Evidence Export", [
             'wordWrap' => true,
             'textAlign' => 'right',
