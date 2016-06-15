@@ -280,7 +280,11 @@ class Evidence extends CComponent {
 
     public function saveWord()
     {
-        self::$docx->createDocx('simpleHTML');
+        $path = Yii::getPathOfAlias('webroot') . '/uploads/file/evidenceDoc';
+        self::$docx->modifyPageLayout('A3');
+        self::$docx->createDocx($path);
+        $absolutePath = Yii::app()->request->hostInfo . "/". Yii::app()->request->baseUrl . "/uploads/file/evidenceDoc.docx";
+        return $absolutePath;
     }
 
     public function prepareHtmlToHtml($html)
@@ -289,7 +293,42 @@ class Evidence extends CComponent {
 
         self::$docx = new CreateDocx();
         self::$docx->setDefaultFont('Times New Roman');
+        $options = array(
+            'src' => Yii::getPathOfAlias("webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-header.png',
+            'imageAlign' => 'left',
+            'scaling' => 25,
+            'spacingTop' => 10,
+            'spacingBottom' => 0,
+            'spacingLeft' => 0,
+            'spacingRight' => 20,
+            'textWrap' => 4,
+            'borderWidth' => 0,
+        );
+        self::$docx->addImage($options);
+
+        self::$docx->addText("Evidence Export", [
+            'wordWrap' => true,
+            'textAlign' => 'right',
+        ]);
+        self::$docx->addText("2016-05-12", [
+            'wordWrap' => true,
+            'textAlign' => 'right',
+        ]);
+
         self::$docx->embedHTML($html);
+
+        $options = array(
+            'src' => Yii::getPathOfAlias("webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-footer.png',
+            'imageAlign' => 'right',
+            'scaling' => 25,
+            'spacingTop' => 10,
+            'spacingBottom' => 0,
+            'spacingLeft' => 0,
+            'spacingRight' => 20,
+            'textWrap' => 0,
+            'border' => 0,
+        );
+        self::$docx->addImage($options);
         return $this;
     }
 

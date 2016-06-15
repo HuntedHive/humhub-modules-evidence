@@ -37,10 +37,13 @@ class EvidenceController extends Controller
 	public function actionSaveToWord()
 	{
 		$evidence = new Evidence;
-		$evidence->prepareHtmlToHtml($_POST['table'])->saveWord();
-		echo 'success';
+		$path = $evidence->prepareHtmlToHtml($_POST['table'])->saveWord();
+		echo json_encode(['flag' => 1, 'path' => $path]);
 	}
 
+	/**
+	 * First step
+	 */
 	public function actionPrepare()
 	{
 		Yii::import("application.modules.evidence.models.Evidence");
@@ -62,6 +65,9 @@ class EvidenceController extends Controller
 		));
 	}
 
+	/**
+	 * Third step
+	 */
 	public function actionSectionPreview()
 	{
 		User::model()->findByPk(Yii::app()->user->id);
@@ -80,6 +86,9 @@ class EvidenceController extends Controller
 		}
 	}
 
+	/**
+	 * Second step
+	 */
 	public function actionSectionPrepareWord()
 	{
 		if((!empty($_POST) && isset($_POST['activityItems']) || isset($_COOKIE['LoadExport']))) {

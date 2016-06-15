@@ -163,15 +163,18 @@ $(document).ready(function() {
     }
     $(".btn-export").on("click", function() {
         var table = $("table.items").clone();
-        table.find("td").attr("style", "font-size:8px");
-        table.find("th").attr("style", "font-size:10px");
+        table.find("td").attr("style", "font-size:14px");
+        table.find("th").attr("style", "font-size:14px");
         var html = table[0].outerHTML;
         $.ajax({
             url: tableSaveExport,
             data: {'table': html},
             type: 'POST',
             success: function(data) {
-                console.log(data);
+                var result = JSON.parse(data);
+                if(result.flag == 1) {
+                    window.location.href = result.path;
+                }
             }
         });
         return false;

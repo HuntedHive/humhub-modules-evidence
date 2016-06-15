@@ -35,15 +35,19 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
 
             <!-- Output Preview -->
             <div class="table-responsive">
+                <div style="text-align:right" hidden>
+                    <div>Evidence Export</div><br>
+                    <div>2016-05-12</div>
+                </div>
                 <div class="grid-view">
                     <table class="items preview-evidence" border="1">
                         <thead>
-                        <tr>
-                            <th>APST standard description.</th>
-                            <th class="evidence">Artefact to be used as evidence.</th>
-                            <th>Description of how the artefact demonstrates impact upon teaching and/or student learning.</th>
-                            <th class="supervisor-notes">Description of how the artefact presented meets the standard described.
-                                <small>(Can be filled out later)</small></th>
+                        <tr style="background: #1895a4">
+                            <th><span style="color:#ffffff">APST standard description.</span></th>
+                            <th class="evidence"><span style="color:#ffffff">Artefact to be used as evidence.</span></th>
+                            <th><span style="color:#ffffff">Description of how the artefact demonstrates impact upon teaching and/or student learning.</span></th>
+                            <th class="supervisor-notes" rowspan="1"><span style="color:#ffffff">Description of how the artefact presented meets the standard described.
+                                <small>(Can be filled out later)</small></span></th>
                         </tr>
                         </thead>
                         <tbody>
@@ -54,7 +58,7 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
                                     <br>
                                     <?= Evidence::getOneAPSTS($itemValue['apsts'])['descr'] ?>
                                 </td>
-                                <td class="text-left"><?php echo Evidence::$iconObject[$itemKey]; ?> <strong><?= Evidence::$acitvityType[$itemKey]; ?> -</strong> <i><?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?></i><br>
+                                <td class="text-left"><?php echo Evidence::$iconObject[$itemKey]; ?> <strong><?= Evidence::$acitvityType[$itemKey]; ?> -</strong> <i><?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?></i>
                                     <ul>
                                         <?= Evidence::getPreviewUlHtml($itemValue['subObject'], $itemKey); ?>
                                     </ul>
