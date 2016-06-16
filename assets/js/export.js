@@ -27,6 +27,17 @@ $(document).ready(function() {
         return false;
     });
 
+    if($(".daterangeobj").length != 0 && $(".contentListOfItems") != 0) {
+        var value = $(".daterangeobj").val();
+        var html = "<input type='hidden' class='datarangeSubject' data-value='" + value + "'>"
+        $(".contentListOfItems").append(html);
+    }
+
+    if($(".previewdate").length != 0 && $(".datarangeSubject") != 0) {
+        var value = $(".datarangeSubject").data('value');
+        $(".previewdate").html(value);
+    }
+
     $(".loadExport").on("click", function() {
         var exportId = $(".loadExportSelect").val();
         var url = $(this).data('url');
@@ -162,7 +173,8 @@ $(document).ready(function() {
         });
     }
     $(".btn-export").on("click", function() {
-        var table = $("table.items").clone();
+        var table = $(".table-responsive").clone();
+        table.find(".previewdate").before("<br>");
         table.find("td").attr("style", "font-size:14px;border: 2px solid black;");
         table.find("th").attr("style", "font-size:14px;border: 2px solid black;");
         var html = table[0].outerHTML;

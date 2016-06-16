@@ -31,13 +31,13 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
     <div class="row">
         <div class="col-xs-12">
 
-            <p class="text-right"><strong>Date Range -</strong> DD/MM/YYYY to DD/MM/YYYY</p>
+            <p class="text-right"><strong>Date Range -</strong> <span class="previewdate"></span></p>
 
             <!-- Output Preview -->
-            <div class="table-responsive">
+            <div class="table-responsive" >
                 <div style="text-align:right" hidden>
-                    <div>Evidence Export</div><br>
-                    <div>2016-05-12</div>
+                    <div>Evidence Export</div>
+                    <div class="previewdate"></div>
                 </div>
                 <div class="grid-view">
                     <table class="items preview-evidence" style="border-collapse: collapse;">
@@ -80,7 +80,9 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
         <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="<?= $previousUrl ?>"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Context</a> </div>
         <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary btn-export" href="#"><i class="fa fa-download fa-margin-right"></i> Export</a> </div>
     </div>
-
+    <div class="contentListOfItems">
+        <?= (CurrStepEvidence::loadHtmlCookie())?CurrStepEvidence::loadHtmlCookie()->$step:""; ?>
+    </div>
 </div>
 <?= $this->renderPartial("_modals", ['step' => $step]); ?>
 <script>

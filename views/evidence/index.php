@@ -39,7 +39,7 @@ $cs->registerScriptFile($assetPrefix2);
                 <div class="row evidence-buttons-top">
                     <div class="col-xs-12 col-sm-6 daterange">
                         <?php echo CHtml::beginForm(); ?>
-                        <input name="daterange" type='text' class="form-control" placeholder="Select date range" value="<?= !empty($_POST['daterange'])?$_POST['daterange']:'' ?>">
+                        <input name="daterange" type='text' class="daterangeobj form-control" placeholder="Select date range" value="<?= !empty($_POST['daterange'])?$_POST['daterange']:'' ?>">
                         <input type='submit' name='search' class="btn btn-success"  value="Search"/>
                         <?php echo CHtml::endForm(); ?>
                     </div>

@@ -300,14 +300,15 @@ class Evidence extends CComponent {
             'textWrap' => 0,
         );
         self::$docx->addImage($options);
-        self::$docx->addText("Evidence Export", [
-            'wordWrap' => true,
-            'textAlign' => 'right',
-        ]);
-        self::$docx->addText("2016-05-12", [
-            'wordWrap' => true,
-            'textAlign' => 'right',
-        ]);
+        
+//        self::$docx->addText("Evidence Export", [
+//            'wordWrap' => true,
+//            'textAlign' => 'right',
+//        ]);
+//        self::$docx->addText("2016-05-12", [
+//            'wordWrap' => true,
+//            'textAlign' => 'right',
+//        ]);
         
         self::$docx->embedHTML($html);
 

@@ -78,7 +78,7 @@ class EvidenceController extends Controller
 			$dataObjects = Evidence::getPreparePreivew($itemsList);
 			$this->render("preview", [
 				'dataObjects' => $dataObjects,
-				'step' => ExportStepEvidence::STEP3,
+				'step' => ExportStepEvidence::STEP1,
 				'previousUrl' => Yii::app()->createUrl("/evidence/evidence/sectionPrepareWord"),
 			]);
 		} else {
