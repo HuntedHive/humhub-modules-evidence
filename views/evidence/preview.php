@@ -40,7 +40,7 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
                     <div>2016-05-12</div>
                 </div>
                 <div class="grid-view">
-                    <table class="items preview-evidence" border="1">
+                    <table class="items preview-evidence" style="border-collapse: collapse;">
                         <thead>
                         <tr style="background: #1895a4">
                             <th><span style="color:#ffffff">APST standard description.</span></th>

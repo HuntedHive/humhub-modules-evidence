@@ -163,8 +163,8 @@ $(document).ready(function() {
     }
     $(".btn-export").on("click", function() {
         var table = $("table.items").clone();
-        table.find("td").attr("style", "font-size:14px");
-        table.find("th").attr("style", "font-size:14px");
+        table.find("td").attr("style", "font-size:14px;border: 2px solid black;");
+        table.find("th").attr("style", "font-size:14px;border: 2px solid black;");
         var html = table[0].outerHTML;
         $.ajax({
             url: tableSaveExport,

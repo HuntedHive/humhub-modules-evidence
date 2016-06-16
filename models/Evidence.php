@@ -308,7 +308,7 @@ class Evidence extends CComponent {
             'wordWrap' => true,
             'textAlign' => 'right',
         ]);
-
+        
         self::$docx->embedHTML($html);
 
         $options = array(
