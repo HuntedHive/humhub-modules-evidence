@@ -281,8 +281,7 @@ class Evidence extends CComponent {
     public function saveWord()
     {
         $path = Yii::getPathOfAlias('webroot') . '/uploads/file/evidenceDoc';
-        self::$docx->modifyPageLayout('A3');
-        self::$docx->modifyPageLayout('A3');
+        self::$docx->modifyPageLayout('A4-landscape');
         self::$docx->createDocx($path);
         $absolutePath = Yii::app()->request->hostInfo . "/". Yii::app()->request->baseUrl . "/uploads/file/evidenceDoc.docx";
         return $absolutePath;
@@ -298,12 +297,7 @@ class Evidence extends CComponent {
             'src' => Yii::getPathOfAlias("webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-header.png',
             'imageAlign' => 'left',
             'scaling' => 25,
-            'spacingTop' => 10,
-            'spacingBottom' => 0,
-            'spacingLeft' => 0,
-            'spacingRight' => 20,
-            'textWrap' => 4,
-            'borderWidth' => 0,
+            'textWrap' => 0,
         );
         self::$docx->addImage($options);
         self::$docx->addText("Evidence Export", [
