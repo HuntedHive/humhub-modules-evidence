@@ -3200,7 +3200,7 @@ class CreateDocx extends CreateDocument
 //                            </w:r>
 //                        </w:p>';
 //        $this->addWordML($message);
-        $this->addBackgroundImage(dirname(__FILE__) . '/../examples/img/imagebg.jpg');
+        //$this->addBackgroundImage(dirname(__FILE__) . '/../examples/img/imagebg.jpg');
 //        $this->addProperties(array('creator' => trim($phpdocxconfig['license']['email']), 'description' => str_rot13('Trarengrq ol CUCQbpK gevny irefvba')));
 
         $this->saveToZip($this->_contentTypeT, '[Content_Types].xml');
