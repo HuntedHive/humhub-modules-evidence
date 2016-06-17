@@ -268,7 +268,7 @@ tr:nth-child(even) {background: #F8F8F8}
 tr:nth-child(odd) {background: #E5F1F4}
 
 .loadExportSelect {
-	height: 261px;
+	height: 131px;
 	overflow: auto;
 }
 
