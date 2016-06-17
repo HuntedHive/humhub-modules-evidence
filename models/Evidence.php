@@ -71,6 +71,8 @@ class Evidence extends CComponent {
                       AND 
                     object_model != "WBSChat"
                       AND
+                    object_model != "QAComment"
+                      AND
                     object_model != "Comment"
                       AND
                     created_by =' . Yii::app()->user->id
@@ -300,7 +302,7 @@ class Evidence extends CComponent {
             'textWrap' => 0,
         );
         self::$docx->addImage($options);
-        
+
 //        self::$docx->addText("Evidence Export", [
 //            'wordWrap' => true,
 //            'textAlign' => 'right',
@@ -333,9 +335,8 @@ class Evidence extends CComponent {
         $objects = [];
 
         foreach ($listActivity as $TypeAndId => $arrayData) {
-            $objects = array_merge(self::getObjectPrepareData($TypeAndId, $arrayData), $objects);
+            $objects[] = self::getObjectPrepareData($TypeAndId, $arrayData);
         }
-
         return $objects;
     }
 
@@ -348,10 +349,9 @@ class Evidence extends CComponent {
                     $nameRelation = self::$relationPreview[$mainKey];
 
                     $mainObject = $nameRelation::model()->find("id=".$mainId);
-                    $note = $arrayData['textarea'];
-                    $apsts = $arrayData['select'];
-                    $subObject = $nameRelation::model()->findAll('id IN(' . implode(",", $arrayData['checkbox']) . ')');
-
+                    $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
+                    $apsts = isset($arrayData['select'])?$arrayData['select']:[];
+                    $subObject = $nameRelation::model()->findAll('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')');
                     $subData[$mainKey] = [
                             'mainObject' => $mainObject,
                             'note' => $note,
@@ -363,10 +363,10 @@ class Evidence extends CComponent {
                     $nameRelation = self::$relationPreview[$mainKey];
 
                     $mainObject = $nameRelation::model()->find("id=".$mainId);
-                    $note = $arrayData['textarea'];
-                    $apsts = $arrayData['select'];
+                    $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
+                    $apsts = isset($arrayData['select'])?$arrayData['select']:[];
 
-                    $subObject = Answer::model()->findAll('id IN(' . implode(",", $arrayData['checkbox']) . ')');
+                    $subObject = Answer::model()->findAll('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')');
                     $subData[$mainKey] = [
                         'mainObject' => $mainObject,
                         'note' => $note,
@@ -377,9 +377,9 @@ class Evidence extends CComponent {
                 case 'Answer':
                     $nameRelation = self::$relationPreview[$mainKey];
                     $mainObject = $nameRelation::model()->find("id=".$mainId);
-                    $note = $arrayData['textarea'];
-                    $apsts = $arrayData['select'];
-                    $subObject = $nameRelation::model()->findAll('id IN(' . implode(",", $arrayData['checkbox']) . ')');
+                    $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
+                    $apsts = isset($arrayData['select'])?$arrayData['select']:[];
+                    $subObject = $nameRelation::model()->findAll('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')');
 
                     $subQuestion = NULL;
                     if(!empty($arrayData['checkbox_question'])) {
@@ -397,9 +397,9 @@ class Evidence extends CComponent {
                     $nameRelation = self::$relationPreview[$mainKey];
 
                     $mainObject = $nameRelation::model()->find("id=".$mainId);
-                    $note = $arrayData['textarea'];
-                    $apsts = $arrayData['select'];
-                    $subObject = $nameRelation::model()->findAll('id IN(' . implode(",", $arrayData['checkbox']) . ')');
+                    $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
+                    $apsts = isset($arrayData['select'])?$arrayData['select']:[];
+                    $subObject = $nameRelation::model()->findAll('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')');
 
                     $subData[$mainKey] = [
                         'mainObject' => $mainObject,
@@ -474,7 +474,8 @@ class Evidence extends CComponent {
         }
     }
 
-    public static function getPreviewUlHtml($itemValue, $itemKey) {
+    public static function getPreviewUlHtml($itemValue, $itemKey)
+    {
         $html= "";
         switch($itemKey) {
             case 'ActivitySpaceCreated': // model is Post in db

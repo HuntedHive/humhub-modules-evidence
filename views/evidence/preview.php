@@ -51,7 +51,8 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
                         </tr>
                         </thead>
                         <tbody>
-                        <?php foreach ($dataObjects as $itemKey => $itemValue) { ?>
+                        <?php foreach ($dataObjects as $itemK => $itemV) { ?>
+                            <?php foreach ($itemV as $itemKey => $itemValue) { ?>
                             <tr class="itemTr">
                                 <td>
                                     <strong style="color:#1895a4;"><?= Evidence::getOneAPSTS($itemValue['apsts'])['title'] ?></strong>
@@ -66,6 +67,7 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
                                 <td class="note" style="width:50px"><?php echo $itemValue['note']; ?></td>
                                 <td class="descr" style="width:50px"></td>
                             </tr>
+                            <?php  } ?>
                         <?php  } ?>
                         </tbody>
                     </table>
