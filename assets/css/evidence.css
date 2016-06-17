@@ -266,3 +266,16 @@ table thead th.th-select{
 
 tr:nth-child(even) {background: #F8F8F8}
 tr:nth-child(odd) {background: #E5F1F4}
+
+.loadExportSelect {
+	height: 261px;
+	overflow: auto;
+}
+
+.loadExportSelect li{
+	font-size:15px;
+}
+
+.list-group-item.active {
+	background: #7fb0da;
+}

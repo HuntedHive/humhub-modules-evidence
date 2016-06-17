@@ -23,7 +23,7 @@ class EvidenceController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('prepare', 'sectionPrepareWord', 'saveToWord', 'saveExport', 'loadExport', 'sectionPreview', 'saveCurrentHtml'),
+				'actions'=>array('prepare', 'sectionPrepareWord', 'saveToWord', 'saveExport', 'loadExport', 'sectionPreview', 'saveCurrentHtml', 'deleteExport'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -126,7 +126,7 @@ class EvidenceController extends Controller
 
 	public function actionLoadExport()
 	{
-		$exportId = $_POST['exportId'][0];
+		$exportId = $_POST['exportId'];
 		$model = ExportStepEvidence::model()->find('id='. $exportId);
 		if(!empty($model)) {
 			CurrStepEvidence::getDataFromLoadExport($model);
@@ -146,6 +146,13 @@ class EvidenceController extends Controller
 			$currentStep = $output['step'];
 			$exportData = $_POST['html'];
 			CurrStepEvidence::setCurrentStep($exportData, null, $currentStep);
+		}
+	}
+
+	public function actionDeleteExport()
+	{
+		if(isset($_POST['id']) && !empty($_POST)) {
+			ExportStepEvidence::model()->deleteByPk($_POST['id']);
 		}
 	}
 }

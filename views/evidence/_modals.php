@@ -43,14 +43,14 @@
             <div class="modal-body">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <select multiple class="form-select-multiple loadExportSelect">
+                        <ul multiple class="form-select-multiple loadExportSelect list-group">
                             <?php
                                 $listNames = ExportStepEvidence::getListNames();
                                 foreach ($listNames as $name) {
-                                    echo "<option value='$name->id'>$name->name</option>";
+                                    echo "<li data-value='$name->id' class='list-group-item'><i class='fa fa-times load-item-delete' title='delete'  style='cursor:pointer;position: absolute;top: 9px;left: 2px;'></i>$name->name</li>";
                                 }
                             ?>
-                        </select>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -79,3 +79,9 @@
         </div>
     </div>
 </div><!-- /.modal -->
+
+<script>
+    var deleteLoadExport = '<?= Yii::app()->createUrl("/evidence/evidence/deleteExport"); ?>';
+    var CSRF_TOKEN = '<?= Yii::app()->request->csrfToken; ?>';
+    var loadExport = '<?= Yii::app()->createUrl("/evidence/evidence/loadExport"); ?>';
+</script>

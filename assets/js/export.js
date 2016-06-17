@@ -39,11 +39,11 @@ $(document).ready(function() {
     }
 
     $(".loadExport").on("click", function() {
-        var exportId = $(".loadExportSelect").val();
-        var url = $(this).data('url');
+        var exportId = $(".list-group-item.active").data('value');
+        var url = loadExport;
         $.ajax({
             url: url,
-            data: {'exportId': exportId, "CSRF": "b1b12323333qweqw"},
+            data: {'exportId': exportId, 'CSRF_TOKEN': CSRF_TOKEN},
             type: 'POST',
             success: function(data) {
                 var response = JSON.parse(data);
@@ -190,5 +190,23 @@ $(document).ready(function() {
             }
         });
         return false;
+    });
+
+    $(".load-item-delete").on("click", function() {
+        var id = $(this).parent("li").data('value');
+        var currentElem = $(this);
+        $.ajax({
+            url: deleteLoadExport,
+            data: {'id': id, 'CSRF_TOKEN': CSRF_TOKEN},
+            type: 'POST',
+            success: function(data) {
+                currentElem.parent("li").remove();
+            }
+        });
+    });
+
+    $(".list-group-item").on("click", function(){
+        $(".list-group-item").removeClass("active");
+        $(this).addClass("active");
     });
 });
