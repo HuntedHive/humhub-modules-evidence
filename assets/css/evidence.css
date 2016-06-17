@@ -277,5 +277,9 @@ tr:nth-child(odd) {background: #E5F1F4}
 }
 
 .list-group-item.active {
-	background: #7fb0da;
+	background: #7fb0da !important;
+}
+
+li.list-group-item:hover {
+	background: #dfecf7;
 }
