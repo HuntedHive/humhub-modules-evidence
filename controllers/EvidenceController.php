@@ -66,6 +66,27 @@ class EvidenceController extends Controller
 	}
 
 	/**
+	 * Second step
+	 */
+	public function actionSectionPrepareWord()
+	{
+		if((!empty($_POST) && isset($_POST['activityItems']) || isset($_COOKIE['LoadExport']))) {
+			$data = CurrStepEvidence::loadHtmlCookie();
+			$itemsList = isset($_POST['activityItems'])?$_POST['activityItems']:json_decode($data->obj_step1, true);
+			CurrStepEvidence::setCurrentStep(null, json_encode($itemsList), ExportStepEvidence::STEP1);
+			$dataObjects = Evidence::getPrepareObjects($itemsList);
+			$this->render("displayContext", [
+				'dataObjects' => $dataObjects,
+				'step' => ExportStepEvidence::STEP2,
+				'stepUrl' => Yii::app()->createUrl("/evidence/evidence/sectionPreview"),
+				'previousUrl' => Yii::app()->createUrl("/evidence/evidence/prepare"),
+			]);
+		} else {
+			return $this->redirect(Yii::app()->createUrl("/evidence/evidence/prepare"));
+		}
+	}
+
+	/**
 	 * Third step
 	 */
 	public function actionSectionPreview()
@@ -80,28 +101,6 @@ class EvidenceController extends Controller
 				'dataObjects' => $dataObjects,
 				'step' => ExportStepEvidence::STEP1,
 				'previousUrl' => Yii::app()->createUrl("/evidence/evidence/sectionPrepareWord"),
-			]);
-		} else {
-			return $this->redirect(Yii::app()->createUrl("/evidence/evidence/prepare"));
-		}
-	}
-
-	/**
-	 * Second step
-	 */
-	public function actionSectionPrepareWord()
-	{
-		if((!empty($_POST) && isset($_POST['activityItems']) || isset($_COOKIE['LoadExport']))) {
-			$data = CurrStepEvidence::loadHtmlCookie();
-			$itemsList = isset($_POST['activityItems'])?$_POST['activityItems']:json_decode($data->obj_step1, true);
-
-			CurrStepEvidence::setCurrentStep(null, json_encode($itemsList), ExportStepEvidence::STEP1);
-			$dataObjects = Evidence::getPrepareObjects($itemsList);
-			$this->render("displayContext", [
-				'dataObjects' => $dataObjects,
-				'step' => ExportStepEvidence::STEP2,
-				'stepUrl' => Yii::app()->createUrl("/evidence/evidence/sectionPreview"),
-				'previousUrl' => Yii::app()->createUrl("/evidence/evidence/prepare"),
 			]);
 		} else {
 			return $this->redirect(Yii::app()->createUrl("/evidence/evidence/prepare"));

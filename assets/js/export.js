@@ -146,11 +146,13 @@ $(document).ready(function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
             var dataValue = $(this).val();
-
+            
             if(currentType == "checkbox" || currentType == "checkbox_question") {
                 var objectActivity = $(".context-part[data-type='"+dataName+"'] .itemSelect[data-type='"+currentType+"']");
-                if (!objectActivity.is(":checked")) {
+                if (objectActivity.length && !objectActivity.is(":checked")) {
                     objectActivity.prop("checked", true);
+                } else {
+                    $(this).remove();
                 }
             }
 
@@ -161,6 +163,8 @@ $(document).ready(function() {
                         $(".context-part[data-type='"+dataName+"']  select:first option[value='"+dataId+"']").prop('selected', true);
                         $(".context-part[data-type='"+dataName+"'] .selectpicker").selectpicker('refresh');
                     }, 700);
+                } else {
+                    $(this).remove();
                 }
             }
 
@@ -168,6 +172,8 @@ $(document).ready(function() {
                 var objectActivity = $(".context-part[data-type='"+dataName+"'] .context-textarea[data-type='"+currentType+"']");
                 if (objectActivity.length) {
                     objectActivity.val(dataValue);
+                } else {
+                    $(this).remove();
                 }
             }
         });
