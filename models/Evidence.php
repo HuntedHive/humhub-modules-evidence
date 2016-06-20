@@ -533,12 +533,14 @@ class Evidence extends CComponent {
 
         require_once dirname(__DIR__). DIRECTORY_SEPARATOR . "lib/PHPExcel/Classes/PHPExcel.php";
         $profile = Profile::model()->find("user_id=". Yii::app()->user->id);
-        $reg = ManageRegistration::model()->find('name="' .$profile->teacher_type. '"');
-
-        $file_name = $reg->file_name;
+        $reg = ManageRegistration::model()->find('name="' .$profile->teacher_type. '" AND type='. ManageRegistration::TYPE_TEACHER_TYPE);
+        if($reg->default == ManageRegistration::DEFAULT_DEFAULT) {
+            $file_name = ManageRegistration::model()->find('type='. ManageRegistration::TYPE_TEACHER_TYPE . ' AND `default`=0 AND file_name is not NULL')->file_name;
+        } else {
+            $file_name = $reg->file_name;
+        }
         $path = Yii::getPathOfAlias("webroot") . "/uploads/file/". $file_name;
         $objPHPExcel = PHPExcel_IOFactory::load($path);
-
         $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
         unset($sheetData[1]);
         if(empty($sheetData)) {
