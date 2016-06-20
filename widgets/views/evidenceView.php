@@ -11,6 +11,7 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
             var linkButton = "<a class='btn btn-primary' data-toggle='tooltip' data-placement='top' title='This feature allows you to extract examples of your interaction within TeachConnect and produce a downloadable document as evidence of your achievement of the Australian Professional Standards for Teachers (APST) for inclusion in your professional teaching portfolio.' href='" + linkUrl + "'><i class='fa fa-download'></i> Export evidence</a>&nbsp;";
 
             $(".controls-header a:first").before(linkButton);
+
         })
     </script>
 <?php } ?>
@@ -29,7 +30,7 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
                 <div class="modal-body">
                     <?php echo CHtml::beginForm('', 'post', ['class' => 'form_teacher_type']) ?>
                         <div class="form-group col-xs-12">
-                            <select name="teachertype" class="selectpicker form-control show-tick" required title="Select teacher type * ..." required>
+                            <select name="teachertype" name="teacherType" class="selectpicker form-control show-tick modal_teacher_type" required title="Select teacher type * ..." required>
                                 <optgroup label="Select teacher type *">
                                     <?php
                                         $types = ManageRegistration::model()->findAll('type='.ManageRegistration::TYPE_TEACHER_TYPE . ' AND `default`='. ManageRegistration::DEFAULT_ADDED);
@@ -41,14 +42,14 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
                                 </optgroup>
                             </select>
                         </div>
-    <!--                    <div class="" id="teachertype-other">-->
-    <!--                        <div class="form-group col-xs-2 col-sm-1 indent-other">-->
-    <!--                            <i class="fa fa-arrow-right"></i>-->
-    <!--                        </div>-->
-    <!--                        <div class="form-group col-xs-10 col-sm-11">-->
-    <!--                            <input class="form-control" id="teachertype-other" placeholder="Enter 'other' teacher type *" name="teacherTypeOther" type="text" required>-->
-    <!--                        </div>-->
-    <!--                    </div>-->
+                        <div class="" id="teachertype-other" hidden>
+                            <div class="form-group col-xs-2 col-sm-1 indent-other">
+                                <i class="fa fa-arrow-right"></i>
+                            </div>
+                            <div class="form-group col-xs-10 col-sm-11">
+                                <input class="form-control" id="teachertype-other" placeholder="Enter 'other' teacher type *" name="teacherTypeOther" type="text" required>
+                            </div>
+                        </div>
                     <?php echo CHtml::endForm(); ?>
                 </div>
                 <div class="modal-footer">
@@ -87,6 +88,16 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
                     }
                 });
                 return false;
+            });
+
+            $(".modal_teacher_type").change(function() {
+                var option = $(this).val();
+                if(option == "other") {
+                    $("#teachertype-other").fadeIn(1);
+                } else {
+                    $("#teachertype-other").fadeOut(1);
+                    $("#teachertype-other input").val('');
+                }
             });
         });
     </script>
