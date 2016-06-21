@@ -41,13 +41,12 @@ class CurrStepEvidence extends HActiveRecord
 
     public static function loadHtmlCookie()
     {
-        if(isset($_COOKIE['LoadExport'])) {
             $user_id = Yii::app()->user->id;
             $data = CurrStepEvidence::model()->find('created_by=' . $user_id);
+            if(empty($data))
+                return '';
+
             return $data;
-        } else {
-            return null;
-        }
     }
 
     /**

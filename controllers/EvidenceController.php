@@ -70,7 +70,7 @@ class EvidenceController extends Controller
 	 */
 	public function actionSectionPrepareWord()
 	{
-		if((!empty($_POST) && isset($_POST['activityItems']) || isset($_COOKIE['LoadExport']))) {
+		if((!empty($_POST) && isset($_POST['activityItems']) || true)) {
 			$data = CurrStepEvidence::loadHtmlCookie();
 			$itemsList = isset($_POST['activityItems'])?$_POST['activityItems']:json_decode($data->obj_step1, true);
 			CurrStepEvidence::setCurrentStep(null, json_encode($itemsList), ExportStepEvidence::STEP1);
@@ -92,7 +92,7 @@ class EvidenceController extends Controller
 	public function actionSectionPreview()
 	{
 		User::model()->findByPk(Yii::app()->user->id);
-		if((!empty($_POST) && isset($_POST['activityItems'])) || isset($_COOKIE['LoadExport'])) {
+		if((!empty($_POST) && isset($_POST['activityItems'])) || true) {
 			$data = CurrStepEvidence::loadHtmlCookie();
 			$itemsList = isset($_POST['activityItems'])?$_POST['activityItems']:json_decode($data->obj_step2, true);
 			CurrStepEvidence::setCurrentStep(null, json_encode($itemsList), ExportStepEvidence::STEP2);
