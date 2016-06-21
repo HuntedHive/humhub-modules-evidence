@@ -65,7 +65,7 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
 
             $("#selectTeacherType .close").on("click", function() {
                 $("#selectTeacherType").modal('hide');
-                setCookie("teacher_type_"+<?= Yii::app()->user->id ?>, 1);
+                setCookie("teacher_type_"+<?= Yii::app()->user->id ?>, "user_"+<?= Yii::app()->user->id ?>);
             });
 
             function setCookie(key, value) {
@@ -152,7 +152,7 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
 
             $("#selectTeacherType .close").on("click", function() {
                 $("#selectTeacherType").modal('hide');
-                setCookie("teacher_type_"+<?= Yii::app()->user->id ?>, 1);
+                setCookie("teacher_type_"+<?= Yii::app()->user->id ?>, "user_"+<?= Yii::app()->user->id ?>);
             });
 
             function setCookie(key, value) {
