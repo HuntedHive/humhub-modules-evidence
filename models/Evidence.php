@@ -60,8 +60,8 @@ class Evidence extends CComponent {
     {
         $period= '';
         if(isset($_POST['daterange'])) {
-            $from = str_replace("/" , "-" , trim(explode( "-", $_POST['daterange'])[0]));
-            $to = str_replace("/" , "-" , trim(explode( "-", $_POST['daterange'])[1]));
+            $from = trim(explode( " - ", $_POST['daterange'])[0]);
+            $to = trim(explode( " - ", $_POST['daterange'])[1]);
             $period = " AND created_at >= '$from' AND created_at <= '$to'";
         }
         $sql = 'SELECT * 

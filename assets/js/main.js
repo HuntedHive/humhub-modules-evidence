@@ -88,7 +88,7 @@ $(document).ready(function() {
    $('input[name="daterange"]').daterangepicker({ // set datapicker on first step
       timePicker: false,
       locale: {
-         format: 'DD MMMM YY',
+         format: 'DD-MMMM-YY',
       },
    });
 });
