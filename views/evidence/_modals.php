@@ -47,7 +47,7 @@
                             <?php
                                 $listNames = ExportStepEvidence::getListNames();
                                 foreach ($listNames as $name) {
-                                    echo "<li data-value='$name->id' class='list-group-item'><i class='fa fa-times load-item-delete' title='delete'  style='cursor:pointer;position: absolute;top: 9px;left: 2px;'></i>$name->name</li>";
+                                    echo "<li data-value='$name->id' class='list-group-item' style='cursor:pointer;'>$name->name <i class='fa fa-times load-item-delete pull-right' title='delete' style='margin-top:3px;'></i></li>";
                                 }
                             ?>
                         </ul>

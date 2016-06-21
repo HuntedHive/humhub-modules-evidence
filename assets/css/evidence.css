@@ -10,6 +10,11 @@ HumHub Evidence Module Style CSS
 	margin-right:5px;
 }
 
+h4.date-range{
+	font-size:16px;
+	margin-top:30px;
+}
+
 .evidence-buttons-top{
 	margin-top:15px;
 }
@@ -276,10 +281,12 @@ tr:nth-child(odd) {background: #E5F1F4}
 	font-size:15px;
 }
 
-.list-group-item.active {
-	background: #7fb0da !important;
+.list-group-item{
+	margin:5px;
+	border-radius:5px;
+	border:none !important;
 }
 
-li.list-group-item:hover {
-	background: #dfecf7;
+.list-group-item.active, li.list-group-item:hover {
+	background: #dddddd !important;
 }
