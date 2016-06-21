@@ -546,7 +546,7 @@ class Evidence extends CComponent {
         }
         $path = Yii::getPathOfAlias("webroot") . "/uploads/file/". $file_name;
         $objPHPExcel = PHPExcel_IOFactory::load($path);
-        $sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+        $sheetData = $objPHPExcel->getSheet(0)->toArray(null,true,true,true);
         unset($sheetData[1]);
         if(empty($sheetData)) {
             return [];
