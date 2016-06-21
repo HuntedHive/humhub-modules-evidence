@@ -15,7 +15,7 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
         })
     </script>
 <?php } ?>
-<?php if(isset($_COOKIE['teacher_type']) && $_COOKIE['teacher_type'] != "user_".Yii::app()->user->id) { ?>
+<?php if(isset($_COOKIE['teacher_type_'.Yii::app()->user->id]) && $_COOKIE['teacher_type_'.Yii::app()->user->id] != "user_".Yii::app()->user->id) { ?>
     <!-- Modal - Select Teacher Type -->
     <div class="modal fade" id="selectTeacherType" tabindex="-1" role="dialog" aria-labelledby="selectTeacherType">
         <div class="modal-dialog" role="document">
@@ -59,9 +59,49 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
             </div>
         </div>
     </div><!-- /.modal -->
+    <script>
+        $(document).ready(function() {
+            $("#selectTeacherType").modal('show');
 
+            $("#selectTeacherType .close").on("click", function() {
+                $("#selectTeacherType").modal('hide');
+                setCookie("teacher_type_"+<?= Yii::app()->user->id ?>, 1);
+            });
+
+            function setCookie(key, value) {
+                var expires = new Date();
+                expires.setTime(expires.getTime() + (86400 * 30 * 12));
+                document.cookie = key + '=' + value + ';path=/;expires=' + expires.toUTCString();
+            }
+
+            $(".btn-primary-modal").on("click", function() {
+                var form = $(".form_teacher_type").serialize();
+                $.ajax({
+                    url: "<?php echo Yii::app()->createUrl("/registration/registration/updateUserTeacherType"); ?>",
+                    data: form,
+                    type: 'POST',
+                    success: function(data) {
+                        setCookie("teacher_type_"+<?= Yii::app()->user->id ?>, "user_"+<?= Yii::app()->user->id ?>);
+                        window.location.href = "";
+                    }
+                });
+                return false;
+            });
+
+            $(".modal_teacher_type").change(function() {
+                var option = $(this).val();
+                if(option == "other") {
+                    $("#teachertype-other").fadeIn(1);
+                } else {
+                    $("#teachertype-other").fadeOut(1);
+                    $("#teachertype-other input").val('');
+                }
+            });
+        });
+    </script>
 <?php } ?>
-<?php if(!isset($_COOKIE['teacher_type'])) { ?>
+
+<?php if(!isset($_COOKIE['teacher_type_'.Yii::app()->user->id])) { ?>
     <!-- Modal - Select Teacher Type -->
     <div class="modal fade" id="selectTeacherType" tabindex="-1" role="dialog" aria-labelledby="selectTeacherType">
         <div class="modal-dialog" role="document">
@@ -112,7 +152,7 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
 
             $("#selectTeacherType .close").on("click", function() {
                 $("#selectTeacherType").modal('hide');
-                setCookie("teacher_type", 1);
+                setCookie("teacher_type_"+<?= Yii::app()->user->id ?>, 1);
             });
 
             function setCookie(key, value) {
@@ -128,7 +168,7 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
                     data: form,
                     type: 'POST',
                     success: function(data) {
-                        setCookie("teacher_type", "user_"+<?= Yii::app()->user->id ?>);
+                        setCookie("teacher_type_"+<?= Yii::app()->user->id ?>, "user_"+<?= Yii::app()->user->id ?>);
                         window.location.href = "";
                     }
                 });
