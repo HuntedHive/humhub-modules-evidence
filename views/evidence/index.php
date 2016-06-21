@@ -66,7 +66,7 @@ $cs->registerScriptFile($assetPrefix2);
                                     array(
                                         'name' => 'Activity Date',
                                         'value' => function($data) {
-                                            return $data['created_at'];
+                                            return date('d-M-y',strtotime($data['created_at']));
                                         },
                                     ),
                                     array(
