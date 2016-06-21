@@ -29,6 +29,7 @@ $(document).ready(function() {
 
     if($(".daterangeobj").length != 0 && $(".contentListOfItems") != 0) {
         var value = $(".daterangeobj").val();
+        $(".datarangeSubject").remove();
         var html = "<input type='hidden' class='datarangeSubject' data-value='" + value + "'>"
         $(".contentListOfItems").append(html);
     }
@@ -121,6 +122,13 @@ $(document).ready(function() {
         if($(".activityObjects").length == 0) {
             $("#selectContributions").modal('show');
             return false;
+        }
+
+        if($(".daterangeobj").length != 0 && $(".contentListOfItems") != 0) {
+            var value = $(".daterangeobj").val();
+            $(".datarangeSubject").remove();
+            var html = "<input type='hidden' class='datarangeSubject' data-value='" + value + "'>"
+            $(".contentListOfItems").append(html);
         }
 
         var url = $(this).data('url');
