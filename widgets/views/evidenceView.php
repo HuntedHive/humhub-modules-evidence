@@ -44,7 +44,7 @@ if(Yii::app()->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
                         </div>
                         <div class="" id="teachertype-other" hidden>
                             <div class="form-group col-xs-2 col-sm-1 indent-other">
-                                <i class="fa fa-arrow-right"></i>
+                                <i class="fa fa-arrow-right custom-right-arrow"></i>
                             </div>
                             <div class="form-group col-xs-10 col-sm-11">
                                 <input class="form-control" id="teachertype-other" placeholder="Enter 'other' teacher type *" name="teacherTypeOther" type="text" required>
