@@ -70,9 +70,10 @@ $cs->registerScriptFile($assetPrefix2);
                                         },
                                     ),
                                     array(
+                                        'type' => 'raw',
                                         'name' => 'Activity Type',
                                         'value' => function($data) {
-                                            return Evidence::$acitvityType[$data['object_model']];
+                                            return Evidence::$iconObject[$data['object_model']] . Evidence::$acitvityType[$data['object_model']];
                                         },
                                     ),
                                     array(
