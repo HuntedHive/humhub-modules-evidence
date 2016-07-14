@@ -139,11 +139,10 @@ $(document).ready(function() {
             data: requestData,
             type: 'POST',
             success: function(data) {
-                console.log(data);
             }
         });
 
-        $(".listOfItems").submit();
+        // $(".listOfItems").submit();
         return true;
     });
 
@@ -167,7 +166,7 @@ $(document).ready(function() {
             if(currentType == "select") {
                 var objectActivity = $(".context-part[data-type='"+dataName+"'] .context-select[data-type='"+currentType+"']");
                 if (objectActivity.length) {
-                    setTimeout(function(){
+                    setTimeout(function() {
                         $(".context-part[data-type='"+dataName+"']  select:first option[value='"+dataId+"']").prop('selected', true);
                         $(".context-part[data-type='"+dataName+"'] .selectpicker").selectpicker('refresh');
                     }, 700);

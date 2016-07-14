@@ -1,19 +1,19 @@
 <?php
 
-class CurrStepEvidence extends HActiveRecord
+namespace humhub\modules\evidence\models;
+
+use Yii;
+use humhub\components\ActiveRecord;
+
+class CurrStepEvidence extends ActiveRecord
 {
 
     /**
      * @return string the associated database table name
      */
-    public function tableName()
+    public static function tableName()
     {
         return 'current_step_evidence';
-    }
-
-    public static function model($className = __CLASS__)
-    {
-        return parent::model($className);
     }
 
     /**
@@ -41,12 +41,14 @@ class CurrStepEvidence extends HActiveRecord
 
     public static function loadHtmlCookie()
     {
-            $user_id = Yii::app()->user->id;
-            $data = CurrStepEvidence::model()->find('created_by=' . $user_id);
-            if(empty($data))
+        if(isset($_COOKIE['LoadExport'])) {
+            $user_id = Yii::$app->user->id;
+            $data = CurrStepEvidence::find()->andWhere(['created_by' => $user_id])->one();
+            if (empty($data))
                 return '';
-
+            
             return $data;
+        }
     }
 
     /**
@@ -56,9 +58,8 @@ class CurrStepEvidence extends HActiveRecord
      */
     public static function setCurrentStep($data = null, $objData = null, $step)
     {
-        $user_id = Yii::app()->user->id;
-        $model = self::model()->find('created_by='.$user_id);
-//        var_dump($model);die;
+        $user_id = Yii::$app->user->id;
+        $model = self::find()->andWhere(['created_by' => $user_id])->one();
         $objectStep = "obj_".$step;
         if(!empty($model)) {
             if(!is_null($data)) {
@@ -84,7 +85,7 @@ class CurrStepEvidence extends HActiveRecord
     
     public static function getDataFromLoadExport($exportData)
     {
-        $currentStep = CurrStepEvidence::model()->find('created_by='.Yii::app()->user->id);
+        $currentStep = CurrStepEvidence::find()->andWhere(['created_by' => Yii::$app->user->id])->one();
         $currentStep->step1 = $exportData->step1;
         $currentStep->step2 = $exportData->step2;
 

@@ -1,6 +1,8 @@
 <?php
 
-class m160526_133040_create_save_step_evidence extends EDbMigration
+use yii\db\Migration;
+
+class m160526_133040_create_save_step_evidence extends Migration
 {
 	public function up()
 	{

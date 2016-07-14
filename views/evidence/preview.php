@@ -1,9 +1,13 @@
 <?php
-$cs = Yii::app()->getClientScript();
-$cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js");
+
+use yii\helpers\Url;
+use yii\helpers\Html;
+use humhub\modules\evidence\models\CurrStepEvidence;
+use humhub\modules\evidence\models\Evidence;
+
 ?>
-<script type="text/javascript" src="<?php echo $this->module->assetsUrl; ?>/js/export.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo $this->module->assetsUrl; ?>/css/evidence.css"/>
+<script type="text/javascript" src="<?php echo $this->context->module->assetsUrl; ?>/js/export.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->context->module->assetsUrl; ?>/css/evidence.css"/>
 
 <div class="evidence-panel">
     <div class="container">
@@ -87,7 +91,7 @@ $cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquer
         </div>
     </div>
 </div>
-<?= $this->renderPartial("_modals", ['step' => $step]); ?>
+<?= $this->render("_modals", ['step' => $step]); ?>
 <script>
-   var tableSaveExport = '<?= Yii::app()->createUrl("/evidence/evidence/saveToWord"); ?>';
+   var tableSaveExport = '<?= Url::toRoute("/evidence/evidence/save-to-word"); ?>';
 </script>

@@ -1,8 +1,15 @@
+<?php
+
+use yii\helpers\Html;
+use yii\helpers\Url;
+use humhub\modules\evidence\models\ExportStepEvidence;
+
+?>
 <!-- Modal - Save Export -->
 <div class="modal fade" id="exportSave" tabindex="-1" role="dialog" aria-labelledby="exportSave">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
-            <?php echo CHtml::beginForm(Yii::app()->createUrl("/evidence/evidence/saveExport"), 'POST', ['id' => 'formSaveExport']); ?>
+            <?php echo Html::beginForm(Url::toRoute("/evidence/evidence/save-export"), 'POST', ['id' => 'formSaveExport']); ?>
             <div class="modal-header modal-header-margin-bottom">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h3 class="modal-title" id="myModalLabel"><i class="fa fa-save fa-margin-right"></i> Save Export</h3>
@@ -23,7 +30,7 @@
             </div>
 
             <input type="hidden" name="step" value="<?= $step ?>">
-            <?php echo CHtml::endForm(); ?>
+            <?php echo Html::endForm(); ?>
         </div>
     </div>
 </div><!-- /.modal -->
@@ -56,7 +63,7 @@
             </div>
             <div class="modal-footer">
                 <div class="col-xs-12">
-                    <button type="button" class="btn btn-primary btn-sm loadExport" data-url="<?= Yii::app()->createUrl('/evidence/evidence/loadExport') ?>">Load Export</button>
+                    <button type="button" class="btn btn-primary btn-sm loadExport" data-url="<?= Url::toRoute('/evidence/evidence/load-export') ?>">Load Export</button>
                 </div>
             </div>
         </div>
@@ -81,7 +88,7 @@
 </div><!-- /.modal -->
 
 <script>
-    var deleteLoadExport = '<?= Yii::app()->createUrl("/evidence/evidence/deleteExport"); ?>';
-    var CSRF_TOKEN = '<?= Yii::app()->request->csrfToken; ?>';
-    var loadExport = '<?= Yii::app()->createUrl("/evidence/evidence/loadExport"); ?>';
+    var deleteLoadExport = '<?= Url::toRoute("/evidence/evidence/delete-export"); ?>';
+    var CSRF_TOKEN = '<?= Yii::$app->request->csrfToken; ?>';
+    var loadExport = '<?= Url::toRoute("/evidence/evidence/load-export"); ?>';
 </script>

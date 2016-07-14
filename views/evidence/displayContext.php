@@ -1,13 +1,12 @@
 <?php
-$assetPrefix = Yii::app()->assetManager->publish(Yii::getPathOfAlias("application") . '/modules/evidence/assets/js/datetimepicker.js', true, 0, defined('YII_DEBUG'));
-$assetPrefix2 = Yii::app()->assetManager->publish(Yii::getPathOfAlias("application") . '/modules/evidence/assets/js/main.js', true, 0, defined('YII_DEBUG'));
-$cs = Yii::app()->getClientScript();
-$cs->registerScriptFile("http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js");
-$cs->registerScriptFile($assetPrefix);
+use yii\helpers\Html;
+use yii\helpers\Url;
+use humhub\modules\evidence\models\Evidence;
+use humhub\modules\evidence\models\CurrStepEvidence;
 ?>
 
-<script type="text/javascript" src="<?php echo $this->module->assetsUrl; ?>/js/export.js"></script>
-<link rel="stylesheet" type="text/css" href="<?php echo $this->module->assetsUrl; ?>/css/evidence.css"/>
+<script type="text/javascript" src="<?php echo $this->context->module->assetsUrl; ?>/js/export.js"></script>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->context->module->assetsUrl; ?>/css/evidence.css"/>
 <div class="evidence-panel">
     <div class="container">
 
@@ -33,7 +32,7 @@ $cs->registerScriptFile($assetPrefix);
 
         <div class="row hidden-xs evidence-buttons-top">
           <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="<?= $previousUrl ?>"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Contributions</a> </div>
-          <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary second-context" data-url="<?= Yii::app()->createUrl("evidence/evidence/saveCurrentHtml") ?>" href="#">Next Step: Preview <i class="fa fa-arrow-right fa-margin-right"></i></a> </div>
+          <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary second-context" data-url="<?= Url::toRoute("/evidence/evidence/save-current-html") ?>" href="#">Next Step: Preview <i class="fa fa-arrow-right fa-margin-right"></i></a> </div>
         </div>
 
         <div class="row">
@@ -83,10 +82,10 @@ $cs->registerScriptFile($assetPrefix);
 
             <div class="row evidence-buttons evidence-buttons-bottom">
               <div class="col-xs-12 col-sm-6"> <a class="btn btn-primary" href="<?= $previousUrl ?>"><i class="fa fa-arrow-left fa-margin-right"></i> Previous Step: Contributions</a> </div>
-              <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary second-context" data-url="<?= Yii::app()->createUrl("evidence/evidence/saveCurrentHtml") ?>" href="#">Next Step: Preview <i class="fa fa-arrow-right fa-margin-right"></i></a> </div>
+              <div class="col-xs-12 col-sm-6 text-right"> <a class="btn btn-primary second-context" data-url="<?= Url::toRoute("/evidence/evidence/save-current-html") ?>" href="#">Next Step: Preview <i class="fa fa-arrow-right fa-margin-right"></i></a> </div>
             </div>
               <div class="col-sm-4">
-                  <?php echo CHtml::beginForm(
+                  <?php echo Html::beginForm(
                       $stepUrl,
                       "post", [
                       'class' => 'listOfItems'
@@ -96,7 +95,7 @@ $cs->registerScriptFile($assetPrefix);
                       <?= (CurrStepEvidence::loadHtmlCookie())?CurrStepEvidence::loadHtmlCookie()->$step:""; ?>
                   </div>
 
-                  <?php echo CHtml::endForm() ?>
+                  <?php echo Html::endForm() ?>
               </div>
           </div>
         </div>
@@ -105,8 +104,8 @@ $cs->registerScriptFile($assetPrefix);
 </div>
 
 <script>
-    var token = '<?= Yii::app()->request->csrfToken ?>';
-    var url = '<?= Yii::app()->createUrl("/evidence/evidence/saveToWord") ?>';
+    var token = '<?= Yii::$app->request->csrfToken ?>';
+    var url = '<?= Url::toRoute("/evidence/evidence/saveToWord") ?>';
 </script>
 
-<?= $this->renderPartial("_modals", ['step' => $step]); ?>
+<?= $this->render("_modals", ['step' => $step]); ?>

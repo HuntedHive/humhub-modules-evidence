@@ -1,6 +1,11 @@
 <?php
 
-class ExportStepEvidence extends HActiveRecord
+namespace humhub\modules\evidence\models;
+
+use Yii;
+use humhub\components\ActiveRecord;
+
+class ExportStepEvidence extends ActiveRecord
 {
 
     const STEP1 = 'step1';
@@ -10,14 +15,9 @@ class ExportStepEvidence extends HActiveRecord
     /**
      * @return string the associated database table name
      */
-    public function tableName()
+    public static function tableName()
     {
         return 'save_steps_evidence';
-    }
-
-    public static function model($className = __CLASS__)
-    {
-        return parent::model($className);
     }
 
     /**
@@ -46,13 +46,12 @@ class ExportStepEvidence extends HActiveRecord
 
     public static function getListNames()
     {
-        return self::model()->findAll('created_by='.Yii::app()->user->id);
+        return self::find()->andWhere(['created_by' => Yii::$app->user->id])->all();
     }
 
     public static function saveExport($exportName)
     {
-        $currentStep = CurrStepEvidence::model()->find('created_by='.Yii::app()->user->id);
-//        var_dump($currentStep);die;
+        $currentStep = CurrStepEvidence::find()->andWhere(['created_by' => Yii::$app->user->id])->one();
         $exportStep = new self();
         $exportStep->name = $exportName;
         $exportStep->step1 = $currentStep->step1;

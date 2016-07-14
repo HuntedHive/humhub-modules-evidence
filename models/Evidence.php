@@ -1,48 +1,66 @@
 <?php
 
-class Evidence extends CComponent {
+namespace humhub\modules\evidence\models;
+
+use humhub\modules\questionanswer\models\Question;
+use yii\helpers\Html;
+use humhub\modules\activity\models\Activity;
+use humhub\modules\content\models\Content;
+use humhub\modules\mail\models\MessageEntry;
+use humhub\modules\mail\models\UserMessage;
+use humhub\modules\post\models\Post;
+use humhub\modules\questionanswer\models\Answer;
+use humhub\modules\registration\models\ManageRegistration;
+use humhub\modules\user\models\Profile;
+use humhub\modules\user\models\User;
+use yii\base\Object;
+use yii\helpers\ArrayHelper;
+use Yii;
+
+class Evidence extends Object
+{
     private static $data;
     private static $_instance;
     private static $wordText;
     private static $docx;
 
     public static $acitvityType = [
-        'ActivitySpaceCreated' => 'Mentorship Circle Post',
+        'Post' => 'Mentorship Circle Post',
         'Question' => 'Community post',
         'Answer' => 'Community response',
         'MessageEntry' => 'Message',
     ];
 
     public static $relationObject = [
-        'ActivitySpaceCreated' => 'Activity',
+        'Post' => 'Post',
         'Question' => 'Question',
         'Answer' => 'Answer',
         'MessageEntry' => 'MessageEntry',
     ];
 
     public static $relationPreview = [
-        'ActivitySpaceCreated' => 'Post',
+        'Post' => 'Post',
         'Question' => 'Question',
         'Answer' => 'Answer',
         'MessageEntry' => 'MessageEntry',
     ];
 
     public static $contextMess = [
-        'ActivitySpaceCreated' => '(the 2 messages either side of post in circle)',
+        'Post' => '(the 2 messages either side of post in circle)',
         'Question' => '(top 5 answers)',
         'Answer' => '(the question and up to 4 comments)',
         'MessageEntry' => '(last 5 message responses)',
     ];
 
     public static $iconObject = [
-        'ActivitySpaceCreated' => '<i class="fa fa-dot-circle-o fa-margin-right"></i>',
+        'Post' => '<i class="fa fa-dot-circle-o fa-margin-right"></i>',
         'Question' => '<i class="fa fa-stack-exchange fa-margin-right"></i>',
         'Answer' => '<i class="fa fa-stack-exchange fa-margin-right"></i>',
         'MessageEntry' => '<i class="fa fa-comment fa-margin-right"></i>',
     ];
 
     public static $contextParam = [
-        'ActivitySpaceCreated' => 'message',
+        'Post' => 'message',
         'Question' => 'post_text',
         'Answer' => 'post_title',
         'MessageEntry' => 'content',
@@ -64,37 +82,54 @@ class Evidence extends CComponent {
             $to = trim(explode( " - ", $_POST['daterange'])[1]);
             $period = " AND created_at >= '$from' AND created_at <= '$to'";
         }
-        $sql = 'SELECT * 
-                FROM content 
+        $sql = "SELECT * 
+                FROM `content`
                 WHERE 
-                    object_model != "Post" 
-                      AND 
-                    object_model != "WBSChat"
+                    `object_model` != 'humhub\\\modules\\\chat\\models\\\WBSChat'
                       AND
-                    object_model != "QAComment"
+                    `object_model` != 'humhub\\\modules\\\questionanswer\\\models\\\QAComment'
                       AND
-                    object_model != "Comment"
+                    `object_model` != 'humhub\\\modules\\\comment\\\models\\\Comment'
                       AND
-                    created_by =' . Yii::app()->user->id
+                    `object_model` != 'humhub\\\modules\\\cfiles\\\models\\\Folder'
+                      AND
+                    `object_model` != 'humhub\\\modules\\\cfiles\\\models\\\File'
+                      AND
+                    `object_model` != 'humhub\\\modules\\\comment\\\models\\\Comment'
+                      AND
+                    `object_model` != 'humhub\\\modules\\\\tasks\\\models\\\Task'
+                      AND
+                    `object_model` != 'humhub\\\modules\\\polls\\\models\\\Poll'
+                      AND
+                    `created_by` =" . Yii::$app->user->id
                     .$period;
-        self::$data = Yii::app()->db->createCommand($sql)->queryAll();
+        self::$data = Yii::$app->db->createCommand($sql)->queryAll();
         return $this;
     }
 
     public function filterActivity()
     {
         foreach (self::$data as $key => $value) {
-            if($value['object_model'] == "Activity" || $value['object_model'] == "Post") {
-                $activity = Activity::model()->find('id=' . $value['object_id']);
-				if(isset($activity) && $activity->type != "PostCreated") {
+            if($value['object_model'] == "humhub\modules\activity\models\Activity") {
+                $activity = Activity::find()->andWhere(['id' => $value['object_id']])->one();
+				if(!empty($activity) && in_array($activity->module, ["polls", "content", "like", "comment", "space"])) {
                     unset(self::$data[$key]);
                 } else {
-                    self::$data[$key]['object_model'] = "ActivitySpaceCreated";
+                    if ($activity->module == "questionanswer" && end(explode("\\", $activity->object_model)) == "QAComment") {
+                        unset(self::$data[$key]);
+                    } else {
+                        self::$data[$key]['object_model'] = end(explode("\\", $activity->object_model));
+                        self::$data[$key]['object_id'] = $activity->object_id;
+                    }
                 }
 
-                if($activity->type == "ChatMessage" && $activity->type = "KnowledgeCommentCreated") {
+                if(end(explode("\\", $activity->class)) == "ChatMessage" || end(explode("\\", $activity->class)) == "KnowledgeCommentCreated") {
                     unset(self::$data[$key]);
                 }
+            }
+
+            if($value['object_model'] == "humhub\modules\post\models\Post") {
+                self::$data[$key]['object_model'] = "Post";
             }
         }
 
@@ -112,9 +147,9 @@ class Evidence extends CComponent {
         $sql = 'SELECT * 
                 FROM message_entry 
                 WHERE  
-                    created_by =' . Yii::app()->user->id
+                    created_by =' . Yii::$app->user->id
             .$period;
-        $dataMessages = Yii::app()->db->createCommand($sql)->queryAll();
+        $dataMessages = Yii::$app->db->createCommand($sql)->queryAll();
 
         foreach ($dataMessages as $key => $value) {
             $dataMessages[$key]['object_model'] = 'MessageEntry';
@@ -163,25 +198,23 @@ class Evidence extends CComponent {
     {
         $switch = self::$relationObject[$object['object_model']];
         switch($switch) {
-            case 'Activity':
-                $idPost = $switch::model()->find('id=' . $object['object_id'])->object_id;
-                return Post::model()->find('id='. $idPost)->message;
+            case 'Post':
+                return Post::findOne($object['object_id'])->message;
                 break;
             case 'Question':
-                return $switch::model()->find('id=' . $object['object_id'])->post_text;
+                return Question::findOne($object['object_id'])->post_text;
                 break;
             case 'Answer':
-                return $switch::model()->find('id=' . $object['object_id'])->post_text;
+                return Answer::findOne($object['object_id'])->post_text;
                 break;
             case 'MessageEntry':
-                return $switch::model()->find('id=' . $object['id'])->content;
+                return MessageEntry::findOne($object['id'])->content;
                 break;
         }
     }
 
     public static function getPrepareObjects($data)
     {
-
         $listActivity = $data;
         $html = [];
         foreach ($listActivity as $objectActivityKey => $objectActivityValue) {
@@ -196,13 +229,12 @@ class Evidence extends CComponent {
         $subData = [];
         foreach ($objectValues as $objectValue) {
             switch ($objectKey) {
-                case 'ActivitySpaceCreated': // model is Post in db
-                    $content = Content::model()->find('id=' . $objectValue);
-                    $activity = Activity::model()->find('id=' . $content->object_id);
-                    $mainObject = Post::model()->find('id='.$activity->object_id);
-                    $lastContentPosts = Content::model()->findAll('object_id >=' . ($mainObject->id - 2) . ' AND object_id<='. ($mainObject->id + 2) . ' AND object_id!='. ($mainObject->id) .' AND object_model = "Post" AND space_id='. $content->space_id);
-                    $result = !empty($lastContentPosts)?implode(",", CHtml::listData($lastContentPosts, 'object_id', 'object_id')):0;
-                    $subObject = Post::model()->findAll('id IN (' . $result . ')');
+                case 'Post': // model is Post in db
+                    $content = Content::find()->andWhere(['object_model' => 'humhub\modules\post\models\Post', 'object_id' => $objectValue])->one();
+                    $mainObject = Post::findOne($objectValue);
+                    $lastContentPosts = Content::find()->andWhere('object_id >=' . ($mainObject->id - 2) . ' AND object_id<='. ($mainObject->id + 2) . ' AND object_id!='. ($mainObject->id) .' AND object_model = "humhub\\\modules\\\post\\\models\\\Post" AND space_id='. $content->space_id)->all();
+                    $result = !empty($lastContentPosts)?implode(",", ArrayHelper::map($lastContentPosts, 'object_id', 'object_id')):0;
+                    $subObject = Post::find()->andWhere('id IN (' . $result . ')')->all();
                     $subData[] = [
                         $objectKey => [
                             'id' => $mainObject->id,
@@ -212,9 +244,8 @@ class Evidence extends CComponent {
                     ];
                     break;
                 case 'Question':
-                    $content = Content::model()->find('id=' . $objectValue);
-                    $mainObject = Question::model()->find('id=' . $content->object_id);
-                    $subObject = Answer::model()->findAll('question_id = ' . $mainObject->id . ' AND post_type = "answer" ORDER BY created_at DESC LIMIT 5');
+                    $mainObject = Question::findOne($objectValue);
+                    $subObject = Answer::find()->andWhere('question_id = ' . $mainObject->id . ' AND post_type = "answer" ORDER BY created_at DESC LIMIT 5')->all();
                     $subData[] = [
                         $objectKey => [
                             'id' => $mainObject->id,
@@ -224,10 +255,9 @@ class Evidence extends CComponent {
                     ];
                     break;
                 case 'Answer':
-                    $content = Content::model()->find('id=' . $objectValue);
-                    $mainObject = $objectKey::model()->find('id=' . $content->object_id);
-                    $questionObject = Answer::model()->find('id=' . $mainObject->question_id);
-                    $subObject = Answer::model()->findAll('parent_id = ' . $mainObject->id . ' AND post_type = "comment" ORDER BY created_at DESC LIMIT 5');
+                    $mainObject = Answer::findOne($objectValue);
+                    $questionObject = Answer::findOne($mainObject->question_id);
+                    $subObject = Answer::find()->andWhere('parent_id = ' . $mainObject->id . ' AND post_type = "comment" ORDER BY created_at DESC LIMIT 5')->all();
                     $subData[] = [
                         $objectKey => [
                             'id' => $mainObject->id,
@@ -237,9 +267,9 @@ class Evidence extends CComponent {
                     ];
                     break;
                 case 'MessageEntry':
-                    $mainObject = $objectKey::model()->find('id=' . $objectValue);
+                    $mainObject = MessageEntry::findOne($objectValue);
                     $preCount = 5;
-                    $subObject = MessageEntry::model()->findAll('1=1 ORDER BY created_at DESC LIMIT 5');
+                    $subObject = MessageEntry::find()->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
                     $subData[] = [
                         $objectKey => [
                             'id' => $mainObject->id,
@@ -259,18 +289,18 @@ class Evidence extends CComponent {
         $switch = self::$relationObject[$object['object_model']];
         switch($switch) {
             case 'Answer':
-                $answer = $switch::model()->find('id=' . $object['object_id']);
+                $answer = Answer::findOne($object['object_id']);
                 if(!empty($answer)) {
-                    $question = $switch::model()->find('id=' . $answer->question_id);
-                    return User::model()->find('id=' . $question->created_by)->username;
+                    $question = Answer::findOne($answer->question_id);
+                    return User::findOne($question->created_by)->username;
                 }
                 return "-";
                 break;
             case 'MessageEntry':
-                $groupMessages = CHtml::listData(UserMessage::model()->findAll('user_id !='.Yii::app()->user->id. ' AND message_id=' . $object['message_id']),"user_id", "user_id");
-                $users = User::model()->findAll('id IN (' . implode(",", $groupMessages) . ')');
+                $groupMessages = ArrayHelper::map(UserMessage::find()->andWhere('user_id !='.Yii::$app->user->id. ' AND message_id=' . $object['message_id'])->all(),"user_id", "user_id");
+                $users = User::find()->andWhere('id IN (' . implode(",", $groupMessages) . ')')->all();
                 if(!empty($users)) {
-                    $usernames = implode("<br />" , CHtml::listData($users, "username", "username"));
+                    $usernames = implode("<br />" , ArrayHelper::map($users, "username", "username"));
                     return $usernames;
                 }
                 return "-";
@@ -282,10 +312,10 @@ class Evidence extends CComponent {
 
     public function saveWord()
     {
-        $path = Yii::getPathOfAlias('webroot') . '/uploads/file/evidenceDoc';
+        $path = Yii::getAlias('@webroot') . '/uploads/file/evidenceDoc_' . Yii::$app->user->id;
         self::$docx->modifyPageLayout('A4-landscape');
         self::$docx->createDocx($path);
-        $absolutePath = Yii::app()->request->hostInfo . "/". Yii::app()->request->baseUrl . "/uploads/file/evidenceDoc.docx";
+        $absolutePath = Yii::$app->request->hostInfo . "/". Yii::$app->request->baseUrl . "/uploads/file/evidenceDoc_".Yii::$app->user->id.".docx";
         return $absolutePath;
     }
 
@@ -293,29 +323,20 @@ class Evidence extends CComponent {
     {
         require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . "lib/phpdocx/classes/CreateDocx.inc";
 
-        self::$docx = new CreateDocx();
+        self::$docx = new \CreateDocx();
         self::$docx->setDefaultFont('Arial');
         $options = array(
-            'src' => Yii::getPathOfAlias("webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-header.png',
+            'src' => Yii::getAlias("@webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-header.png',
             'imageAlign' => 'left',
             'scaling' => 25,
             'textWrap' => 0,
         );
         self::$docx->addImage($options);
 
-//        self::$docx->addText("Evidence Export", [
-//            'wordWrap' => true,
-//            'textAlign' => 'right',
-//        ]);
-//        self::$docx->addText("2016-05-12", [
-//            'wordWrap' => true,
-//            'textAlign' => 'right',
-//        ]);
-        
         self::$docx->embedHTML($html);
 
         $options = array(
-            'src' => Yii::getPathOfAlias("webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-footer.png',
+            'src' => Yii::getAlias("@webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-footer.png',
             'imageAlign' => 'right',
             'scaling' => 25,
             'spacingTop' => 10,
@@ -345,13 +366,13 @@ class Evidence extends CComponent {
         $mainKey = explode("_", $TypeAndId)[0];
         $mainId = explode("_", $TypeAndId)[1];
             switch ($mainKey) {
-                case 'ActivitySpaceCreated': // model is Post in db
+                case 'Post': // model is Post in db
                     $nameRelation = self::$relationPreview[$mainKey];
 
-                    $mainObject = $nameRelation::model()->find("id=".$mainId);
+                    $mainObject = Post::findOne($mainId);
                     $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
                     $apsts = isset($arrayData['select'])?$arrayData['select']:[];
-                    $subObject = $nameRelation::model()->findAll('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')');
+                    $subObject = Post::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
                     $subData[$mainKey] = [
                             'mainObject' => $mainObject,
                             'note' => $note,
@@ -362,11 +383,11 @@ class Evidence extends CComponent {
                 case 'Question':
                     $nameRelation = self::$relationPreview[$mainKey];
 
-                    $mainObject = $nameRelation::model()->find("id=".$mainId);
+                    $mainObject = Question::findOne($mainId);
                     $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
                     $apsts = isset($arrayData['select'])?$arrayData['select']:[];
 
-                    $subObject = Answer::model()->findAll('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')');
+                    $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
                     $subData[$mainKey] = [
                         'mainObject' => $mainObject,
                         'note' => $note,
@@ -376,14 +397,14 @@ class Evidence extends CComponent {
                     break;
                 case 'Answer':
                     $nameRelation = self::$relationPreview[$mainKey];
-                    $mainObject = $nameRelation::model()->find("id=".$mainId);
+                    $mainObject = Answer::findOne($mainId);
                     $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
                     $apsts = isset($arrayData['select'])?$arrayData['select']:[];
-                    $subObject = $nameRelation::model()->findAll('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')');
+                    $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
 
                     $subQuestion = NULL;
                     if(!empty($arrayData['checkbox_question'])) {
-                        $subObject['question'] = $nameRelation::model()->find('id='.$arrayData['checkbox_question'][0]);
+                        $subObject['question'] = Answer::findOne($arrayData['checkbox_question'][0]);
                     }
 
                     $subData[$mainKey] = [
@@ -396,10 +417,10 @@ class Evidence extends CComponent {
                 case 'MessageEntry':
                     $nameRelation = self::$relationPreview[$mainKey];
 
-                    $mainObject = $nameRelation::model()->find("id=".$mainId);
+                    $mainObject = MessageEntry::findOne($mainId);
                     $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
                     $apsts = isset($arrayData['select'])?$arrayData['select']:[];
-                    $subObject = $nameRelation::model()->findAll('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')');
+                    $subObject = MessageEntry::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
 
                     $subData[$mainKey] = [
                         'mainObject' => $mainObject,
@@ -418,47 +439,52 @@ class Evidence extends CComponent {
         $j=0;
         $result = "";
         switch($itemKeyContext) {
-            case 'ActivitySpaceCreated': // model is Post in db
+            case 'Post': // model is Post in db
                 $i=1;
                 foreach ($itemContext as $context) {
-                    $firstname = User::model()->find("id=". $context->created_by)->username;
-                    $preWord = ($i==3)?"Previous Message":"Following Message";
-                    ($i==3)?$i=1:'';
-                    $result.="<tr>";
-                    $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
-                    $result.="<td> <strong>" . $preWord ." ". $i . " (" . $firstname .")-</strong> ". $context->{Evidence::$contextParam[$itemKeyContext]} ."</td>";
-                    $result.="</tr>";
-                    $i++;
+                    if(!empty($context)) {
+                        $firstname = Yii::$app->user->getIdentity()->username;
+                        $preWord = ($i == 3) ? "Previous Message" : "Following Message";
+                        ($i == 3) ? $i = 1 : '';
+                        $result .= "<tr>";
+                        $result .= "<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
+                        $result .= "<td> <strong>" . $preWord . " " . $i . " (" . $firstname . ")-</strong> " . $context->{Evidence::$contextParam[$itemKeyContext]} . "</td>";
+                        $result .= "</tr>";
+                        $i++;
+                    }
                 }
                 return $result;
                 break;
             case 'Question':
                 foreach ($itemContext as $context) {
-                    $result.="<tr>";
-                    $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
-                    $result.="<td> <strong>Answer " . (++$j) . "-</strong> ". ($context->{Evidence::$contextParam[$itemKeyContext]}) ."</td>";
-                    $result.="</tr>";
+                    if(!empty($context)) {
+                        $result .= "<tr>";
+                        $result .= "<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
+                        $result .= "<td> <strong>Answer " . (++$j) . "-</strong> " . ($context->{Evidence::$contextParam[$itemKeyContext]}) . "</td>";
+                        $result .= "</tr>";
+                    }
                 }
                 return $result;
                 break;
             case 'Answer':
                 $i = 0;
                 foreach ($itemContext as $context) {
-
-                    if($i == 0) {
-                        $text = $context->{Evidence::$contextParam[$itemKeyContext]};
-                        $preWord = "Question";
-                        $type = "checkbox_question";
-                    } else {
-                        $text = $context->post_text;
-                        $preWord = "Comment " . $i;
-                        $type = "checkbox";
+                    if(!empty($context)) {
+                        if ($i == 0) {
+                            $text = $context->{Evidence::$contextParam[$itemKeyContext]};
+                            $preWord = "Question";
+                            $type = "checkbox_question";
+                        } else {
+                            $text = $context->post_text;
+                            $preWord = "Comment " . $i;
+                            $type = "checkbox";
+                        }
+                        $result .= "<tr>";
+                        $result .= "<td class='text-center'><input class='itemSelect context-checkbox' data-type='" . $type . "' data-id='$context->id' type='checkbox'></td>";
+                        $result .= "<td><strong>" . $preWord . " - </strong> " . $text . "</td>";
+                        $result .= "</tr>";
+                        $i++;
                     }
-                    $result.="<tr>";
-                    $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='".$type."' data-id='$context->id' type='checkbox'></td>";
-                    $result.="<td><strong>". $preWord  . " - </strong> ". $text ."</td>";
-                    $result.="</tr>";
-                    $i++;
                 }
                 return $result;
                 break;
@@ -476,12 +502,13 @@ class Evidence extends CComponent {
 
     public static function getPreviewUlHtml($itemValue, $itemKey)
     {
+//        var_dump($itemValue);die;
         $html= "";
         switch($itemKey) {
-            case 'ActivitySpaceCreated': // model is Post in db
+            case 'Post': // model is Post in db
                 $i=1;
                 foreach ($itemValue as $subItem) {
-                    $firstname = User::model()->find("id=". $subItem->created_by)->username;
+                    $firstname = Yii::$app->user->getIdentity()->username;
                     $preWord = ($i==3)?"Previous Message":"Following Message";
                     ($i==3)?$i=1:'';
                     $html.="<li><strong>$preWord ". ($i) . " (" . $firstname .") - </strong>".  $subItem->{self::$contextParam[$itemKey]} ."</li>";
@@ -500,7 +527,8 @@ class Evidence extends CComponent {
                 $i = 0;
                 if(isset($itemValue['question'])) {
                     $question = $itemValue['question'];
-                    $html.="<li><strong>Question - </strong>".  $question->post_title ."</li>";
+                    $html .= "<li><strong>Question - </strong>" . $question->post_title . "</li>";
+                    unset($itemValue['question']);
                 }
                 foreach ($itemValue as $subItem) {
                     $html.="<li><strong>Comment ". (++$i) . " - </strong>".  $subItem->post_text ."</li>";
@@ -527,14 +555,19 @@ class Evidence extends CComponent {
         }
     }
 
-    public static function getFileAPSTS() {
-
+    public static function getFileAPSTS()
+    {
         require_once dirname(__DIR__). DIRECTORY_SEPARATOR . "lib/PHPExcel/Classes/PHPExcel.php";
-        $profile = Profile::model()->find("user_id=". Yii::app()->user->id);
-        $reg = ManageRegistration::model()->find('name="' .$profile->teacher_type. '" AND type='. ManageRegistration::TYPE_TEACHER_TYPE);
+        $profile = Profile::find()->andWhere(["user_id" => Yii::$app->user->id])->one();
+        $reg = ManageRegistration::find()->andWhere(['name' => $profile->teacher_type, 'type' => ManageRegistration::TYPE_TEACHER_TYPE])->one();
         if(!empty($reg)) {
             if ($reg->default == ManageRegistration::DEFAULT_DEFAULT) {
-                $file_name = ManageRegistration::model()->find('type=' . ManageRegistration::TYPE_TEACHER_TYPE . ' AND `default`=0 AND file_name is not NULL')->file_name;
+                $file_name = ManageRegistration::find()->andWhere('type=' . ManageRegistration::TYPE_TEACHER_TYPE . ' AND `default`=0 AND file_name is not NULL')->one();
+                if(empty($file_name)) {
+                    return [];
+                }
+
+                $file_name = $file_name->file_name;
             } else {
                 $file_name = $reg->file_name;
             }
@@ -544,8 +577,8 @@ class Evidence extends CComponent {
         if(empty($file_name)) {
             return [];
         }
-        $path = Yii::getPathOfAlias("webroot") . "/uploads/file/". $file_name;
-        $objPHPExcel = PHPExcel_IOFactory::load($path);
+        $path = Yii::getAlias("@webroot") . "/uploads/file/". $file_name;
+        $objPHPExcel = \PHPExcel_IOFactory::load($path);
         $sheetData = $objPHPExcel->getSheet(0)->toArray(null,true,true,true);
         unset($sheetData[1]);
         if(empty($sheetData)) {

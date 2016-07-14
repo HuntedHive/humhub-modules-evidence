@@ -1,18 +1,20 @@
 <?php
-$assetPrefix = Yii::app()->assetManager->publish(Yii::getPathOfAlias("application") . '/modules/evidence/assets/js/datetimepicker.js', true, 0, defined('YII_DEBUG'));
-$assetPrefix2 = Yii::app()->assetManager->publish(Yii::getPathOfAlias("application") . '/modules/evidence/assets/js/main.js', true, 0, defined('YII_DEBUG'));
-$cs = Yii::app()->getClientScript();
-$cs->registerScriptFile($assetPrefix);
-$cs->registerScriptFile($assetPrefix2);
+
+use yii\helpers\Url;
+use yii\helpers\Html;
+use humhub\modules\evidence\models\Evidence;
+use humhub\modules\evidence\models\CurrStepEvidence;
+
 ?>
 
-
-<script type="text/javascript" src="<?php echo $this->module->assetsUrl; ?>/js/export.js"></script>
+<script type="text/javascript" src="<?php echo $this->context->module->assetsUrl; ?>/js/datetimepicker.js"></script>
+<script type="text/javascript" src="<?php echo $this->context->module->assetsUrl; ?>/js/export.js"></script>
+<script type="text/javascript" src="<?php echo $this->context->module->assetsUrl; ?>/js/main.js"></script>
 
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 
-<link rel="stylesheet" type="text/css" href="<?php echo $this->module->assetsUrl; ?>/css/evidence.css"/>
+<link rel="stylesheet" type="text/css" href="<?php echo $this->context->module->assetsUrl; ?>/css/evidence.css"/>
 
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
         <div class="evidence-panel">
@@ -39,52 +41,57 @@ $cs->registerScriptFile($assetPrefix2);
                 </div>
                 <div class="row evidence-buttons-top">
                     <div class="col-xs-12 col-sm-6 daterange">
-                        <?php echo CHtml::beginForm(); ?>
+                        <?php echo Html::beginForm(); ?>
                         <input name="daterange" type='text' class="daterangeobj form-control" placeholder="Select date range" value="<?= !empty($_POST['daterange'])?$_POST['daterange']:'' ?>">
                         <input type='submit' name='search' class="btn btn-success"  value="Search"/>
-                        <?php echo CHtml::endForm(); ?>
+                        <?php echo Html::endForm(); ?>
                     </div>
                     <div class="hidden-xs col-sm-6 text-right">
-                        <a class="btn btn-primary second-context" data-url="<?= Yii::app()->createUrl("evidence/evidence/saveCurrentHtml") ?>" href="#">Next Step: Context <i class="fa fa-arrow-right fa-margin-right"></i></a>
+                        <a class="btn btn-primary second-context" data-url="<?= Url::toRoute("/evidence/evidence/save-current-html") ?>" href="#">Next Step: Context <i class="fa fa-arrow-right fa-margin-right"></i></a>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="table-responsive">
+                            <?php \yii\widgets\Pjax::begin([
+                                'id'=>'type_id',
+                                'enablePushState' => false,
+                            ]); ?>
                             <?php
-                            $this->widget('zii.widgets.grid.CGridView', array(
+
+                           echo \humhub\widgets\GridView::widget(array(
                                 'dataProvider'=>$dataProvider,
                                 'id'=>'customDataList',
                                 'columns' => array(
                                     array(
-                                        'name' => 'Select',
-                                        'type' => 'raw',
+                                        'attribute' => 'Select',
+                                        'format' => 'raw',
                                         'value' => function($data) {
-                                            return '<input class="itemSelect" data-type="'.$data['object_model'].'" type="checkbox" data-id="' . $data['id'] . '">';
+                                            return '<input class="itemSelect" data-type="'.$data['object_model'].'" type="checkbox" data-id="' . (isset($data['object_id'])?$data['object_id']:$data['id']) . '">';
                                         },
                                     ),
                                     array(
-                                        'name' => 'Activity Date',
+                                        'attribute' => 'Activity Date',
                                         'value' => function($data) {
                                             return date('d-M-y',strtotime($data['created_at']));
                                         },
                                     ),
                                     array(
-                                        'type' => 'raw',
-                                        'name' => 'Activity Type',
+                                        'format' => 'raw',
+                                        'attribute' => 'Activity Type',
                                         'value' => function($data) {
                                             return Evidence::$iconObject[$data['object_model']] . Evidence::$acitvityType[$data['object_model']];
                                         },
                                     ),
                                     array(
-                                        'name' => 'Text (First xxx)',
+                                        'attribute' => 'Text (First xxx)',
                                         'value' => function($data) {
                                             return Evidence::getText($data);
                                         },
                                     ),
                                     array(
-                                        'type' => 'raw',
-                                        'name' => 'Target/Recipient',
+                                        'format' => 'html',
+                                        'attribute' => 'Target/Recipient',
                                         'value' => function($data) {
                                             return Evidence::getTarget($data);
                                         },
@@ -92,16 +99,17 @@ $cs->registerScriptFile($assetPrefix2);
                                 ),
                             ));
                             ?>
+                            <?php \yii\widgets\Pjax::end(); ?>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-xs-12 text-right">
-                        <a class="btn btn-primary second-context" data-url="<?= Yii::app()->createUrl("evidence/evidence/saveCurrentHtml") ?>" href="#">Next Step: Context <i class="fa fa-arrow-right fa-margin-right"></i></a>
+                        <a class="btn btn-primary second-context" data-url="<?= Url::toRoute("/evidence/evidence/save-current-html") ?>" href="#">Next Step: Context <i class="fa fa-arrow-right fa-margin-right"></i></a>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <?php echo CHtml::beginForm(
+                    <?php echo Html::beginForm(
                         $stepUrl,
                         "post", [
                             'class' => 'listOfItems'
@@ -111,7 +119,7 @@ $cs->registerScriptFile($assetPrefix2);
                             <?= (CurrStepEvidence::loadHtmlCookie())?CurrStepEvidence::loadHtmlCookie()->$step:""; ?>
                     </div>
 
-                    <?php echo CHtml::endForm() ?>
+                    <?php echo Html::endForm() ?>
                 </div>
 
-<?= $this->renderPartial("_modals", ['step' => $step]); ?>
+<?= $this->render("_modals", ['step' => $step]); ?>

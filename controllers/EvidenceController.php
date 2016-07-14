@@ -1,5 +1,17 @@
 <?php
 
+namespace humhub\modules\evidence\controllers;
+
+use humhub\modules\evidence\models\Evidence;
+use humhub\modules\evidence\models\CurrStepEvidence;
+use humhub\modules\evidence\models\ExportStepEvidence;
+use Yii;
+use yii\base\Component;
+use yii\base\Object;
+use yii\data\ArrayDataProvider;
+use yii\helpers\Url;
+use humhub\components\Controller;
+
 class EvidenceController extends Controller
 {
 
@@ -23,7 +35,7 @@ class EvidenceController extends Controller
 	{
 		return array(
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('prepare', 'sectionPrepareWord', 'saveToWord', 'saveExport', 'loadExport', 'sectionPreview', 'saveCurrentHtml', 'deleteExport'),
+				'actions'=>array('prepare', 'sectionPrepareWord', 'saveToWord', 'saveExport', 'loadExport', 'sectionPreview', 'save-current-html', 'deleteExport'),
 				'users'=>array('@'),
 			),
 			array('deny',  // deny all users
@@ -46,9 +58,9 @@ class EvidenceController extends Controller
 	 */
 	public function actionPrepare()
 	{
-		Yii::import("application.modules.evidence.models.Evidence");
 		$rawData = Evidence::instance()->getAllQuery()->filterActivity()->addEntryMessageActivity()->getData();
-		$dataProvider = new CArrayDataProvider($rawData, [
+		$dataProvider = new ArrayDataProvider([
+			'allModels' => $rawData,
 			'sort'=>array(
 				'attributes'=>array(
 					"created_at" => [
@@ -58,10 +70,10 @@ class EvidenceController extends Controller
 			),
 		]);
 
-		$this->render('index', array(
+		return $this->render('index', array(
 			'dataProvider'=>$dataProvider,
 			'step' => ExportStepEvidence::STEP1,
-			'stepUrl' => Yii::app()->createUrl("/evidence/evidence/sectionPrepareWord"),
+			'stepUrl' => Url::toRoute("/evidence/evidence/section-prepare-word"),
 		));
 	}
 
@@ -75,11 +87,11 @@ class EvidenceController extends Controller
 			$itemsList = isset($_POST['activityItems'])?$_POST['activityItems']:json_decode($data->obj_step1, true);
 			CurrStepEvidence::setCurrentStep(null, json_encode($itemsList), ExportStepEvidence::STEP1);
 			$dataObjects = Evidence::getPrepareObjects($itemsList);
-			$this->render("displayContext", [
+			return $this->render("displayContext", [
 				'dataObjects' => $dataObjects,
 				'step' => ExportStepEvidence::STEP2,
-				'stepUrl' => Yii::app()->createUrl("/evidence/evidence/sectionPreview"),
-				'previousUrl' => Yii::app()->createUrl("/evidence/evidence/prepare"),
+				'stepUrl' => Url::toRoute("/evidence/evidence/section-preview"),
+				'previousUrl' => Url::toRoute("/evidence/evidence/prepare"),
 			]);
 		} else {
 			return $this->redirect(Yii::app()->createUrl("/evidence/evidence/prepare"));
@@ -91,19 +103,18 @@ class EvidenceController extends Controller
 	 */
 	public function actionSectionPreview()
 	{
-		User::model()->findByPk(Yii::app()->user->id);
 		if((!empty($_POST) && isset($_POST['activityItems'])) || true) {
 			$data = CurrStepEvidence::loadHtmlCookie();
 			$itemsList = isset($_POST['activityItems'])?$_POST['activityItems']:json_decode($data->obj_step2, true);
 			CurrStepEvidence::setCurrentStep(null, json_encode($itemsList), ExportStepEvidence::STEP2);
 			$dataObjects = Evidence::getPreparePreivew($itemsList);
-			$this->render("preview", [
+			return $this->render("preview", [
 				'dataObjects' => $dataObjects,
 				'step' => ExportStepEvidence::STEP1,
-				'previousUrl' => Yii::app()->createUrl("/evidence/evidence/sectionPrepareWord"),
+				'previousUrl' => Url::toRoute("/evidence/evidence/section-prepare-word"),
 			]);
 		} else {
-			return $this->redirect(Yii::app()->createUrl("/evidence/evidence/prepare"));
+			return $this->redirect(Url::toRoute("/evidence/evidence/prepare"));
 		}
 	}
 
@@ -120,17 +131,17 @@ class EvidenceController extends Controller
 		CurrStepEvidence::setCurrentStep($exportData, $exportObjData, $currentStep);
 		ExportStepEvidence::saveExport($exportName);
 		setcookie("LoadExport", 1, time()+3600*24*10, "/");
-		echo json_encode(['flag' => true, 'redirect' => Yii::app()->request->urlReferrer]);
+		echo json_encode(['flag' => true, 'redirect' => Yii::$app->request->referrer]);
 	}
 
 	public function actionLoadExport()
 	{
 		$exportId = $_POST['exportId'];
-		$model = ExportStepEvidence::model()->find('id='. $exportId);
+		$model = ExportStepEvidence::findOne($exportId);
 		if(!empty($model)) {
 			CurrStepEvidence::getDataFromLoadExport($model);
 			setcookie("LoadExport", 1, time()+3600*24*10, "/");
-			echo json_encode(['flag' => true, 'redirect' => Yii::app()->createUrl("/evidence/evidence/prepare")]);
+			echo json_encode(['flag' => true, 'redirect' => Url::toRoute("/evidence/evidence/prepare")]);
 			return;
 		}
 
@@ -151,7 +162,7 @@ class EvidenceController extends Controller
 	public function actionDeleteExport()
 	{
 		if(isset($_POST['id']) && !empty($_POST)) {
-			ExportStepEvidence::model()->deleteByPk($_POST['id']);
+			ExportStepEvidence::findOne($_POST['id'])->delete();
 		}
 	}
 }

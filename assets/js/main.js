@@ -24,7 +24,7 @@ $(document).ready(function() {
       }
    }
 
-   $("body").on("click", ".pager ul.yiiPager li", function() { // check list on pagination
+   $(document).on("click", ".pagination li", function() { // check list on pagination
       setTimeout(function() {
          $.each($(".activityObjects"), function (index) {
             var dataType = $(this).data('type');
@@ -35,7 +35,7 @@ $(document).ready(function() {
             }
          });
       }, 500);
-   })
+   });
 
    setTimeout(function() {
       $.each($(".activityObjects"), function (index) {
