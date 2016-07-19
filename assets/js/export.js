@@ -142,7 +142,7 @@ $(document).ready(function() {
             }
         });
 
-        // $(".listOfItems").submit();
+        $(".listOfItems").submit();
         return true;
     });
 
