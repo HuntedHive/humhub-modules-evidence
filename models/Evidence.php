@@ -115,15 +115,18 @@ class Evidence extends Object
 				if(!empty($activity) && in_array($activity->module, ["polls", "content", "like", "comment", "space"])) {
                     unset(self::$data[$key]);
                 } else {
-                    if ($activity->module == "questionanswer" && end(explode("\\", $activity->object_model)) == "QAComment") {
+                    $actExp = explode("\\" , $activity->object_model);
+                    $act = end($actExp);
+                    if ($activity->module == "questionanswer" && $act == "QAComment") {
                         unset(self::$data[$key]);
                     } else {
-                        self::$data[$key]['object_model'] = end(explode("\\", $activity->object_model));
+                        self::$data[$key]['object_model'] = $act;
                         self::$data[$key]['object_id'] = $activity->object_id;
                     }
                 }
-
-                if(end(explode("\\", $activity->class)) == "ChatMessage" || end(explode("\\", $activity->class)) == "KnowledgeCommentCreated") {
+                $actExp = explode("\\" , $activity->class);
+                $act = end($actExp);
+                if($act == "ChatMessage" || $act == "KnowledgeCommentCreated") {
                     unset(self::$data[$key]);
                 }
             }
