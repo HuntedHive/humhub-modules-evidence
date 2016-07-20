@@ -86,6 +86,9 @@ class EvidenceController extends Controller
 			$data = CurrStepEvidence::loadHtmlCookie();
 			$itemsList = isset($_POST['activityItems'])?$_POST['activityItems']:json_decode($data->obj_step1, true);
 			CurrStepEvidence::setCurrentStep(null, json_encode($itemsList), ExportStepEvidence::STEP1);
+			if(empty($itemsList)) {
+				return $this->redirect(Url::toRoute("/evidence/evidence/prepare"));
+			}
 			$dataObjects = Evidence::getPrepareObjects($itemsList);
 			return $this->render("displayContext", [
 				'dataObjects' => $dataObjects,
@@ -94,7 +97,7 @@ class EvidenceController extends Controller
 				'previousUrl' => Url::toRoute("/evidence/evidence/prepare"),
 			]);
 		} else {
-			return $this->redirect(Yii::app()->createUrl("/evidence/evidence/prepare"));
+			return $this->redirect(Url::toRoute("/evidence/evidence/prepare"));
 		}
 	}
 
@@ -107,6 +110,9 @@ class EvidenceController extends Controller
 			$data = CurrStepEvidence::loadHtmlCookie();
 			$itemsList = isset($_POST['activityItems'])?$_POST['activityItems']:json_decode($data->obj_step2, true);
 			CurrStepEvidence::setCurrentStep(null, json_encode($itemsList), ExportStepEvidence::STEP2);
+			if(empty($itemsList)) {
+				return $this->redirect(Url::toRoute("/evidence/evidence/prepare"));
+			}
 			$dataObjects = Evidence::getPreparePreivew($itemsList);
 			return $this->render("preview", [
 				'dataObjects' => $dataObjects,
