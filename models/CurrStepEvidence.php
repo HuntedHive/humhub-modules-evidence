@@ -41,14 +41,12 @@ class CurrStepEvidence extends ActiveRecord
 
     public static function loadHtmlCookie()
     {
-        if(isset($_COOKIE['LoadExport'])) {
-            $user_id = Yii::$app->user->id;
-            $data = CurrStepEvidence::find()->andWhere(['created_by' => $user_id])->one();
-            if (empty($data))
-                return '';
-            
-            return $data;
-        }
+        $user_id = Yii::$app->user->id;
+        $data = CurrStepEvidence::find()->andWhere(['created_by' => $user_id])->one();
+        if (empty($data))
+            return '';
+        
+        return $data;
     }
 
     /**

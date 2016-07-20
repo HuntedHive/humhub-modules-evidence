@@ -127,11 +127,16 @@ class EvidenceController extends Controller
 		$currentStep = $output['step'];
 		$exportName = $output['saveExport'];
 		$exportData = $_POST['html'];
-		$exportObjData = json_encode($dataObj['activityItems']);
-		CurrStepEvidence::setCurrentStep($exportData, $exportObjData, $currentStep);
-		ExportStepEvidence::saveExport($exportName);
-		setcookie("LoadExport", 1, time()+3600*24*10, "/");
-		echo json_encode(['flag' => true, 'redirect' => Yii::$app->request->referrer]);
+		if (!isset($dataObj['activityItems'])) {
+			ExportStepEvidence::saveExport($exportName);
+			echo json_encode(['flag' => true, 'redirect' => Yii::$app->request->referrer]);
+		} else {
+			$exportObjData = json_encode($dataObj['activityItems']);
+			CurrStepEvidence::setCurrentStep($exportData, $exportObjData, $currentStep);
+			ExportStepEvidence::saveExport($exportName);
+			setcookie("LoadExport", 1, time() + 3600 * 24 * 10, "/");
+			echo json_encode(['flag' => true, 'redirect' => Yii::$app->request->referrer]);
+		}
 	}
 
 	public function actionLoadExport()
