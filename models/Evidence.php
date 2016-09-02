@@ -101,6 +101,8 @@ class Evidence extends Object
                       AND
                     `object_model` != 'humhub\\\modules\\\polls\\\models\\\Poll'
                       AND
+                    `object_model` != 'humhub\\modules\\user\\models\\Follow'
+                      AND
                     `created_by` =" . Yii::$app->user->id
                     .$period;
         self::$data = Yii::$app->db->createCommand($sql)->queryAll();
@@ -112,7 +114,7 @@ class Evidence extends Object
         foreach (self::$data as $key => $value) {
             if($value['object_model'] == "humhub\modules\activity\models\Activity") {
                 $activity = Activity::find()->andWhere(['id' => $value['object_id']])->one();
-				if(!empty($activity) && in_array($activity->module, ["polls", "content", "like", "comment", "space"])) {
+				if(!empty($activity) && in_array($activity->module, ["user", "polls", "content", "like", "comment", "space"])) {
                     unset(self::$data[$key]);
                 } else {
                     $actExp = explode("\\" , $activity->object_model);
@@ -126,7 +128,7 @@ class Evidence extends Object
                 }
                 $actExp = explode("\\" , $activity->class);
                 $act = end($actExp);
-                if($act == "ChatMessage" || $act == "KnowledgeCommentCreated") {
+                if($act == "ChatMessage" || $act == "KnowledgeCommentCreated" || $act == "Follow") {
                     unset(self::$data[$key]);
                 }
             }
@@ -563,20 +565,18 @@ class Evidence extends Object
         require_once dirname(__DIR__). DIRECTORY_SEPARATOR . "lib/PHPExcel/Classes/PHPExcel.php";
         $profile = Profile::find()->andWhere(["user_id" => Yii::$app->user->id])->one();
         $reg = ManageRegistration::find()->andWhere(['name' => $profile->teacher_type, 'type' => ManageRegistration::TYPE_TEACHER_TYPE])->one();
-        if(!empty($reg)) {
-            if ($reg->default == ManageRegistration::DEFAULT_DEFAULT) {
-                $file_name = ManageRegistration::find()->andWhere('type=' . ManageRegistration::TYPE_TEACHER_TYPE . ' AND `default`=0 AND file_name is not NULL')->one();
-                if(empty($file_name)) {
-                    return [];
-                }
+        $other = ManageRegistration::find()->andFilterWhere(['name' => 'othersFildn'])->one();
+        $file_name = null;
 
-                $file_name = $file_name->file_name;
-            } else {
-                $file_name = $reg->file_name;
-            }
-        } else {
-            return [];
+        if(!empty($reg) && $reg->default == ManageRegistration::DEFAULT_ADDED && !empty($reg->file_name)) { // if e
+            $file_name = $reg->file_name;
         }
+
+        if(!empty($other) && !empty($other->file_name) && is_null($file_name)) {
+            $file_name = $other->file_name;
+        }
+
+
         if(empty($file_name)) {
             return [];
         }
@@ -595,13 +595,18 @@ class Evidence extends Object
         $data = self::getFileAPSTS();
         $title = "";
         $descr = "";
-
         foreach ($data as $item) {
-            if($item['A'] == $id_apsts) {
-                $title = $item['B'];
-                $descr = $item['C'];
+            if(isset($item['A']) && $item['A'] == $id_apsts) {
+                if(!isset($item['C'])) {
+                    $title = !empty($item['A'])?$item['A']:'';
+                    $descr = !empty($item['B'])?$item['B']:'';
+                } else {
+                    $title = !empty($item['B'])?$item['B']:'';
+                    $descr = !empty($item['C'])?$item['C']:'';
+                }
             }
         }
+        
         return [
             'title' => $title,
             'descr' => $descr,

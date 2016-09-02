@@ -155,7 +155,7 @@ $(document).ready(function() {
             var dataValue = $(this).val();
             
             if(currentType == "checkbox" || currentType == "checkbox_question") {
-                var objectActivity = $(".context-part[data-type='"+dataName+"'] .itemSelect[data-type='"+currentType+"']");
+                var objectActivity = $(".context-part[data-type='"+dataName+"'] .itemSelect[data-type='"+currentType+"'][data-id='"+dataId+"']");
                 if (objectActivity.length && !objectActivity.is(":checked")) {
                     objectActivity.prop("checked", true);
                 } else {

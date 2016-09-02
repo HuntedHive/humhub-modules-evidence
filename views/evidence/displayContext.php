@@ -51,7 +51,11 @@ use humhub\modules\evidence\models\CurrStepEvidence;
                     <select name="apst" data-type="select" class="selectpicker form-control show-tick context-select" title="Select from Australian Professional Standards for Teachers * ..." required>
                       <optgroup label="Select from Australian Professional Standards for Teachers">
                           <?php foreach(Evidence::getFileAPSTS() as $apsts) { ?>
-                          <option value="<?= $apsts['A'] ?>"><?= $apsts['B']; ?></option>
+                              <?php if(!isset($apsts['C'])) { ?>
+                                  <option value="<?= $apsts['A'] ?>"><?= $apsts['A']; ?></option>
+                              <?php } else { ?>
+                                  <option value="<?= $apsts['A'] ?>"><?= $apsts['B']; ?></option>
+                              <?php } ?>
                           <?php } ?>
                       </optgroup>
                     </select>

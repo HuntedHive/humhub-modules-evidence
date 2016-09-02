@@ -126,6 +126,8 @@ class EvidenceController extends Controller
 
 	public function actionSaveExport()
 	{
+		$this->forcePostRequest();
+
 		$output = [];
 		parse_str($_POST['exportData'], $output); // here $step and $saveExport
 		parse_str($_POST['obj_data'], $dataObj);
@@ -147,6 +149,8 @@ class EvidenceController extends Controller
 
 	public function actionLoadExport()
 	{
+		$this->forcePostRequest();
+
 		$exportId = $_POST['exportId'];
 		$model = ExportStepEvidence::findOne($exportId);
 		if(!empty($model)) {
@@ -161,6 +165,7 @@ class EvidenceController extends Controller
 
 	public function actionSaveCurrentHtml()
 	{
+		$this->forcePostRequest();
 		if(isset($_POST['html']) && !empty($_POST['html'])) {
 			parse_str($_POST['exportData'], $output); // here $step and $saveExport
 
@@ -172,6 +177,7 @@ class EvidenceController extends Controller
 
 	public function actionDeleteExport()
 	{
+		$this->forcePostRequest();
 		if(isset($_POST['id']) && !empty($_POST)) {
 			ExportStepEvidence::findOne($_POST['id'])->delete();
 		}
