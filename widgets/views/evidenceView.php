@@ -78,7 +78,10 @@ if(\Yii::$app->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
 
             function setCookie(key, value) {
                 var expires = new Date();
-                expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000 * 24 * 12)); //12 month
+                var day = 24*60*60*1000; // one day
+                var month = day*30; // one month
+                var year = month * 12; // One year or 12 moth
+                expires.setTime(expires.getTime() + (year)); //12 month
                 document.cookie = key + '=' + value + ';path=/;expires=' + expires.toUTCString();
             }
 
@@ -165,7 +168,10 @@ if(\Yii::$app->controller->id == "profile" && $_GET['uguid'] == $userGUID) {
 
             function setCookie(key, value) {
                 var expires = new Date();
-                expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000 * 24 * 12)); //12 month
+                var day = 24*60*60*1000; // one day
+                var month = day*30; // one month
+                var year = month * 12; // One year or 12 moth
+                expires.setTime(expires.getTime() + (year)); //12 month
                 document.cookie = key + '=' + value + ';path=/;expires=' + expires.toUTCString();
             }
 
