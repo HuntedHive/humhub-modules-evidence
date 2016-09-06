@@ -5,6 +5,7 @@ namespace humhub\modules\evidence\controllers;
 use humhub\modules\evidence\models\Evidence;
 use humhub\modules\evidence\models\CurrStepEvidence;
 use humhub\modules\evidence\models\ExportStepEvidence;
+use humhub\modules\evidence\models\StateRecord;
 use Yii;
 use yii\base\Component;
 use yii\base\Object;
@@ -180,6 +181,15 @@ class EvidenceController extends Controller
 		$this->forcePostRequest();
 		if(isset($_POST['id']) && !empty($_POST)) {
 			ExportStepEvidence::findOne($_POST['id'])->delete();
+		}
+	}
+
+	public function actionCloseState()
+	{
+		$this->forcePostRequest();
+
+		if(isset($_POST['btn-close'])) {
+			StateRecord::saveStateTeacherType();
 		}
 	}
 }
