@@ -237,51 +237,67 @@ class Evidence extends Object
                 case 'Post': // model is Post in db
                     $content = Content::find()->andWhere(['object_model' => 'humhub\modules\post\models\Post', 'object_id' => $objectValue])->one();
                     $mainObject = Post::findOne($objectValue);
-                    $lastContentPosts = Content::find()->andWhere('object_id >=' . ($mainObject->id - 2) . ' AND object_id<='. ($mainObject->id + 2) . ' AND object_id!='. ($mainObject->id) .' AND object_model = "humhub\\\modules\\\post\\\models\\\Post" AND space_id='. $content->space_id)->all();
-                    $result = !empty($lastContentPosts)?implode(",", ArrayHelper::map($lastContentPosts, 'object_id', 'object_id')):0;
-                    $subObject = Post::find()->andWhere('id IN (' . $result . ')')->all();
-                    $subData[] = [
-                        $objectKey => [
-                            'id' => $mainObject->id,
-                            'title' => $mainObject->message,
-                            'context' => $subObject,
-                        ]
-                    ];
+                    if(!empty($mainObject)) {
+                        $lastContentPosts = Content::find()->andWhere('object_id >=' . ($mainObject->id - 2) . ' AND object_id<=' . ($mainObject->id + 2) . ' AND object_id!=' . ($mainObject->id) . ' AND object_model = "humhub\\\modules\\\post\\\models\\\Post" AND space_id=' . $content->space_id)->all();
+                        $result = !empty($lastContentPosts) ? implode(",", ArrayHelper::map($lastContentPosts, 'object_id', 'object_id')) : 0;
+                        $subObject = Post::find()->andWhere('id IN (' . $result . ')')->all();
+                        $subData[] = [
+                            $objectKey => [
+                                'id' => $mainObject->id,
+                                'title' => $mainObject->message,
+                                'context' => $subObject,
+                            ]
+                        ];
+                    }
+
+                    $subData[] = [];
                     break;
                 case 'Question':
                     $mainObject = Question::findOne($objectValue);
-                    $subObject = Answer::find()->andWhere('question_id = ' . $mainObject->id . ' AND post_type = "answer" ORDER BY created_at DESC LIMIT 5')->all();
-                    $subData[] = [
-                        $objectKey => [
-                            'id' => $mainObject->id,
-                            'title' => $mainObject->post_text,
-                            'context' => $subObject,
-                        ]
-                    ];
+                    if(!empty($mainObject)) {
+                        $subObject = Answer::find()->andWhere('question_id = ' . $mainObject->id . ' AND post_type = "answer" ORDER BY created_at DESC LIMIT 5')->all();
+                        $subData[] = [
+                            $objectKey => [
+                                'id' => $mainObject->id,
+                                'title' => $mainObject->post_text,
+                                'context' => $subObject,
+                            ]
+                        ];
+                    }
+
+                    $subData[] = [];
                     break;
                 case 'Answer':
                     $mainObject = Answer::findOne($objectValue);
-                    $questionObject = Answer::findOne($mainObject->question_id);
-                    $subObject = Answer::find()->andWhere('parent_id = ' . $mainObject->id . ' AND post_type = "comment" ORDER BY created_at DESC LIMIT 5')->all();
-                    $subData[] = [
-                        $objectKey => [
-                            'id' => $mainObject->id,
-                            'title' => $mainObject->post_text,
-                            'context' => array_merge([$questionObject], $subObject),
-                        ]
-                    ];
+                    if(!empty($mainObject)) {
+                        $questionObject = Answer::findOne($mainObject->question_id);
+                        $subObject = Answer::find()->andWhere('parent_id = ' . $mainObject->id . ' AND post_type = "comment" ORDER BY created_at DESC LIMIT 5')->all();
+                        $subData[] = [
+                            $objectKey => [
+                                'id' => $mainObject->id,
+                                'title' => $mainObject->post_text,
+                                'context' => array_merge([$questionObject], $subObject),
+                            ]
+                        ];
+                    }
+
+                    $subData[] = [];
                     break;
                 case 'MessageEntry':
                     $mainObject = MessageEntry::findOne($objectValue);
-                    $preCount = 5;
-                    $subObject = MessageEntry::find()->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
-                    $subData[] = [
-                        $objectKey => [
-                            'id' => $mainObject->id,
-                            'title' => $mainObject->content,
-                            'context' => $subObject,
-                        ]
-                    ];
+                    if(!empty($mainObject)) {
+                        $preCount = 5;
+                        $subObject = MessageEntry::find()->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
+                        $subData[] = [
+                            $objectKey => [
+                                'id' => $mainObject->id,
+                                'title' => $mainObject->content,
+                                'context' => $subObject,
+                            ]
+                        ];
+                    }
+
+                    $subData[] = [];
                     break;
             }
         }
@@ -375,14 +391,24 @@ class Evidence extends Object
                     $nameRelation = self::$relationPreview[$mainKey];
 
                     $mainObject = Post::findOne($mainId);
-                    $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
-                    $apsts = isset($arrayData['select'])?$arrayData['select']:[];
-                    $subObject = Post::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
-                    $subData[$mainKey] = [
+                    $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
+                    $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
+
+                    if(!empty($mainObject)) {
+                        $subObject = Post::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
+                        $subData[$mainKey] = [
                             'mainObject' => $mainObject,
                             'note' => $note,
                             'apsts' => $apsts,
                             'subObject' => $subObject,
+                        ];
+                    }
+
+                    $subData[$mainKey] = [
+                        'apsts' => $apsts,
+                        'note' => $note,
+                        'mainObject' => null,
+                        'subObject' => '',
                     ];
                     break;
                 case 'Question':
@@ -392,46 +418,76 @@ class Evidence extends Object
                     $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
                     $apsts = isset($arrayData['select'])?$arrayData['select']:[];
 
-                    $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
+                    if(!empty($mainObject)) {
+                        $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
+                        $subData[$mainKey] = [
+                            'mainObject' => $mainObject,
+                            'note' => $note,
+                            'apsts' => $apsts,
+                            'subObject' => $subObject,
+                        ];
+                    }
+
                     $subData[$mainKey] = [
-                        'mainObject' => $mainObject,
-                        'note' => $note,
                         'apsts' => $apsts,
-                        'subObject' => $subObject,
+                        'note' => $note,
+                        'mainObject' => null,
+                        'subObject' => '',
                     ];
                     break;
                 case 'Answer':
                     $nameRelation = self::$relationPreview[$mainKey];
                     $mainObject = Answer::findOne($mainId);
-                    $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
-                    $apsts = isset($arrayData['select'])?$arrayData['select']:[];
-                    $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
+                    $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
+                    $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
 
-                    $subQuestion = NULL;
-                    if(!empty($arrayData['checkbox_question'])) {
-                        $subObject['question'] = Answer::findOne($arrayData['checkbox_question'][0]);
+                    if(!empty($mainObject)) {
+                        $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
+
+                        $subQuestion = NULL;
+                        if (!empty($arrayData['checkbox_question'])) {
+                            $subObject['question'] = Answer::findOne($arrayData['checkbox_question'][0]);
+                        }
+
+                        $subData[$mainKey] = [
+                            'mainObject' => $mainObject,
+                            'note' => $note,
+                            'apsts' => $apsts,
+                            'subObject' => $subObject,
+                        ];
                     }
 
                     $subData[$mainKey] = [
-                        'mainObject' => $mainObject,
-                        'note' => $note,
                         'apsts' => $apsts,
-                        'subObject' => $subObject,
+                        'note' => $note,
+                        'mainObject' => null,
+                        'subObject' => '',
                     ];
                     break;
                 case 'MessageEntry':
                     $nameRelation = self::$relationPreview[$mainKey];
 
                     $mainObject = MessageEntry::findOne($mainId);
-                    $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
-                    $apsts = isset($arrayData['select'])?$arrayData['select']:[];
-                    $subObject = MessageEntry::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
+                    $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
+                    $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
+
+                    if(!empty($mainObject)) {
+
+                        $subObject = MessageEntry::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
+
+                        $subData[$mainKey] = [
+                            'mainObject' => $mainObject,
+                            'note' => $note,
+                            'apsts' => $apsts,
+                            'subObject' => $subObject,
+                        ];
+                    }
 
                     $subData[$mainKey] = [
-                        'mainObject' => $mainObject,
-                        'note' => $note,
                         'apsts' => $apsts,
-                        'subObject' => $subObject,
+                        'note' => $note,
+                        'mainObject' => null,
+                        'subObject' => null,
                     ];
                     break;
         }
@@ -453,7 +509,7 @@ class Evidence extends Object
                         ($i == 3) ? $i = 1 : '';
                         $result .= "<tr>";
                         $result .= "<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
-                        $result .= "<td> <strong>" . $preWord . " " . $i . " (" . $firstname . ")-</strong> " . $context->{Evidence::$contextParam[$itemKeyContext]} . "</td>";
+                        $result .= "<td> <strong>" . $preWord . " " . $i . " (" . Html::encode($firstname) . ")-</strong> " . $context->{Evidence::$contextParam[$itemKeyContext]} . "</td>";
                         $result .= "</tr>";
                         $i++;
                     }
@@ -465,7 +521,7 @@ class Evidence extends Object
                     if(!empty($context)) {
                         $result .= "<tr>";
                         $result .= "<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
-                        $result .= "<td> <strong>Answer " . (++$j) . "-</strong> " . ($context->{Evidence::$contextParam[$itemKeyContext]}) . "</td>";
+                        $result .= "<td> <strong>Answer " . (++$j) . "-</strong> " . Html::encode($context->{Evidence::$contextParam[$itemKeyContext]}) . "</td>";
                         $result .= "</tr>";
                     }
                 }
@@ -486,7 +542,7 @@ class Evidence extends Object
                         }
                         $result .= "<tr>";
                         $result .= "<td class='text-center'><input class='itemSelect context-checkbox' data-type='" . $type . "' data-id='$context->id' type='checkbox'></td>";
-                        $result .= "<td><strong>" . $preWord . " - </strong> " . $text . "</td>";
+                        $result .= "<td><strong>" . $preWord . " - </strong> " . Html::encode($text) . "</td>";
                         $result .= "</tr>";
                         $i++;
                     }
@@ -497,7 +553,7 @@ class Evidence extends Object
                 foreach ($itemContext as $context) {
                     $result.="<tr>";
                     $result.="<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
-                    $result.="<td> <strong>Response " . (++$j) . "-</strong> ". $context->{Evidence::$contextParam[$itemKeyContext]} ."</td>";
+                    $result.="<td> <strong>Response " . (++$j) . "-</strong> ". Html::encode($context->{Evidence::$contextParam[$itemKeyContext]}) ."</td>";
                     $result.="</tr>";
                 }
                 return $result;
@@ -507,8 +563,11 @@ class Evidence extends Object
 
     public static function getPreviewUlHtml($itemValue, $itemKey)
     {
-//        var_dump($itemValue);die;
         $html= "";
+        if(!empty($itemValue) && !empty($itemKey)) {
+            return $html;
+        }
+
         switch($itemKey) {
             case 'Post': // model is Post in db
                 $i=1;
@@ -516,7 +575,7 @@ class Evidence extends Object
                     $firstname = Yii::$app->user->getIdentity()->username;
                     $preWord = ($i==3)?"Previous Message":"Following Message";
                     ($i==3)?$i=1:'';
-                    $html.="<li><strong>$preWord ". ($i) . " (" . $firstname .") - </strong>".  $subItem->{self::$contextParam[$itemKey]} ."</li>";
+                    $html.="<li><strong>$preWord ". ($i) . " (" . Html::encode($firstname) .") - </strong>".  Html::encode($subItem->{self::$contextParam[$itemKey]}) ."</li>";
                     $i++;
                 }
                 return $html;
@@ -524,7 +583,7 @@ class Evidence extends Object
             case 'Question':
                 $i=0;
                 foreach ($itemValue as $subItem) {
-                    $html.="<li><strong>Answer ". (++$i) . " - </strong>".  $subItem->{self::$contextParam[$itemKey]} ."</li>";
+                    $html.="<li><strong>Answer ". (++$i) . " - </strong>".  Html::encode($subItem->{self::$contextParam[$itemKey]}) ."</li>";
                 }
                 return $html;
                 break;
@@ -532,18 +591,18 @@ class Evidence extends Object
                 $i = 0;
                 if(isset($itemValue['question'])) {
                     $question = $itemValue['question'];
-                    $html .= "<li><strong>Question - </strong>" . $question->post_title . "</li>";
+                    $html .= "<li><strong>Question - </strong>" . Html::encode($question->post_title) . "</li>";
                     unset($itemValue['question']);
                 }
                 foreach ($itemValue as $subItem) {
-                    $html.="<li><strong>Comment ". (++$i) . " - </strong>".  $subItem->post_text ."</li>";
+                    $html.="<li><strong>Comment ". (++$i) . " - </strong>".  Html::encode($subItem->post_text) ."</li>";
                 }
                 return $html;
                 break;
             case 'MessageEntry':
                 $i = 0;
                 foreach ($itemValue as $subItem) {
-                    $html.="<li><strong>Response ". (++$i) . " - </strong>".  $subItem->{self::$contextParam[$itemKey]} ."</li>";
+                    $html.="<li><strong>Response ". (++$i) . " - </strong>".  Html::encode($subItem->{self::$contextParam[$itemKey]}) ."</li>";
                 }
                 return $html;
                 break;
@@ -553,10 +612,12 @@ class Evidence extends Object
 
     public static function getBody($itemValue, $itemKey)
     {
-        if($itemKey != "Answer") {
-            return  $itemValue->{Evidence::$contextParam[$itemKey]};
-        } else {
-            return $itemValue->post_text;
+        if(!empty($itemValue) && !empty($itemKey)) {
+            if ($itemKey != "Answer") {
+                return Html::encode($itemValue->{Evidence::$contextParam[$itemKey]});
+            } else {
+                return Html::encode($itemValue->post_text);
+            }
         }
     }
 

@@ -92,7 +92,7 @@ class EvidenceController extends Controller
 			}
 			$dataObjects = Evidence::getPrepareObjects($itemsList);
 			return $this->render("displayContext", [
-				'dataObjects' => $dataObjects,
+				'dataObjects' => array_filter($dataObjects),
 				'step' => ExportStepEvidence::STEP2,
 				'stepUrl' => Url::toRoute("/evidence/evidence/section-preview"),
 				'previousUrl' => Url::toRoute("/evidence/evidence/prepare"),

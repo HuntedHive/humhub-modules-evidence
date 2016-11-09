@@ -57,20 +57,26 @@ use humhub\modules\evidence\models\Evidence;
                             <tbody>
                             <?php foreach ($dataObjects as $itemK => $itemV) { ?>
                                 <?php foreach ($itemV as $itemKey => $itemValue) { ?>
-                                <tr class="itemTr">
-                                    <td>
-                                        <strong style="color:#1895a4;"><?= Evidence::getOneAPSTS($itemValue['apsts'])['title'] ?></strong>
-                                        <br>
-                                        <?= Evidence::getOneAPSTS($itemValue['apsts'])['descr'] ?>
-                                    </td>
-                                    <td class="text-left"><?php echo Evidence::$iconObject[$itemKey]; ?> <strong><?= Evidence::$acitvityType[$itemKey]; ?> -</strong> <i><?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?></i>
-                                        <ul>
-                                            <?= Evidence::getPreviewUlHtml($itemValue['subObject'], $itemKey); ?>
-                                        </ul>
-                                    </td>
-                                    <td class="note" style="width:50px"><?php echo $itemValue['note']; ?></td>
-                                    <td class="descr" style="width:50px"></td>
-                                </tr>
+                                    <tr class="itemTr">
+                                        <td>
+                                            <strong style="color:#1895a4;"><?= Evidence::getOneAPSTS($itemValue['apsts'])['title'] ?></strong>
+                                            <br>
+                                            <?= Evidence::getOneAPSTS($itemValue['apsts'])['descr'] ?>
+                                        </td>
+                                        <td class="text-left">
+                                            <?php if(!empty($itemValue['mainObject'])): ?>
+                                                <?php echo Evidence::$iconObject[$itemKey]; ?> <strong><?= Evidence::$acitvityType[$itemKey]; ?> -</strong> <i><?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?></i>
+                                            <?php endif; ?>
+    
+                                            <?php if(!empty($itemValue['subObject'])): ?>
+                                                <ul>
+                                                    <?= Evidence::getPreviewUlHtml($itemValue['subObject'], $itemKey); ?>
+                                                </ul>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td class="note" style="width:50px"><?php echo $itemValue['note']; ?></td>
+                                        <td class="descr" style="width:50px"></td>
+                                    </tr>
                                 <?php  } ?>
                             <?php  } ?>
                             </tbody>

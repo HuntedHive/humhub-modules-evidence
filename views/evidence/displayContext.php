@@ -45,7 +45,7 @@ use humhub\modules\evidence\models\CurrStepEvidence;
               <div class="panel panel-default panel-contribution context-part" data-type="<?= $itemKeyContext."_".$itemContext['id'] ?>">
                 <div class="panel-heading">
                   <small>Contribution <?= $i ?></small><br>
-                  <?= Evidence::$iconObject[$itemKeyContext] ?> <?= Evidence::$acitvityType[$itemKeyContext]; ?> - <i><?= $itemContext['title']; ?></i></div>
+                  <?= Evidence::$iconObject[$itemKeyContext] ?> <?= Evidence::$acitvityType[$itemKeyContext]; ?> - <i><?= Html::encode($itemContext['title']); ?></i></div>
                 <div class="panel-body">
                   <div class="form-group col-xs-12">
                     <select name="apst" data-type="select" class="selectpicker form-control show-tick context-select" title="Select from Australian Professional Standards for Teachers * ..." required>
