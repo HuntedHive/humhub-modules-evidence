@@ -105,6 +105,7 @@ class Evidence extends Object
                       AND
                     `created_by` =" . Yii::$app->user->id
                     .$period;
+
         self::$data = Yii::$app->db->createCommand($sql)->queryAll();
         return $this;
     }
@@ -114,9 +115,12 @@ class Evidence extends Object
         foreach (self::$data as $key => $value) {
             if($value['object_model'] == "humhub\modules\activity\models\Activity") {
                 $activity = Activity::find()->andWhere(['id' => $value['object_id']])->one();
-				if(!empty($activity) && in_array($activity->module, ["user", "polls", "content", "like", "comment", "space"])) {
+
+				if(!empty($activity) && in_array($activity->module, ["user", "polls", "like", "comment", "space"])) {
+
                     unset(self::$data[$key]);
                 } else {
+
                     $actExp = explode("\\" , $activity->object_model);
                     $act = end($actExp);
                     if ($activity->module == "questionanswer" && $act == "QAComment") {
@@ -125,17 +129,35 @@ class Evidence extends Object
                         self::$data[$key]['object_model'] = $act;
                         self::$data[$key]['object_id'] = $activity->object_id;
                     }
+
+                    if($act == "Post" && empty(self::$data[$key]['space_id'])) {
+                        unset(self::$data[$key]);
+                    }
                 }
                 $actExp = explode("\\" , $activity->class);
                 $act = end($actExp);
                 if($act == "ChatMessage" || $act == "KnowledgeCommentCreated" || $act == "Follow") {
                     unset(self::$data[$key]);
                 }
+            } else {
+                unset(self::$data[$key]);
             }
 
-            if($value['object_model'] == "humhub\modules\post\models\Post") {
-                self::$data[$key]['object_model'] = "Post";
-            }
+//            if($value['object_model'] == "humhub\modules\post\models\Post") {
+//                self::$data[$key]['object_model'] = "Post";
+//            }
+//
+//            if($value['object_model'] == "humhub\modules\questionanswer\models\Question") {
+//                self::$data[$key]['object_model'] = "Question";
+//            }
+//
+//            if($value['object_model'] == "humhub\modules\questionanswer\models\Answer") {
+//                self::$data[$key]['object_model'] = "Answer";
+//            }
+//
+//            if($value['object_model'] == "humhub\modules\post\models\Post" && empty(self::$data[$key]['space_id'])) {
+//                unset(self::$data[$key]);
+//            }
         }
 
         return $this;
@@ -207,7 +229,10 @@ class Evidence extends Object
                 return Post::findOne($object['object_id'])->message;
                 break;
             case 'Question':
-                return Question::findOne($object['object_id'])->post_text;
+                $entity = Question::findOne($object['object_id']);
+                if(!empty($entity)){
+                    return $entity->post_text;
+                }
                 break;
             case 'Answer':
                 return Answer::findOne($object['object_id'])->post_text;
@@ -216,6 +241,8 @@ class Evidence extends Object
                 return MessageEntry::findOne($object['id'])->content;
                 break;
         }
+
+        return null;
     }
 
     public static function getPrepareObjects($data)
@@ -237,7 +264,8 @@ class Evidence extends Object
                 case 'Post': // model is Post in db
                     $content = Content::find()->andWhere(['object_model' => 'humhub\modules\post\models\Post', 'object_id' => $objectValue])->one();
                     $mainObject = Post::findOne($objectValue);
-                    if(!empty($mainObject)) {
+
+                    if(!empty($mainObject) && !empty($content->space_id)) {
                         $lastContentPosts = Content::find()->andWhere('object_id >=' . ($mainObject->id - 2) . ' AND object_id<=' . ($mainObject->id + 2) . ' AND object_id!=' . ($mainObject->id) . ' AND object_model = "humhub\\\modules\\\post\\\models\\\Post" AND space_id=' . $content->space_id)->all();
                         $result = !empty($lastContentPosts) ? implode(",", ArrayHelper::map($lastContentPosts, 'object_id', 'object_id')) : 0;
                         $subObject = Post::find()->andWhere('id IN (' . $result . ')')->all();
@@ -250,7 +278,6 @@ class Evidence extends Object
                         ];
                     }
 
-                    $subData[] = [];
                     break;
                 case 'Question':
                     $mainObject = Question::findOne($objectValue);
@@ -265,7 +292,6 @@ class Evidence extends Object
                         ];
                     }
 
-                    $subData[] = [];
                     break;
                 case 'Answer':
                     $mainObject = Answer::findOne($objectValue);
@@ -281,7 +307,6 @@ class Evidence extends Object
                         ];
                     }
 
-                    $subData[] = [];
                     break;
                 case 'MessageEntry':
                     $mainObject = MessageEntry::findOne($objectValue);
@@ -297,7 +322,6 @@ class Evidence extends Object
                         ];
                     }
 
-                    $subData[] = [];
                     break;
             }
         }
@@ -404,12 +428,6 @@ class Evidence extends Object
                         ];
                     }
 
-                    $subData[$mainKey] = [
-                        'apsts' => $apsts,
-                        'note' => $note,
-                        'mainObject' => null,
-                        'subObject' => '',
-                    ];
                     break;
                 case 'Question':
                     $nameRelation = self::$relationPreview[$mainKey];
@@ -428,12 +446,6 @@ class Evidence extends Object
                         ];
                     }
 
-                    $subData[$mainKey] = [
-                        'apsts' => $apsts,
-                        'note' => $note,
-                        'mainObject' => null,
-                        'subObject' => '',
-                    ];
                     break;
                 case 'Answer':
                     $nameRelation = self::$relationPreview[$mainKey];
@@ -457,12 +469,6 @@ class Evidence extends Object
                         ];
                     }
 
-                    $subData[$mainKey] = [
-                        'apsts' => $apsts,
-                        'note' => $note,
-                        'mainObject' => null,
-                        'subObject' => '',
-                    ];
                     break;
                 case 'MessageEntry':
                     $nameRelation = self::$relationPreview[$mainKey];
@@ -483,12 +489,6 @@ class Evidence extends Object
                         ];
                     }
 
-                    $subData[$mainKey] = [
-                        'apsts' => $apsts,
-                        'note' => $note,
-                        'mainObject' => null,
-                        'subObject' => null,
-                    ];
                     break;
         }
 
@@ -509,7 +509,7 @@ class Evidence extends Object
                         ($i == 3) ? $i = 1 : '';
                         $result .= "<tr>";
                         $result .= "<td class='text-center'><input class='itemSelect context-checkbox' data-type='checkbox' data-id='$context->id' type='checkbox'></td>";
-                        $result .= "<td> <strong>" . $preWord . " " . $i . " (" . Html::encode($firstname) . ")-</strong> " . $context->{Evidence::$contextParam[$itemKeyContext]} . "</td>";
+                        $result .= "<td> <strong>" . $preWord . " " . $i . " (" . Html::encode($firstname) . ")-</strong> " . Html::encode($context->{Evidence::$contextParam[$itemKeyContext]}) . "</td>";
                         $result .= "</tr>";
                         $i++;
                     }
@@ -564,7 +564,8 @@ class Evidence extends Object
     public static function getPreviewUlHtml($itemValue, $itemKey)
     {
         $html= "";
-        if(!empty($itemValue) && !empty($itemKey)) {
+
+        if(empty($itemValue) || empty($itemKey)) {
             return $html;
         }
 

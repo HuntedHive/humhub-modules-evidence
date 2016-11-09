@@ -28,6 +28,7 @@ class ExportStepEvidence extends ActiveRecord
         // NOTE: you should only define rules for those attributes that
         // will receive user inputs.
         return array(
+            ['name', 'required'],
             ['name', 'unique'],
             [['step1','step2','step3'], 'safe'],
         );

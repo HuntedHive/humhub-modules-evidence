@@ -64,15 +64,15 @@ use humhub\modules\evidence\models\Evidence;
                                             <?= Evidence::getOneAPSTS($itemValue['apsts'])['descr'] ?>
                                         </td>
                                         <td class="text-left">
-                                            <?php if(!empty($itemValue['mainObject'])): ?>
+<!--                                            --><?php //if(!empty($itemValue['mainObject'])): ?>
                                                 <?php echo Evidence::$iconObject[$itemKey]; ?> <strong><?= Evidence::$acitvityType[$itemKey]; ?> -</strong> <i><?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?></i>
-                                            <?php endif; ?>
-    
-                                            <?php if(!empty($itemValue['subObject'])): ?>
+<!--                                            --><?php //endif; ?>
+
+<!--                                            --><?php //if(!empty($itemValue['subObject'])): ?>
                                                 <ul>
                                                     <?= Evidence::getPreviewUlHtml($itemValue['subObject'], $itemKey); ?>
                                                 </ul>
-                                            <?php endif; ?>
+<!--                                            --><?php //endif; ?>
                                         </td>
                                         <td class="note" style="width:50px"><?php echo $itemValue['note']; ?></td>
                                         <td class="descr" style="width:50px"></td>

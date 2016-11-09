@@ -114,6 +114,7 @@ class EvidenceController extends Controller
 			if(empty($itemsList)) {
 				return $this->redirect(Url::toRoute("/evidence/evidence/prepare"));
 			}
+			
 			$dataObjects = Evidence::getPreparePreivew($itemsList);
 			return $this->render("preview", [
 				'dataObjects' => $dataObjects,
