@@ -312,7 +312,7 @@ class Evidence extends Object
                     $mainObject = MessageEntry::findOne($objectValue);
                     if(!empty($mainObject)) {
                         $preCount = 5;
-                        $subObject = MessageEntry::find()->orderBy(['created_at' => SORT_DESC])->limit(5)->all();
+                        $subObject = MessageEntry::find()->andWhere(['message_id' => $mainObject->message_id])->orderBy(['created_at' => SORT_ASC])->limit(5)->all();
                         $subData[] = [
                             $objectKey => [
                                 'id' => $mainObject->id,
