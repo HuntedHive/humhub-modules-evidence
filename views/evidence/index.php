@@ -84,7 +84,7 @@ use humhub\modules\evidence\models\CurrStepEvidence;
                                         },
                                     ),
                                     array(
-                                        'attribute' => 'Text (First xxx)',
+                                        'attribute' => 'Text',
                                         'value' => function($data) {
                                             return Evidence::getText($data);
                                         },
