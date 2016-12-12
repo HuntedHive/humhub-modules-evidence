@@ -34,9 +34,14 @@ $(document).ready(function() {
         $(".contentListOfItems").append(html);
     }
 
-    if($(".previewdate").length != 0 && $(".datarangeSubject") != 0) {
+	if($(".previewdate").length != 0 && $(".datarangeSubject") != 0) {
         var value = $(".datarangeSubject").data('value');
-        $(".previewdate").html(value);
+        var array = value.split(' - ');
+        if(array[0] != array[1]) {
+            $(".previewdate").html(value);
+        } else {
+            $(".previewdate").html(array[0]);
+        }
     }
 
     $(".loadExport").on("click", function() {
