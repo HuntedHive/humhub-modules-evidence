@@ -33,15 +33,29 @@ $(document).ready(function() {
         var html = "<input type='hidden' class='datarangeSubject' data-value='" + value + "'>"
         $(".contentListOfItems").append(html);
     }
+	
+	function returnDate(str) {
+        var tmps = str.split('-');
+        var string = '';
+        if (tmps[0] == 1) {
+            string = tmps[0] + 'st ';
+        } else if (tmps[0] == 2) {
+            string = tmps[0] + 'nd ';
+        } else if(tmps[0] == 3) {
+            string = tmps[0] + 'rd ';
+        } else {
+            string = tmps[0] + 'th ';
+        }
 
-	if($(".previewdate").length != 0 && $(".datarangeSubject") != 0) {
+        string = string + tmps[1] + " 20" + tmps[2];
+
+        return string;
+    }
+
+    if($(".previewdate").length != 0 && $(".datarangeSubject") != 0) {
         var value = $(".datarangeSubject").data('value');
         var array = value.split(' - ');
-        if(array[0] != array[1]) {
-            $(".previewdate").html(value);
-        } else {
-            $(".previewdate").html(array[0]);
-        }
+		$(".previewdate").html(returnDate(array[0]) + " - " + returnDate(array[1]))
     }
 
     $(".loadExport").on("click", function() {
