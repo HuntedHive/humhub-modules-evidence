@@ -78,8 +78,8 @@ class Evidence extends Object
     {
         $period= '';
         if(isset($_POST['daterange'])) {
-            $from = trim(explode( " - ", $_POST['daterange'])[0]);
-            $to = trim(explode( " - ", $_POST['daterange'])[1]);
+            $from = substr($_POST['daterange'],0,10);
+            $to = substr($_POST['daterange'],13,10);
             $period = " AND created_at >= '$from' AND created_at <= '$to'";
         }
         $sql = "SELECT * 
@@ -167,8 +167,8 @@ class Evidence extends Object
     {
         $period= '';
         if(isset($_POST['daterange'])) {
-            $from = str_replace("/" , "-" , trim(explode( "-", $_POST['daterange'])[0]));
-            $to = str_replace("/" , "-" , trim(explode( "-", $_POST['daterange'])[1]));
+            $from = substr($_POST['daterange'],0,10);
+            $to = substr($_POST['daterange'],13,10);
             $period = " AND created_at >= '$from' AND created_at <= '$to'";
         }
         $sql = 'SELECT * 
