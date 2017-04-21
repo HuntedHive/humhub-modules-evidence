@@ -35,21 +35,25 @@ $(document).ready(function() {
     }
 	
 	function returnDate(str) {
-        var tmps = str.split('-');
-        var string = '';
-        if (tmps[0] == 1) {
-            string = tmps[0] + 'st ';
-        } else if (tmps[0] == 2) {
-            string = tmps[0] + 'nd ';
-        } else if(tmps[0] == 3) {
-            string = tmps[0] + 'rd ';
-        } else {
-            string = tmps[0] + 'th ';
-        }
+        var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+        var start_date = new Date(str);
 
-        string = string + tmps[1] + " 20" + tmps[2];
+        month_value = start_date.getMonth();
+        day_value = start_date.getDate();
+        year_value = start_date.getFullYear();
 
+        string = nth(day_value) +" "+ months[month_value] + " " + year_value;
         return string;
+    }
+
+    function nth(d) {
+        if(d>3 && d<21) return d + 'th';
+        switch (d % 10) {
+            case 1:  return d + "st";
+            case 2:  return d + "nd";
+            case 3:  return d + "rd";
+            default: return d + "th";
+        }
     }
 
     if($(".previewdate").length != 0 && $(".datarangeSubject") != 0) {
