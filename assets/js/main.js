@@ -89,7 +89,6 @@ $(document).ready(function() {
         locale: {
             format: 'YYYY-MM-DD'
         },
-        "showDropdowns": true,
         "autoApply": true,
         "linkedCalendars": true,
         ranges: {
