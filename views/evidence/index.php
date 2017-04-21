@@ -10,13 +10,12 @@ use humhub\modules\evidence\models\CurrStepEvidence;
 <script type="text/javascript" src="<?php echo $this->context->module->assetsUrl; ?>/js/datetimepicker.js"></script>
 <script type="text/javascript" src="<?php echo $this->context->module->assetsUrl; ?>/js/export.js"></script>
 <script type="text/javascript" src="<?php echo $this->context->module->assetsUrl; ?>/js/main.js"></script>
-
 <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
 <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
 
 <link rel="stylesheet" type="text/css" href="<?php echo $this->context->module->assetsUrl; ?>/css/evidence.css"/>
-
 <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
         <div class="evidence-panel">
             <div class="container">
                 <div class="row">
