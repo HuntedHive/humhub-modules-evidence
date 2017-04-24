@@ -330,30 +330,36 @@ class Evidence extends Object
     }
 
     public static function getTarget($object)
-    {
-        $switch = self::$relationObject[$object['object_model']];
-        switch($switch) {
-            case 'Answer':
-                $answer = Answer::findOne($object['object_id']);
-                if(!empty($answer)) {
-                    $question = Answer::findOne($answer->question_id);
-                    return User::findOne($question->created_by)->username;
+{
+    $switch = self::$relationObject[$object['object_model']];
+    switch($switch) {
+        case 'Answer':
+            $answer = Answer::findOne($object['object_id']);
+            if(!empty($answer)) {
+                $question = Answer::findOne($answer->question_id);
+                $user = User::findOne($question->created_by);
+                if (isset($user->username)) {
+                    return $user->username;
+                } else {
+                    return "-";
                 }
-                return "-";
-                break;
-            case 'MessageEntry':
-                $groupMessages = ArrayHelper::map(UserMessage::find()->andWhere('user_id !='.Yii::$app->user->id. ' AND message_id=' . $object['message_id'])->all(),"user_id", "user_id");
-                $users = User::find()->andWhere('id IN (' . implode(",", $groupMessages) . ')')->all();
-                if(!empty($users)) {
-                    $usernames = implode("<br />" , ArrayHelper::map($users, "username", "username"));
-                    return $usernames;
-                }
-                return "-";
-                break;
-            default:
-                return "-";
-        }
+            }
+            return "-";
+            break;
+        case 'MessageEntry':
+            $groupMessages = ArrayHelper::map(UserMessage::find()->andWhere('user_id !='.Yii::$app->user->id. ' AND message_id=' . $object['message_id'])->all(),"user_id", "user_id");
+            $users = User::find()->andWhere('id IN (' . implode(",", $groupMessages) . ')')->all();
+            if(!empty($users)) {
+                $usernames = implode("<br />" , ArrayHelper::map($users, "username", "username"));
+                return $usernames;
+            }
+            return "-";
+            break;
+        default:
+            return "-";
     }
+}
+
 
     public function saveWord()
     {
