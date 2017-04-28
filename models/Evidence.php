@@ -346,20 +346,19 @@ class Evidence extends Object
                 }
                 return "-";
                 break;
-            case 'MessageEntry':
-                $groupMessages = ArrayHelper::map(UserMessage::find()->andWhere('user_id !='.Yii::$app->user->id. ' AND message_id=' . $object['message_id'])->all(),"user_id", "user_id");
-                $users = User::find()->andWhere('id IN (' . implode(",", $groupMessages) . ')')->all();
-                if(!empty($users)) {
-                    $usernames = implode("<br />" , ArrayHelper::map($users, "username", "username"));
-                    return $usernames;
-                }
-                return "-";
-                break;
-            default:
-                return "-";
-        }
+        case 'MessageEntry':
+            $groupMessages = ArrayHelper::map(UserMessage::find()->andWhere('user_id !='.Yii::$app->user->id. ' AND message_id=' . $object['message_id'])->all(),"user_id", "user_id");
+            $users = User::find()->andWhere('id IN (' . implode(",", $groupMessages) . ')')->all();
+            if(!empty($users)) {
+                $usernames = implode("<br />" , ArrayHelper::map($users, "username", "username"));
+                return $usernames;
+            }
+            return "-";
+            break;
+        default:
+            return "-";
     }
-
+}
 
     public function saveWord()
     {
