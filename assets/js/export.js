@@ -58,7 +58,7 @@ $(document).ready(function() {
 
     if($(".previewdate").length != 0 && $(".datarangeSubject") != 0) {
         var value = $(".datarangeSubject").data('value');
-        var array = value.split(' - ');
+        var array = value.split(' to ');
 		$(".previewdate").html(returnDate(array[0]) + " - " + returnDate(array[1]))
     }
 
