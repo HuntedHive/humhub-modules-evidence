@@ -43,6 +43,9 @@ use humhub\modules\evidence\models\CurrStepEvidence;
                         <?php echo Html::beginForm(); ?>
                         <input name="daterange" type='text' class="daterangeobj form-control" placeholder="Select date range" value="<?= !empty($_POST['daterange'])?$_POST['daterange']:'' ?>">
                         <input type='submit' name='search' class="btn btn-success"  value="Search"/>
+                        <input name="date_from" type="hidden" value="<?= !empty($_POST['date_from'])?$_POST['date_from']:'' ?>">
+                        <input name="date_to" type="hidden" value="<?= !empty($_POST['date_to'])?$_POST['date_to']:'' ?>">
+                        <?php echo Html::endForm(); ?>
                         <?php echo Html::endForm(); ?>
                     </div>
                     <div class="hidden-xs col-sm-6 text-right">

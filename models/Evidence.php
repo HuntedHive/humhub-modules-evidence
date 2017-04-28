@@ -78,8 +78,8 @@ class Evidence extends Object
     {
         $period= '';
         if(isset($_POST['daterange'])) {
-            $from = substr($_POST['daterange'],0,10);
-            $to = substr($_POST['daterange'],13,10);
+            $from = $_POST['date_from'];
+            $to = $_POST['date_to'];
             $period = " AND created_at >= '$from' AND created_at <= '$to'";
         }
         $sql = "SELECT * 
@@ -104,7 +104,7 @@ class Evidence extends Object
                     `object_model` != 'humhub\\modules\\user\\models\\Follow'
                       AND
                     `created_by` =" . Yii::$app->user->id
-                    .$period;
+            .$period;
 
         self::$data = Yii::$app->db->createCommand($sql)->queryAll();
         return $this;
@@ -116,7 +116,7 @@ class Evidence extends Object
             if($value['object_model'] == "humhub\modules\activity\models\Activity") {
                 $activity = Activity::find()->andWhere(['id' => $value['object_id']])->one();
 
-				if(!empty($activity) && in_array($activity->module, ["user", "polls", "like", "comment", "space"])) {
+                if(!empty($activity) && in_array($activity->module, ["user", "polls", "like", "comment", "space"])) {
 
                     unset(self::$data[$key]);
                 } else {
@@ -167,8 +167,8 @@ class Evidence extends Object
     {
         $period= '';
         if(isset($_POST['daterange'])) {
-            $from = substr($_POST['daterange'],0,10);
-            $to = substr($_POST['daterange'],13,10);
+            $from = $_POST['date_from'];
+            $to = $_POST['date_to'];
             $period = " AND created_at >= '$from' AND created_at <= '$to'";
         }
         $sql = 'SELECT * 
@@ -337,7 +337,12 @@ class Evidence extends Object
                 $answer = Answer::findOne($object['object_id']);
                 if(!empty($answer)) {
                     $question = Answer::findOne($answer->question_id);
-                    return User::findOne($question->created_by)->username;
+                    $user = User::findOne($question->created_by);
+                    if (isset($user->username)) {
+                        return $user->username;
+                    } else {
+                        return "-";
+                    }
                 }
                 return "-";
                 break;
@@ -354,6 +359,7 @@ class Evidence extends Object
                 return "-";
         }
     }
+
 
     public function saveWord()
     {
@@ -410,86 +416,86 @@ class Evidence extends Object
         $subData = [];
         $mainKey = explode("_", $TypeAndId)[0];
         $mainId = explode("_", $TypeAndId)[1];
-            switch ($mainKey) {
-                case 'Post': // model is Post in db
-                    $nameRelation = self::$relationPreview[$mainKey];
+        switch ($mainKey) {
+            case 'Post': // model is Post in db
+                $nameRelation = self::$relationPreview[$mainKey];
 
-                    $mainObject = Post::findOne($mainId);
-                    $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
-                    $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
+                $mainObject = Post::findOne($mainId);
+                $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
+                $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
 
-                    if(!empty($mainObject)) {
-                        $subObject = Post::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
-                        $subData[$mainKey] = [
-                            'mainObject' => $mainObject,
-                            'note' => $note,
-                            'apsts' => $apsts,
-                            'subObject' => $subObject,
-                        ];
+                if(!empty($mainObject)) {
+                    $subObject = Post::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                }
+
+                break;
+            case 'Question':
+                $nameRelation = self::$relationPreview[$mainKey];
+
+                $mainObject = Question::findOne($mainId);
+                $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
+                $apsts = isset($arrayData['select'])?$arrayData['select']:[];
+
+                if(!empty($mainObject)) {
+                    $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                }
+
+                break;
+            case 'Answer':
+                $nameRelation = self::$relationPreview[$mainKey];
+                $mainObject = Answer::findOne($mainId);
+                $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
+                $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
+
+                if(!empty($mainObject)) {
+                    $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
+
+                    $subQuestion = NULL;
+                    if (!empty($arrayData['checkbox_question'])) {
+                        $subObject['question'] = Answer::findOne($arrayData['checkbox_question'][0]);
                     }
 
-                    break;
-                case 'Question':
-                    $nameRelation = self::$relationPreview[$mainKey];
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                }
 
-                    $mainObject = Question::findOne($mainId);
-                    $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
-                    $apsts = isset($arrayData['select'])?$arrayData['select']:[];
+                break;
+            case 'MessageEntry':
+                $nameRelation = self::$relationPreview[$mainKey];
 
-                    if(!empty($mainObject)) {
-                        $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
-                        $subData[$mainKey] = [
-                            'mainObject' => $mainObject,
-                            'note' => $note,
-                            'apsts' => $apsts,
-                            'subObject' => $subObject,
-                        ];
-                    }
+                $mainObject = MessageEntry::findOne($mainId);
+                $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
+                $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
 
-                    break;
-                case 'Answer':
-                    $nameRelation = self::$relationPreview[$mainKey];
-                    $mainObject = Answer::findOne($mainId);
-                    $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
-                    $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
+                if(!empty($mainObject)) {
 
-                    if(!empty($mainObject)) {
-                        $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
+                    $subObject = MessageEntry::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
 
-                        $subQuestion = NULL;
-                        if (!empty($arrayData['checkbox_question'])) {
-                            $subObject['question'] = Answer::findOne($arrayData['checkbox_question'][0]);
-                        }
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                }
 
-                        $subData[$mainKey] = [
-                            'mainObject' => $mainObject,
-                            'note' => $note,
-                            'apsts' => $apsts,
-                            'subObject' => $subObject,
-                        ];
-                    }
-
-                    break;
-                case 'MessageEntry':
-                    $nameRelation = self::$relationPreview[$mainKey];
-
-                    $mainObject = MessageEntry::findOne($mainId);
-                    $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
-                    $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
-
-                    if(!empty($mainObject)) {
-
-                        $subObject = MessageEntry::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
-
-                        $subData[$mainKey] = [
-                            'mainObject' => $mainObject,
-                            'note' => $note,
-                            'apsts' => $apsts,
-                            'subObject' => $subObject,
-                        ];
-                    }
-
-                    break;
+                break;
         }
 
         return $subData;
@@ -668,7 +674,7 @@ class Evidence extends Object
                 }
             }
         }
-        
+
         return [
             'title' => $title,
             'descr' => $descr,
