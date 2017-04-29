@@ -30,23 +30,41 @@ h4.date-range{
 
 .panel.panel-contribution .panel-heading {
 	font-weight: 600;
-	background-color: #1895a4;
-	color: #fff !important;
 	border-bottom-right-radius: 0px;
 	border-bottom-left-radius: 0px;
-	padding: 5px 10px;
+	padding: 10px 25px 10px 25px;
+	background-color: #1895a4;
+    color: white !important;
 }
 
-.panel.panel-contribution .panel-heading .fa{
-	margin-top:-5px;
+.panel.panel-contribution .panel-body{
+	padding: 10px 10px 20px 10px;
+}
+
+.panel.panel-contribution .panel-body .form-group{
+	margin-bottom: 5px;
 }
 
 .panel.panel-contribution .panel-heading small {
-	opacity: 0.5;
+	opacity: 1;
+}
+
+.panel.panel-contribution .panel-heading .contribution-title {
+	color: #777;
+    font-weight: normal;
+	font-size: 14px;
+    padding: 5px 20px 5px 20px;
+}
+
+.table-context td{
+	padding: 10px 30px 10px 30px;
 }
 
 .panel.panel-contribution table th {
 	font-size: 14px;
+	background-color: #ededed;
+	color: #777;
+    font-weight: bold;
 }
 
 .daterange .form-control {
@@ -58,8 +76,9 @@ h4.date-range{
 }
 
 table thead th {
-	background-color: #1895a4;
-	color: #fff;
+	background-color: white;
+    color: #1895a4;
+    font-weight: 900;
 }
 
 table thead th.th-select{
@@ -96,8 +115,10 @@ table thead th.th-select{
 }
 
 .grid-view table.items.preview-evidence td{
-	font-size:14px;
-	padding:20px;
+	font-size: 13px;
+    padding: 10px;
+	vertical-align:top;
+	text-align:left !important;
 }
 
 .grid-view table.items.preview-evidence .evidence, .grid-view table.items.preview-evidence .supervisor-notes{
@@ -161,14 +182,6 @@ table thead th.th-select{
 .grid-view table.items th a.desc {
 	background: url(down.gif) right center no-repeat;
 	padding-right: 10px;
-}
-
-.grid-view table.items tr.even {
-	background: #F8F8F8;
-}
-
-.grid-view table.items tr.odd {
-	background: #E5F1F4;
 }
 
 .grid-view table.items tr.selected {
@@ -250,6 +263,13 @@ table thead th.th-select{
 
 .displayErrors > p{
 	margin-bottom: 10px;
+}
+
+.evidence-panel tbody > tr > td{
+	padding:10px;
+	text-align:left;
+	vertical-align:top;
+	font-size:14px !important;
 }
 
 @media (max-width: 768px) {

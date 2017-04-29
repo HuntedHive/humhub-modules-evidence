@@ -65,7 +65,9 @@ use humhub\modules\evidence\models\Evidence;
                                         </td>
                                         <td class="text-left">
 <!--                                            --><?php //if(!empty($itemValue['mainObject'])): ?>
-                                                <?php echo Evidence::$iconObject[$itemKey]; ?> <strong><?= Evidence::$acitvityType[$itemKey]; ?> -</strong> <i><?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?></i>
+                                                <?php echo Evidence::$iconObject[$itemKey]; ?> <strong><?= Evidence::$acitvityType[$itemKey]; ?></strong><br>
+                                                <?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?><br>
+
 <!--                                            --><?php //endif; ?>
 
 <!--                                            --><?php //if(!empty($itemValue['subObject'])): ?>
