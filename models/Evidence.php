@@ -329,23 +329,27 @@ class Evidence extends Object
         return $subData;
     }
 
+
+
     public static function getTarget($object)
-    {
-        $switch = self::$relationObject[$object['object_model']];
-        switch($switch) {
-            case 'Answer':
-                $answer = Answer::findOne($object['object_id']);
-                if(!empty($answer)) {
-                    $question = Answer::findOne($answer->question_id);
-                    $user = User::findOne($question->created_by);
-                    if (isset($user->username)) {
-                        return $user->username;
-                    } else {
-                        return "-";
-                    }
-                }
+{
+    $switch = self::$relationObject[$object['object_model']];
+    switch($switch) {
+        case 'Answer':
+            $answer = Answer::findOne($object['object_id']);
+            if (empty($answer)) {
                 return "-";
-                break;
+            }
+            $question = Answer::findOne($answer->question_id);
+            if (empty($question)) {
+                return "-";
+            }
+            $user = User::findOne($question->created_by);
+            if (empty($user)) {
+                return "-";
+            }
+            return $user->username;
+            break;
         case 'MessageEntry':
             $groupMessages = ArrayHelper::map(UserMessage::find()->andWhere('user_id !='.Yii::$app->user->id. ' AND message_id=' . $object['message_id'])->all(),"user_id", "user_id");
             $users = User::find()->andWhere('id IN (' . implode(",", $groupMessages) . ')')->all();
@@ -359,6 +363,7 @@ class Evidence extends Object
             return "-";
     }
 }
+
 
     public function saveWord()
     {
