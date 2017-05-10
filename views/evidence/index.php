@@ -54,7 +54,7 @@ use humhub\modules\evidence\models\CurrStepEvidence;
                 </div>
                 <div class="row">
                     <div class="col-xs-12">
-                        <div class="table-responsive">
+                        <div class="table-responsive table-evidence-step1">
                             <?php \yii\widgets\Pjax::begin([
                                 'id'=>'type_id',
                                 'enablePushState' => false,

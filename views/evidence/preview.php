@@ -63,6 +63,8 @@ use humhub\modules\evidence\models\Evidence;
                                 <tbody>
                                     <tr>
                                       <td>
+                                        <strong><?= Evidence::getOneAPSTS($itemValue['apsts'])['title'] ?></strong>
+                                        <br>
                                         <?= Evidence::getOneAPSTS($itemValue['apsts'])['descr'] ?>
                                       </td>
                                     </tr>
