@@ -67,17 +67,19 @@ use humhub\modules\evidence\models\CurrStepEvidence;
                 </div>
 
                 <!-- Contribution Panel Table -->
-                <table class="table table-context">
-                  <thead>
-                    <tr>
-                      <th class="th-select text-center">Select</th>
-                      <th>Contribution Context <small>(last 5 message responses)</small></th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <?= Evidence::responseData($itemContext['context'], $itemKeyContext); ?>
-                  </tbody>
-                </table>
+                <?php if(isset($itemContext['context'])) { ?>
+                    <table class="table table-context">
+                      <thead>
+                        <tr>
+                          <th class="th-select text-center">Select</th>
+                          <th>Contribution Context <small>(last 5 message responses)</small></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <?= Evidence::responseData($itemContext['context'], $itemKeyContext); ?>
+                      </tbody>
+                    </table>
+                <?php } ?>
                 <!-- /.Contribution Panel Table -->
 
               </div data-type= data-type=>
