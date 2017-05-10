@@ -64,8 +64,8 @@ h4.date-range{
 	margin-top:0px;
 }
 
-.table-context td{
-	padding: 10px 30px 10px 30px;
+.table-context tbody tr td{
+	padding: 10px 20px;
 }
 
 .panel.panel-contribution table th {
@@ -73,6 +73,7 @@ h4.date-range{
 	background-color: #ededed;
 	color: #777;
     font-weight: bold;
+	padding: 10px 20px;
 }
 
 .daterange .form-control {
@@ -328,18 +329,18 @@ tr:nth-child(odd) {background: #FFFFFF}
 	color: #fff;
 }
 
-.table-evidence-step1 table td:nth-child(0){
+.table-evidence-step1 table td:nth-child(1){
 	text-align:center;
 }
 
-.table-evidence-step1 table th:nth-child(1){
+.table-evidence-step1 table th:nth-child(2){
 	width:100px;
 }
 
-.table-evidence-step1 table th:nth-child(2){
+.table-evidence-step1 table th:nth-child(3){
 	width:180px;
 }
 
-.table-evidence-step1 table th:nth-child(4){
+.table-evidence-step1 table th:nth-child(5){
 	width:120px;
 }
