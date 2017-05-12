@@ -44,9 +44,10 @@ use humhub\modules\evidence\models\CurrStepEvidence;
                             <!-- Contribution Panel -->
                             <div class="panel panel-default panel-contribution context-part" data-type="<?= $itemKeyContext."_".$itemContext['id'] ?>">
                                 <div class="panel-heading">
-                                    <small>Contribution <?= $i ?></small><br>
-                                    <?= Evidence::$iconObject[$itemKeyContext] ?> <?= Evidence::$acitvityType[$itemKeyContext]; ?> - <i><?= Html::encode($itemContext['title']); ?></i></div>
+                                    <small><?= Evidence::$iconObject[$itemKeyContext] ?> Contribution <?= $i ?> - <?= Evidence::$acitvityType[$itemKeyContext]; ?></small><br>
+                                </div>
                                 <div class="panel-body">
+                                    <p class="contribution-title"><?= Html::encode($itemContext['title']); ?><p>
                                     <div class="form-group col-xs-12">
                                         <select name="apst" data-type="select" class="selectpicker form-control show-tick context-select" title="Select from Australian Professional Standards for Teachers * ..." required>
                                             <optgroup label="Select from Australian Professional Standards for Teachers">
@@ -66,17 +67,19 @@ use humhub\modules\evidence\models\CurrStepEvidence;
                                 </div>
 
                                 <!-- Contribution Panel Table -->
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th class="th-select text-center">Select</th>
-                                        <th>Context <small>(last 5 message responses)</small></th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?= Evidence::responseData($itemContext['context'], $itemKeyContext); ?>
-                                    </tbody>
-                                </table>
+                                <?php if(isset($itemContext['context'])) { ?>
+                                    <table class="table table-context">
+                                        <thead>
+                                        <tr>
+                                            <th class="th-select text-center">Select</th>
+                                            <th>Contribution Context <small>(last 5 message responses)</small></th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <?= Evidence::responseData($itemContext['context'], $itemKeyContext); ?>
+                                        </tbody>
+                                    </table>
+                                <?php } ?>
                                 <!-- /.Contribution Panel Table -->
 
                             </div data-type= data-type=>
