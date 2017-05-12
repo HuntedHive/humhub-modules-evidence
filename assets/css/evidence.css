@@ -30,50 +30,23 @@ h4.date-range{
 
 .panel.panel-contribution .panel-heading {
 	font-weight: 600;
+	background-color: #1895a4;
+	color: #fff !important;
 	border-bottom-right-radius: 0px;
 	border-bottom-left-radius: 0px;
-	padding: 10px 25px 10px 25px;
-	background-color: #1895a4;
-    color: white !important;
+	padding: 5px 10px;
 }
 
-.panel.panel-contribution .bootstrap-select .dropdown-menu.open{
-	width:100%;
-}
-
-.panel.panel-contribution .panel-body{
-	padding: 10px 10px 20px 10px;
-}
-
-.panel.panel-contribution .panel-body .form-group{
-	margin-bottom: 5px;
+.panel.panel-contribution .panel-heading .fa{
+	margin-top:-5px;
 }
 
 .panel.panel-contribution .panel-heading small {
-	opacity: 1;
-}
-
-.panel.panel-contribution .panel-body .contribution-title {
-	color: #777;
-    font-weight: normal;
-	font-size: 14px;
-    padding: 5px 20px 5px 20px;
-}
-
-.panel.panel-contribution .table-responsive{
-	margin-top:0px;
-}
-
-.table-context tbody tr td{
-	padding: 10px 20px;
+	opacity: 0.5;
 }
 
 .panel.panel-contribution table th {
 	font-size: 14px;
-	background-color: #ededed;
-	color: #777;
-    font-weight: bold;
-	padding: 10px 20px;
 }
 
 .daterange .form-control {
@@ -85,9 +58,8 @@ h4.date-range{
 }
 
 table thead th {
-	background-color: white;
-    color: #1895a4;
-    font-weight: 900;
+	background-color: #1895a4;
+	color: #fff;
 }
 
 table thead th.th-select{
@@ -124,10 +96,8 @@ table thead th.th-select{
 }
 
 .grid-view table.items.preview-evidence td{
-	font-size: 13px;
-    padding: 10px;
-	vertical-align:top;
-	text-align:left !important;
+	font-size:14px;
+	padding:20px;
 }
 
 .grid-view table.items.preview-evidence .evidence, .grid-view table.items.preview-evidence .supervisor-notes{
@@ -191,6 +161,14 @@ table thead th.th-select{
 .grid-view table.items th a.desc {
 	background: url(down.gif) right center no-repeat;
 	padding-right: 10px;
+}
+
+.grid-view table.items tr.even {
+	background: #F8F8F8;
+}
+
+.grid-view table.items tr.odd {
+	background: #E5F1F4;
 }
 
 .grid-view table.items tr.selected {
@@ -274,17 +252,6 @@ table thead th.th-select{
 	margin-bottom: 10px;
 }
 
-.evidence-panel thead > tr > td{
-	padding: 10px 25px;
-	text-align:left;
-	vertical-align:top;
-	font-size:14px !important;
-}
-
-.evidence-panel tbody > tr > th{
-	padding: 5px 25px;
-}
-
 @media (max-width: 768px) {
 	.evidence-buttons .col-xs-12 {
 		text-align: center;
@@ -302,8 +269,8 @@ table thead th.th-select{
 	}
 }
 
-tr:nth-child(even) {background: #FFFFFF}
-tr:nth-child(odd) {background: #FFFFFF}
+tr:nth-child(even) {background: #F8F8F8}
+tr:nth-child(odd) {background: #E5F1F4}
 
 .loadExportSelect {
 	height: 131px;
@@ -322,25 +289,4 @@ tr:nth-child(odd) {background: #FFFFFF}
 
 .list-group-item.active, li.list-group-item:hover {
 	background: #dddddd !important;
-}
-
-.table-evidence-step1 table thead th{
-	background-color: #1895a4;
-	color: #fff;
-}
-
-.table-evidence-step1 table td:nth-child(1){
-	text-align:center;
-}
-
-.table-evidence-step1 table th:nth-child(2){
-	width:100px;
-}
-
-.table-evidence-step1 table th:nth-child(3){
-	width:180px;
-}
-
-.table-evidence-step1 table th:nth-child(5){
-	width:120px;
 }
