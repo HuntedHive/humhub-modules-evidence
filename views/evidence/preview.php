@@ -38,51 +38,92 @@ use humhub\modules\evidence\models\Evidence;
                 <h4 class="text-right date-range"><strong>Date Range -</strong> <span class="previewdate"></span></h4>
 
                 <!-- Output Preview -->
-                <div class="table-responsive" >
-                    <div style="text-align:right" hidden>
-                        <div>Evidence Export</div>
-                        <div class="previewdate"></div>
-                    </div>
-                    <div class="grid-view">
-                        <table class="items preview-evidence" style="border-collapse: collapse;">
-                            <thead>
-                            <tr style="background: #1895a4">
-                                <th class="col-xs-3"><span style="color:#ffffff">APST standard description.</span></th>
-                                <th class="col-xs-3 evidence"><span style="color:#ffffff">Artefact to be used as evidence.</span></th>
-                                <th class="col-xs-3"><span style="color:#ffffff">Description of how the artefact demonstrates impact upon teaching and/or student learning.</span></th>
-                                <th class="col-xs-3 supervisor-notes" rowspan="1"><span style="color:#ffffff">Description of how the artefact presented meets the standard described.
-                                    <br><small>(Can be filled out later)</small></span></th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php foreach ($dataObjects as $itemK => $itemV) { ?>
-                                <?php foreach ($itemV as $itemKey => $itemValue) { ?>
-                                    <tr class="itemTr">
+
+                <div style="text-align:right" hidden>
+                    <div>Evidence Export</div>
+                    <div class="previewdate"></div>
+                </div>
+
+                <?php foreach ($dataObjects as $itemK => $itemV) { ?>
+                    <?php foreach ($itemV as $itemKey => $itemValue) { ?>
+
+                        <div class="panel panel-default panel-contribution context-part" data-type="Answer_2">
+                            <div class="panel-heading">
+                                <small><?php echo Evidence::$iconObject[$itemKey]; ?>  Contribution 1 - <?= Evidence::$acitvityType[$itemKey]; ?></small><br>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-context">
+                                    <thead>
+                                    <tr>
+                                        <th>APST standard description</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
                                         <td>
-                                            <strong style="color:#1895a4;"><?= Evidence::getOneAPSTS($itemValue['apsts'])['title'] ?></strong>
+                                            <strong><?= Evidence::getOneAPSTS($itemValue['apsts'])['title'] ?></strong>
                                             <br>
                                             <?= Evidence::getOneAPSTS($itemValue['apsts'])['descr'] ?>
                                         </td>
-                                        <td class="text-left">
-                                            <!--                                            --><?php //if(!empty($itemValue['mainObject'])): ?>
-                                            <?php echo Evidence::$iconObject[$itemKey]; ?> <strong><?= Evidence::$acitvityType[$itemKey]; ?> -</strong> <i><?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?></i>
-                                            <!--                                            --><?php //endif; ?>
+                                    </tr>
+                                    </tbody>
 
-                                            <!--                                            --><?php //if(!empty($itemValue['subObject'])): ?>
+                                    <thead>
+                                    <tr>
+                                        <th>Artefact to be used as evidence</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <!-- --><?php //if(!empty($itemValue['mainObject'])): ?>
+                                            <?= Evidence::getBody($itemValue['mainObject'], $itemKey); ?><br>
+
+                                            <!-- --><?php //endif; ?>
+
+                                            <!-- --><?php //if(!empty($itemValue['subObject'])): ?>
                                             <ul>
                                                 <?= Evidence::getPreviewUlHtml($itemValue['subObject'], $itemKey); ?>
                                             </ul>
-                                            <!--                                            --><?php //endif; ?>
+                                            <!-- --><?php //endif; ?>
                                         </td>
-                                        <td class="note" style="width:50px"><?php echo $itemValue['note']; ?></td>
-                                        <td class="descr" style="width:50px"></td>
                                     </tr>
-                                <?php  } ?>
-                            <?php  } ?>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+                                    </tbody>
+
+                                    <thead>
+                                    <tr>
+                                        <th>Description of how the artefact demonstrates impact upon teaching and/or student learning</th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td class="note">
+                                            <?php echo $itemValue['note']; ?>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+
+                                    <thead>
+                                    <tr>
+                                        <th>Description of how the artefact presented meets the standard described. <small>(Can be filled out later)</small></th>
+                                    </tr>
+                                    </thead>
+
+                                    <tbody>
+                                    <tr>
+                                        <td class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    <?php  } ?>
+                <?php  } ?>
                 <!-- /.Output Preview -->
 
             </div>
