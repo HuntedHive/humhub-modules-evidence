@@ -635,8 +635,10 @@ class Evidence extends Object
     public static function getFileAPSTS()
     {
         require_once dirname(__DIR__). DIRECTORY_SEPARATOR . "lib/PHPExcel/Classes/PHPExcel.php";
-        $profile = Profile::find()->andWhere(["user_id" => Yii::$app->user->id])->one();
-        $reg = ManageRegistration::find()->andWhere(['name' => $profile->teacher_type, 'type' => ManageRegistration::TYPE_TEACHER_TYPE])->one();
+        $profile = User::find()->andWhere(["id" => Yii::$app->user->id])->one();
+        $level = $profile->getTeacherInformation()->one()->level;
+        $reg = ManageRegistration::find()->andWhere(['name' => $level, 'type' => ManageRegistration::TYPE_TEACHER_LEVEL])->one();
+
         $other = ManageRegistration::find()->andFilterWhere(['name' => 'othersFildn'])->one();
         $file_name = null;
 
