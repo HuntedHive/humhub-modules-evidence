@@ -67,7 +67,7 @@ use humhub\modules\evidence\models\CurrStepEvidence;
                                 </div>
 
                                 <!-- Contribution Panel Table -->
-                                <?php if(isset($itemContext['context'])) { ?>
+                                <?php if(!empty($itemContext['context'])) { ?>
                                     <table class="table table-context">
                                         <thead>
                                         <tr>
