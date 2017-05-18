@@ -35,6 +35,7 @@ use humhub\modules\evidence\models\Evidence;
 
         <div class="row">
             <div class="col-xs-12">
+                <?php $i=0; ?>
                 <h4 class="text-right date-range"><strong>Date Range -</strong> <span class="previewdate"></span></h4>
 
                 <!-- Output Preview -->
@@ -43,13 +44,12 @@ use humhub\modules\evidence\models\Evidence;
                     <div>Evidence Export</div>
                     <div class="previewdate"></div>
                 </div>
-
                 <?php foreach ($dataObjects as $itemK => $itemV) { ?>
                     <?php foreach ($itemV as $itemKey => $itemValue) { ?>
-
+                        <?php ++$i; ?>
                         <div class="panel panel-default panel-contribution context-part" data-type="Answer_2">
                             <div class="panel-heading">
-                                <small><?php echo Evidence::$iconObject[$itemKey]; ?>  Contribution 1 - <?= Evidence::$acitvityType[$itemKey]; ?></small><br>
+                                <small><?php echo Evidence::$iconObject[$itemKey]; ?>  Contribution <?= $i ?> - <?= Evidence::$acitvityType[$itemKey]; ?></small><br>
                             </div>
 
                             <div class="table-responsive">
