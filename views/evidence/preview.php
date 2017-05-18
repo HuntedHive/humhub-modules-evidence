@@ -44,9 +44,35 @@ use humhub\modules\evidence\models\Evidence;
                     <div>Evidence Export</div>
                     <div class="previewdate"></div>
                 </div>
+                <?php
+                $LOREM_IPSUM = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, ' .
+                    'sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ' .
+                    'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ' .
+                    'ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit ' .
+                    'in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur ' .
+                    'sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt' .
+                    ' mollit anim id est laborum.';
+                $previewJSON = [
+                    'date_range' => '',
+                    'contributions' => []
+                ]; ?>
                 <?php foreach ($dataObjects as $itemK => $itemV) { ?>
                     <?php foreach ($itemV as $itemKey => $itemValue) { ?>
                         <?php ++$i; ?>
+                        <?php
+                        $apst = Evidence::getOneAPSTS($itemValue['apsts']);
+                        $contribution = [
+                            'index' => $i,
+                            'activity_type' => Evidence::$acitvityType[$itemKey],
+                            'apst_title' => $apst['title'],
+                            'apst_description' => $apst['descr'],
+                            'artefact' => ('<p>' . Evidence::getBody($itemValue['mainObject'], $itemKey) . '</p><ul>' .
+                                Evidence::getPreviewUlHtml($itemValue['subObject'], $itemKey) . '</ul>'),
+                            'note' => $itemValue['note'],
+                            'justification' => $LOREM_IPSUM
+                        ];
+                        $previewJSON['contributions'][] = $contribution;
+                        ?>
                         <div class="panel panel-default panel-contribution context-part" data-type="Answer_2">
                             <div class="panel-heading">
                                 <small><?php echo Evidence::$iconObject[$itemKey]; ?>  Contribution <?= $i ?> - <?= Evidence::$acitvityType[$itemKey]; ?></small><br>
@@ -63,9 +89,9 @@ use humhub\modules\evidence\models\Evidence;
                                     <tbody>
                                     <tr>
                                         <td>
-                                            <strong><?= Evidence::getOneAPSTS($itemValue['apsts'])['title'] ?></strong>
+                                            <strong><?= $apst['title'] ?></strong>
                                             <br>
-                                            <?= Evidence::getOneAPSTS($itemValue['apsts'])['descr'] ?>
+                                            <?= $apst['descr'] ?>
                                         </td>
                                     </tr>
                                     </tbody>
@@ -115,7 +141,7 @@ use humhub\modules\evidence\models\Evidence;
 
                                     <tbody>
                                     <tr>
-                                        <td class="descr">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</td>
+                                        <td class="descr"><?= $LOREM_IPSUM ?></td>
                                     </tr>
                                     </tbody>
                                 </table>
@@ -141,4 +167,5 @@ use humhub\modules\evidence\models\Evidence;
 <?= $this->render("_modals", ['step' => $step]); ?>
 <script>
     var tableSaveExport = '<?= Url::toRoute("/evidence/evidence/save-to-word"); ?>';
+    var previewJSON = <?= json_encode($previewJSON); ?>
 </script>
