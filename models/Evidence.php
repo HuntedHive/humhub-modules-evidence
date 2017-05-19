@@ -17,6 +17,7 @@ use yii\base\Object;
 use yii\helpers\ArrayHelper;
 use Yii;
 
+
 class Evidence extends Object
 {
     private static $data;
@@ -78,8 +79,8 @@ class Evidence extends Object
     {
         $period= '';
         if(isset($_POST['daterange'])) {
-            $from = substr($_POST['daterange'],0,10);
-            $to = substr($_POST['daterange'],13,10);
+            $from = $_POST['date_from'];
+            $to = $_POST['date_to'];
             $period = " AND created_at >= '$from' AND created_at <= '$to'";
         }
         $sql = "SELECT * 
@@ -104,7 +105,7 @@ class Evidence extends Object
                     `object_model` != 'humhub\\modules\\user\\models\\Follow'
                       AND
                     `created_by` =" . Yii::$app->user->id
-                    .$period;
+            .$period;
 
         self::$data = Yii::$app->db->createCommand($sql)->queryAll();
         return $this;
@@ -116,7 +117,7 @@ class Evidence extends Object
             if($value['object_model'] == "humhub\modules\activity\models\Activity") {
                 $activity = Activity::find()->andWhere(['id' => $value['object_id']])->one();
 
-				if(!empty($activity) && in_array($activity->module, ["user", "polls", "like", "comment", "space"])) {
+                if(!empty($activity) && in_array($activity->module, ["user", "polls", "like", "comment", "space"])) {
 
                     unset(self::$data[$key]);
                 } else {
@@ -167,8 +168,8 @@ class Evidence extends Object
     {
         $period= '';
         if(isset($_POST['daterange'])) {
-            $from = substr($_POST['daterange'],0,10);
-            $to = substr($_POST['daterange'],13,10);
+            $from = $_POST['date_from'];
+            $to = $_POST['date_to'];
             $period = " AND created_at >= '$from' AND created_at <= '$to'";
         }
         $sql = 'SELECT * 
@@ -329,64 +330,105 @@ class Evidence extends Object
         return $subData;
     }
 
+
+
     public static function getTarget($object)
-{
-    $switch = self::$relationObject[$object['object_model']];
-    switch($switch) {
-        case 'Answer':
-            $answer = Answer::findOne($object['object_id']);
-            if(!empty($answer)) {
-                $question = Answer::findOne($answer->question_id);
-                $user = User::findOne($question->created_by);
-                if (isset($user->username)) {
-                    return $user->username;
-                } else {
+    {
+        $switch = self::$relationObject[$object['object_model']];
+        switch($switch) {
+            case 'Answer':
+                $answer = Answer::findOne($object['object_id']);
+                if (empty($answer)) {
                     return "-";
                 }
-            }
-            return "-";
-            break;
-        case 'MessageEntry':
-            $groupMessages = ArrayHelper::map(UserMessage::find()->andWhere('user_id !='.Yii::$app->user->id. ' AND message_id=' . $object['message_id'])->all(),"user_id", "user_id");
-            $users = User::find()->andWhere('id IN (' . implode(",", $groupMessages) . ')')->all();
-            if(!empty($users)) {
-                $usernames = implode("<br />" , ArrayHelper::map($users, "username", "username"));
-                return $usernames;
-            }
-            return "-";
-            break;
-        default:
-            return "-";
+                $question = Answer::findOne($answer->question_id);
+                if (empty($question)) {
+                    return "-";
+                }
+                $user = User::findOne($question->created_by);
+                if (empty($user)) {
+                    return "-";
+                }
+                return $user->username;
+                break;
+            case 'MessageEntry':
+                $groupMessages = ArrayHelper::map(UserMessage::find()->andWhere('user_id !='.Yii::$app->user->id. ' AND message_id=' . $object['message_id'])->all(),"user_id", "user_id");
+                $users = User::find()->andWhere('id IN (' . implode(",", $groupMessages) . ')')->all();
+                if(!empty($users)) {
+                    $usernames = implode("<br />" , ArrayHelper::map($users, "username", "username"));
+                    return $usernames;
+                }
+                return "-";
+                break;
+            default:
+                return "-";
+        }
     }
-}
-
 
     public function saveWord()
     {
         $path = Yii::getAlias('@webroot') . '/uploads/file/evidenceDoc_' . Yii::$app->user->id;
-        self::$docx->modifyPageLayout('A4-landscape');
+        $pageOptions = array(
+            'marginTop' => 850,393700787,
+            'marginRight' => 850,393700787,
+            'marginBottom' => 1921,88976378,
+            'marginLeft' => 850,393700787,
+        );
+        self::$docx->modifyPageLayout('A4-landscape', $pageOptions);
         self::$docx->createDocx($path);
         $absolutePath = Yii::$app->request->hostInfo . "/". Yii::$app->request->baseUrl . "/uploads/file/evidenceDoc_".Yii::$app->user->id.".docx";
         return $absolutePath;
     }
 
-    public function prepareHtmlToHtml($html)
+    public function prepareHtmlToHtml($data)
     {
+        // include the required libraries
+        require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . 'lib/phpdocx/lib/log4php/Logger.php';
         require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . "lib/phpdocx/classes/CreateDocx.inc";
 
         self::$docx = new \CreateDocx();
+
         self::$docx->setDefaultFont('Arial');
-        $options = array(
+
+        //HEADER
+        //LOGO
+        $header = new \WordFragment(self::$docx);
+        $headerOptions = array(
             'src' => Yii::getAlias("@webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-header.png',
             'imageAlign' => 'left',
             'scaling' => 25,
             'textWrap' => 0,
         );
-        self::$docx->addImage($options);
+        $header->addImage($headerOptions);
 
-        self::$docx->embedHTML($html);
+        //DATE
+        $date = new \WordFragment(self::$docx);
+        $text = array();
+        $text[] = array('text' => "Evidence Export\n", 'bold' => true, 'fontSize' => 14, 'textAlign' => 'right');
+        $text[] = array('text' => $data['date_range'], 'bold' => false, 'fontSize' => 12, 'textAlign' => 'right');
+        $date->addText($text, ['textAlign' => 'right']);
 
-        $options = array(
+        $dateFormatted = array(
+            'value' => $date,
+            'textAlign' => 'right',
+        );
+
+        $headerTable = array(
+            array(
+                $header,
+                $dateFormatted
+            ),
+        );
+        $headerParamsTable = array(
+            'tableAlign' => 'center',
+            'border' => 'none'
+        );
+
+        self::$docx->addTable($headerTable, $headerParamsTable);
+
+        //FOOTER
+        $footer = new \WordFragment(self::$docx, 'defaultFooter');
+        $footerOptions = array(
             'src' => Yii::getAlias("@webroot").'/themes/humhub-themes-tq/img/teachconnect-logo-footer.png',
             'imageAlign' => 'right',
             'scaling' => 25,
@@ -397,7 +439,187 @@ class Evidence extends Object
             'textWrap' => 0,
             'border' => 0,
         );
-        self::$docx->addImage($options);
+        $footer->addImage($footerOptions);
+        self::$docx->addFooter(['default' => $footer]);
+
+        foreach($data['contributions'] as $C) {
+            //1ST TABLE ROW DATA AND PARAMS
+            $firstRow = new \WordFragment(self::$docx);
+            $text = array();
+            $text[] = array('text' => sprintf('Contribution %d - %s', $C['index'], $C['activity_type']), 'bold' => true, 'fontSize' => 10, 'color' => 'ffffff');
+            $firstRow->addText($text);
+
+            $contribution = array(
+                'value' => $firstRow,
+                'backgroundColor' => '1895a4',
+                'cellMargin' => 200,
+                'borderBottom' => 'single'
+            );
+
+            //2ND TABLE ROW DATA AND PARAMS
+            $secondRow = new \WordFragment(self::$docx);
+            $text = array();
+            $text[] = array('text' => 'APST standard description', 'bold' => true, 'fontSize' => 10, 'color' => '333333');
+            $secondRow->addText($text);
+
+            $apstDescHead = array(
+                'value' => $secondRow,
+                'backgroundColor' => 'eeeeee',
+                'cellMargin' => 200,
+                'borderBottom' => 'single'
+            );
+            //3RD TABLE ROW DATA AND PARAMS
+            $apstData = sprintf('<p><strong>%s</strong><br>%s</p>', $C['apst_title'], $C['apst_description']);
+            $thirdRow = new \WordFragment(self::$docx);
+
+            //!! this style is applied to all data rows - 3, 5, 7, 9
+            self::$docx->createParagraphStyle('cellContents', [
+                'fontSize' => 20,
+                'color' => '333333',
+            ]);
+            $thirdRow->embedHTML(
+                $apstData,
+                [
+                    'downloadImages' => true,
+                    'strictWordStyles' => true,
+                    'wordStyles' => [
+                        '<p>' => 'cellContents',
+                        '<div>' => 'cellContents',
+                        '<ul>' => 'cellContents',
+                        '<ol>' => 'cellContents'
+                    ]
+                ]
+            );
+            $apst = array(
+                'value' => $thirdRow,
+                'cellMargin' => 200,
+            );
+
+            //4TH TABLE ROW DATA AND PARAMS
+            $fourthRow = new \WordFragment(self::$docx);
+            $text = array();
+            $text[] = array('text' => 'Artefact to be used as evidence', 'bold' => true, 'fontSize' => 10, 'color' => '333333');
+            $fourthRow->addText($text);
+
+            $artefactHead = array(
+                'value' => $fourthRow,
+                'backgroundColor' => 'CCCCCC',
+                'cellMargin' => 200,
+                'borderBottom' => 'single',
+                'borderTop' => 'single'
+            );
+
+            //5TH TABLE ROW DATA AND PARAMS
+            $apstData = $C['artefact'];
+            if (empty($apstData)) {
+                $apstData = "<p></p>";
+            }
+            $fifthRow = new \WordFragment(self::$docx);
+
+            $fifthRow->embedHTML($apstData, ['downloadImages' => true, 'strictWordStyles' => true, 'wordStyles' => array('<p>' => 'cellContents',
+                '<div>' => 'cellContents',
+                '<ul>' => 'cellContents',
+                '<ol>' => 'cellContents')]);
+            $artefact = array(
+                'value' => $fifthRow,
+                'cellMargin' => 200,
+            );
+
+            //6TH TABLE ROW DATA AND PARAMS
+            $sixthRow = new \WordFragment(self::$docx);
+            $text = array();
+            $text[] = array('text' => 'Description of how the artefact demonstrates impact upon teaching and/or student learning', 'bold' => true, 'fontSize' => 10, 'color' => '333333');
+            $sixthRow->addText($text);
+
+            $descrArtefactImpactHead = array(
+                'value' => $sixthRow,
+                'backgroundColor' => 'CCCCCC',
+                'cellMargin' => 200,
+                'borderBottom' => 'single',
+                'borderTop' => 'single'
+            );
+
+            //7TH TABLE ROW DATA AND PARAMS
+            $apstData = $C['note'];
+            if (empty($apstData)) {
+                $apstData = "<p></p>";
+            }
+            $seventhRow = new \WordFragment(self::$docx);
+            $seventhRow->embedHTML($apstData, ['downloadImages' => true, 'strictWordStyles' => true, 'wordStyles' => array('<p>' => 'cellContents',
+                '<div>' => 'cellContents',
+                '<ul>' => 'cellContents',
+                '<ol>' => 'cellContents')]);
+            $artefactImpact = array(
+                'value' => $seventhRow,
+                'cellMargin' => 200,
+            );
+
+            //8TH TABLE ROW DATA AND PARAMS
+            $eighthRow = new \WordFragment(self::$docx);
+            $text = array();
+            $text[] = array('text' => 'Description of how the artefact presented meets the standard described. (Can be filled out later)', 'bold' => true, 'fontSize' => 10, 'color' => '333333');
+            $eighthRow->addText($text);
+
+            $descArtefactMeetsStandardsHead = array(
+                'value' => $eighthRow,
+                'backgroundColor' => 'CCCCCC',
+                'cellMargin' => 200,
+                'borderBottom' => 'single',
+                'borderTop' => 'single'
+            );
+
+            //9TH TABLE ROW DATA AND PARAMS
+            $apstData = strval($C['justification']);
+            if (empty($apstData)) {
+                $apstData = "<p></p>";
+            }
+            $ninthRow = new \WordFragment(self::$docx);
+            $ninthRow->embedHTML($apstData, ['downloadImages' => true, 'strictWordStyles' => true, 'wordStyles' => array('<p>' => 'cellContents',
+                '<div>' => 'cellContents',
+                '<ul>' => 'cellContents',
+                '<ol>' => 'cellContents')]);
+            $artefactStandards = array(
+                'value' => $ninthRow,
+                'cellMargin' => 200,
+            );
+
+            $valuesTable = array(
+                array(
+                    $contribution
+                ),
+                array(
+                    $apstDescHead
+                ),
+                array(
+                    $apst
+                ),
+                array(
+                    $artefactHead
+                ),
+                array(
+                    $artefact
+                ),
+                array(
+                    $descrArtefactImpactHead
+                ),
+                array(
+                    $artefactImpact
+                ),
+                array(
+                    $descArtefactMeetsStandardsHead
+                ),
+                array(
+                    $artefactStandards
+                ),
+            );
+            $paramsTable = array(
+                'tableAlign' => 'center',
+                'border' => 'none'
+            );
+
+            self::$docx->addTable($valuesTable, $paramsTable);
+        }
+        //self::$docx->embedHTML($html, ['downloadImages' => true]);
         return $this;
     }
 
@@ -416,86 +638,86 @@ class Evidence extends Object
         $subData = [];
         $mainKey = explode("_", $TypeAndId)[0];
         $mainId = explode("_", $TypeAndId)[1];
-            switch ($mainKey) {
-                case 'Post': // model is Post in db
-                    $nameRelation = self::$relationPreview[$mainKey];
+        switch ($mainKey) {
+            case 'Post': // model is Post in db
+                $nameRelation = self::$relationPreview[$mainKey];
 
-                    $mainObject = Post::findOne($mainId);
-                    $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
-                    $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
+                $mainObject = Post::findOne($mainId);
+                $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
+                $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
 
-                    if(!empty($mainObject)) {
-                        $subObject = Post::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
-                        $subData[$mainKey] = [
-                            'mainObject' => $mainObject,
-                            'note' => $note,
-                            'apsts' => $apsts,
-                            'subObject' => $subObject,
-                        ];
+                if(!empty($mainObject)) {
+                    $subObject = Post::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                }
+
+                break;
+            case 'Question':
+                $nameRelation = self::$relationPreview[$mainKey];
+
+                $mainObject = Question::findOne($mainId);
+                $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
+                $apsts = isset($arrayData['select'])?$arrayData['select']:[];
+
+                if(!empty($mainObject)) {
+                    $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                }
+
+                break;
+            case 'Answer':
+                $nameRelation = self::$relationPreview[$mainKey];
+                $mainObject = Answer::findOne($mainId);
+                $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
+                $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
+
+                if(!empty($mainObject)) {
+                    $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
+
+                    $subQuestion = NULL;
+                    if (!empty($arrayData['checkbox_question'])) {
+                        $subObject['question'] = Answer::findOne($arrayData['checkbox_question'][0]);
                     }
 
-                    break;
-                case 'Question':
-                    $nameRelation = self::$relationPreview[$mainKey];
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                }
 
-                    $mainObject = Question::findOne($mainId);
-                    $note = isset($arrayData['textarea'])?$arrayData['textarea']:'';
-                    $apsts = isset($arrayData['select'])?$arrayData['select']:[];
+                break;
+            case 'MessageEntry':
+                $nameRelation = self::$relationPreview[$mainKey];
 
-                    if(!empty($mainObject)) {
-                        $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox']))?$arrayData['checkbox']:[0])) . ')')->all();
-                        $subData[$mainKey] = [
-                            'mainObject' => $mainObject,
-                            'note' => $note,
-                            'apsts' => $apsts,
-                            'subObject' => $subObject,
-                        ];
-                    }
+                $mainObject = MessageEntry::findOne($mainId);
+                $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
+                $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
 
-                    break;
-                case 'Answer':
-                    $nameRelation = self::$relationPreview[$mainKey];
-                    $mainObject = Answer::findOne($mainId);
-                    $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
-                    $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
+                if(!empty($mainObject)) {
 
-                    if(!empty($mainObject)) {
-                        $subObject = Answer::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
+                    $subObject = MessageEntry::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
 
-                        $subQuestion = NULL;
-                        if (!empty($arrayData['checkbox_question'])) {
-                            $subObject['question'] = Answer::findOne($arrayData['checkbox_question'][0]);
-                        }
+                    $subData[$mainKey] = [
+                        'mainObject' => $mainObject,
+                        'note' => $note,
+                        'apsts' => $apsts,
+                        'subObject' => $subObject,
+                    ];
+                }
 
-                        $subData[$mainKey] = [
-                            'mainObject' => $mainObject,
-                            'note' => $note,
-                            'apsts' => $apsts,
-                            'subObject' => $subObject,
-                        ];
-                    }
-
-                    break;
-                case 'MessageEntry':
-                    $nameRelation = self::$relationPreview[$mainKey];
-
-                    $mainObject = MessageEntry::findOne($mainId);
-                    $note = isset($arrayData['textarea']) ? $arrayData['textarea'] : '';
-                    $apsts = isset($arrayData['select']) ? $arrayData['select'] : [];
-
-                    if(!empty($mainObject)) {
-
-                        $subObject = MessageEntry::find()->andWhere('id IN(' . (implode(",", (isset($arrayData['checkbox'])) ? $arrayData['checkbox'] : [0])) . ')')->all();
-
-                        $subData[$mainKey] = [
-                            'mainObject' => $mainObject,
-                            'note' => $note,
-                            'apsts' => $apsts,
-                            'subObject' => $subObject,
-                        ];
-                    }
-
-                    break;
+                break;
         }
 
         return $subData;
@@ -631,8 +853,10 @@ class Evidence extends Object
     public static function getFileAPSTS()
     {
         require_once dirname(__DIR__). DIRECTORY_SEPARATOR . "lib/PHPExcel/Classes/PHPExcel.php";
-        $profile = Profile::find()->andWhere(["user_id" => Yii::$app->user->id])->one();
-        $reg = ManageRegistration::find()->andWhere(['name' => $profile->teacher_type, 'type' => ManageRegistration::TYPE_TEACHER_TYPE])->one();
+        $profile = User::find()->andWhere(["id" => Yii::$app->user->id])->one();
+        $level = $profile->getTeacherInformation()->one()->level;
+        $reg = ManageRegistration::find()->andWhere(['name' => $level, 'type' => ManageRegistration::TYPE_TEACHER_LEVEL])->one();
+
         $other = ManageRegistration::find()->andFilterWhere(['name' => 'othersFildn'])->one();
         $file_name = null;
 
@@ -674,7 +898,7 @@ class Evidence extends Object
                 }
             }
         }
-        
+
         return [
             'title' => $title,
             'descr' => $descr,

@@ -85,9 +85,15 @@ $(document).ready(function() {
    });
 
 
+    function updatepicker(start, end, label) {
+        $('input[name="date_from"]').val(start.format('YYYY-MM-DD'));
+        $('input[name="date_to"]').val(end.format('YYYY-MM-DD'));
+    }
+
     $('input[name="daterange"]').daterangepicker({ // set datapicker on first step
         locale: {
-            format: 'YYYY-MM-DD'
+            format: 'DD MMMM YY',
+            separator: ' to '
         },
         "autoApply": true,
         "linkedCalendars": true,
@@ -100,7 +106,6 @@ $(document).ready(function() {
             'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         },
 
-    }, function(start, end, label) {
-        console.log("New date range selected: ' + start.format('YYYY-MM-DD') + ' to ' + end.format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
-    });
+    }, updatepicker);
+    updatepicker($('input[name="daterange"]').data('daterangepicker').startDate, $('input[name="daterange"]').data('daterangepicker').endDate, '');
 });

@@ -34,7 +34,7 @@ h4.date-range{
 	border-bottom-left-radius: 0px;
 	padding: 10px 25px 10px 25px;
 	background-color: #1895a4;
-    color: white !important;
+	color: white !important;
 }
 
 .panel.panel-contribution .bootstrap-select .dropdown-menu.open{
@@ -55,14 +55,15 @@ h4.date-range{
 
 .panel.panel-contribution .panel-body .contribution-title {
 	color: #777;
-    font-weight: normal;
+	font-weight: normal;
 	font-size: 14px;
-    padding: 5px 20px 5px 20px;
+	padding: 5px 20px 5px 20px;
 }
 
 .panel.panel-contribution .table-responsive{
 	margin-top:0px;
 }
+
 
 .table-context tbody tr th, .table-context tbody tr td{
 	padding: 10px 25px !important;
@@ -72,7 +73,7 @@ h4.date-range{
 	font-size: 14px;
 	background-color: #ededed;
 	color: #777;
-    font-weight: bold;
+  font-weight: bold;
 	padding: 10px 25px !important;
 }
 
@@ -86,8 +87,8 @@ h4.date-range{
 
 table thead th {
 	background-color: white;
-    color: #1895a4;
-    font-weight: 900;
+	color: #1895a4;
+	font-weight: 900;
 }
 
 table thead th.th-select{
@@ -125,7 +126,7 @@ table thead th.th-select{
 
 .grid-view table.items.preview-evidence td{
 	font-size: 13px;
-    padding: 10px;
+	padding: 10px;
 	vertical-align:top;
 	text-align:left !important;
 }

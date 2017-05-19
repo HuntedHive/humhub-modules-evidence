@@ -33,8 +33,8 @@ $(document).ready(function() {
         var html = "<input type='hidden' class='datarangeSubject' data-value='" + value + "'>"
         $(".contentListOfItems").append(html);
     }
-	
-	function returnDate(str) {
+
+    function returnDate(str) {
         var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
         var start_date = new Date(str);
 
@@ -58,8 +58,8 @@ $(document).ready(function() {
 
     if($(".previewdate").length != 0 && $(".datarangeSubject") != 0) {
         var value = $(".datarangeSubject").data('value');
-        var array = value.split(' - ');
-		$(".previewdate").html(returnDate(array[0]) + " - " + returnDate(array[1]))
+        var array = value.split(' to ');
+        $(".previewdate").html(returnDate(array[0]) + " - " + returnDate(array[1]))
     }
 
     $(".loadExport").on("click", function() {
@@ -176,7 +176,7 @@ $(document).ready(function() {
             var dataId = $(this).data('id');
             var dataName = $(this).data('name');
             var dataValue = $(this).val();
-            
+
             if(currentType == "checkbox" || currentType == "checkbox_question") {
                 var objectActivity = $(".context-part[data-type='"+dataName+"'] .itemSelect[data-type='"+currentType+"'][data-id='"+dataId+"']");
                 if (objectActivity.length && !objectActivity.is(":checked")) {
@@ -209,14 +209,11 @@ $(document).ready(function() {
         });
     }
     $(".btn-export").on("click", function() {
-        var table = $(".table-responsive").clone();
-        table.find(".previewdate").before("<br>");
-        table.find("td").attr("style", "font-size:14px;border: 2px solid black;");
-        table.find("th").attr("style", "font-size:14px;border: 2px solid black;");
-        var html = table[0].outerHTML;
+        var preview_date = $("h4.date-range span.previewdate").text();
+        previewJSON.date_range = preview_date;
         $.ajax({
             url: tableSaveExport,
-            data: {'table': html},
+            data: {'table': previewJSON },
             type: 'POST',
             success: function(data) {
                 var result = JSON.parse(data);
