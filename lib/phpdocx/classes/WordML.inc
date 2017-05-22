@@ -1,1 +1,99 @@
-rVZhb9s2EP3uX3EwAlgOaskJimF1YjdAvAEDkixwWyzfDJo6S0IkUiMpK0bR/74jKSn2HHfGWsGASOruvXfH49G9XnR+3oNz+Euq+P6ORnZyw5nBRKotADymZSz5i1suGX9mCdIqYI4FCqO9uSy3KktSA3DbDQM+hAemODJ4VDKuOM+kQA33VW6yAuOMwafwLrQAu0+QGlNOoqiu6/CyiHnIZTF0LHnGUWjHvmNTen3WLKrLEZfCkK7IpKRPR7mVUlNsUankskGwPg5xg0qTKIt4Ob54H47p96HhEs+NoLe5yCrq8Zxp3aQO8IWIYw23Cil7v/n89L72ehbEZdk+7QtuGOdI3qXKNmTfLW+YAm1UJpJmKXLvxgzOlrWju/rJuNowk3GCzwQNBUeYwsOXu0Me2mGyUBU3x4irFeV5n8QtwboS3Nh8L5e8BQmGzuJrr93/M5NmejRbxriqEhIxt+/JJEHzR6MsGF45628H0ub448piPCLsCOc9SwigQJPK+B0oNJUSGnilFG0/PNkz9d9i4MY7NjsECz87RDmm2shPzvNAdYPbZrUtnrdj8aULitVdPzhFe8kUK1rpZzEz7LtquWNZsNpzBM7jWBl4wVQHgccfeoJjESya/EuRb4F6AKjKztbQ9AVYSwVYrDCOX0/Czw0vE9Q8sIntICwfz21aUX+ZgsAa5n/ezyWvbLdoK9tZCkYNjDoutcwpDF6KXOjJBqf9ph9pTh2O6VCWKOgjxVUwQ1OVRAVTz5VthUVJh3qV5ZnZRpfj8S998DBy2qcsTRqIUZFxJbVcG+sykes1tcnm1XqoU3i9SxuMY4wU5symRadZqVu04v+i0ce0Bdl8L4hNkbd2dXkKW0xFT/tb5J7IbhPdGLYcaHXuP3aIF+MTEmghOo9TJOxztkoKlokORhzuf8ftbkDP7aBeA7G5GFz9uwZtVV1/JGBorsFp/yIc9wEFl/ZwTPtfPv8++rVvrwYRs1xa8i3SJn6cXdcTJaWBAYR7hRrCYObW3mg3+9TtiDyuI482O9TozslolksWP9lO4VeHB3ZPVOjp63l6eqRpsItxxGU0U5hk2qB6aIMIBvXgHQx+ZLsGu2x/V0j/oyjXkQ1zL0T1IGN3uvclOY/AO+4irXLJn29zZAJjC7iDRbqQ8RSCDpRp2hgaDXeaj28rtLiwnHYwmkmqKdUestFMsw26TDvfq33XPQFhA7F4NWrasX3aa2fXpevZ33r/AA==
+<?php
+
+/**
+ * WordML
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class WordML extends CreateElement
+{
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_wordML;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private static $_instance = NULL;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        $this->_debug = Debug::getInstance();
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * Magic method, returns current XML
+     *
+     * @access public
+     * @return string Return current XML
+     */
+    public function __toString()
+    {
+        return $this->_wordML;
+    }
+
+    /**
+     * Create raw WordML
+     *
+     * @access public
+     * @param string $data
+     */
+    public function createRawWordML($data)
+    {
+        $this->_wordML = (string) $data;
+    }
+
+    /**
+     * Returns only the runs of content for embedding
+     *
+     * @access public
+     * @param string $data
+     */
+    public function inlineWordML()
+    {
+        $wordMLChunk = new DOMDocument();
+        $namespaces = 'xmlns:ve="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:wp="http://schemas.openxmlformats.org/drawingml/2006/wordprocessingDrawing" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:wne="http://schemas.microsoft.com/office/word/2006/wordml" ';
+        $wordML = '<?xml version="1.0" encoding="UTF-8" standalone="yes" ?><w:root ' . $namespaces . '>' . $this->_wordML;
+        $wordML = $wordML . '</w:root>';
+        $wordMLChunk->loadXML($wordML);
+        $wordMLXpath = new DOMXPath($wordMLChunk);
+        $wordMLXpath->registerNamespace('w', 'http://schemas.openxmlformats.org/wordprocessingml/2006/main');
+        $query = '//w:r';
+        $wrNodes = $wordMLXpath->query($query);
+        $blockCleaned = '';
+        foreach ($wrNodes as $node) {
+            $nodeR = $node->ownerDocument->saveXML($node);
+            $blockCleaned .= $nodeR;
+        }
+
+        return $blockCleaned;
+    }
+
+}

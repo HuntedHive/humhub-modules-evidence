@@ -1,1 +1,135 @@
-rVbfb5swEH7nr7iHSCFVE7pqL0vVqFO7TZWSrlozaW+RaxywCtizTX6s6v++s4GUBJKl21CkwHF33/fdnW08Lzg58eAE7hWTRDENJmZgWCoTYvBpLpSzUJEtmNJcZCCTPOIZxtiwK4pukVBrALiPZSjoypkloU8kYmgFTKuZKpyFXCsexQbgenPr0x7cEUUZQRIizClFFISe5InhKQs5gYfBeGAT1C8/NkYOg2C5XA7O05AOqEh7DiXhlGXaYdd8ZMHOugVL2UdBhmUmQHEp00FiqSyFCgOpxKzMYGNcxko6Xudn794PzvD3ocTKnkpC7VjoFXg0IVpXJZ6WxfWePc/GuQbYq/qDK0IpwwCp+MI6VuYFUaCN4llUmgL3X7rhK2I4hc6MZ3ibUQaXcPd9PL74GxyiFFm3wnRmqzTB1M7D7zWyY2sRX+XUHAW3nXyeZ9TYUs9mtErj95zLs1e13t28NHBv2GHY/BH7uo3qTHXQkL0Nc0IiTJAyE4vwFBQzuco00FwpHC74MRkfQwauisCyufCteGpm2cfaiAcX2WBd5u2YmOv+yDbuYo+QBwxPmBFZpQI2UyTm4Ab4TVKuFcN+TtnKbN4U89kmpZzcjaKImdsSvSGJz8HXLJkPh/VBLya9V/OzV9MPMrbE+krClR3dyvFlt2K7kfvK9oUZw9SxjW7vH6rF+H/p3X8goQsSHYTZJVJjgAXsHCDSeoiAFsANGEUyjcdJajcAIZlK1uimRB7F+06YIukf5g0BSQrwi8uPisZ8gRsU7r0Htcrtjfh6g3zvgH2bYLcIQfBphRKocWQV+5lzxUKY84TpYc0LQ/MUV+0Ay1Qza7NGR2u0z43SVlHYAltifOyPcCw+K5HekZT5XXc01XN3a9NbZSlADud4JdKttu6C4ViQ0GpLceE7jTdfJ3t54rtyLeHdTWn0W9S0sKzl6I8SRHVzd1RoQf4w+KYIh+KbwG1hQfBgiCo6XswMKedHuEncamUQ3OP7SBEZ613gcuBeHfzi8OxWcrtwOWorUO+0yX2L4JQ8orVmuE3xs0vvWZ9T8oSLkyIVu6k7WRWlclEavhnnE1gONX7HvX5uHLkUO0LaMuntNbh7wDdr0qmEa1RdyN13Cr94vwE=
+<?php
+
+/**
+ * Prepares the templates for the conversion plugin
+ *
+ * @category   Phpdocx
+ * @package    parser
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class PrepareTemplate
+{
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private static $_instance = NULL;
+
+    /**
+     *
+     * @access private
+     * @var array
+     */
+    private $_xml = array();
+
+    /**
+     * Construct
+     *
+     * @access private
+     */
+    private function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * Magic method, returns current XML
+     *
+     * @access public
+     * @return string Return current XML
+     */
+    public function __toString()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     * Singleton, return instance of class
+     *
+     * @access public
+     * @return CreateText
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new Repair();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Getter XML
+     *
+     * @access public
+     */
+    public function getXML()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     * Setter XML
+     *
+     * @access public
+     */
+    public function setXML($xml)
+    {
+        $this->_xml = $xml;
+    }
+
+    /**
+     * Prepares the template so it transforms properly through the conversion plugin
+     * 
+     * @access public
+     * @param  zipArchive $doc
+     */
+    public function prepareTemplateConversionPlugin($doc)
+    {
+        //Extract the required files:
+        //document.xml
+        //styles.xml    
+        $this->_documentXML = $doc->getFromName('word/document.xml');
+        $this->_stylesXML = $doc->getFromName('word/styles.xml');
+
+        //Load them in the DOM
+        $this->_documentDOM = new DOMDocument($this->_documentXML);
+        $this->_documentDOM->loadXML($this->_documentXML);
+        $this->_stylesDOM = new DOMDocument($this->_stylesXML);
+        $this->_stylesDOM->loadXML($this->_stylesXML);
+        //Start the preparation process     
+        //Paragraphs
+        $this->prepareParagraphs(array('document' => $this->_documentDOM), $this->_stylesDOM);
+        //Tables
+        //Images
+    }
+
+    /**
+     * Takes care of the paragraph properties:
+     * w:spacing
+     * 
+     * @access public
+     * @param  $options
+     */
+    private function prepareParagraphs($documents, $styles)
+    {
+        
+    }
+
+}

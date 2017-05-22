@@ -1,1 +1,326 @@
-7Vlba+M4FH7PrxBDwUmYxjNhX5JsywzdZV86O2UL+zIMRZGVWNSxjKzEzQzz3/dIsuObbNehCS1sKDSVzznfp3PTkTsYuOPxAI3RjaBYUhT7OKLwt1r6RGBlzcUeIXTnRx4nT3o5wuQRrymsIhrQDQ1lbMR5tBds7UuEbg5fh2SE/saCUIzuBPe2hDAe0hh92QaSbajHMLqf3E6UgeJn6EsZzV03SZLJdOORCeGbkUYJGKFhrNELMpHhp8TcJLokPJTAy5U+8IvdQFFJuPDcSPCH1ILS0RZ3VMRASlmcfvj42+QD/MxSrPAxJWTHAil3QAIcx6kD75X/EH0CdC9b+9M4afBzMFCWtMPVZ4z+oLEUWyLTv7PlT5gQCiaj7RK4pquu/m2W0GobEqk4PzzAVo2R4UhL/BxkPtRffp0E1KP9MMvZ1Y2rkkzgDQIUFq6RI/cRdSrPsBB4jxweKU6x08qY5MEZXihj6Ao5EF3qvEcXqQVY0iaHo+qmLv79cuthiZWSszgsxwmTxEfG4Kggrz4EQ446kPjOvLResje5QhfSZ/Hl9ZqGVADFz4IMM0KjRU1zCft4XFiAyFbsaD+oG6VyFJh2XC+sW9A4Ciriwb4/3F2qdRSkoET2g/sHNI6D4tvQOwIvUzsKVBdhP8C0cI4A4zsc9MP6Cho9oNJeUzIKZfp7Mo8YkdcOmhTAYN3NHuQmBJVbER7EFg097K+UYIxwCJ2CtHczwSUEiHr2hpbtr9y0Mp28b1nbgqU76S3v5pqV3Af06l1hf1qg7mhYvVeyuWHloHcINLtUjSsCePjVqJZtlEywFRqyOKZ5sn5zYomF/ByuA+p8H1U7Z4ZppLCSgu2oOFr1D6TzjGiDhnO5ExhkrLC5bgvowYp7XXRDIcmekWBI93MEB4yPYHBBap4RPEARZ3raOkfOVc6H5qwzXN9C3q0E37QFXj2vBt3o9MyyNF4f28AymSpgrnsc6PQZoNMG0GlvUMnb4CSvAin5k1ePOvvRksqE0lDXzznrpjzrNJeNJvl/1bx8Lr1wMmUj6Hmypz66NmdQxuxNZJEpwbYAG4lqkDO90wdaTdT63D9PpMu3huYoK1qvLsIv7HEz6ejrELiKcAEyZ2rXlstUSywy4VcXEFvJwXUgZj9aR91UpFp0B82TV526Si2ZFFjsz3mhqtxomyOuOb2JaEdY+q3tFZ7XmqvWOUOQ1XuA80S2/P6gObCK0auL60t4W/oUKTN6b81NlO1AupfLtUbd4XXXWJyuyaTvTzvGhJiprw2ZbOyYacEIzqvjQqavnLt49uy5wWLNwkvJo07kXLSCXbSh0CNpx3fHBets1cRF/wNFsSmSsVLRknYyqZE6nSKhNhZLLqWZ/ztpGFE7j8xMB5E02TqiFNCVfG6YlKydkrHSFigbhYR5jX02B9dSFdhUsy+gT7M8aEU0YhXITLcv5o9LBpPYUydoKldBPWjXShDRIKbPtihw6A1ns9l7NFOfUb2ibR1S2+puk6Z9BbpVlvvdCXtly1nQcFIVtmt/58OF1zXkHYTqb30O2j2v6isWBIQHXLS+GMiEam8Hcu2euOB1/kg7kQti9XfHBQtHoSdtBVmAN3J2/KRUmE3Dl+3c/zX4Dw==
+<?php
+
+/**
+ * Create shape
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateShape extends CreateElement
+{
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * Create shape
+     *
+     * @access public
+     * @param string 'type'
+     * @param array 'options'
+     */
+    public function createShape($type = 'line', $options = array())
+    {
+        $VMLdata = '';
+        switch ($type) {
+            case 'arc':
+                $VMLdata .= $this->generateArc($options);
+                break;
+            case 'curve':
+                $VMLdata .= $this->generateCurve($options);
+                break;
+            case 'line':
+                $VMLdata .= $this->generateLine($options);
+                break;
+            case 'polyline':
+                $VMLdata .= $this->generatePolyline($options);
+                break;
+            case 'rect':
+                $VMLdata .= $this->generateRect($options);
+                break;
+            case 'roundrect':
+                $VMLdata .= $this->generateRoundrect($options);
+                break;
+            case 'shape':
+                $VMLdata .= $this->generateShape($options);
+                break;
+            case 'oval':
+                $VMLdata .= $this->generateOval($options);
+                break;
+        }
+
+        $VMLdata = '<w:pict>' . $VMLdata . '</w:pict>';
+        return $VMLdata;
+    }
+
+    /**
+     * Generates an arc shape
+     *
+     * @access protected
+     * @param string $options
+     */
+    protected function generateArc($options)
+    {
+        $VML = '<v:arc style="';
+        $VML .= $this->generateVMLStyle($options) . '" ';
+
+        $VML .= $this->generateGeneralVMLOptions($options) . ' ';
+
+        if (isset($options['startAngle'])) {
+            $VML .= 'startangle="' . $options['startAngle'] . '" ';
+        }
+        if (isset($options['endAngle'])) {
+            $VML .= 'endangle="' . $options['endAngle'] . '" ';
+        }
+        $VML .= '/>';
+
+        return $VML;
+    }
+
+    /**
+     * Generates a curve with two control points
+     *
+     * @access protected
+     * @param string $options
+     */
+    protected function generateCurve($options)
+    {
+        $VML = '<v:curve style="';
+        $VML .= $this->generateVMLStyle($options) . '" ';
+
+        $VML .= $this->generateGeneralVMLOptions($options) . ' ';
+
+        if (isset($options['from'])) {
+            $VML .= 'from="' . $options['from'] . '" ';
+        }
+        if (isset($options['control1'])) {
+            $VML .= 'control1="' . $options['control1'] . '" ';
+        }
+        if (isset($options['control2'])) {
+            $VML .= 'control2="' . $options['control2'] . '" ';
+        }
+        if (isset($options['to'])) {
+            $VML .= 'to="' . $options['to'] . '" ';
+        }
+        $VML .= '/>';
+
+        return $VML;
+    }
+
+    /**
+     * Generates a line between two points
+     *
+     * @access protected
+     * @param string $options
+     */
+    protected function generateLine($options)
+    {
+        $VML = '<v:line style="';
+        $VML .= $this->generateVMLStyle($options) . '" ';
+
+        $VML .= $this->generateGeneralVMLOptions($options) . ' ';
+
+        if (isset($options['from'])) {
+            $VML .= 'from="' . $options['from'] . '" ';
+        }
+        if (isset($options['to'])) {
+            $VML .= 'to="' . $options['to'] . '" ';
+        }
+
+        $VML .= '/>';
+
+        return $VML;
+    }
+
+    /**
+     * Generates a polyline
+     *
+     * @access protected
+     * @param string $options
+     */
+    protected function generatePolyline($options)
+    {
+        $VML = '<v:polyline style="';
+        $VML .= $this->generateVMLStyle($options) . '" ';
+
+        $VML .= $this->generateGeneralVMLOptions($options) . ' ';
+
+        if (isset($options['points'])) {
+            $VML .= 'points="' . $options['points'] . '" ';
+        }
+
+        $VML .= '/>';
+
+        return $VML;
+    }
+
+    /**
+     * Generates a rectangle
+     *
+     * @access protected
+     * @param string $options
+     */
+    protected function generateRect($options)
+    {
+        $VML = '<v:rect style="';
+        $VML .= $this->generateVMLStyle($options) . '" ';
+
+        $VML .= $this->generateGeneralVMLOptions($options) . ' ';
+
+        $VML .= '/>';
+
+        return $VML;
+    }
+
+    /**
+     * Generates a rectangle with rounded corners
+     *
+     * @access protected
+     * @param string $options
+     */
+    protected function generateRoundrect($options)
+    {
+        $VML = '<v:roundrect style="';
+        $VML .= $this->generateVMLStyle($options) . '" ';
+
+        $VML .= $this->generateGeneralVMLOptions($options) . ' ';
+
+        if (isset($options['arcsize'])) {
+            $VML .= 'arcsize="' . $options['arcsize'] . '" ';
+        }
+
+        $VML .= '/>';
+
+        return $VML;
+    }
+
+    /**
+     * Generates an arbitrary shape
+     *
+     * @access protected
+     * @param string $options
+     */
+    protected function generateShape($options)
+    {
+        $VML = '<v:shape style="';
+        $VML .= $this->generateVMLStyle($options) . '" ';
+
+        $VML .= $this->generateGeneralVMLOptions($options) . ' ';
+
+        if (isset($options['path'])) {
+            $VML .= 'path="' . $options['path'] . '" ';
+        }
+
+        $VML .= '/>';
+
+        return $VML;
+    }
+
+    /**
+     * Generates an oval
+     *
+     * @access protected
+     * @param string $options
+     */
+    protected function generateOval($options)
+    {
+        $VML = '<v:oval style="';
+        $VML .= $this->generateVMLStyle($options) . '" ';
+
+        $VML .= $this->generateGeneralVMLOptions($options) . ' ';
+
+        $VML .= '/>';
+
+        return $VML;
+    }
+
+    /**
+     * Generates the VML styles
+     *
+     * @access private
+     * @param string $options
+     */
+    private function generateVMLStyle($options)
+    {
+        $VMLstyle = '';
+
+        if (isset($options['position'])) {
+            $VMLstyle .= 'position:' . $options['position'] . ';';
+        }
+        if (isset($options['margin-top'])) {
+            $VMLstyle .= 'margin-top:' . $options['margin-top'] . 'pt;';
+        }
+        /*
+          if(isset($options['margin-right'])){
+          $VMLstyle .= 'margin-right:' . $options['margin-right'] . 'pt;';
+          }
+          if(isset($options['margin-bottom'])){
+          $VMLstyle .= 'margin-bottom:' . $options['margin-bottom'] . 'pt;';
+          }
+         */
+        if (isset($options['margin-left'])) {
+            $VMLstyle .= 'margin-left:' . $options['margin-left'] . 'pt;';
+        }
+        if (isset($options['width'])) {
+            $VMLstyle .= 'width:' . $options['width'] . 'pt;';
+        }
+        if (isset($options['height'])) {
+            $VMLstyle .= 'height:' . $options['height'] . 'pt;';
+        }
+        if (isset($options['z-index'])) {
+            $VMLstyle .= 'z-index:' . $options['z-index'] . ';';
+        } else {
+            $VMLstyle .= 'z-index:' . rand(999, 99999) . ';';
+        }
+
+        return $VMLstyle;
+    }
+
+    /**
+     * Generates general VML options
+     *
+     * @access private
+     * @param string $options
+     */
+    private function generateGeneralVMLOptions($options)
+    {
+        $VML = '';
+        if (isset($options['coordsize'])) {
+            $VML .= 'coordsize="' . $options['coordsize'] . '" ';
+        }
+        if (isset($options['fillcolor'])) {
+            $VML .= 'fillcolor="' . $options['fillcolor'] . '" ';
+        }
+        if (isset($options['strokecolor'])) {
+            $VML .= 'strokecolor="' . $options['strokecolor'] . '" ';
+        }
+        if (isset($options['strokeweight'])) {
+            $VML .= 'strokeweight="' . $options['strokeweight'] . 'pt" ';
+        }
+
+        return $VML;
+    }
+
+}

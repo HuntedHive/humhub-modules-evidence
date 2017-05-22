@@ -1,1 +1,1246 @@
-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
+<?php
+
+/**
+ * Theme1.
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateTheme1 extends CreateElement
+{
+
+    const NAMESPACEWORD = 'a';
+
+    /**
+     * @access private
+     * @var CreateFooter
+     * @static
+     */
+    private static $_instance = NULL;
+
+    /**
+     *
+     * @access protected
+     * @var string
+     */
+    protected $_xml;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     *
+     * @access public
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     *
+     * @access public
+     * @return CreateTheme1
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateTheme1();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Create theme
+     *
+     * @access public
+     * @param string $font
+     */
+    public function createTheme($font)
+    {
+
+        $this->_xml = '';
+        $this->generateTHEMEELEMENTS();
+        $this->generateCLRSCHEME('Office');
+        $this->generateDK1();
+        $this->generateSYSCLR("windowText", "000000");
+        $this->generateLT1();
+        $this->generateSYSCLR("window", "FFFFFF");
+        $this->generateDK2();
+        $this->generateSRGBCLR('1F497D');
+        $this->generateLT2();
+        $this->generateSRGBCLR('EEECE1');
+        $this->generateACCENT1();
+        $this->generateSRGBCLR('4F81BD');
+        $this->generateACCENT2();
+        $this->generateSRGBCLR('C0504D');
+        $this->generateACCENT3();
+        $this->generateSRGBCLR('9BBB59');
+        $this->generateACCENT4();
+        $this->generateSRGBCLR('8064A2');
+        $this->generateACCENT5();
+        $this->generateSRGBCLR('4BACC6');
+        $this->generateACCENT6();
+        $this->generateSRGBCLR('F79646');
+        $this->generateHLINK();
+        $this->generateSRGBCLR('0000FF');
+        $this->generateFOLHLINK();
+        $this->generateSRGBCLR('800080');
+        if ($font != '') {
+            $this->generateFONTSCHEMA('Office');
+            $this->generateMAYORFONT();
+            $this->generateLATIN($font);
+            $this->generateEA('');
+            $this->generateCS('');
+            $this->generateMINORFONT();
+            $this->generateLATIN($font);
+            $this->generateEA('');
+            $this->generateCS('');
+        } else {
+            $this->generateFONTSCHEMA('Office');
+            $this->generateMAYORFONT();
+            $this->generateLATIN('Cambria');
+            $this->generateEA('');
+            $this->generateCS('');
+            $this->generateFONT('Jpan', 'ＭＳ 明朝');
+            $this->generateFONT2('Hang', '맑은 고딕');
+            $this->generateFONT2('Hans', '宋体');
+            $this->generateFONT2('Hant', '新細明體');
+            $this->generateFONT2('Arab', 'Times New Roman');
+            $this->generateFONT2('Hebr', 'Times New Roman');
+            $this->generateFONT2('Thai', 'Angsana New');
+            $this->generateFONT2('Ethi', 'Nyala');
+            $this->generateFONT2('Beng', 'Vrinda');
+            $this->generateFONT2('Gujr', 'Shruti');
+            $this->generateFONT2('Khmr', 'MoolBoran');
+            $this->generateFONT2('Knda', 'Tunga');
+            $this->generateFONT2('Guru', 'Raavi');
+            $this->generateFONT2('Cans', 'Euphemia');
+            $this->generateFONT2('Cher', 'Plantagenet Cherokee');
+            $this->generateFONT2('Yiii', 'Microsoft Yi Baiti');
+            $this->generateFONT2('Tibt', 'Microsoft Himalaya');
+            $this->generateFONT2('Thaa', 'MV Boli');
+            $this->generateFONT2('Deva', 'Mangal');
+            $this->generateFONT2('Telu', 'Gautami');
+            $this->generateFONT2('Taml', 'Latha');
+            $this->generateFONT2('Syrc', 'Estrangelo Edessa');
+            $this->generateFONT2('Orya', 'Kalinga');
+            $this->generateFONT2('Mlym', 'Kartika');
+            $this->generateFONT2('Laoo', 'DokChampa');
+            $this->generateFONT2('Sinh', 'Iskoola Pota');
+            $this->generateFONT2('Mong', 'Mongolian Baiti');
+            $this->generateFONT2('Viet', 'Times New Roman');
+            $this->generateFONT3('Uigh', 'Microsoft Uighur');
+            $this->generateMINORFONT();
+            $this->generateLATIN('Calibri');
+            $this->generateEA('');
+            $this->generateCS('');
+            $this->generateFONT('Jpan', 'ＭＳ 明朝');
+            $this->generateFONT2('Hang', '맑은 고딕');
+            $this->generateFONT2('Hans', '宋体');
+            $this->generateFONT2('Hant', '新細明體');
+            $this->generateFONT2('Arab', 'Arial');
+            $this->generateFONT2('Hebr', 'Arial');
+            $this->generateFONT2('Thai', 'Cordia New');
+            $this->generateFONT2('Ethi', 'Nyala');
+            $this->generateFONT2('Beng', 'Vrinda');
+            $this->generateFONT2('Gujr', 'Shruti');
+            $this->generateFONT2('Khmr', 'DaunPenh');
+            $this->generateFONT2('Knda', 'Tunga');
+            $this->generateFONT2('Guru', 'Raavi');
+            $this->generateFONT2('Cans', 'Euphemia');
+            $this->generateFONT2('Cher', 'Plantagenet Cherokee');
+            $this->generateFONT2('Yiii', 'Microsoft Yi Baiti');
+            $this->generateFONT2('Tibt', 'Microsoft Himalaya');
+            $this->generateFONT2('Thaa', 'MV Boli');
+            $this->generateFONT2('Deva', 'Mangal');
+            $this->generateFONT2('Telu', 'Gautami');
+            $this->generateFONT2('Taml', 'Latha');
+            $this->generateFONT2('Syrc', 'Estrangelo Edessa');
+            $this->generateFONT2('Orya', 'Kalinga');
+            $this->generateFONT2('Mlym', 'Kartika');
+            $this->generateFONT2('Laoo', 'DokChampa');
+            $this->generateFONT2('Sinh', 'Iskoola Pota');
+            $this->generateFONT2('Mong', 'Mongolian Baiti');
+            $this->generateFONT2('Viet', 'Arial');
+            $this->generateFONT3('Uigh', 'Microsoft Uighur');
+        }
+        $this->generateFMTSCHEME('Office');
+        $this->generateFILLSTYLELST();
+        $this->generateSOLIDFILL();
+        $this->generateSCHEMECLR('phClr');
+        $this->generateGRADFILL(1);
+        $this->generateGSLST();
+        $this->generateGS(0);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateTINT('50000');
+        $this->generateSATMOD('300000');
+        $this->generateGS(35000);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateTINT(37000);
+        $this->generateSATMOD(300000);
+        $this->generateGS2(100000);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateTINT(15000);
+        $this->generateSATMOD(350000);
+        $this->generateLIN(16200000, 1);
+
+        $this->generateGRADFILL2(1);
+        $this->generateGSLST();
+        $this->generateGS(0);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateSHADE('51000');
+        $this->generateSATMOD('130000');
+        $this->generateGS(80000);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateSHADE(93000);
+        $this->generateSATMOD(130000);
+        $this->generateGS2(100000);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateSHADE(94000);
+        $this->generateSATMOD(135000);
+        $this->generateLIN(16200000, 0);
+
+        $this->generateLNSTYLELST();
+        $this->generateLN(9525, "flat", "sng", "ctr");
+        $this->generateSOLIDFILL();
+        $this->generateSCHEMECLR3('phClr');
+        $this->generateSHADE('95000');
+        $this->generateSATMOD('105000');
+        $this->generatePRSTDASH('solid');
+        $this->generateLN(25400, "flat", "sng", "ctr");
+        $this->generateSOLIDFILL();
+        $this->generateSCHEMECLR('phClr');
+        $this->generatePRSTDASH('solid');
+        $this->generateLN2(38100, 'flat', 'sng', 'ctr');
+        $this->generateSOLIDFILL();
+        $this->generateSCHEMECLR('phClr');
+        $this->generatePRSTDASH('solid');
+
+        $this->generateEFFECTSTYLELST();
+        $this->generateEFFECTSTYLE();
+        $this->generateEFFECTLST();
+        $this->generateOUTERSHDW(40000, 20000, 5400000, 0);
+        $this->generateSRGBCLR2('000000');
+        $this->generateALPHA(38000);
+        $this->generateEFFECTSTYLE();
+        $this->generateEFFECTLST();
+        $this->generateOUTERSHDW(40000, 23000, 5400000, 0);
+        $this->generateSRGBCLR2('000000');
+        $this->generateALPHA(35000);
+        $this->generateEFFECTSTYLE2();
+        $this->generateEFFECTLST2();
+        $this->generateOUTERSHDW(40000, 23000, 5400000, 0);
+        $this->generateSRGBCLR2('000000');
+        $this->generateALPHA(35000);
+
+        $this->generateSCENE3D();
+        $this->generateCAMERA('orthographicFront');
+        $this->generateROT(0, 0, 0);
+        $this->generateLIGHTRIG('threePt', 't');
+        $this->generateROT(0, 0, 1200000);
+        $this->generateSP3D();
+        $this->generateBEVELT(63500, 25400);
+        $this->generateBGFILLSTYLELST();
+        $this->generateSOLIDFILL();
+        $this->generateSCHEMECLR('phClr');
+        $this->generateGRADFILL(1);
+        $this->generateGSLST();
+        $this->generateGS(0);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateTINT('40000');
+        $this->generateSATMOD('350000');
+        $this->generateGS(40000);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateTINT2(45000);
+        $this->generateSHADE(99000);
+        $this->generateSATMOD(350000);
+        $this->generateGS2(100000);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateSHADE(20000);
+        $this->generateSATMOD(255000);
+        $this->generatePATH('circle');
+        $this->generateFILLTORECT(50000, '-80000', 50000, 180000);
+
+        $this->generateGRADFILL2(1);
+        $this->generateGSLST();
+        $this->generateGS(0);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateTINT('80000');
+        $this->generateSATMOD('300000');
+        $this->generateGS2(100000);
+        $this->generateSCHEMECLR2('phClr');
+        $this->generateSHADE(30000);
+        $this->generateSATMOD(200000);
+        $this->generatePATH('circle');
+        $this->generateFILLTORECT(50000, 50000, 50000, 50000);
+        $this->generateOBJECTDEFAULTS();
+        $this->generateEXTRACLRSCHEMELST();
+        $this->cleanTemplate();
+    }
+
+    /**
+     * Generate a:themeelements
+     *
+     * @access protected
+     */
+    protected function generateTHEMEELEMENTS()
+    {
+        $this->_xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':themeElements>__GENERATETHEMEELEMENTS1____' .
+                'GENERATETHEMEELEMENTS2____GENERATETHEMEELEMENTS3__</' .
+                CreateTheme1::NAMESPACEWORD .
+                ':themeElements>__GENERATETHEMEELEMENTS4__';
+    }
+
+    /**
+     * Generate a:clrscheme
+     *
+     * @access protected
+     * @param string $name
+     */
+    protected function generateCLRSCHEME($name = 'Office')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':clrScheme name="' . $name .
+                '">__GENERATECLRSCHEME__</' . CreateTheme1::NAMESPACEWORD .
+                ':clrScheme>';
+
+        $this->_xml = str_replace(
+                '__GENERATETHEMEELEMENTS1__', $xml, $this->_xml
+        );
+    }
+
+    /**
+     * Generate a:dk1
+     *
+     * @access protected
+     */
+    protected function generateDK1()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':dk1>__GENERATESYSCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':dk1>__GENERATEDK1__';
+
+        $this->_xml = str_replace('__GENERATECLRSCHEME__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:sysclr
+     * 
+     * @access protected
+     * @param string $val
+     * @param string $lastClr
+     */
+    protected function generateSYSCLR($val = 'windowText', $lastClr = '000000')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':sysClr val="' . $val . '" lastClr="' . $lastClr .
+                '"></' . CreateTheme1::NAMESPACEWORD . ':sysClr>';
+        $this->_xml = str_replace('__GENERATESYSCLR__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:lt1
+     *
+     * @access protected
+     */
+    protected function generateLT1()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':lt1>__GENERATESYSCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':lt1>__GENERATELT1__';
+        $this->_xml = str_replace('__GENERATEDK1__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:dk2
+     *
+     * @access protected
+     */
+    protected function generateDK2()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':dk2>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':dk2>__GENERATEDK2__';
+        $this->_xml = str_replace('__GENERATELT1__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:srgbclr
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateSRGBCLR($val = 'windowText')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':srgbClr val="' . $val .
+                '"></' . CreateTheme1::NAMESPACEWORD . ':srgbClr>';
+        $this->_xml = str_replace('__GENERATESRGBCLR__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:lt2
+     *
+     * @access protected
+     */
+    protected function generateLT2()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':lt2>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':lt2>__GENERATELT2__';
+        $this->_xml = str_replace('__GENERATEDK2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:accent1
+     *
+     * @access protected
+     */
+    protected function generateACCENT1()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':accent1>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':accent1>__GENERATEACCENT1__';
+        $this->_xml = str_replace('__GENERATELT2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:accent2
+     *
+     * @access protected
+     */
+    protected function generateACCENT2()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':accent2>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':accent2>__GENERATEACCENT2__';
+        $this->_xml = str_replace('__GENERATEACCENT1__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:accent3
+     *
+     * @access protected
+     */
+    protected function generateACCENT3()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':accent3>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':accent3>__GENERATEACCENT3__';
+        $this->_xml = str_replace('__GENERATEACCENT2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:accent4
+     *
+     * @access protected
+     */
+    protected function generateACCENT4()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':accent4>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':accent4>__GENERATEACCENT4__';
+        $this->_xml = str_replace('__GENERATEACCENT3__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:accent5
+     *
+     * @access protected
+     */
+    protected function generateACCENT5()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':accent5>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':accent5>__GENERATEACCENT5__';
+        $this->_xml = str_replace('__GENERATEACCENT4__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:accent6
+     *
+     * @access protected
+     */
+    protected function generateACCENT6()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':accent6>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':accent6>__GENERATEACCENT6__';
+        $this->_xml = str_replace('__GENERATEACCENT5__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:hlink
+     *
+     * @access protected
+     */
+    protected function generateHLINK()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':hlink>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':hlink>__GENERATEHLINK__';
+        $this->_xml = str_replace('__GENERATEACCENT6__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:folhlink
+     *
+     * @access protected
+     */
+    protected function generateFOLHLINK()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':folHlink>__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':folHlink>';
+        $this->_xml = str_replace('__GENERATEHLINK__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:fontschema
+     *
+     * @access protected
+     * @param string $name
+     */
+    protected function generateFONTSCHEMA($name = 'Office')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':fontScheme name="' . $name .
+                '">__GENERATEFONTSCHEMA1____GENERATEFONTSCHEMA2__</' .
+                CreateTheme1::NAMESPACEWORD . ':fontScheme>';
+
+        $this->_xml = str_replace(
+                '__GENERATETHEMEELEMENTS2__', $xml, $this->_xml
+        );
+    }
+
+    /**
+     * Generate a:mayorfont
+     *
+     * @access protected
+     */
+    protected function generateMAYORFONT()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':majorFont>__GENERATEMAYORFONT__</' .
+                CreateTheme1::NAMESPACEWORD .
+                ':majorFont>';
+
+        $this->_xml = str_replace('__GENERATEFONTSCHEMA1__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:latin
+     *
+     * @access protected
+     * @param string $typeface
+     */
+    protected function generateLATIN($typeface = 'cambia')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':latin typeface="' . $typeface .
+                '"></' . CreateTheme1::NAMESPACEWORD .
+                ':latin>__GENERATELATIN__';
+
+        $this->_xml = str_replace('__GENERATEMAYORFONT__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:ea
+     *
+     * @access protected
+     * @param string $typeface
+     */
+    protected function generateEA($typeface = '')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':ea typeface="' . $typeface .
+                '"></' . CreateTheme1::NAMESPACEWORD .
+                ':ea>__GENERATEEA__';
+        $this->_xml = str_replace('__GENERATELATIN__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:cs
+     *
+     * @access protected
+     * @param string $typeface
+     */
+    protected function generateCS($typeface = '')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':cs typeface="' . $typeface .
+                '"></' . CreateTheme1::NAMESPACEWORD .
+                ':cs>__GENERATECS__';
+
+        $this->_xml = str_replace('__GENERATEEA__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:font
+     *
+     * @access protected
+     * @param string $script
+     * @param string $typeface
+     */
+    protected function generateFONT($script = '', $typeface = '')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':font script="' . $script .
+                '" typeface="' . $typeface .
+                '"></' . CreateTheme1::NAMESPACEWORD .
+                ':font>__GENERATEFONT__';
+        $this->_xml = str_replace('__GENERATECS__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:font
+     *
+     * @access protected
+     * @param string script
+     * @param string $typeface
+     */
+    protected function generateFONT2($script = '', $typeface = '')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':font script="' . $script .
+                '" typeface="' . $typeface .
+                '"></' . CreateTheme1::NAMESPACEWORD .
+                ':font>__GENERATEFONT__';
+
+        $this->_xml = str_replace('__GENERATEFONT__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:font
+     *
+     * @access protected
+     * @param string $script
+     * @param string $typeface
+     */
+    protected function generateFONT3($script = '', $typeface = '')
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':font script="' . $script .
+                '" typeface="' . $typeface .
+                '"></' . CreateTheme1::NAMESPACEWORD .
+                ':font>';
+        $this->_xml = str_replace('__GENERATEFONT__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:minorfont
+     *
+     * @access protected
+     */
+    protected function generateMINORFONT()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':minorFont>__GENERATEMAYORFONT__</' .
+                CreateTheme1::NAMESPACEWORD . ':minorFont>';
+        $this->_xml = str_replace('__GENERATEFONTSCHEMA2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:fmtscheme
+     *
+     * @access protected
+     * @param string $name
+     */
+    protected function generateFMTSCHEME($name)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':fmtScheme name="' . $name .
+                '">__GENERATEFMTSCHEME__</' . CreateTheme1::NAMESPACEWORD .
+                ':fmtScheme>';
+        $this->_xml = str_replace(
+                '__GENERATETHEMEELEMENTS3__', $xml, $this->_xml
+        );
+    }
+
+    /**
+     * Generate a:fillstylelst
+     *
+     * @access protected
+     */
+    protected function generateFILLSTYLELST()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':fillStyleLst>__GENERATEFILLSTYLELST__</' .
+                CreateTheme1::NAMESPACEWORD .
+                ':fillStyleLst>__GENERATEFILLSTYLELST2__';
+        $this->_xml = str_replace('__GENERATEFMTSCHEME__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:solidfill
+     *
+     * @access protected
+     */
+    protected function generateSOLIDFILL()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':solidFill>__GENERATESOLIDFILL__</' .
+                CreateTheme1::NAMESPACEWORD .
+                ':solidFill>__GENERATESOLIDFILL2__';
+
+        $this->_xml = str_replace(
+                '__GENERATEFILLSTYLELST__', $xml, $this->_xml
+        );
+    }
+
+    /**
+     * Generate a:schemeclr
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateSCHEMECLR($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':schemeClr val="' . $val .
+                '"></' . CreateTheme1::NAMESPACEWORD . ':schemeClr>';
+
+        $this->_xml = str_replace('__GENERATESOLIDFILL__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:gradfill
+     *
+     * @access protected
+     * @param string $rotWithShape
+     */
+    protected function generateGRADFILL($rotWithShape)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':gradFill rotWithShape="' .
+                $rotWithShape . '">__GENERATEGRADFILL__</' .
+                CreateTheme1::NAMESPACEWORD .
+                ':gradFill>__GENERATESOLIDFILL2__';
+
+        $this->_xml = str_replace('__GENERATESOLIDFILL2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:gradfill
+     *
+     * @access protected
+     * @param string $rotWithShape
+     */
+    protected function generateGRADFILL2($rotWithShape)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':gradFill rotWithShape="' .
+                $rotWithShape . '">__GENERATEGRADFILL__</' .
+                CreateTheme1::NAMESPACEWORD . ':gradFill>';
+        $this->_xml = str_replace('__GENERATESOLIDFILL2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:gslst
+     *
+     * @access protected
+     */
+    protected function generateGSLST()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':gsLst>__GENERATEGSLST__</' .
+                CreateTheme1::NAMESPACEWORD . ':gsLst>__GENERATEGSLST2__';
+        $this->_xml = str_replace('__GENERATEGRADFILL__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:gs
+     *
+     * @access protected
+     * @param string $pos
+     */
+    protected function generateGS($pos)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':gs pos="' . $pos .
+                '">__GENERATEPOS__</' . CreateTheme1::NAMESPACEWORD .
+                ':gs>__GENERATEGSLST__';
+        $this->_xml = str_replace('__GENERATEGSLST__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:gs
+     *
+     * @access protected
+     * @param string $pos
+     */
+    protected function generateGS2($pos)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':gs pos="' .
+                $pos . '">__GENERATEPOS__</' . CreateTheme1::NAMESPACEWORD . ':gs>';
+        $this->_xml = str_replace('__GENERATEGSLST__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:schemeclr
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateSCHEMECLR2($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':schemeClr val="' . $val .
+                '">__GENERATESCHEMECLR2__</' . CreateTheme1::NAMESPACEWORD .
+                ':schemeClr>';
+        $this->_xml = str_replace('__GENERATEPOS__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:tint
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateTINT($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':tint val="' . $val .
+                '"></' . CreateTheme1::NAMESPACEWORD .
+                ':tint>__GENERATETINT__';
+        $this->_xml = str_replace('__GENERATESCHEMECLR2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:shade
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateSHADE($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':shade val="' . $val .
+                '"></' . CreateTheme1::NAMESPACEWORD . ':shade>__GENERATETINT__';
+        $this->_xml = str_replace('__GENERATESCHEMECLR2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:satmod
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateSATMOD($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':satMod val="' . $val .
+                '"></' . CreateTheme1::NAMESPACEWORD . ':satMod>';
+        $this->_xml = str_replace('__GENERATETINT__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:lin
+     *
+     * @access protected
+     * @param string $ang
+     * @param string $scaled
+     */
+    protected function generateLIN($ang, $scaled)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':lin ang="' . $ang .
+                '" scaled="' . $scaled .
+                '"></' . CreateTheme1::NAMESPACEWORD . ':lin>';
+        $this->_xml = str_replace('__GENERATEGSLST2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:lnstylelst
+     *
+     * @access protected
+     */
+    protected function generateLNSTYLELST()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':lnStyleLst>__GENERATELNSTYLELST__</' .
+                CreateTheme1::NAMESPACEWORD . ':lnStyleLst>__GENERATELNSTYLELST2__';
+        $this->_xml = str_replace(
+                '__GENERATEFILLSTYLELST2__', $xml, $this->_xml
+        );
+    }
+
+    /**
+     * Generate a:ln
+     *
+     * @access protected
+     * @param string $w
+     * @param string $cap
+     * @param string $cmpd
+     * @param string $algn
+     */
+    protected function generateLN($w, $cap, $cmpd, $algn)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':ln w="' . $w .
+                '" cap="' . $cap . '" cmpd="' . $cmpd . '" algn="' . $algn .
+                '">__GENERATEFILLSTYLELST__</' . CreateTheme1::NAMESPACEWORD .
+                ':ln>__GENERATELNSTYLELST__';
+        $this->_xml = str_replace('__GENERATELNSTYLELST__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:ln
+     *
+     * @access protected
+     * @param string $w
+     * @param string $cap
+     * @param string $cmpd
+     * @param string $algn
+     */
+    protected function generateLN2($w, $cap, $cmpd, $algn)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':ln w="' . $w .
+                '" cap="' . $cap . '" cmpd="' . $cmpd . '" algn="' . $algn .
+                '">__GENERATEFILLSTYLELST__</' . CreateTheme1::NAMESPACEWORD
+                . ':ln>';
+        $this->_xml = str_replace('__GENERATELNSTYLELST__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:schemeclr3
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateSCHEMECLR3($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':schemeClr val="' .
+                $val . '">__GENERATESCHEMECLR2__</' . CreateTheme1::NAMESPACEWORD
+                . ':schemeClr>';
+        $this->_xml = str_replace('__GENERATESOLIDFILL__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:prstdash
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generatePRSTDASH($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':prstDash val="' . $val . '"></' .
+                CreateTheme1::NAMESPACEWORD . ':prstDash>';
+        $this->_xml = str_replace('__GENERATESOLIDFILL2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:effectstylest
+     *
+     * @access protected
+     */
+    protected function generateEFFECTSTYLELST()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':effectStyleLst>__GENERATEEFFECTSTYLELST__</' .
+                CreateTheme1::NAMESPACEWORD .
+                ':effectStyleLst>__GENERATEEFFECTSTYLELST2__';
+        $this->_xml = str_replace('__GENERATELNSTYLELST2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:effectstyle
+     *
+     * @access protected
+     */
+    protected function generateEFFECTSTYLE()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':effectStyle>__GENERATEEFFECTSTYLE__</' .
+                CreateTheme1::NAMESPACEWORD .
+                ':effectStyle>__GENERATEEFFECTSTYLELST__';
+        $this->_xml = str_replace(
+                '__GENERATEEFFECTSTYLELST__', $xml, $this->_xml
+        );
+    }
+
+    /**
+     * Generate a:effectstyle2
+     *
+     * @access protected
+     */
+    protected function generateEFFECTSTYLE2()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':effectStyle>__GENERATEEFFECTSTYLE__</' .
+                CreateTheme1::NAMESPACEWORD . ':effectStyle>';
+        $this->_xml = str_replace(
+                '__GENERATEEFFECTSTYLELST__', $xml, $this->_xml
+        );
+    }
+
+    /**
+     * Generate a:effectlst
+     *
+     * @access protected
+     */
+    protected function generateEFFECTLST()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':effectLst>__GENERATEEFFECTLST__</' .
+                CreateTheme1::NAMESPACEWORD . ':effectLst>';
+        $this->_xml = str_replace('__GENERATEEFFECTSTYLE__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:outershdw
+     *
+     * @access protected
+     * @param string $blurRad
+     * @param string $dist
+     * @param string $dir
+     * @param string $rotWithShape
+     */
+    protected function generateOUTERSHDW($blurRad, $dist, $dir, $rotWithShape)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':outerShdw blurRad="' . $blurRad . '" dist="' .
+                $dist . '" dir="' . $dir . '" rotWithShape="' .
+                $rotWithShape . '">__GENERATEOUTERSHDW__</' .
+                CreateTheme1::NAMESPACEWORD . ':outerShdw>';
+        $this->_xml = str_replace('__GENERATEEFFECTLST__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:srgbclr2
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateSRGBCLR2($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':srgbClr val="' .
+                $val . '">__GENERATESRGBCLR__</' . CreateTheme1::NAMESPACEWORD .
+                ':srgbClr>';
+        $this->_xml = str_replace('__GENERATEOUTERSHDW__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:alpha
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateALPHA($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':alpha val="' . $val .
+                '"></' . CreateTheme1::NAMESPACEWORD . ':alpha>';
+        $this->_xml = str_replace('__GENERATESRGBCLR__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:effectlst2
+     *
+     * @access protected
+     */
+    protected function generateEFFECTLST2()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':effectLst>__GENERATEEFFECTLST__</' . CreateTheme1::NAMESPACEWORD .
+                ':effectLst>__GENERATEEFFECTLST2__';
+        $this->_xml = str_replace('__GENERATEEFFECTSTYLE__', $xml, $this->_xml);
+    }
+
+    /**
+     *
+     * @access protected
+     */
+    protected function generateSCENE3D()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':scene3d>__GENERATESCENE3D__</' . CreateTheme1::NAMESPACEWORD .
+                ':scene3d>__GENERATESCENE3D2__';
+        $this->_xml = str_replace('__GENERATEEFFECTLST2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:camera
+     *
+     * @access protected
+     * @param string $prst
+     */
+    protected function generateCAMERA($prst)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':camera prst="' . $prst .
+                '">__GENERATECAMERA__</' . CreateTheme1::NAMESPACEWORD .
+                ':camera>__GENERATECAMERA2__';
+        $this->_xml = str_replace('__GENERATESCENE3D__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:rot
+     *
+     * @access protected
+     * @param string $lat
+     * @param string $lon
+     * @param string @rev
+     */
+    protected function generateROT($lat, $lon, $rev)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':rot lat="' . $lat .
+                '" lon="' . $lon . '" rev="' . $rev .
+                '"></' . CreateTheme1::NAMESPACEWORD . ':rot>';
+        $this->_xml = str_replace('__GENERATECAMERA__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:lightrig
+     *
+     * @access protected
+     * @param string $rig
+     * @param string $dir
+     */
+    protected function generateLIGHTRIG($rig, $dir)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':lightRig rig="' . $rig . '" dir="' . $dir .
+                '">__GENERATECAMERA__</' . CreateTheme1::NAMESPACEWORD .
+                ':lightRig>';
+        $this->_xml = str_replace('__GENERATECAMERA2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:sp3d
+     *
+     * @access protected
+     */
+    protected function generateSP3D()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':sp3d>__GENERATESP3D__</' . CreateTheme1::NAMESPACEWORD .
+                ':sp3d>';
+        $this->_xml = str_replace('__GENERATESCENE3D2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:bevelt
+     *
+     * @access protected
+     * @param string $w
+     * @param string $h
+     */
+    protected function generateBEVELT($w, $h)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':bevelT w="' . $w . '" h="' . $h .
+                '"></' . CreateTheme1::NAMESPACEWORD . ':bevelT>';
+        $this->_xml = str_replace('__GENERATESP3D__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:bgfillstylelst
+     *
+     * @access protected
+     */
+    protected function generateBGFILLSTYLELST()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':bgFillStyleLst>__GENERATEFILLSTYLELST__</' .
+                CreateTheme1::NAMESPACEWORD . ':bgFillStyleLst>';
+
+        $this->_xml = str_replace(
+                '__GENERATEEFFECTSTYLELST2__', $xml, $this->_xml
+        );
+    }
+
+    /**
+     * Generate a:tint2
+     *
+     * @access protected
+     * @param string $val
+     */
+    protected function generateTINT2($val)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD . ':tint val="' . $val .
+                '"></' . CreateTheme1::NAMESPACEWORD .
+                ':tint>__GENERATESCHEMECLR2__';
+        $this->_xml = str_replace('__GENERATESCHEMECLR2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:path
+     *
+     * @access protected
+     * @param string @path
+     */
+    protected function generatePATH($path)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':path path="' . $path .
+                '">__GENERATEPATH__</' . CreateTheme1::NAMESPACEWORD .
+                ':path>';
+        $this->_xml = str_replace('__GENERATEGSLST2__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:filltorect
+     *
+     * @access protected
+     * @param string $l
+     * @param string $t
+     * @param string $r
+     * @param string $b
+     */
+    protected function generateFILLTORECT($l, $t, $r, $b)
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':fillToRect l="' . $l . '" t="' . $t . '" r="' . $r .
+                '" b="' . $b . '"></' . CreateTheme1::NAMESPACEWORD .
+                ':fillToRect>';
+        $this->_xml = str_replace('__GENERATEPATH__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate a:objectdefaults
+     *
+     * @access protected
+     */
+    protected function generateOBJECTDEFAULTS()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':objectDefaults></' . CreateTheme1::NAMESPACEWORD .
+                ':objectDefaults>__GENERATETHEMEELEMENTS4__';
+
+        $this->_xml = str_replace(
+                '__GENERATETHEMEELEMENTS4__', $xml, $this->_xml
+        );
+    }
+
+    /**
+     * Generate a:extraclrschemelst
+     *
+     * @access protected
+     */
+    protected function generateEXTRACLRSCHEMELST()
+    {
+        $xml = '<' . CreateTheme1::NAMESPACEWORD .
+                ':extraClrSchemeLst></' . CreateTheme1::NAMESPACEWORD .
+                ':extraClrSchemeLst>';
+
+        $this->_xml = str_replace(
+                '__GENERATETHEMEELEMENTS4__', $xml, $this->_xml
+        );
+    }
+
+}

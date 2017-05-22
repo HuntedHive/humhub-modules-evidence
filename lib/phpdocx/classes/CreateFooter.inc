@@ -1,1 +1,191 @@
-7Vdtb+I4EP7Or/AhtAm9Lemu7svRLTq2TVEl6EbA6qTroch1DOSaNzmmtFr1v+/YMeC8QClF9+UuakUyHs8zfubxOKnVrJOTGjpBl4xiTtE0jjllYBC2PwiYZjF7Rgg588SLyZM0J5g84BkFK6IBDWnE08w9Tp6ZP5tzhC7XtyZpolvMCMXIYbG3IMSPI5qiwSLgfkg9H6NRq98SAfTLnHOetC1ruVy2PoceaZE4bEqUwCc0SiW65pNk+Qk3a5mckjjikJfF55BfagUilWXMPCthsasiiDky4iNlKSQlIn4++/Rb6wz+fldY0YNKqBoLvKwaCXCaKgavJYGIPgG8tzLaGUu1H7WaCCUpF9fqB1LALBdgPYAJoRA8Yf4jDK7NKcfcJ+rRkr/KBWVDqOH6EdxGhKILdPu93z8vgkORwIMtCC9mswJd3AdFEGlC00VEuKDMdckqiNmUHj9qqxLKm5cS6hV9P6hH34S5xmCUL1gEFDE/mh2EzOORnFxCbvC5n5523KcwAMITRmcuo0mACTUNy3Xvuqd/TX51Xcv4iAz419yb5+sgKj9t8Hy/Fe3Ujr6uaulky1TKWa92RvmN0lBpuf4UmSkNpu22LrRMaU3NT1xlPxTRZS5nUyPhpUhHcf4WToo97HV5iVbGcKj0gDCbpXdnk8IgZgw/Z2OfJjvVQXIL2qkPw9istyFig03EcYFzVzzrhKipMxpRJgDGQ31UVMJPU8rNhkryzkigPTNj0kQfPqCSVZTJgO1DjWKhCkCODlMxPnxl3Bl3v5pGCPh+JCSfT6QLTTkSbRHy3Bnmun81uhk4fbtaJA0OzRboy6o/hod2O6fc87zraYesPRVlZ5NNdrp7fP/PPnvZzPTTzOLrAbJiyzgtZLhuz761h92xDSV0XaNUYSUOCLfBK076KKNWNZDyhugpBtGyPQ281A+TgG7bFwxUSzj1CmeKsupNoVSVotKVxL8YsOjcAdhu33YH9sjpXtp/fhteoVau7OIyRKIjmSg6aLroEeyijpxuzwbD3ydoYA979vW34aA7RvXOF8sozXoNRs+qY6hzdO+yDUffvx5atylniMcPNDpa1UTv2N2ZCoLbPN4Merpud8otOVbCzpHllXQ2C3JcF+Tw3ij//l5OOL4v8ps7yBqMBnCUP9JxvMUBr5rvlvGAYq/qLfSt1RMngJaNqJt2HqySEGb5tSCsGbQwRfChYBy5/EDdYY1ls4iLugigr6rCv34YypoSBbKh6HgYGcEKQLFdFb2zz+ZQnB7QFg/X/9Z3u7fKs9wLxcvULzRM+LOpJ1V8URJu8rUgxJzMzbqVaypWPb+k4mzJ0TtkvCkl6+QIPaibbYmWnVpaVd9UXWdndVfXC6JBSneQOfyfzFe3yv5kyiz+q3xuD73Pq1ppdpH8zYeJLEP1h5X7Tl6Px+kWPvPLgSb8UvsJ
+<?php
+
+/**
+ * Create footer
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateFooter extends CreateElement
+{
+
+    /**
+     *
+     * @var CreateFooter
+     * @access private
+     * @static
+     */
+    private static $_instance = NULL;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     *
+     * @return string
+     * @access public
+     */
+    public function __toString()
+    {
+        $this->_xml = preg_replace('/__[A-Z]+__/', '', $this->_xml);
+        return $this->_xml;
+    }
+
+    /**
+     *
+     * @return CreateFooter
+     * @access public
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateFooter();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Create footer
+     *
+     * @access public
+     * @param string args[0]
+     * @param array args[1]
+     */
+    public function createFooter()
+    {
+        $this->_xml = '';
+        $args = func_get_args();
+        $this->generateFTR();
+        if (isset($args[1]['pager']) && $args[1]['pager'] == 'true') {
+            $this->generateP();
+            $this->generateR();
+            $this->generatePTAB('margin', $args[1]['pagerAlignment']);
+            $this->generateFLDSIMPLE();
+        }
+        $text = CreateText::getInstance();
+        $text->createText($args[0], $args[1]);
+        $obj = preg_replace('/__[A-Z]+__/', '', (string) $text);
+        $xml = $obj . '__GENERATEFTR__';
+        $this->_xml = str_replace('__GENERATEFTR__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:fldsimple
+     *
+     * @access protected
+     */
+    protected function generateFLDSIMPLE()
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':fldSimple ' . CreateElement::NAMESPACEWORD .
+                ':instr=" PAGE   \* MERGEFORMAT "></'
+                . CreateElement::NAMESPACEWORD . ':fldSimple>';
+
+        $this->_xml = str_replace('__GENERATERSUB__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate ftr token
+     *
+     * @access protected
+     */
+    protected function generateFTR()
+    {
+        $this->_xml = '__GENERATEFTR____GENERATEIMGFTR__';
+    }
+
+    /**
+     * Generate w:p
+     *
+     * @access protected
+     */
+    protected function generateP()
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':p>__GENERATEP__</' . CreateElement::NAMESPACEWORD .
+                ':p>__GENERATEFTR__';
+        $this->_xml = str_replace('__GENERATEFTR__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:ptab
+     *
+     * @param string $relativeTo
+     * @param string $alignment
+     * @param string $leader
+     * @access protected
+     */
+    protected function generatePTAB($relativeTo = 'margin', $alignment = 'right', $leader = 'none')
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':ptab ' . CreateElement::NAMESPACEWORD .
+                ':relativeTo="' . $relativeTo .
+                '" ' . CreateElement::NAMESPACEWORD .
+                ':alignment="' . $alignment .
+                '" ' . CreateElement::NAMESPACEWORD .
+                ':leader="' . $leader .
+                '"></' . CreateElement::NAMESPACEWORD . ':ptab>';
+
+        $this->_xml = str_replace('__GENERATER__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:r
+     *
+     * @access protected
+     */
+    protected function generateR()
+    {
+        if (!empty($this->_xml)) {
+            if (preg_match("/__GENERATEP__/", $this->_xml)) {
+                $xml = '<' . CreateElement::NAMESPACEWORD .
+                        ':r>__GENERATER__</' . CreateElement::NAMESPACEWORD .
+                        ':r>__GENERATERSUB__';
+
+                $this->_xml = str_replace('__GENERATEP__', $xml, $this->_xml);
+            } elseif (preg_match("/__GENERATER__/", $this->_xml)) {
+                $xml = '<' . CreateElement::NAMESPACEWORD .
+                        ':r>__GENERATER__</' . CreateElement::NAMESPACEWORD .
+                        ':r>__GENERATERSUB__';
+
+                $this->_xml = str_replace('__GENERATER__', $xml, $this->_xml);
+            } elseif (preg_match("/__GENERATERSUB__/", $this->_xml)) {
+                $xml = '<' . CreateElement::NAMESPACEWORD .
+                        ':r>__GENERATER__</' . CreateElement::NAMESPACEWORD .
+                        ':r>__GENERATERSUB__';
+
+                $this->_xml = str_replace(
+                        '__GENERATERSUB__', $xml, $this->_xml
+                );
+            }
+        } else {
+            $this->_xml = '<' . CreateElement::NAMESPACEWORD .
+                    ':r>__GENERATER__</' . CreateElement::NAMESPACEWORD .
+                    ':r>__GENERATERSUB__';
+        }
+    }
+
+}

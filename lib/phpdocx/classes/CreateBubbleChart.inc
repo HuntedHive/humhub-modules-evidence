@@ -1,1 +1,309 @@
-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
+<?php
+
+/**
+ * Create bubble Chart
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+include_once dirname(__FILE__) . '/CreateElement.inc';
+
+class CreateBubbleChart extends CreateGraphic implements InterfaceGraphic
+{
+
+    /**
+     * Create embedded xml chart
+     *
+     * @access public
+     */
+    public function createEmbeddedXmlChart()
+    {
+        if (isset($this->values['legend'][1])) {
+            $mainLegend = $this->values['legend'][1];
+        } else {
+            $mainLegend = 'Y-values';
+        }
+        if (isset($this->values['legend'])) {
+            unset($this->values['legend']);
+        }
+        $this->_xmlChart = '';
+        $this->generateCHARTSPACE();
+        $this->generateDATE1904(1);
+        $this->generateLANG();
+        $this->generateROUNDEDCORNERS($this->_roundedCorners);
+        $color = 2;
+        if ($this->_color) {
+            $color = $this->_color;
+        }
+        $this->generateSTYLE($color);
+        $this->generateCHART();
+        if ($this->_title != '') {
+            $this->generateTITLE();
+            $this->generateTITLETX();
+            $this->generateRICH();
+            $this->generateBODYPR();
+            $this->generateLSTSTYLE();
+            $this->generateTITLEP();
+            $this->generateTITLEPPR();
+            $this->generateDEFRPR();
+            $this->generateTITLER();
+            $this->generateTITLERPR();
+            $this->generateTITLET($this->_title);
+            $this->cleanTemplateFonts();
+        } else {
+            $this->generateAUTOTITLEDELETED();
+            $title = '';
+        }
+        if (strpos($this->_type, '3D') !== false) {
+            $this->generateVIEW3D();
+            $rotX = 30;
+            $rotY = 30;
+            $perspective = 30;
+            if ($this->_rotX != '') {
+                $rotX = $this->_rotX;
+            }
+            if ($this->_rotY != '') {
+                $rotY = $this->_rotY;
+            }
+            if ($this->_perspective != '') {
+                $perspective = $this->_perspective;
+            }
+            $this->generateROTX($rotX);
+            $this->generateROTY($rotY);
+            $this->generateRANGAX($this->_rAngAx);
+            $this->generatePERSPECTIVE($perspective);
+        }
+        if ($this->values == '') {
+            exit('You haven`t added data');
+        }
+        $this->generatePLOTAREA();
+        $this->generateLAYOUT();
+
+        $this->generateBUBBLECHART();
+        /* if (isset($this->values['legend'])) {
+          $legends = $this->values['legend'];
+          $numValues = count($this->values)-1;
+          } else {
+          $legends = array($this->_title, $this->_title, $this->_title);
+          $numValues = count($this->values);
+          } */
+        $numValues = count($this->values);
+        $this->generateVARYCOLORS($this->_varyColors);
+        $letter = 'A';
+        for ($i = 0; $i < 3; $i++) {
+            if (strpos($this->_type, 'bubble') !== false && $letter == 'B')
+                break;
+            $this->generateSER();
+            $this->generateIDX($i);
+            $this->generateORDER($i);
+            $letter++;
+
+            $this->generateTX();
+            $this->generateSTRREF();
+            $this->generateF('Sheet1!$' . $letter . '$1');
+            $this->generateSTRCACHE();
+            $this->generatePTCOUNT();
+            $this->generatePT();
+            $this->generateV($mainLegend);
+            $this->cleanTemplate2();
+
+            $this->generateXVAL();
+            $this->generateNUMREF();
+            $this->generateF('Sheet1!$A$2:$A$' . ($numValues + 1));
+            $this->generateNUMCACHE();
+            $this->generateFORMATCODE();
+            $this->generatePTCOUNT($numValues);
+            $num = 0;
+            foreach ($this->values as $datas) {
+                foreach ($datas as $data) {
+                    $this->generatePT($num);
+                    $this->generateV($data);
+                    $num++;
+                    break;
+                }
+            }
+            $this->cleanTemplate2();
+            $this->generateYVAL();
+            $this->generateNUMREF();
+            $this->generateF('Sheet1!$B$2:$B$' . ($numValues + 1));
+            $this->generateNUMCACHE();
+            $this->generateFORMATCODE();
+            $this->generatePTCOUNT($numValues);
+            $num = 0;
+            foreach ($this->values as $datas) {
+                $flag = true;
+                foreach ($datas as $data) {
+                    if ($flag) {
+                        $flag = false;
+                        continue;
+                    }
+                    $this->generatePT($num);
+                    $this->generateV($data);
+                    $num++;
+                    break;
+                }
+            }
+            $this->cleanTemplate2();
+            $this->generateBUBBLESIZE();
+            $this->generateNUMREF();
+            $this->generateF('Sheet1!$C$2:$C$' . ($numValues + 1));
+            $this->generateNUMCACHE();
+            $this->generateFORMATCODE();
+            $this->generatePTCOUNT($numValues);
+            $num = 0;
+            foreach ($this->values as $datas) {
+                $flag = 0;
+                foreach ($datas as $data) {
+                    if ($flag < 2) {
+                        $flag++;
+                        continue;
+                    }
+                    $this->generatePT($num);
+                    $this->generateV($data);
+                    $num++;
+                    break;
+                }
+            }
+            //Generate labels
+            $this->generateSERDLBLS();
+            $this->generateSHOWLEGENDKEY($this->_showLegendKey);
+            $this->generateSHOWVAL($this->_showValue);
+            $this->generateSHOWCATNAME($this->_showCategory);
+            $this->generateSHOWSERNAME($this->_showSeries);
+            $this->generateSHOWPERCENT($this->_showPercent);
+            $this->generateSHOWBUBBLESIZE($this->_showBubbleSize);
+            if (strpos($this->_type, '3D') !== false)
+                $this->generateBUBBLES3D();
+            $this->generateBUBBLESCALE();
+            $this->cleanTemplate3();
+        }
+
+        $this->generateAXID();
+        $this->generateAXID(59040512);
+        $this->generateVALAX();
+        $this->generateAXAXID(59034624);
+        $this->generateSCALING();
+        $this->generateDELETE($this->_delete);
+        $this->generateORIENTATION();
+        $this->generateAXPOS();
+        switch ($this->_vgrid) {
+            case 1:
+                $this->generateMAJORGRIDLINES();
+                break;
+            case 2:
+                $this->generateMINORGRIDLINES();
+                break;
+            case 3:
+                $this->generateMAJORGRIDLINES();
+                $this->generateMINORGRIDLINES();
+                break;
+            default:
+                break;
+        }
+        if (!empty($this->_haxLabel)) {
+            $this->generateAXLABEL($this->_haxLabel);
+            $vert = 'horz';
+            $rot = 0;
+            if ($this->_haxLabelDisplay == 'vertical') {
+                $vert = 'wordArtVert';
+            }
+            if ($this->_haxLabelDisplay == 'rotated') {
+                $rot = '-5400000';
+            }
+            $this->generateAXLABELDISP($vert, $rot);
+        }
+        $this->generateNUMFMT();
+        $this->generateTICKLBLPOS();
+        $this->generateCROSSAX();
+        $this->generateCROSSES();
+        $this->generateCROSSBETWEEN('midCat');
+        $this->generateVALAX();
+        $this->generateAXAXID(59040512);
+        $this->generateSCALING();
+        $this->generateDELETE($this->_delete);
+        $this->generateORIENTATION();
+        $this->generateAXPOS('l');
+        switch ($this->_hgrid) {
+            case 1:
+                $this->generateMAJORGRIDLINES();
+                break;
+            case 2:
+                $this->generateMINORGRIDLINES();
+                break;
+            case 3:
+                $this->generateMAJORGRIDLINES();
+                $this->generateMINORGRIDLINES();
+                break;
+            default:
+                break;
+        }
+        if (!empty($this->_vaxLabel)) {
+            $this->generateAXLABEL($this->_vaxLabel);
+            $vert = 'horz';
+            $rot = 0;
+            if ($this->_vaxLabelDisplay == 'vertical') {
+                $vert = 'wordArtVert';
+            }
+            if ($this->_vaxLabelDisplay == 'rotated') {
+                $rot = '-5400000';
+            }
+            $this->generateAXLABELDISP($vert, $rot);
+        }
+        $this->generateNUMFMT();
+        $this->generateTICKLBLPOS();
+        $this->generateCROSSAX(59034624);
+        $this->generateCROSSES();
+        $this->generateCROSSBETWEEN();
+
+        $this->generateLEGEND();
+        $this->generateLEGENDPOS($this->_legendPos);
+        $this->generateLEGENDOVERLAY($this->_legendOverlay);
+        $this->generatePLOTVISONLY();
+
+        if (!isset($this->_border) || $this->_border == 0 || !is_numeric($this->_border)) {
+            $this->generateSPPR();
+            $this->generateLN();
+            $this->generateNOFILL();
+        } else {
+            $this->generateSPPR();
+            $this->generateLN($this->_border);
+        }
+
+        if ($this->_font != '') {
+            $this->generateTXPR();
+            $this->generateLEGENDBODYPR();
+            $this->generateLSTSTYLE();
+            $this->generateAP();
+            $this->generateAPPR();
+            $this->generateDEFRPR();
+            $this->generateRFONTS($this->_font);
+            $this->generateENDPARARPR();
+        }
+
+
+        $this->generateEXTERNALDATA();
+        $this->cleanTemplateDocument();
+        return $this->_xmlChart;
+    }
+
+    public function dataTag()
+    {
+        return array('xVal', 'yVal', 'bubbleSize');
+    }
+
+    /**
+     * retrun the type of the xlsx object
+     *
+     * @access public
+     */
+    public function getXlsxType()
+    {
+        return CreateBubbleXlsx::getInstance();
+    }
+
+}

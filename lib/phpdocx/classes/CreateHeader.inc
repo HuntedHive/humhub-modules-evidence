@@ -1,1 +1,114 @@
-rVXvT9swEP2ev8IfKiVhNAHEl6UMrYKOIZWuAqZJQ8jynCOJSJPIcQkI8b/vnLghP9qyjUWtGp+f7969e3INw93ZMcgOORHAJJAQmA8CAyr2mWMoSMUTIWQeZn7KH8twxvg9CwCjBGJYQCLzCp5mTyIKQknISf1qcZvMmODAyFyk/pLzKE0gJxfLWEYL8CNGrpypoxI0HyuUMvNctygK52Dhc4enC7usEkcckrys3sBkFT8Fc4tsyNNEIi9Xhsgvd2NFpUiF72YipTqDOlNmfACRIymV8WBv/9DZw89HXSu514TW10KUa/CY5blW8GspIIFHLO+vgpNKJePZMFSqUnL1rH6QAhMa+yVNpZqA3mCcAybPRPSAm3U4l0xGXC/d8ldDSLVFBjRK8DXhQD6R2ffpdNQtjkNChFhy2WWzKrr8FXeLlCFyt0y4VJJRyldJLLtEPBurEZYvL72qp/D+oj78Vc26hgC5FAlKJKIk+KfKMr0qD/cqD2QY5cNj+riIUfBMQEAFZDHjYJkupTfj4c/bD5S65i4x8duA26M6iebX2Bz9WUdN823ta711qja1c+puA5Dn2kO9dqM7YuUQ33le02iV0+wGTj19HEmgaHG2GiK8dOXont+gSfcOe9te6ioTbKH9QJgI8pu9284mE4I9VXv7t1vdwVsNbfWHab72O1C5MabyUNScqrUSpHEW7xNEVA1e48LzWsMZtaHDY14jrYFua7cqhE204CWrABIQivvppdXf1ZxRpdrSrfmqx6T0bDKbXI6vJ5iEUrS4Vclqa/rOOkyjQp3S3jTfM82ShL4gMr2HZNOQBd6hXILfuSB1tOnwRt/bB9bh3lqeX5xhN2/SLrzsfxGe9+lqnkcmKt362/G82fhicjUfn0x+fLs8JU5/eF52/NrQnNIj991Zqgm3TLzJTOt8gah1lySq+2L8Bg==
+<?php
+
+/**
+ * Create header
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateHeader extends CreateElement
+{
+
+    /**
+     *
+     * @var CreateFooter
+     * @access private
+     * @static
+     */
+    private static $_instance = NULL;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     *
+     * @return string
+     * @access public
+     */
+    public function __toString()
+    {
+        $this->_xml = preg_replace('/__[A-Z]+__/', '', $this->_xml);
+        return $this->_xml;
+    }
+
+    /**
+     *
+     * @return CreateHeader
+     * @access public
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateHeader();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Create header
+     *
+     * @access public
+     * @param string args[0]
+     * @param array args[1]
+     */
+    public function createHeader()
+    {
+        $this->_xml = '';
+        $args = func_get_args();
+
+        $text = CreateText::getInstance();
+        $text->createText($args[0], $args[1]);
+        $this->generateHDR();
+        $this->_xml = str_replace(
+                '__GENERATEHDR__', (string) $text . '__GENERATEHDR__', $this->_xml
+        );
+    }
+
+    /**
+     * Generate hdr token
+     *
+     * @access protected
+     */
+    protected function generateHDR()
+    {
+        $this->_xml = '__GENERATEHDR____GENERATEHDRIMG__';
+    }
+
+    /**
+     * Generate w:p
+     *
+     * @access protected
+     */
+    protected function generateP()
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':p>__GENERATEP__</' . CreateElement::NAMESPACEWORD .
+                ':p>__GENERATEHDR__';
+
+        $this->_xml = str_replace('__GENERATEHDR__', $xml, $this->_xml);
+    }
+
+}

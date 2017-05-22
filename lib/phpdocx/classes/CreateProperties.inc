@@ -1,1 +1,186 @@
-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
+<?php
+
+/**
+ * Create properties
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateProperties extends CreateElement
+{
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private static $_instance = NULL;
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * Magic method, returns current XML
+     *
+     * @access public
+     * @return string Return current XML
+     */
+    public function __toString()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     * Singleton, return instance of class
+     *
+     * @access public
+     * @return CreateText
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateProperties();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Create properties
+     *
+     * @access public
+     * @param mixed $args[0], $args[1]
+     */
+    public function CreateProperties()
+    {
+        $generalProperties = array('title', 'subject', 'creator', 'keywords', 'description', 'category', 'contentStatus');
+        $nameSpaces = array('title' => 'dc', 'subject' => 'dc', 'creator' => 'dc', 'keywords' => 'cp', 'description' => 'dc', 'category' => 'cp', 'contentStatus' => 'cp');
+        $nameSpacesURI = array(
+            'dc' => 'http://purl.org/dc/elements/1.1/',
+            'cp' => 'http://schemas.openxmlformats.org/package/2006/metadata/core-properties',
+            'dcterms' => 'http://purl.org/dc/terms/'
+        );
+        $args = func_get_args();
+
+        //Let us load the contents of the file in a DOMDocument
+        $coreDocument = $args[1];
+
+        foreach ($args[0] as $key => $value) {
+            if (in_array($key, $generalProperties)) {
+                $coreNodes = $coreDocument->getElementsByTagName($key);
+                if ($coreNodes->length > 0) {
+                    $coreNodes->item(0)->nodeValue = $value;
+                } else {
+                    $strNode = '<' . $nameSpaces[$key] . ':' . $key . ' xmlns:' . $nameSpaces[$key] . '="' . $nameSpacesURI[$nameSpaces[$key]] . '">' . $value . '</' . $nameSpaces[$key] . ':' . $key . '>';
+                    $tempNode = $coreDocument->createDocumentFragment();
+                    $tempNode->appendXML($strNode);
+                    $coreDocument->documentElement->appendChild($tempNode);
+                }
+            }
+        }
+        return $coreDocument;
+    }
+
+    /**
+     * Create properties
+     *
+     * @access public
+     * @param mixed $args[0], $args[1]
+     */
+    public function createPropertiesApp()
+    {
+        $appProperties = array('Manager', 'Company');
+
+        $args = func_get_args();
+
+        //Let us load the contents of the file in a DOMDocument    
+        $appDocument = $args[1];
+
+        foreach ($args[0] as $key => $value) {
+            if (in_array($key, $appProperties)) {
+                $appNodes = $appDocument->getElementsByTagName($key);
+                if ($appNodes->length > 0) {
+                    $appNodes->item(0)->nodeValue = $value;
+                } else {
+                    $strNode = '<' . $key . '>' . $value . '</' . $key . '>';
+                    $tempNode = $appDocument->createDocumentFragment();
+                    $tempNode->appendXML($strNode);
+                    $appDocument->documentElement->appendChild($tempNode);
+                }
+            }
+        }
+        return $appDocument;
+    }
+
+    /**
+     * Create custom properties
+     *
+     * @access public
+     * @param mixed $args[0], $args[1]
+     */
+    public function createPropertiesCustom()
+    {
+        $tagName = array('text' => 'lpwstr', 'date' => 'filetime', 'number' => 'r8', 'boolean' => 'bool');
+
+        $args = func_get_args();
+        $customDocument = $args[1];
+
+        //Now we begin the insertion of the custom properties       
+        foreach ($args[0] as $key => $value) {
+
+            $myKey = array_keys($value);
+            $myValue = array_values($value);
+
+            if (array_key_exists($myKey[0], $tagName)) {
+
+                $customNodes = $customDocument->getElementsByTagName('property');
+                $numberNodes = $customNodes->length;
+                if ($myValue[0] === true) {
+                    $myValue[0] = 1;
+                } else if ($myValue[0] === false) {
+                    $myValue[0] = 0;
+                }
+                if ($numberNodes > 0) {
+                    for ($j = 0; $j < $numberNodes; $j++) {
+                        if ($customNodes->item($j)->getAttribute('name') == $key) {
+                            $customNodes->item($j)->firstChild->nodeValue = $myValue[0];
+                        } else {
+                            $strNode = '<property fmtid="{D5CDD505-2E9C-101B-9397-08002B2CF9AE}" pid="' . rand(999, 99999999) . '" name="' . $key . '"><vt:' . $tagName[$myKey[0]] . ' xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" temp="xxx">' . (string) $myValue[0] . '</vt:' . $tagName[$myKey[0]] . '></property>';
+                        }
+                    }
+                } else {
+                    $strNode = '<property fmtid="{D5CDD505-2E9C-101B-9397-08002B2CF9AE}" pid="' . rand(999, 99999999) . '" name="' . $key . '"><vt:' . $tagName[$myKey[0]] . ' xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes"  temp="xxx">' . (string) $myValue[0] . '</vt:' . $tagName[$myKey[0]] . '></property>';
+                }
+                if ($strNode != '') {
+                    $tempNode = $customDocument->createDocumentFragment();
+                    $tempNode->appendXML($strNode);
+                    $customDocument->documentElement->appendChild($tempNode);
+                }
+            }
+        }
+        $propData = str_replace('xmlns:vt="http://schemas.openxmlformats.org/officeDocument/2006/docPropsVTypes" temp="xxx">', '>', $customDocument->saveXML());
+        return $propData;
+    }
+
+}

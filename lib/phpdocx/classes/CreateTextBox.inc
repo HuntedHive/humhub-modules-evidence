@@ -1,1 +1,417 @@
-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
+<?php
+
+/**
+ * Create text box
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateTextBox extends CreateElement
+{
+
+    const NAMESPACEWORD = 'v';
+    const NAMESPACETEXTBOX = 'w10';
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_align;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_b;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_border;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_border_color;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_color;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_fillColor;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_font;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_height;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_i;
+
+    /**
+     *
+     * @access private
+     * @static
+     * @var CreateTextBox
+     */
+    private static $_instance = NULL;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_jc;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_marginBottom;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_marginLeft;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_marginRight;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_marginTop;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_pageBreakBefore;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_sz;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_text;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_textJc;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_u;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_widowControl;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_width;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_wordWrap;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_padding_top;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_padding_right;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_padding_bottom;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_padding_left;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        $this->_text = '';
+        $this->_marginTop = '';
+        $this->_marginBottom = '';
+        $this->_marginRight = '';
+        $this->_marginLeft = '';
+        $this->_width = '';
+        $this->_height = '';
+        $this->_align = '';
+        $this->_fillColor = '';
+        $this->_jc = '';
+        $this->_textJc = '';
+        $this->_b = '';
+        $this->_color = '';
+        $this->_i = '';
+        $this->_sz = '';
+        $this->_u = '';
+        $this->_pageBreakBefore = '';
+        $this->_widowControl = '';
+        $this->_wordWrap = '';
+        $this->_font = '';
+        $this->_border = 1;
+        $this->_border_color = '#000000';
+        $this->_padding_top = "";
+        $this->_padding_right = "";
+        $this->_padding_bottom = "";
+        $this->_padding_left = "";
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * Magic method, returns current XML
+     *
+     * @access public
+     * @return string Return current XML
+     */
+    public function __toString()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     * Singleton, return instance of class
+     *
+     * @access public
+     * @return CreateTextBox
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateTextBox();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Create textbox
+     *
+     * @access public
+     * @param array $textboxContent
+     * @param array $options
+     */
+    public function createTextBox($textboxContent, $options = array())
+    {
+        //set default values
+        if (!isset($options['border'])) {
+            $options['border'] = true;
+        }
+        if (!isset($options['textWrap'])) {
+            $options['textWrap'] = 'square';
+        }
+        if (!isset($options['align'])) {
+            $options['align'] = 'left';
+        }
+        if (isset($options['paddingBottom'])) {
+            $paddingBottom = $options['paddingBottom'] . 'mm';
+        } else {
+            $paddingBottom = '1.3mm';
+        }
+        if (isset($options['paddingTop'])) {
+            $paddingTop = $options['paddingTop'] . 'mm';
+        } else {
+            $paddingTop = '1.3mm';
+        }
+        if (isset($options['paddingLeft'])) {
+            $paddingLeft = $options['paddingLeft'] . 'mm';
+        } else {
+            $paddingLeft = '2.5mm';
+        }
+        if (isset($options['paddingRight'])) {
+            $paddingRight = $options['paddingRight'] . 'mm';
+        } else {
+            $paddingRight = '2.5mm';
+        }
+        if (isset($options['width'])) {
+            $width = $options['width'] . 'pt';
+        } else {
+            $width = '180pt';
+        }
+        if (isset($options['height']) && $options['height'] != 'auto') {
+            $height = $options['height'] . 'pt';
+        } else if (isset($options['height']) && $options['height'] == 'auto') {
+            $height = '140pt';
+        } else if (!isset($options['height'])) {
+            $height = '140pt';
+            $options['height'] = 'auto';
+        }
+        $inset = $paddingLeft . ',' . $paddingTop . ',' . $paddingRight . ',' . $paddingBottom;
+        $this->_xml = '<w:p><w:r><w:pict>';
+        $this->_xml .= $this->generateSHAPE($options, $width, $height);
+        $this->_xml .= '<v:textbox inset="' . $inset . '"';
+        if ($options['height'] == 'auto') {
+            $this->_xml .= ' style="mso-fit-shape-to-text:t"';
+        }
+        $this->_xml .= ' >';
+        $this->_xml .= '<w:txbxContent>';
+        $this->_xml .= $textboxContent;
+        $this->_xml .= '</w:txbxContent></v:textbox>';
+        $this->_xml .= $this->generateWRAP($options['textWrap']);
+        $this->_xml .= '</v:shape></w:pict></w:r></w:p>';
+
+        return $this->_xml;
+    }
+
+    /**
+     * Generate w.shap tag
+     *
+     * @access private
+     * @param array $options
+     * @param string $width
+     * @param string $height
+     * @return string
+     */
+    private function generateSHAPE($options, $width, $height)
+    {
+        $align = array('left', 'center', 'right');
+        $vAlign = array('top', 'center', 'bottom');
+        $shape = '<v:shape id="_x0000_s' . rand(1000, 999999) . '" type="#_x0000_t202" style="';
+        if (in_array($options['align'], $align)) {
+            $shape .= 'position:absolute;';
+            $shape .= 'mso-position-horizontal:' . $options['align'] . ';';
+        }
+        
+        if (isset($options['margin_top']) && !empty($options['margin_top'])) {
+            $shape .= 'margin-top:' . $options['margin_top'] * 28.3464567 . 'pt;';
+        }
+        if (isset($options['margin_left']) && !empty($options['margin_left'])) {
+            $shape .= 'margin-left:' . $options['margin_left'] * 28.3464567 . 'pt;';
+        }
+        if (isset($options['margin_bottom']) && !empty($options['margin_bottom'])) {
+            $shape .= 'margin-bottom:' . $options['margin_bottom'] * 28.3464567 . 'pt;';
+        }
+        if (isset($options['margin_right']) && !empty($options['margin_right'])) {
+            $shape .= 'margin-right:' . $options['margin_right'] * 28.3464567 . 'pt;';
+        }
+
+        $shape .= 'width:' . $width . ';height:' . $height . ';';
+        $shape .= 'z-index:' . rand(11111111, 999999999) . ';';
+        if (in_array($options['contentVerticalAlign'], $vAlign)) {
+            $shape .= 'v-text-anchor:' . $options['contentVerticalAlign'] . ';';
+        }
+        $shape .= '" '; //close the style attribute
+        if (isset($options['fillColor'])) {
+            $shape .= 'fillcolor="' . $options['fillColor'] . '" ';
+        }
+        if (isset($options['borderColor'])) {
+            $shape .= 'strokecolor="' . $options['borderColor'] . '" ';
+        }
+        if (isset($options['borderWidth'])) {
+            $shape .= 'strokeweight="' . $options['borderWidth'] . 'pt" ';
+        }
+        if (empty($options['border'])) {
+            $shape .= 'stroked="false" ';
+        }
+        $shape .= ' >';
+
+        return $shape;
+    }
+
+    /**
+     * Generate w10:wrap tag
+     *
+     * @access private
+     * @param string $textWrap
+     * @return string
+     */
+    private function generateWRAP($textWrap = 'square')
+    {
+        return '<w10:wrap type="' . $textWrap . '" />';
+    }
+
+}

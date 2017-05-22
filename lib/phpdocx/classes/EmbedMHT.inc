@@ -1,1 +1,123 @@
-pVVtT9swEP6eX3GqkNrCSDo0TVoZE6itBlpbEC0a3yrjXBKLxI5sh4AQ/312kmalaQd0VqT45e557s0+x/H29x3Yh4FEohGGl4NbCKRIYHI+h4DFaA7t+Sk1x6GQTwBwFaW+oI/FdkroPQnR7ALGmCDXan1fS8JVIGRS4oj0SbIw0gCDetqhXZgSSZHAlRR+RikTHBVMslizBH1GYOaOXQuwOjqR1mnf8/I8d48Sn7pUJN2CJWYUuSroV2TS0nAr5uXpIRVcG4M9HRnDlRdbU3IhfS+VYlEhWJ0C8QGlMkZZxKPe5y9uz3zfKi5+Xxm0mctIeQ6NiVIwSu7Qt6HFR0PtqyruozJ0wJK0CmIpORQ0s0vn2XEsfpEsO5Y/OCWUogFOJXswQPX2A5HAjGK59op/JQN7C+bDCfSOdwFVWjIebsRVmmhGLTw3U07RkExvxuN38AiNVKP/NlMlaEgek9jgt9sNdFNXhl9mVG+jy+5Mdl8DF1sQZJxqm+XFgi5BOt1C4tlZVl0xeWmwDvH/SX38GOeEhAYgQR0J/xNI1JnkCmgmpa2m28n4PcbAaalYBRyuy1UTZZvVWswKzYbVFe6ejpg6/GEzdrzFkZlRj1ELvvQC6hoSARR350OulNdqbm5ZfVJW5yZXqrqtPQpRX1TsDZdYAB2FcdDvr5Z5WefdFTk7mnLAMa/fgE73uBZ/WY/Zuu62wP1ErVG660k7n0/GcDH8UMwaz8Vaom1Y/LdyzPxtlhZul4YxXjSa3W8KWqzOXkI0jWYik0VsAxIrXDdvpfaq12L9hPkHB43dEDlKU0Fn4/ng/Gb6a5mrTQkoJSHvk1gPoozfv/OV2xblNeYdvPzeBvd1Z+n3p2eT0ezqbDD6fXk9BPdVodrRrs0H2Wf+SUuaEr3wLdLfSJlFuwXtTeqGmqu+PGlVPVBR01WJckWK3JzZ/k+0WcrQ26gvgsB03GXD8456va+exJjYoKiIpeqfvPnOvLbhm8zYDJk3KIlL5oQw3gLvR7tO+4vzBw==
+<?php
+
+/**
+ * Create DOCX from MHT file
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @package    transform
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class EmbedMHT extends CreateElement implements EmbedDocument
+{
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_id = 0;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private static $_instance = NULL;
+
+    /**
+     *
+     * @access protected
+     * @var string
+     */
+    protected $_xml = '';
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * Magic method, returns current XML
+     *
+     * @access public
+     * @return string Return current XML
+     */
+    public function __toString()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     * Singleton, return instance of class
+     *
+     * @access public
+     * @return CreateText
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new EmbedMHT();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Getter. Return current HTML ID
+     *
+     * @access public
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * Embed HTML in DOCX
+     *
+     * @access public
+     */
+    public function embed($matchSource = false)
+    {
+        $this->_xml = '';
+        $this->_id++;
+        $this->generateALTCHUNK();
+    }
+
+    /**
+     * Generate w:altChunk
+     *
+     * @access protected
+     */
+    public function generateALTCHUNK($matchSource = false)
+    {
+        $this->_xml = '<' . CreateElement::NAMESPACEWORD .
+                ':altChunk r:id="rMHTId' . $this->_id . '" ' .
+                'xmlns:r="http://schemas.openxmlformats.org/' .
+                'officeDocument/2006/relationships" ' .
+                'xmlns:w="http://schemas.openxmlformats.org/' .
+                'wordprocessingml/2006/main" />';
+    }
+
+}

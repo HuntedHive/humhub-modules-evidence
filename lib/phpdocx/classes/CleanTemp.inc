@@ -1,1 +1,63 @@
-lVLRauMwEHz3V2whYCdQq1fupQkFQ/t4dxSu70GV1rFaWRKSXF9p8+8nKU5jJ+nBLSFxVrMzo/FmGVksMljAPUr0CB5bA7WQ6IAqDrWWHK0rAyKCKkY9brR9A4CHxnDN/qS2oeyFbjB0gUmkaofV5s2KTeMB7j4fCzaHX9QypPBgNe8YE1oFsZ+d9KJFLij8Ln9EPRhX0XhvloT0fV9et5yVTLfzpCIFQ+WS9AhjduYijPTmkmnlUXniG2zRERmt9NpyYqxeDwxxJjG+hgsHU5Hx+urb9/IqfG4GLfUyGDqvFVAkY5I6B3cxh8eQZvaeZXEi5RxrEeJQztuO+aGx71eUMQyzxorXEPTQJul36EHdKeajvfWa7WmKeYK8Z/u40sP2RPce/y3bPYUspqqpNRbl+L+aaa9OVurYg6GWthC4hdrAzFDfwKMGnqbPWXKe+rGztHdFGjx2JmoohFtHCwNgPjqNVXUqvtvhdPV5tp1wXMx4A7dQaYOKC/sFl0XfWXWOo2+CAyiKmX56DjwWKU80PJAcs0S9He4W8jKHjw84/C3zY3isuORCdbianGxPaC8mt4UScpKH70h/YiOWQ1kvl6N8pyNfyQ2rkJxJ7XB/1QO+su0hxtV+f7bZXw==
+<?php
+
+/**
+ * Delete temp files and folders.
+ *
+ * @category   Phpdocx
+ * @package    clean
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CleanTemp
+{
+
+    /**
+     * Construct
+     *
+     * @access private
+     */
+    private function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * Delete files and folders
+     *
+     * @param string $path To delete
+     */
+    public static function clean($path)
+    {
+        if (is_file($path)) {
+            @unlink($path);
+        }
+        if (!$dh = @opendir($path)) {
+            return;
+        }
+        while (($obj = readdir($dh))) {
+            if ($obj == '.' || $obj == '..') {
+                continue;
+            }
+            if (!@unlink($path . '/' . $obj)) {
+                self::clean($path . '/' . $obj);
+            }
+        }
+
+        closedir($dh);
+        @rmdir($path);
+    }
+
+}

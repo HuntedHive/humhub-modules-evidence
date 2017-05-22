@@ -1,1 +1,30 @@
-bVK9bsIwEN79FDd0ANTGFHVpuyAhdeoPEg9QmcsRXBLbsi8NCPHutZ0QMdSyFOvu+zs7QsjZTMAMNrpxNcFOIVt/ugf0pJgC2O0PIQdgC6osQRuwvCcPVFNDhkPkJvoSI7qKTABY711p8ZjLTuFBVRSrV+kebd3J62rPAKvxOMEpfCqPpGDtbdkiamtihI+2Zt1QqRVsivciCdyuyZ7ZvUjZdV2xaEos0DbT7FJrJBOy+Q3G9fESTHbuAa3hOIiMUzUUZJ2idNaX0nn7PSgkTlb8JR9iqKS4mD8+FfO4nwcvcxgC/e8VUVJgrUKAVb7bt+E+zkIkVn6HtGZDH5QZbn+oX9tLhUhRxrXbmG+sOuVVA4G9NhXc8ckRfGU6pPMI88StN9DoI5VjMbDiUUrmb68OfQd2rUFOk/f/RS88yS7TDD+L63sMBoa6PsVk+pp7FyEu4g8=
+<?php
+
+/**
+ * Simple factory, creates objects to add in other elements
+ *
+ * @category   Phpdocx
+ * @package    factory
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateFactory
+{
+
+    /**
+     * Create an object
+     *
+     * @access public
+     * @param string $type Object type
+     * @return mixed
+     * @static
+     */
+    public static function createObject($type)
+    {
+        return new $type();
+    }
+
+}

@@ -1,1 +1,231 @@
-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
+<?php
+
+/**
+ * Create Of pie Chart
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateOfPieChart extends CreateGraphic implements InterfaceGraphic
+{
+
+    /**
+     * Create embedded xml chart
+     *
+     * @access public
+     */
+    public function createEmbeddedXmlChart()
+    {
+        $this->_xmlChart = '';
+        $this->generateCHARTSPACE();
+        $this->generateDATE1904(1);
+        $this->generateLANG();
+        $this->generateROUNDEDCORNERS($this->_roundedCorners);
+        $color = 2;
+        if ($this->_color) {
+            $color = $this->_color;
+        }
+        $this->generateSTYLE($color);
+        $this->generateCHART();
+        if ($this->_title != '') {
+            $this->generateTITLE();
+            $this->generateTITLETX();
+            $this->generateRICH();
+            $this->generateBODYPR();
+            $this->generateLSTSTYLE();
+            $this->generateTITLEP();
+            $this->generateTITLEPPR();
+            $this->generateDEFRPR();
+            $this->generateTITLER();
+            $this->generateTITLERPR();
+            $this->generateTITLET($this->_title);
+            $this->cleanTemplateFonts();
+        } else {
+            $this->generateAUTOTITLEDELETED();
+            $title = '';
+        }
+        if (strpos($this->_type, '3D') !== false) {
+            $this->generateVIEW3D();
+            $rotX = 30;
+            $rotY = 30;
+            $perspective = 30;
+            if ($this->_rotX != '') {
+                $rotX = $this->_rotX;
+            }
+            if ($this->_rotY != '') {
+                $rotY = $this->_rotY;
+            }
+            if ($this->_perspective != '') {
+                $perspective = $this->_perspective;
+            }
+            $this->generateROTX($rotX);
+            $this->generateROTY($rotY);
+            $this->generateRANGAX($this->_rAngAx);
+            $this->generatePERSPECTIVE($perspective);
+        }
+        if ($this->values == '') {
+            exit('You haven`t added data');
+        }
+        $this->generatePLOTAREA();
+        $this->generateLAYOUT();
+
+        $this->generateOFPIECHART();
+        $this->generateOFPIETYPE(!empty($this->_subtype) ? $this->_subtype : 'pie');
+        $this->generateVARYCOLORS();
+        if (isset($this->values['legend'])) {
+            $legends = array($this->_title);
+            $numValues = count($this->values) - 1;
+        } else {
+            $legends = array($this->_title);
+            $numValues = count($this->values);
+        }
+
+
+        $letter = 'A';
+        for ($i = 0; $i < count($legends); $i++) {
+            $this->generateSER();
+            $this->generateIDX($i);
+            $this->generateORDER($i);
+            $letter++;
+
+            $this->generateTX();
+            $this->generateSTRREF();
+            $this->generateF('Sheet1!$' . $letter . '$1');
+            $this->generateSTRCACHE();
+            $this->generatePTCOUNT();
+            $this->generatePT();
+            $this->generateV($legends[$i]);
+            $this->cleanTemplate2();
+
+            if (!empty($this->_showValue) || !empty($this->_showCategory)) {
+                $this->generateSERDLBLS();
+                if (!empty($this->_showValue)) {
+                    $this->generateSHOWVAL();
+                }
+                if (!empty($this->_showCategory)) {
+                    $this->generateSHOWCATNAME();
+                }
+                if (!empty($this->_showPercent)) {
+                    $this->generateSHOWPERCENT(1);
+                }
+            }
+
+            $this->generateCAT();
+            $this->generateSTRREF();
+            $this->generateF('Sheet1!$A$2:$A$' . ($numValues + 1));
+            $this->generateSTRCACHE();
+            $this->generatePTCOUNT($numValues);
+
+            $num = 0;
+            foreach ($this->values as $legend => $value) {
+                if ($legend == 'legend') {
+                    continue;
+                }
+                $this->generatePT($num);
+                $this->generateV($legend);
+                $num++;
+            }
+            $this->cleanTemplate2();
+            $this->generateVAL();
+            $this->generateNUMREF();
+            $this->generateF('Sheet1!$' . $letter . '$2:$B$' . ($numValues + 1));
+            $this->generateNUMCACHE();
+            $this->generateFORMATCODE();
+            $this->generatePTCOUNT($numValues);
+            $num = 0;
+            foreach ($this->values as $legend => $value) {
+                if ($legend == 'legend') {
+                    continue;
+                }
+                $this->generatePT($num);
+                $this->generateV($value[$i]);
+                $num++;
+            }
+            $this->cleanTemplate3();
+        }
+        $this->generateDLBLS();
+        $this->generateSHOWLEGENDKEY($this->_showLegendKey);
+        $this->generateSHOWVAL($this->_showValue);
+        $this->generateSHOWCATNAME($this->_showCategory);
+        $this->generateSHOWSERNAME($this->_showSeries);
+        $showPercent = 0;
+        if (!empty($this->_showPercent)) {
+            $showPercent = 1;
+        }
+        $this->generateSHOWPERCENT($showPercent);
+        if (!empty($this->_gapWidth)) {
+            $this->generateGAPWIDTH($this->_gapWidth);
+        }
+        else {
+            $this->generateGAPWIDTH();
+        }
+        if (!empty($this->_splitType)) {
+            $this->generateSPLITTYPE($this->_splitType);
+            if (!empty($this->_splitPos)) {
+                $this->generateSPLITPOS($this->_splitPos, $this->_splitType);
+            }
+            if ($this->_splitType == 'cust' && !empty($this->_custSplit) && is_array($this->_custSplit)) {
+                $this->generateCUSTSPLIT();
+                $this->generateSECONDPIEPT($this->_custSplit);
+            }
+        }
+
+        if (!empty($this->_secondPieSize)) {
+            $this->generateSECONDPIESIZE($this->_secondPieSize);
+        } else {
+            $this->generateSECONDPIESIZE();
+        }
+        $this->generateSERLINES();
+
+        $this->generateLEGEND();
+        $this->generateLEGENDPOS($this->_legendPos);
+        $this->generateLEGENDOVERLAY($this->_legendOverlay);
+        $this->generatePLOTVISONLY();
+
+        if ((empty($this->_border) || $this->_border == 0 || !is_numeric($this->_border))
+        ) {
+            $this->generateSPPR();
+            $this->generateLN();
+            $this->generateNOFILL();
+        } else {
+            $this->generateSPPR();
+            $this->generateLN($this->_border);
+        }
+
+        if ($this->_font != '') {
+            $this->generateTXPR();
+            $this->generateLEGENDBODYPR();
+            $this->generateLSTSTYLE();
+            $this->generateAP();
+            $this->generateAPPR();
+            $this->generateDEFRPR();
+            $this->generateRFONTS($this->_font);
+            $this->generateENDPARARPR();
+        }
+
+        $this->generateEXTERNALDATA();
+        $this->cleanTemplateDocument();
+        return $this->_xmlChart;
+    }
+
+    public function dataTag()
+    {
+        return array('val');
+    }
+
+    /**
+     * retun the type of the xlsx object
+     *
+     * @access public
+     */
+    public function getXlsxType()
+    {
+        return CreateSimpleXlsx::getInstance();
+    }
+
+}
