@@ -446,7 +446,7 @@ class Evidence extends Object
             //1ST TABLE ROW DATA AND PARAMS
             $firstRow = new \WordFragment(self::$docx);
             $text = array();
-            $text[] = array('text' => sprintf('Contribution %d - %s', $C['index'], $C['activity_type']), 'bold' => true, 'fontSize' => 10, 'color' => 'ffffff');
+            $text[] = array('text' => sprintf('Contribution %d - %s', $C['index'], $C['activity_type']), 'bold' => true, 'fontSize' => 11, 'color' => 'ffffff');
             $firstRow->addText($text);
 
             $contribution = array(
@@ -459,7 +459,7 @@ class Evidence extends Object
             //2ND TABLE ROW DATA AND PARAMS
             $secondRow = new \WordFragment(self::$docx);
             $text = array();
-            $text[] = array('text' => 'APST standard description', 'bold' => true, 'fontSize' => 10, 'color' => '333333');
+            $text[] = array('text' => 'APST standard description', 'bold' => true, 'fontSize' => 11, 'color' => '333333');
             $secondRow->addText($text);
 
             $apstDescHead = array(
@@ -474,7 +474,7 @@ class Evidence extends Object
 
             //!! this style is applied to all data rows - 3, 5, 7, 9
             self::$docx->createParagraphStyle('cellContents', [
-                'fontSize' => 20,
+                'fontSize' => 22,
                 'color' => '333333',
             ]);
             $thirdRow->embedHTML(
@@ -498,7 +498,7 @@ class Evidence extends Object
             //4TH TABLE ROW DATA AND PARAMS
             $fourthRow = new \WordFragment(self::$docx);
             $text = array();
-            $text[] = array('text' => 'Artefact to be used as evidence', 'bold' => true, 'fontSize' => 10, 'color' => '333333');
+            $text[] = array('text' => 'Artefact to be used as evidence', 'bold' => true, 'fontSize' => 11, 'color' => '333333');
             $fourthRow->addText($text);
 
             $artefactHead = array(
@@ -528,7 +528,7 @@ class Evidence extends Object
             //6TH TABLE ROW DATA AND PARAMS
             $sixthRow = new \WordFragment(self::$docx);
             $text = array();
-            $text[] = array('text' => 'Description of how the artefact demonstrates impact upon teaching and/or student learning', 'bold' => true, 'fontSize' => 10, 'color' => '333333');
+            $text[] = array('text' => 'Description of how the artefact demonstrates impact upon teaching and/or student learning', 'bold' => true, 'fontSize' => 11, 'color' => '333333');
             $sixthRow->addText($text);
 
             $descrArtefactImpactHead = array(
@@ -557,7 +557,7 @@ class Evidence extends Object
             //8TH TABLE ROW DATA AND PARAMS
             $eighthRow = new \WordFragment(self::$docx);
             $text = array();
-            $text[] = array('text' => 'Description of how the artefact presented meets the standard described. (Can be filled out later)', 'bold' => true, 'fontSize' => 10, 'color' => '333333');
+            $text[] = array('text' => 'Description of how the artefact presented meets the standard described. (Can be filled out later)', 'bold' => true, 'fontSize' => 11, 'color' => '333333');
             $eighthRow->addText($text);
 
             $descArtefactMeetsStandardsHead = array(
