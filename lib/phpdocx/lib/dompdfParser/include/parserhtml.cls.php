@@ -436,7 +436,11 @@ class PARSERHTML {
 			$str = str_replace("\r\n"," ",$str);
 			$str = str_replace("\n"," ",$str);
 			$str = preg_replace( '/\s+/', ' ', $str );
-			@$doc->loadHTML($str);
+            @$doc->loadHTML('<?xml encoding="utf-8"?>'.$str);
+            foreach ($doc->childNodes as $item)
+                if ($item->nodeType == XML_PI_NODE)
+                    $doc->removeChild($item); // remove hack
+            $doc->encoding = 'UTF-8'; // insert proper
 			$str = @$doc->saveHTML();
 		}
 
