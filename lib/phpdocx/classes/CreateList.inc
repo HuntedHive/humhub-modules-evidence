@@ -1,1 +1,427 @@
-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
+<?php
+
+/**
+ * Create lists
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateList extends CreateElement
+{
+
+    /**
+     * Max depth
+     */
+    const MAXDEPTH = 8;
+
+    /**
+     *
+     * @var mixed
+     * @access public
+     */
+    public $list;
+
+    /**
+     *
+     * @var array
+     * @access public
+     */
+    public $val;
+
+    /**
+     *
+     * @var string
+     * @access public
+     */
+    public $font;
+
+    /**
+     *
+     * @var array
+     * @access public
+     */
+    public $data;
+
+    /**
+     * @access private
+     * @var CreateList
+     * @static
+     */
+    private static $_instance = NULL;
+
+    /**
+     *
+     * @access private
+     * @var int
+     * @static
+     */
+    private static $_numericList = -1;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     *
+     * @access public
+     * @return string
+     */
+    public function __toString()
+    {
+        $this->cleanTemplate();
+        return $this->_xml;
+    }
+
+    /**
+     *
+     * @access public
+     * @return CreateList
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateList();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Create list
+     *
+     * @access public
+     * @param array args[0]
+     * @param array args[1]
+     */
+    public function createList()
+    {
+        $this->_xml = '';
+        $args = func_get_args();
+        $this->list = '';
+        if (!isset($args[1]['font'])) {
+            $args[1]['font'] = '';
+        }
+        if ($args[1]['val'] == 2) {
+            self::$_numericList++;
+            $this->runArray(
+                    $args[0], $args[1]['val'], 0, //before it was 1: changed
+                    $args[1]
+            );
+        } else {
+            $this->runArray($args[0], $args[1]['val'], 0, $args[1]);
+        }
+
+        $this->_xml = $this->list;
+    }
+
+    /**
+     * Init list
+     *
+     * @access public
+     * @param array $args[0]
+     */
+    public function initList()
+    {
+        $args = func_get_args();
+        $this->val = $args[0][1]['val'];
+        $this->data = $args[0][0];
+    }
+
+    /**
+     * Add list
+     *
+     * @param string $list
+     * @access protected
+     */
+    protected function add2List($list)
+    {
+        $this->_xml = str_replace('__GENERATER__', $list, $this->_xml);
+    }
+
+    /**
+     * Generate w:ilfo
+     *
+     * @param int $val
+     * @access protected
+     */
+    protected function generateILFO($val = 0)
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':ilfo ' . CreateElement::NAMESPACEWORD .
+                ':val="' . $val .
+                '"></' . CreateElement::NAMESPACEWORD .
+                ':ilfo>';
+        $this->_xml = str_replace('__GENERATEILFO__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:ilvl
+     *
+     * @param string $val
+     * @access protected
+     */
+    protected function generateILVL($val = '')
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':ilvl ' . CreateElement::NAMESPACEWORD .
+                ':val="' . $val . '"></' . CreateElement::NAMESPACEWORD .
+                ':ilvl>__GENERATEPSTYLE__';
+        $this->_xml = str_replace('__GENERATEPSTYLE__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:ind
+     *
+     * @access protected
+     */
+    protected function generateIND($left = '720')
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':ind w:left="' . $left . '" w:hanging="360"/>';
+
+        $this->_xml = str_replace('__GENERATEIND__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:listpr
+     *
+     * @access protected
+     */
+    protected function generateLISTPR()
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':listPr>__GENERATEILVL____GENERATEILFO__</' .
+                CreateElement::NAMESPACEWORD . ':listPr>__GENERATER__';
+        $this->_xml = str_replace('__GENERATER__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:lvl
+     *
+     * @access protected
+     */
+    protected function generateLVL($current)
+    {
+        $this->_xml = '<' . CreateElement::NAMESPACEWORD . ':lvl
+                w:ilvl="' . $current . '" w:tplc="0C0A0001">__GENERATESTART__</' .
+                CreateElement::NAMESPACEWORD . ':lvl>';
+    }
+
+    /**
+     * Generate w:lvlJc
+     *
+     * @access protected
+     */
+    protected function generateLVLJC()
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':lvlJc w:val="left"/>__generatePPRS__';
+
+        $this->_xml = str_replace('__GENERATELVLJC__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:lvlText
+     *
+     * @access protected
+     */
+    protected function generateLVLTEXT($bullet = '')
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':lvlText w:val="' . $bullet . '"/>__GENERATELVLJC__';
+
+        $this->_xml = str_replace('__GENERATELVLTEXT__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:numFmt
+     *
+     * @access protected
+     */
+    protected function generateNUMFMT()
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD . ':numFmt ' .
+                CreateElement::NAMESPACEWORD .
+                ':val="bullet"/>__GENERATELVLTEXT__';
+
+        $this->_xml = str_replace('__GENERATENUMFMT__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:numid
+     *
+     * @param int $val
+     * @access protected
+     */
+    protected function generateNUMID($val)
+    {
+        if ($val == 2) {
+            $val = CreateDocx::$numOL;
+        } else if ($val === 0) {
+            $val = '';
+        } else if ($val == 1) {
+            $val = CreateDocx::$numUL;
+        }
+
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':numId ' . CreateElement::NAMESPACEWORD .
+                ':val="' . $val . '"></' . CreateElement::NAMESPACEWORD .
+                ':numId>';
+        $this->_xml = str_replace('__GENERATEPSTYLE__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:numpr
+     *
+     * @access protected
+     */
+    protected function generateNUMPR()
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':numPr>__GENERATEPSTYLE__</' . CreateElement::NAMESPACEWORD .
+                ':numPr>';
+        $this->_xml = str_replace('__GENERATEPSTYLE__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:ppr
+     *
+     * @access protected
+     */
+    protected function generatePPRS()
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD . ':pPr>__GENERATEIND__</' .
+                CreateElement::NAMESPACEWORD . ':pPr>__GENERATRPR__';
+
+        $this->_xml = str_replace('__generatePPRS__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:pstyle
+     *
+     * @param string $val
+     * @access protected
+     */
+    protected function generatePSTYLE($val = 'Textonotaalfinal')
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':pStyle ' . CreateElement::NAMESPACEWORD . ':val="' . $val .
+                '"/>__GENERATEPSTYLE__';
+        $this->_xml = str_replace('__GENERATEPPR__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:rfonts
+     *
+     * @param string $font
+     * @access protected
+     */
+    protected function generateRFONTSTYLE($font = 'Symbol')
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD .
+                ':rFonts ' . CreateElement::NAMESPACEWORD .
+                ':ascii="' . $font . '" ' . CreateElement::NAMESPACEWORD .
+                ':hAnsi="' . $font . '" ' . CreateElement::NAMESPACEWORD .
+                ':hint="default"/>';
+
+        $this->_xml = str_replace('__GENERATERFONTS__', $xml, $this->_xml);
+    }
+
+    /**
+     * Generate w:rpr
+     *
+     * @access protected
+     */
+    protected function generateRPRS()
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD . ':rPr>__GENERATERFONTS__</' .
+                CreateElement::NAMESPACEWORD . ':rPr>';
+
+        $this->_xml = str_replace('__GENERATRPR__', $xml, $this->_xml);
+    }
+
+    /**
+     * Recursive generation of lists
+     *
+     * @param array $dat
+     * @param string $val
+     * @param int $depth
+     * @param string $font
+     * @access protected
+     */
+    protected function runArray($dat, $val, $depth, $options = array())
+    {
+        foreach ($dat as $cont) {
+            if (is_array($cont)) {
+                $newDepth = $depth + 1;
+                $this->runArray($cont, $val, $newDepth, $options);
+            } else {
+                $this->generateP();
+                $this->generatePPR();
+                $this->generatePSTYLE('ListParagraphPHPDOCX');
+                $this->generateNUMPR();
+                //$this->generateLISTPR();
+                $this->generateILFO();
+                $this->generateILVL($depth);
+                $this->generateNUMID($val);
+                if ($cont instanceof DOCXPathResult) {
+                    $runContent = $cont->inlineXML();
+                    $this->add2List((string) $runContent);
+                    $this->list .= $this->_xml;
+                } else if ($cont instanceof WordFragment) {
+                    $runContent = $cont->inlineWordML();
+                    $this->add2List((string) $runContent);
+                    $this->list .= $this->_xml;
+                } else {
+                    if (count($options) == 1) {
+                        $this->generateR();
+                        $this->generateT($cont);
+
+                        $this->list .= $this->_xml;
+                    } else {
+                        $wf = new WordFragment();
+                        $wf->addText($cont, $options);
+                        $runContent = $wf->inlineWordML();
+                        $this->add2List((string) $runContent);
+                        $this->list .= $this->_xml;
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Generate w:start
+     *
+     * @access protected
+     */
+    protected function generateSTART($x = null, $y = null)
+    {
+        $xml = '<' . CreateElement::NAMESPACEWORD . ':start ' .
+                CreateElement::NAMESPACEWORD . ':val="1"/>__GENERATENUMFMT__';
+
+        $this->_xml = str_replace('__GENERATESTART__', $xml, $this->_xml);
+    }
+
+}

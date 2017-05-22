@@ -1,1 +1,260 @@
-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
+<?php
+
+/**
+ * Repair docx files cleaning, removing or adding content
+ *
+ * @category   Phpdocx
+ * @package    parser
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class Repair
+{
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private static $_instance = NULL;
+
+    /**
+     *
+     * @access private
+     * @var array
+     */
+    private $_xml = array();
+
+    /**
+     * Construct
+     *
+     * @access private
+     */
+    private function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * Magic method, returns current XML
+     *
+     * @access public
+     * @return string Return current XML
+     */
+    public function __toString()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     * Singleton, return instance of class
+     *
+     * @access public
+     * @return CreateText
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new Repair();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Getter XML
+     *
+     * @access public
+     */
+    public function getXML()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     * Setter XML
+     *
+     * @access public
+     */
+    public function setXML($xml)
+    {
+        $this->_xml = $xml;
+    }
+
+    /**
+     * Add a paragraph to each element in a table that needs it and betweeen
+     * tables
+     * 
+     * @access public
+     * @param  $path File path
+     */
+    public function addParapraphEmptyTablesTags()
+    {
+        // add parapraph to <w:tc></w:tc>
+        $this->_xml = preg_replace('/<w:tc>[\s]*?<\/w:tc>/', '<w:tc><w:p /></w:tc>', $this->_xml);
+
+        // add parapraph to </w:tbl></w:tc>
+        $this->_xml = preg_replace('/<\/w:tbl>[\s]*?<\/w:tc>/', '</w:tbl><w:p /></w:tc>', $this->_xml);
+
+        // add parapraph to </w:tbl><w:tbl>
+        $this->_xml = preg_replace('/<\/w:tbl>[\s]*?<w:tbl>/', '</w:tbl><w:p /><w:tbl>', $this->_xml);
+    }
+
+    /**
+     * Add a paragraph to each element in a table that needs it and betweeen
+     * tables
+     * 
+     * @access public
+     * @param  $docXML string
+     * @static
+     */
+    public static function repairTablesPDFConversion($docXML)
+    {
+        $docDOM = new DOMDocument();
+        $docDOM->loadXML($docXML);
+        $tblNodes = $docDOM->getElementsByTagName('tbl');
+        foreach ($tblNodes as $tblNode) {
+            //0. Check if there is a table grid element with well defined vals
+            $repairTable = false;
+            $tblGridNodes = $tblNode->getElementsByTagName('tblGrid');
+            if ($tblGridNodes->length > 0) {
+                $gridColNodes = $tblGridNodes->item(0)->getElementsByTagName('gridCol');
+                foreach ($gridColNodes as $gridNode) {
+                    $wAttribute = $gridNode->getAttribute('w:w');
+                    if (empty($wAttribute)) {
+                        $repairTable = true;
+                    }
+                }
+            } else {
+                $repairTable = true;
+            }
+            //1. Determine the total table width
+            $tblWNodes = $tblNode->getElementsByTagName('tblW');
+            if ($tblWNodes->length > 0) {
+                //check if the width is given in twips
+                $widthUnits = $tblWNodes->item(0)->getAttribute('w:type');
+                if ($widthUnits == 'dxa') {
+                    $tableWidth = $tblWNodes->item(0)->getAttribute('w:w');
+                } else {
+                    $tableWidth = false;
+                    PhpdocxLogger::logger('For proper conversion to PDF, tables may not have their width set in percentage.', 'info');
+                }
+            } else {
+                $tableWidth = false;
+                PhpdocxLogger::logger('For proper conversion to PDF, tables have to have their width set.', 'info');
+            }
+            if (!empty($tableWidth) && $repairTable) {
+                //2. Extract the rows
+                $tableRows = $tblNode->getElementsByTagName('tr');
+                $rowNumber = 0;
+                $grid = array();
+                foreach ($tableRows as $row) {
+                    $grid[$rowNumber] = array();
+                    $weights[$rowNumber] = array();
+                    //3. Extract the cells of each row
+                    $cellNodes = $row->getElementsByTagName('tc');
+                    foreach ($cellNodes as $cellNode) {
+                        $gridSpan = 1;
+                        $spanNodes = $cellNode->getElementsByTagName('gridSpan');
+                        if ($spanNodes->length > 0) {
+                            $span = $spanNodes->item(0)->getAttribute('w:val');
+                            if (isset($span) && $span > 1) {
+                                $gridSpan = $span;
+                            }
+                        }
+                        $tcWidths = $cellNode->getElementsByTagName('tcW');
+                        if ($tcWidths->length > 0) {
+                            $widthData = $tcWidths->item(0)->getAttribute('w:w');
+                            $widthUnits = $tcWidths->item(0)->getAttribute('w:type');
+                            if ($widthUnits == 'dxa') {
+                                $cellWidth = $widthData;
+                            } else if ($widthUnits == 'pct') {
+                                //the width is given in fitieths of a percent
+                                $cellWidth = floor($widthData * $tableWidth / 5000);
+                            } else {
+                                $cellWidth = 0;
+                            }
+                        } else {
+                            $cellWidth = 0;
+                        }
+                        //let us build the grid and weight arrays for this cell
+                        if ($gridSpan > 1) {
+                            $cellWidth = floor($cellWidth / $gridSpan);
+                            for ($j = 0; $j < $gridSpan; $j++) {
+                                $grid[$rowNumber][] = $cellWidth;
+                                $weights[$rowNumber][] = 0;
+                            }
+                        } else {
+                            $grid[$rowNumber][] = $cellWidth;
+                            $weights[$rowNumber][] = 1;
+                        }
+                    }
+                    $rowNumber++;
+                }
+                //we have now all the required info to build the gridCol array
+                $gridCol = array();
+                $rowPos = 0;
+                foreach ($grid as $row) {
+                    $cellPos = 0;
+                    foreach ($row as $cell) {
+                        if ($weights[$rowPos][$cellPos] == 1 && !empty($grid[$rowPos][$cellPos])) {
+                            $gridCol[$cellPos] = $grid[$rowPos][$cellPos];
+                        } else if ($weights[$rowPos][$cellPos] == 0 && !empty($grid[$rowPos][$cellPos]) && empty($gridCol[$cellPos])) {
+                            $gridCol[$cellPos] = $grid[$rowPos][$cellPos];
+                        }
+                        $cellPos++;
+                    }
+                    $rowPos++;
+                }
+                //create the tblGrid node node and insert it
+                $gridColXML = '<w:tblGrid xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">';
+                foreach ($gridCol as $col) {
+                    $gridColXML .= '<w:gridCol w:w="' . $col . '"/>';
+                }
+                $gridColXML .= '</w:tblGrid>';
+                //remove any previous tblGrid elements if any
+                $tblGridNodes = $tblNode->getElementsByTagName('tblGrid');
+                if ($tblGridNodes->length > 0) {
+                    $tblGridNodes->item(0)->parentNode->removeChild($tblGridNodes->item(0));
+                }
+                //insert this node just before the first tr node
+                $firstRow = $tblNode->getElementsByTagName('tr')->item(0);
+                $gridFragment = $docDOM->createDocumentFragment();
+                $gridFragment->appendXML($gridColXML);
+                $tblNode->insertBefore($gridFragment, $firstRow);
+            }
+        }
+        return $docDOM->saveXML();
+    }
+
+    /**
+     * Modifies the DOCXPath selections to avoid validation issues
+     * 
+     * @access public
+     * @param  DOMNode $node
+     * @static
+     */
+    public static function repairDOCXPath($node)
+    {
+        //modifies the id attribute of the wp:docPr tag to avoid potential conflicts
+        $docPrNodes = $node->getElementsByTagName('docPr');
+        foreach ($docPrNodes as $docPrNode) {
+            $docPrNode->setAttribute('id', rand(999999, 99999999));
+        }
+        return $node;
+    }
+
+}

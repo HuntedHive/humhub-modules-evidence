@@ -1,1 +1,37 @@
-nVDRSsMwFH3vV9zHrWAzhy/qy2CICCoD97A3yW5u27i2Ccmt3RD/3SSrQ1AQFgJNTs895+RkmcjzDHJ46JhcKZGgNA6wlo59wOOvBUqmyrgDAKxqqwzuE2wl7mRFAQVqqKUuTQS6sQenq5oBlqfjBKfwLB2ShJUzqkfUpiMPT33DuiWlJbwUj0UU+LkmNbO9EWIYhmLeKizQtNPk0mikzif3Hxx7zBdpYrAXaMKzOhZch3xeNDHKYJwS1pnXUSHOJMV3cj6Eiorz2eVVMQv7evTqdmOgv70CS2T6VOGpzHsnba0x+8iyOJy6jiuHpaPQKlC7JaVIwb5tjq2PhG/eQiKS92D7bcg7oiJ9jxCUfYccc2OSvBsVN22zjHqT6e0vc0fcuw5CK8Cy8jDU5ChdlWQJOiBOc2ju/DBRaC2rf9zN9o2QgQ82nMsE7Ru/P9+2It4EgXUQjNaf2Rc=
+<?php
+
+/**
+ * Interface for charts
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+interface InterfaceGraphic
+{
+
+    /**
+     * Create embedded xml chart
+     *
+     * @access public
+     */
+    public function createEmbeddedXmlChart();
+
+    /**
+     * return the tags where the data is written
+     *
+     * @access public
+     */
+    public function dataTag();
+
+    /**
+     * return the object type of the xlsx
+     *
+     * @access public
+     */
+    public function getXlsxType();
+}

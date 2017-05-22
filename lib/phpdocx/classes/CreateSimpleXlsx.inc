@@ -1,1 +1,181 @@
-7Vdtb+I4EP7Or5iTkJKWFkp1X7ZVV8u2dA8thQqy2zudVpXrGIga4sg2L71V//uOTQhJCCFce98uokrqmXnm8czYHlcqjePjChzDtWBEMVj6cgkjLiD02AnwEb6ATohQEpW03ieKamMuXgDgfhK6nC7NcEjoMxkzHAXmsykLjAWq8/BFeOOJAriOP216BD0iKCNwL7g7o9TjAZNwN/OVN2WuR2BY79Y1QPKxJ0qFF43GYrGon09dWqd8emS8+B5lgTTeEzrhip9WayzCU8oDhbwaaoL8ZMPXVBZcuI1Q8McIQdsYxDkTEklpxPOz5u/1M/x9iHwFzxGhfF+o1ahQn0gZRXXoTUOf/alDy5ZIwV0LzJARmoBBBwmKEaFGUPlZqWgnJkH6Qd+EUoawofDmaB4Pz4mIEG85R4hYIBVRHo3+bZh3ZAsrEVQfvQA/A8rgCnrfut3LrNct57MnP8aET4KpmQgSEyp0bmzXvkezgCod5DFTnYiFfWQUf1bWSfdGYEvmjy4uklRXXI8SevrZ1oOALbayYB9dxmav8Vc0kSzGSvV1KxfRgmFLynyQE8ZUuXiFRJApRkB4wRiqRIzl32c/MlIiBHmJhM0feRGMQ0cNjbZmMdQk7KpLlMwGsaomnjz9+Lic+hgTy9rMvyq9f9gNmuA45bNgDbDRwN2AETqBlQCIhKoXuHD1EfQAyebAAF5zPw1IEoD6eULM57ws7OeTdNC8zE5xzAImMCIP/cHX4R/ttpNMdkbnpnPX7g07/Z4dez3ZwO+2M7jfO+2HYQF4rFSk0+62r50UAaiVZnDbH9y1nPtBgYPrfreII4r3zeCm5bRSOoIv0oEvqI858bfKg3I/bW9GfaZw39K12bIyojSpQf/B1hzyE5U3R3sNXoeVoWXhn7SKzb7vTUmCd62WHt6EBCNgIoJvHJPZaLyBbz5nHd1TaObpoijLs2AKr3nBoT4jgcNwH40ykQ0H8s0C7Vzph9WNPgZWcqwRn+GUXSsvmvqQ94IZKzGbA0rqjUW7ndNm+RI0W11ttfBO4fy/qECZORRSQddz/+0qEZschBiluQ3yenjFV7MJyI/OekrvXew5VVxiASTOsPz6wiQ2d5wvGY9bAbI+W3FwzrOlU27n0t53G923vrTvWoMvnV7ReeG0Pnfb962BU0rJzvGXCmASJOq+Eo1KycaLCOZG7ZTMdmBleq2UtLmR5nVvJVowTWe4YnNwK6bIFLPG368VQ8A3dGJ76STwdzdiw6Fjb6BqG6Oa2ct2mnWKSsy2zqyk8YE9SJGrXHcarcxS38ca9FEe4p7FxJylZlCdyrGuB4fr+3aAN2m8poIwX3oJ410ccCozJk9wK9ja2CxXkLExeeJK8SmsLtqUC/Rt7U5OMV9NKidH772IFXny15fZQ25PhQv6wMuTozn8v2LjDXyzZk9iqz17Pt4mvt3h+ZFY4QUnTsLE1t0QFBxpSV19/KUXf57y0Pmr2+70bvs59f1vyve18gs=
+<?php
+
+/**
+ * Create xlsx for pie, ofpie charts
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateSimpleXlsx extends CreateXlsx implements InterfaceXlsx
+{
+
+    /**
+     * @access private
+     * @var CreateFooter
+     * @static
+     */
+    private static $_instance = NULL;
+
+    /**
+     *
+     * @access public
+     * @return CreateXlsx
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateSimpleXlsx();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Create excel sheet
+     *
+     * @access public
+     * @param string $args[0]
+     * @param array $args[1]
+     */
+    public function createExcelSheet($dats)
+    {
+        $this->_xml = '';
+        $sizeDats = count($dats);
+        foreach ($dats as $ind => $data) {
+            $sizeCols = count($data);
+            break;
+        }
+        $sizeDats = count($dats);
+        $sizeCols = 1;
+        $this->generateWORKSHEET();
+        $this->generateDIMENSION($sizeDats, $sizeCols);
+        $this->generateSHEETVIEWS();
+        $this->generateSHEETVIEW();
+        $this->generateSELECTION($sizeDats + $sizeCols);
+        $this->generateSHEETFORMATPR();
+        $this->generateCOLS();
+        $this->generateCOL();
+        $this->generateSHEETDATA();
+        $row = 1;
+        foreach ($dats as $ind => $val) {
+            $col = 1;
+            $letter = 'A';
+            $this->generateROW($row, $sizeCols);
+            $this->generateC($letter . $row, '', 's');
+            $this->generateV($sizeDats + $sizeCols);
+            $letter++;
+            foreach ($val as $valores) {
+                $this->generateC($letter . $row, '', 's');
+                $this->generateV($col - 1);
+                $col++;
+                $letter++;
+            }
+            $this->cleanTemplateROW();
+            $row++;
+            break;
+        }
+        foreach ($dats as $ind => $val) {
+            if ($ind == 'legend') {
+                continue;
+            }
+            $this->generateROW($row, $sizeCols);
+            $col = 1;
+            $letter = 'A';
+            $this->generateC($letter . $row, 1, 's');
+            $this->generateV($sizeCols + $row - 2);
+            $letter++;
+            foreach ($val as $valores) {
+                $s = '';
+                if ($col != $sizeCols) {
+                    $s = 1;
+                }
+                $this->generateC($letter . $row, $s);
+                $this->generateV($valores);
+                $col++;
+                $letter++;
+            }
+            $row++;
+            $this->cleanTemplateROW();
+        }
+        $this->generateROW($row + 1, $sizeCols);
+        $row++;
+        $this->generateC('B' . $row, 2, 's');
+        $this->generateV($sizeDats + $sizeCols + 1);
+        $this->generatePAGEMARGINS();
+        $this->generateTABLEPARTS();
+        $this->generateTABLEPART(1);
+        $this->cleanTemplate();
+        return $this->_xml;
+    }
+
+    /**
+     * Create excel shared strings
+     *
+     * @param string $args[0]
+     * @param string $args[1]
+     * @access public
+     */
+    public function createExcelSharedStrings($dats)
+    {
+        $this->_xml = '';
+        $tamDatos = count($dats);
+        foreach ($dats as $ind => $data) {
+            $tamCols = count($data);
+            break;
+        }
+        $tamDatos = count($dats);
+        $tamCols = 1;
+        $this->generateSST($tamDatos + $tamCols + 2);
+
+        $this->generateSI();
+        $this->generateT('0');
+
+        foreach ($dats as $ind => $val) {
+            $this->generateSI();
+            $this->generateT($ind);
+        }
+        $this->generateSI();
+        $this->generateT(' ', 'preserve');
+
+        $msg = 'To change the range size of values,' .
+                'drag the bottom right corner';
+        $this->generateSI();
+        $this->generateT($msg);
+
+        $this->cleanTemplate();
+        return $this->_xml;
+    }
+
+    /**
+     * Create excel table
+     *
+     * @access public
+     * @param string args[0]
+     * @param string args[1]
+     */
+    public function createExcelTable($dats)
+    {
+        $this->_xml = '';
+        $tamDatos = count($dats);
+        foreach ($dats as $ind => $data) {
+            $tamCols = count($data);
+            break;
+        }
+        $tamDatos = count($dats);
+        $tamCols = 1;
+        $this->generateTABLE($tamDatos, $tamCols);
+        $this->generateTABLECOLUMNS($tamCols + 1);
+        $this->generateTABLECOLUMN(1, ' ');
+        $this->generateTABLECOLUMN(2, '0');
+
+        $this->generateTABLESTYLEINFO();
+        $this->cleanTemplate();
+        return $this->_xml;
+    }
+
+}

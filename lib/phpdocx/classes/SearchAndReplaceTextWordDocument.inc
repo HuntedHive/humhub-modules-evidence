@@ -1,1 +1,450 @@
-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
+<?php
+
+/**
+ * This class allows to search and replace a string of text in an existing docx document
+ * 
+ * @category   Phpdocx
+ * @package    utilities
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class SearchAndReplaceTextWordDocument
+{
+
+    /**
+     *
+     * @var DOMDocument
+     * @access private
+     */
+    private $_commentsDOM;
+
+    /**
+     *
+     * @var string
+     * @access private
+     */
+    private $_commentsXML;
+
+    /**
+     *
+     * @var DOMXPath
+     * @access private
+     */
+    private $_commentsXPath;
+
+    /**
+     *
+     * @var DOMDocument
+     * @access private
+     */
+    private $_documentDOM;
+
+    /**
+     *
+     * @var string
+     * @access private
+     */
+    private $_documentXML;
+
+    /**
+     *
+     * @var ZipArchive
+     * @access private
+     */
+    private $_docx;
+
+    /**
+     *
+     * @var DOMXPath
+     * @access private
+     */
+    private $_documentXPath;
+
+    /**
+     *
+     * @var DOMDocument
+     * @access private
+     */
+    private $_endnotesDOM;
+
+    /**
+     *
+     * @var string
+     * @access private
+     */
+    private $_endnotesXML;
+
+    /**
+     *
+     * @var DOMXPath
+     * @access private
+     */
+    private $_endnotesXPath;
+
+    /**
+     *
+     * @var string
+     * @access private
+     */
+    private $_footnotesXML;
+
+    /**
+     *
+     * @var DOMDocument
+     * @access private
+     */
+    private $_footnotesDOM;
+
+    /**
+     *
+     * @var DOMXPath
+     * @access private
+     */
+    private $_footnotesXPath;
+
+    /**
+     * Class constructor
+     */
+    public function __construct()
+    {
+
+        $this->_docx = new ZipArchive();
+        $this->_documentXML = '';
+        $this->_footnotesXML = '';
+        $this->_endnotesXML = '';
+        $this->_commentsXML = '';
+        $this->_commentsDOM = new DOMDocument();
+        $this->_documentDOM = new DOMDocument();
+        $this->_endnotesDOM = new DOMDocument();
+        $this->_footnotesDOM = new DOMDocument();
+    }
+
+    /**
+     * Class destructor
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * This is the main method that does all the needed manipulation to search
+     * and replace text in a Word document
+     * @access public
+     * @param string $document path to the document
+     * @param string $searchTerm string to be searched and replaced
+     * @param string $replaceTerm string with the replacement text
+     * @param array $options
+     * @return void
+     */
+    public function searchAndReplace($document, $finalDocument, $searchTerm, $replaceTerm, $options)
+    {
+        //we make a copy of the the document into its final destination so we do not overwrite it
+        copy($document, $finalDocument);
+        //we extract (some) of the relevant files of the copy of the first document for manipulation
+        $this->_docx->open($finalDocument);
+        $this->_documentXML = $this->_docx->getFromName('word/document.xml');
+        //$this->_footnotesXML = $this->_firstDocx->getFromName('word/footnotes.xml');
+        //$this->_endnotesXML = $this->_firstDocx->getFromName('word/endnotes.xml');
+        //$this->_commentsXML = $this->_firstDocx->getFromName('word/comments.xml');
+
+
+        $this->_documentDOM->loadXML($this->_documentXML);
+
+
+
+        //We prepare the document for XPath
+        $this->_documentXPath = new DOMXPath($this->_documentDOM);
+        $this->_documentXPath->registerNamespace('w', 'http://schemas.openxmlformats.org/wordprocessingml/2006/main');
+
+        //Let us now get the paragraphs that contain the search term
+        $query = '//w:p';
+
+        //echo $query;
+        $docPs = $this->_documentXPath->query($query);
+
+        foreach ($docPs as $node) {
+            $paragraphContents = $node->ownerDocument->saveXML($node);
+            $paragraphText = strip_tags($paragraphContents);
+            if (($pos = strpos($paragraphText, $searchTerm, 0)) !== false) {
+                $this->replaceString($node, $searchTerm, $replaceTerm);
+            }
+        }
+
+        $newDocumentXML = $this->_documentDOM->saveXML();
+        $this->_docx->addFromString('word/document.xml', $newDocumentXML);
+
+        //we finally close the zip file
+        $this->_docx->close();
+    }
+
+    /**
+     * This is the method that does all the needed manipulation to search
+     * and higlight text in a Word document
+     * @access public
+     * @param string $document path to the document
+     * @param string $searchTerm string to be searched and replaced
+     * @param array $options for highlighting
+     * @return void
+     */
+    public function searchAndHighlight($document, $finalDocument, $searchTerm, $options)
+    {
+        //we make a copy of the the document into its final destination so we do not overwrite it
+        copy($document, $finalDocument);
+        //we extract (some) of the relevant files of the copy of the first document for manipulation
+        $this->_docx->open($finalDocument);
+        $this->_documentXML = $this->_docx->getFromName('word/document.xml');
+        //$this->_footnotesXML = $this->_firstDocx->getFromName('word/footnotes.xml');
+        //$this->_endnotesXML = $this->_firstDocx->getFromName('word/endnotes.xml');
+        //$this->_commentsXML = $this->_firstDocx->getFromName('word/comments.xml');
+
+
+        $this->_documentDOM->loadXML($this->_documentXML);
+
+
+
+        //We prepare the document for XPath
+        $this->_documentXPath = new DOMXPath($this->_documentDOM);
+        $this->_documentXPath->registerNamespace('w', 'http://schemas.openxmlformats.org/wordprocessingml/2006/main');
+
+        //We prepare the document for XPath
+        $this->_documentXPath = new DOMXPath($this->_documentDOM);
+        $this->_documentXPath->registerNamespace('w', 'http://schemas.openxmlformats.org/wordprocessingml/2006/main');
+
+        //Let us now get the paragraphs that contain the search term
+        $query = '//w:p';
+
+        //echo $query;
+        $docPs = $this->_documentXPath->query($query);
+
+        foreach ($docPs as $node) {
+            $paragraphContents = $node->ownerDocument->saveXML($node);
+            $paragraphText = strip_tags($paragraphContents);
+            if (($pos = strpos($paragraphText, $searchTerm, 0)) !== false) {
+                $this->highlightString($node, $searchTerm);
+            }
+        }
+
+        //At this point we have got the DOM Document prepared for the final higlighting
+        //We should select all runs with attribute highlight = 1 and include the higligthing
+
+        $query = '//w:r[@highlight="1"]';
+
+        $affectedRs = $this->_documentXPath->query($query);
+        foreach ($affectedRs as $node) {
+            //echo $node->ownerDocument->saveXML($node);
+            $firstChild = $node->firstChild;
+            $highlight = $this->_documentDOM->createElementNS('http://schemas.openxmlformats.org/wordprocessingml/2006/main', 'highlight');
+            $highlight->setAttribute('w:val', $options['highlightColor']);
+
+            if ($firstChild->nodeName == 'w:rPr') {
+                $firstChild->appendChild($highlight);
+            } else {
+                $rPrNode = $this->_documentDOM->createElementNS('http://schemas.openxmlformats.org/wordprocessingml/2006/main', 'rPr');
+                $node->insertBefore($rPrNode, $firstChild);
+                $rPrNode->appendChild($highlight);
+            }
+            $node->removeAttribute('highlight');
+        }
+
+        $newDocumentXML = $this->_documentDOM->saveXML();
+        $this->_docx->addFromString('word/document.xml', $newDocumentXML);
+
+        //we finally close the zip file
+        $this->_docx->close();
+    }
+
+    /**
+     * This is the method that replaces the search term.
+     * It takes into account that the text may be split among different runs
+     * @access private
+     * @param DOMNode $paragraph the node to be changed
+     * @param string $searchTerm string to be searched and replaced
+     * @param string $replaceTerm the replacement text
+     * @param array $options for highlighting
+     * @return void
+     */
+    private function replaceString($paragraph, $searchTerm, $replaceTerm)
+    {
+        $lengthSearchTerm = strlen($searchTerm);
+        $lengthReplaceTerm = strlen($replaceTerm);
+        $paragraphText = '';
+        $textChilds = $paragraph->getElementsByTagName('t');
+        foreach ($textChilds as $node) {
+            $paragraphText .= $node->nodeValue;
+        }
+        //echo $paragraphText.PHP_EOL;
+        $results = array();
+        $results = $this->getIndexOf($paragraphText, $searchTerm);
+
+        $position = 0;
+        foreach ($textChilds as $node) {
+            $text = strip_tags($node->ownerDocument->saveXML($node));
+            //echo $text.PHP_EOL;
+            $numChars = strlen($text);
+            $offset = 0;
+            $affectedNode = 0;
+            for ($j = 0; $j < count($results); $j++) {
+                //We first check if that particular run may be affected by the replacement
+                if (($position + $numChars) > $results[$j] && $position < ($results[$j] + $lengthSearchTerm)) {
+                    $affectedNode = 1;
+                    //echo $affectedNode.PHP_EOL;
+                    if ($position <= $results[$j] && ($position + $numChars) >= ($results[$j] + $lengthSearchTerm)) {
+                        //In this case the string to be replaced falls completely within the scope of this run
+                        //The we will extract that ocurrence of the searchTerm and replace it directly by the replaceTerm
+                        $firstTextChunk = substr($text, 0, $results[$j] - $position + $offset);
+                        $secondTextChunk = substr($text, $results[$j] - $position + $lengthSearchTerm + $offset);
+                        $text = $firstTextChunk . $replaceTerm . $secondTextChunk;
+                        //Whenever we make a substitution we have to take into account that the length of the text has changed
+                        $offset += $lengthReplaceTerm - $lengthSearchTerm;
+                    } else if ($position <= $results[$j] && ($position + $numChars) < ($results[$j] + $lengthSearchTerm)) {
+                        //In this case the text to be replaced starts in this run but continues in next one
+                        $firstTextChunk = substr($text, 0, $results[$j] - $position + $offset);
+                        $text = $firstTextChunk . $replaceTerm;
+                    } else if ($position > $results[$j] && ($position + $numChars) < ($results[$j] + $lengthSearchTerm)) {
+                        //In this case the text to be replaced has started in a previous run and continue in other run
+                        $text = '';
+                    } else if ($position > $results[$j] && ($position + $numChars) >= ($results[$j] + $lengthSearchTerm)) {
+                        //In this case the text to be replaced has started in a previous run and finish in this run
+                        $text = substr($text, $results[$j] + $lengthSearchTerm - $position);
+                        $offset = $results[$j] + $lengthSearchTerm - $position;
+                    }
+                    $node->nodeValue = $text;
+                }
+            }
+            $position += $numChars;
+        }
+    }
+
+    /**
+     * This is the method that replaces the search term.
+     * It takes into account that the text may be split among different runs
+     * @access private
+     * @param DOMNode $paragraph the node to be changed
+     * @param string $searchTerm string to be searched and highlighted
+     * @param array $options for highlighting
+     * @return void
+     */
+    private function highlightString($paragraph, $searchTerm)
+    {
+        $lengthSearchTerm = strlen($searchTerm);
+        $replaceTerm = $searchTerm;
+        $lengthReplaceTerm = strlen($replaceTerm) + 16; //we have added the length of wrapper _$_highlight__$_
+        $paragraphText = '';
+        $textChilds = $paragraph->getElementsByTagName('t');
+        foreach ($textChilds as $node) {
+            $paragraphText .= $node->nodeValue;
+        }
+        $results = array();
+        $results = $this->getIndexOf($paragraphText, $searchTerm);
+
+
+
+        $position = 0;
+        foreach ($textChilds as $node) {
+            $text = strip_tags($node->ownerDocument->saveXML($node));
+            //echo $text.PHP_EOL;
+            $numChars = strlen($text);
+            $offset = 0;
+            $affectedNode = 0;
+            for ($j = 0; $j < count($results); $j++) {
+                //We first check if that particular run may be affected by the replacement
+                if (($position + $numChars) > $results[$j] && $position < ($results[$j] + $lengthSearchTerm)) {
+                    $affectedNode = 1;
+                    //echo $affectedNode.PHP_EOL;
+                    if ($position <= $results[$j] && ($position + $numChars) >= ($results[$j] + $lengthSearchTerm)) {
+                        //In this case the string to be highlighted falls completely within the scope of this run
+                        //The we will extract that ocurrence of the searchTerm and replace it directly by the replaceTerm
+                        $firstTextChunk = substr($text, 0, $results[$j] - $position + $offset);
+                        $secondTextChunk = substr($text, $results[$j] - $position + $lengthSearchTerm + $offset);
+                        $text = $firstTextChunk . '_$_highlight_' . $replaceTerm . '_$_' . $secondTextChunk;
+                        //Whenever we make a substitution we have to take into account that the length of the text has changed
+                        $offset += $lengthReplaceTerm - $lengthSearchTerm;
+                    } else if ($position <= $results[$j] && ($position + $numChars) < ($results[$j] + $lengthSearchTerm)) {
+                        //In this case the text to be replaced starts in this run but continues in next one
+                        $firstTextChunk = substr($text, 0, $results[$j] - $position + $offset);
+                        $text = $firstTextChunk . '_$_highlight_' . substr($searchTerm, 0, ($position + $numChars - $results[$j])) . '_$_';
+                    } else if ($position > $results[$j] && ($position + $numChars) < ($results[$j] + $lengthSearchTerm)) {
+                        //In this case the text to be replaced has started in a previous run and continue in other run
+                        $text = '_$_highlight_' . $text . '_$_';
+                    } else if ($position > $results[$j] && ($position + $numChars) >= ($results[$j] + $lengthSearchTerm)) {
+                        //In this case the text to be replaced has started in a previous run and finish in this run
+                        $text = '_$_highlight_' . substr($text, 0, $results[$j] + $lengthSearchTerm - $position) . '_$_' . substr($text, $results[$j] + $lengthSearchTerm - $position);
+                        $offset = $results[$j] + $lengthSearchTerm - $position;
+                    }
+                    $node->nodeValue = $text;
+                }
+            }
+            $position += $numChars;
+        }
+
+        //Now we are going to run again all child nodes to separate the runs for the highlighted content
+
+        $query = $paragraph->getNodePath() . '//w:r';
+        $affectedRs = $this->_documentXPath->query($query);
+
+        foreach ($affectedRs as $node) {
+            $text = strip_tags($node->ownerDocument->saveXML($node));
+            //echo $text.PHP_EOL;
+            if (($pos = strpos($text, '_$_highlight', 0)) !== false) {
+                $textArray = explode('_$_', $text);
+                for ($k = 0; $k < count($textArray); $k++) {
+                    $baseNode = $node->cloneNode(true);
+                    if ($k < (count($textArray) - 1)) {
+                        //we want to remove other siblings than rPr and t 
+                        //in all but in the last run insertion
+                        $baseNodeChilds = $baseNode->childNodes;
+                        foreach ($baseNodeChilds as $tSibling) {
+                            if ($tSibling->nodeName != 'w:rPr' && $tSibling->nodeName != 'w:t') {
+                                $tSibling->parentNode->removeChild($tSibling);
+                            }
+                        }
+                    }
+                    $textNode = $baseNode->getElementsByTagName('t')->item(0);
+                    if (($pos = strpos($textArray[$k], 'highlight_', 0)) !== false) {
+                        $textArray[$k] = substr($textArray[$k], 10);
+                        $baseNode->setAttribute('highlight', 1);
+                    }
+                    $textNode->nodeValue = $textArray[$k];
+                    $textNode->setAttribute('xml:space', 'preserve');
+
+                    $node->parentNode->insertBefore($baseNode, $node);
+                }
+                $node->setAttribute('remove', 1);
+            }
+        }
+
+
+        $query = $paragraph->getNodePath() . '//w:r';
+        $affectedRs = $this->_documentXPath->query($query);
+        for ($n = ($affectedRs->length - 1); $n > 0; $n--) {
+            $toRemove = $affectedRs->item($n)->getAttribute('remove');
+            if ($toRemove == 1) {
+                $affectedRs->item($n)->parentNode->removeChild($affectedRs->item($n));
+            }
+        }
+    }
+
+    /**
+     * It returns the indexesz of all ocurrences of a needdle in a string
+     * @access private
+     * @param string $myString the string to be searched
+     * @param string $search the text to be searched
+     * @return array
+     */
+    private function getIndexOf($myString, $search)
+    {
+        $initialChar = 0;
+        $charIndexes = array();
+        $lengthSearchTerm = strlen($search);
+        while (($pos = strpos($myString, $search, $initialChar)) !== false) {
+            $charIndexes[] = $pos;
+            $initialChar = $pos + $lengthSearchTerm;
+        }
+        return $charIndexes;
+    }
+
+}

@@ -1,1 +1,108 @@
-pVZtb9MwEP6eX3FMFW2nLWFoX2ihmjQQQupgYkMgMVR5zrU1OC/YzrqB9t85O85L0xYGWJVi++6e57nzxWkQRPv7AezDqUJmEAy7lgjZHHiWGkyNJps1n3CyLjJ1BwDnyzzO+K3bzhn/xhZIu4ASEx9B7ll+p8RiaQBO6+mAD+EtUxwZnKssLjgXWYoazgppRIKxYHARTkML0B6DpTH5KIpWq1X4NIl5yLNk6Fik4Jhqx97yyUt91i1a5Yc+k8gsSZ+OpJWyylQc5SqbeQQb4xBvUGkSZRGfPjk6Dp/Q75nnSr95Qdu5yCsKuGRa+2Je2lqe+joC3tIzrmyvymIFP4PAIrpDsKN6kBKmQBsl0kW9xThHQifdBrnB2Bsi96x3oTe7TeT4t8BbBP6JBU60YUbwDqm4sW1TmohZpDRNOcILePthOt1QQd1AHqrgpiuroi2uZZfEbcG8SLmxZzOb8QpkMHQeP4OqV9zkfoP1Jf4/aYx/x3nGFgSQoFlm8QEoNIVKNfBCKSo3fDqbPkQMnJSBvhXgfbnaRNml2mQXLnJDtcftmaXQh5OyZbYm0lXykN5ZT2Fb45RCfd/Uehdo3vgO2hAs5jDQKOejUbvNyj4btvzs2PSDFFfbpA+G4zryvlucLsyOCv3m8lyvYM4US6qj7M3J6x86kW9JgrBUwswB9CQu6Jp5yQyr6lcnFUUfEeZCaQP1CwR0K4LwC0LXQEhu8/LdKZSoNUDPOVIt+9Z4lUF/vHY6jzDJzV0l5nM/FjqX7G6KNyh1/8uwe0oeLyTAx9+LzIz7EMKuaDJ5rzbtPX126APwB9yjw+Mtod28rP/VEq5+wFXRH7fr9hpTVO6EqTB0wWdcMHvT1q+fBZnL+EIkucQLw5SxVXq+GtWbsBo5lhd7LknPCP29SUtSg/EqjR1C1IJY89SxafPQclI+zpWdiJgIb5gs6RRL48FRNQ7gWTWGTgJEE1grYDUIiL5u50Tz7vrrpFm9ZlIi/RfwFJdV31f96BAb9w+p+F7gbpZonSZq5UETD9rNvlWhlpNfrjk3rwQFNIUL1yxhBdoKbK5GG9g473KhI50ppKal28seipr0Dzb6IoTG1EQPH4YZ+chq5t6XVs9sw6Tr6j74BQ==
+<?php
+
+/**
+ * Create table of contents
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateTableContents extends CreateElement
+{
+
+    /**
+     *
+     * @var string
+     * @access protected
+     */
+    protected $_xml;
+
+    /**
+     *
+     * @var CreateTableContents
+     * @access protected
+     * @static
+     */
+    private static $_instance = NULL;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     * Magic method, returns current XML
+     *
+     * @access public
+     * @return string Return current XML
+     */
+    public function __toString()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     *
+     * @return CreateTableContents
+     * @access public
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateTableContents();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Create table of contents
+     *
+     * @param string $font
+     * @access public
+     */
+    public function createTableContents($format, $legendData)
+    {
+
+        //We first construct the instructions for the TOC format
+        $instr = 'TOC \o ';
+        if (!empty($format['displayLevels'])) {
+            $instr .= '&quot;' . $format['displayLevels'] . '&quot; ';
+        } else {
+            $instr .= '&quot;1-4&quot; ';
+        }
+        $instr .= '\h \z \u';
+
+        //Generate the associated XML
+        $fldSimpleStart = '<w:fldSimple w:instr="' . $instr . '">';
+        $fldSimpleEnd = '</w:fldSimple>';
+        $sdtStart = '<w:sdt><w:sdtPr><w:id w:val="' . rand(111111111, 999999999) . '" /> 
+                    <w:docPartObj><w:docPartGallery w:val="Table of Contents" /> <w:docPartUnique /> 
+                    </w:docPartObj></w:sdtPr><w:sdtContent>';
+        $sdtEnd = '</w:sdtContent></w:sdt>';
+        $legendData = $sdtStart . $legendData . $sdtEnd;
+        $this->_xml = $legendData;
+        $this->_xml = str_replace('<w:r>', $fldSimpleStart . '<w:r>', $this->_xml);
+        $this->_xml = str_replace('</w:r>', '</w:r>' . $fldSimpleEnd, $this->_xml);
+    }
+
+}

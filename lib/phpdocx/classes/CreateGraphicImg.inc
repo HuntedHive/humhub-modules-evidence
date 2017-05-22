@@ -1,1 +1,212 @@
-7Vj/Txs3FP89f4Wlhd4FwV0S2koDwSgEKBNtGXRSEUKR43MSj/sm20caKv73Pft8yeW+ZNzopGmdhcTF772P33d/abXczc0W2kTHnGJJEQvwhKIJx/GUEYFsMsVcig5wKKZDAjyTiM8RQpfT2IvIVz0dY3Kv5GBQnwY0lCJlj+I5Z5OpROh48WmTDvqIOaEYXfLISwhhUUgF+pD4kgXUYxhdOxeOAsgPeyplvOu6s9nM6QcecUgUdPQqPiM0FHr1HE+c6qfY3Fm8TaJQgl6unIJ+wvWVKrOIe27Mo6FBUDIa8YFyAUopxH6399rpwt/PZq3w3ihUvRZwuS3iYyGMS89SX54Hk9a3VksJao+rkf1Dh5gQChIxZw8gsph+wNygDLSr9bSr/xtW1B6qlfeKyM+ANIotKEJiufi5ukhKgrVYCJ8hoWgfhYnvl5c9joCDJ0TWWZiM/OIiegqNk5BI5fThkGQgdkdzfGtlSdCWUya2D4DDjzgoYVl7JRqP5JcakoclriGNIT9qSII90jpERbupoUkmfVpHm8d50lPJkQP6cj96tMaN1WuuXQMdcioTHjZInlQfkzsLtSZUnpssKunFxsgW1B/v7uZTbR99/P3iopPjU6PMh0I6KxWd3Vk6/2nxZWwpYtQFwzRH0xbTJvk8p8WY4wBhzvEctTGfiNvu3Rpi767o7lEU+RSHayNNSjbXlI1qFSt+Um0l76G2pEF8ynTaqs8QB3ZeePsAwvcZCBHHfD5gnBIJ24Hd2UIW0L9oHayO6QsaUdkFaErZIQgP1W97hcNUZeaeW0tNWHc5rUxxeoyDQtQeDk/PL06Gww5yVlJCDct1HOjuI/eRSgz9OIa9BbYjV2vmgo7ClQnozLC/+NDF70g5zhdqVvVLtfSMdYd+qZjbRTv9bkH6piR9UyF9k0p389KmOywZ1cSKR7LekmNRM4pnyZR1ySWTnskDiRmTZIrslLdYYwTDttrbLTm5HWOfSqk7GH0k2reX6dSRD2eBnB+zMYJ8u98ro/cboX/G4SRqgL7TCP3k8chPaAP41w3hr6jXAP1NQ/QzTmn4PHyPjjEct/4J3z+1ysml0rcyt6wR5sfqiGlVqKLbrWlXmS7voWAfoVqxf2Qk8+1rVXT7YGmMwshsq5IYR2CF1lV3IyxQ2wd7E3Wq3T9A7QcMmVE0obicEr1dyN0VVH+n+vwAWK6ptA1gWZGc+4rwnIYe5ZTXuuTKMFQZaKJUHYKdwf9BeFkQMtfveOtckQlvH0Sx2rlhW/XpBCav58Eo8s9gpw8A2HnTCCKrobx4g/hD528U/R8n5mt91rBmfhyv/XcrJWa0UcwvDf86Q1Or1AEZ+4J+j9xYCa/1Lr2W6FuYgIuYgOPmfmVaqFGfAAqt0bYCzmpYIs9x1zIb8Ij66pSy0W97yN7YaTu98cZGx6qI6L/Mhy+rmCb5HkQP9FOirk5Ov5lkluqfxmNBFcDbnb8HkNbrcfZe89PpaRfGuiitAXtP9QviPsrftbKhHg+YEMrRi/uOeguy7jro1SvExDBMAsoZKdNLWH/VOtfoeBWpNIFbeX2GaKSCDshFvW6FVU+IQl/4Huog521V/y7OVFV07XXBPFLU9K76m0Gm+OIaqz/2SvSFOeYFQL8ElNk8zh5KZXPmDfT0yvvGikAOXyQx5QIHsc/CCQD1niHzR0wnvyXYZ3KuJFZu8HUy+unoNOIBVuacfzgb/np5clYWTCNqp68QW+Y9YWv5PpOzycRA8mT5fvXU+hM=
+<?php
+
+/**
+ * Create image graphics (charts)
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateGraphicImg
+{
+
+    /**
+     *
+     * @access private
+     * @var CreateDocx
+     */
+    private $_docx;
+
+    /**
+     * @access private
+     * @var CreateGraphic
+     * @static
+     */
+    private static $_instance = null;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        $this->_color = '';
+        $this->_rotX = '';
+        $this->_data = '';
+        $this->_font = '';
+        $this->_sizeX = '';
+        $this->_sizeY = '';
+        $this->_title = '';
+        $this->_type = '';
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     *
+     * @access public
+     * @return CreateGraphic
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateGraphicImg();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Create graphic image
+     *
+     * @access public
+     * @param array $args[0]
+     * @param array $args[1]
+     * @return boolean
+     */
+    public function createGraphicImg()
+    {
+        $this->_docx = new CreateDocx();
+        $tempFile = tempnam($this->_docx->getTemporaryDirectory(), 'docXGraph');
+
+        $args = func_get_args();
+
+        $data = $args[0]['data'];
+        $font = dirname(__FILE__) .
+                '/../lib/zetacomponents/Graph/docs/tutorial/tutorial_font.ttf';
+        $sizeX = $args[0]['sizeX'] ? $args[0]['sizeX'] : 320;
+        $sizeY = $args[0]['sizeY'] ? $args[0]['sizeY'] : 300;
+        $type = $args[0]['type'];
+        $title = $args[0]['title'];
+
+        $color = $args[0]['color'];
+        switch ($color) {
+            case 1:
+                $palette = 'ezcGraphPaletteBlack';
+                break;
+            case 2:
+                $palette = 'ezcGraphPaletteTango';
+                break;
+            case 3:
+                $palette = 'ezcGraphPaletteEzBlue';
+                break;
+            case 4:
+                $palette = 'ezcGraphPaletteEzRed';
+                break;
+            case 5:
+                $palette = 'ezcGraphPaletteEzGreen';
+                break;
+            default:
+                $palette = 'ezcGraphPaletteTango';
+                break;
+        }
+
+        switch ($type) {
+            case 'barChart':
+                $graph = new ezcGraphHorizontalBarChart();
+                $graph->palette = new $palette();
+                foreach ($data as $language => $value) {
+                    $graph->data[$language] = new ezcGraphArrayDataSet($value);
+                }
+
+                $graph->renderer = new ezcGraphHorizontalRenderer();
+                break;
+
+            case 'bar3DChart':
+                $graph = new ezcGraphHorizontalBarChart();
+                $graph->palette = new $palette();
+                foreach ($data as $language => $value) {
+                    $graph->data[$language] = new ezcGraphArrayDataSet($value);
+                }
+
+                $graph->renderer = new ezcGraphRenderer3d();
+                $graph->renderer->options->legendSymbolGleam = .5;
+                $graph->renderer->options->barChartGleam = .5;
+
+                break;
+
+            case 'colChart':
+                $graph = new ezcGraphBarChart();
+                $graph->palette = new $palette();
+                foreach ($data as $language => $value) {
+                    $graph->data[$language] = new ezcGraphArrayDataSet($value);
+                }
+
+                break;
+
+            case 'col3DChart':
+                $graph = new ezcGraphBarChart();
+                $graph->palette = new $palette();
+                foreach ($data as $language => $value) {
+                    $graph->data[$language] = new ezcGraphArrayDataSet($value);
+                }
+
+                $graph->renderer = new ezcGraphRenderer3d();
+                $graph->renderer->options->legendSymbolGleam = .5;
+                $graph->renderer->options->barChartGleam = .5;
+
+                break;
+
+            case 'pieChart':
+                $graph = new ezcGraphPieChart();
+                $graph->legend = false;
+                $graph->palette = new $palette();
+                $graph->data['Access statistics'] =
+                        new ezcGraphArrayDataSet($data);
+                break;
+
+            case 'pie3DChart':
+                $graph = new ezcGraphPieChart();
+                $graph->options->label = '%2$d (%3$.1f%%)';
+
+                $graph->palette = new $palette();
+                $graph->data['Access statistics'] =
+                        new ezcGraphArrayDataSet($data);
+
+                $graph->renderer = new ezcGraphRenderer3d();
+
+                $graph->renderer->options->moveOut = .2;
+
+                $graph->renderer->options->pieChartOffset = 63;
+
+                $graph->renderer->options->pieChartSymbolColor = '#FF0000';
+
+                $graph->renderer->options->pieChartHeight = 20;
+                if (isset($args[0]['rotX']) && is_numeric($args[0]['rotX'])
+                ) {
+                    $graph->renderer->options->pieChartRotation =
+                            $args[0]['rotX'] / 100;
+                } else {
+                    $graph->renderer->options->pieChartRotation = .6;
+                }
+                break;
+
+            default:
+                return false;
+                break;
+        }
+
+        $graph->title = $title;
+        $graph->options->font = $font;
+        $graph->driver = new ezcGraphGdDriver();
+        $graph->driver->options->supersampling = 1;
+        $graph->driver->options->jpegQuality = 100;
+        $graph->driver->options->imageFormat = IMG_JPEG;
+        $graph->render($sizeX, $sizeY, $tempFile);
+        return true;
+    }
+
+}

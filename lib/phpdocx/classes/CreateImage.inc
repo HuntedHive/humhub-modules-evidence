@@ -1,1 +1,638 @@
-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
+<?php
+
+/**
+ * Create images
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateImage extends CreateElement
+{
+
+    const NAMESPACEWORD = 'wp';
+    const NAMESPACEWORD1 = 'a';
+    const NAMESPACEWORD2 = 'pic';
+    const CONSTWORD = 360000;
+    const TAMBORDER = 12700;
+    const PNG_SCALE_FACTOR = 29.5;
+
+    /**
+     * @access private
+     * @var CreateImage
+     * @static
+     */
+    private static $_instance = NULL;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_name;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_rId;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_ajusteTexto;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_sizeX;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_sizeY;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_dpi;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_dpiCustom;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_spacingTop;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_spacingBottom;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_spacingLeft;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_spacingRight;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_jc;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_border;
+
+    /**
+     *
+     * @access private
+     * @var string
+     */
+    private $_borderDiscontinuo;
+
+    /**
+     *
+     * @access private
+     * @var int
+     */
+    private $_scaling;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        $this->_name = '';
+        $this->_rId = '';
+        $this->_ajusteTexto = '';
+        $this->_sizeX = '';
+        $this->_sizeY = '';
+        $this->_spacingTop = '';
+        $this->_spacingBottom = '';
+        $this->_spacingLeft = '';
+        $this->_spacingRight = '';
+        $this->_jc = '';
+        $this->_border = '';
+        $this->_borderDiscontinuo = '';
+        $this->_scaling = '';
+        $this->_dpiCustom = 0;
+        $this->_dpi = 96;
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     *
+     * @return string
+     * @access public
+     */
+    public function __toString()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     *
+     * @return CreateImage
+     * @access public
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateImage();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Setter. Name
+     *
+     * @access public
+     * @param string $name
+     */
+    public function setName($name)
+    {
+        $this->_name = $name;
+    }
+
+    /**
+     * Getter. Name
+     *
+     * @access public
+     * @return <type>
+     */
+    public function getName()
+    {
+        return $this->_name;
+    }
+
+    /**
+     * Setter. Rid
+     *
+     * @access public
+     * @param string $rId
+     */
+    public function setRId($rId)
+    {
+        $this->_rId = $rId;
+    }
+
+    /**
+     * Getter. Rid
+     *
+     * @access public
+     * @return <type>
+     */
+    public function getRId()
+    {
+        return $this->_rId;
+    }
+
+    /**
+     * Create image
+     *
+     * @access public
+     * @param array $args[0]
+     */
+    public function createImage()
+    {
+        $this->_xml = '';
+        $this->_name = '';
+        $this->_rId = '';
+        $this->_ajusteTexto = '';
+        $this->_sizeX = '';
+        $this->_sizeY = '';
+        $this->_spacingTop = '';
+        $this->_spacingBottom = '';
+        $this->_spacingLeft = '';
+        $this->_spacingRight = '';
+        $this->_jc = '';
+        $this->_border = '';
+        $this->_borderDiscontinuo = '';
+        $this->_scaling = '';
+        $this->_dpiCustom = 0;
+        $this->_dpi = 96;
+        $args = func_get_args();
+
+        if (isset($args[0]['rId']) && (isset($args[0]['src']))) {
+            $attributes = getimagesize($args[0]['src']);
+
+            if (!isset($args[0]['textWrap']) || $args[0]['textWrap'] < 0 ||
+                    $args[0]['textWrap'] > 5
+            ) {
+                $ajusteTexto = 0;
+            } else {
+                $ajusteTexto = $args[0]['textWrap'];
+            }
+
+            if (isset($args[0]['sizeX'])) {
+                $tamPxX = $args[0]['sizeX'];
+            } elseif (isset($args[0]['scaling'])) {
+                $tamPxX = $attributes[0] * $args[0]['scaling'] / 100;
+            } else {
+                $tamPxX = $attributes[0];
+            }
+
+            if (isset($args[0]['scaling'])) {
+                $tamPxY = $attributes[1] * $args[0]['scaling'] / 100;
+            } elseif (isset($args[0]['sizeY'])) {
+                $tamPxY = $args[0]['sizeY'];
+            } else {
+                $tamPxY = $attributes[1];
+            }
+            if (isset($args[0]['dpi'])) {
+                $this->_dpiCustom = $args[0]['dpi'];
+            }
+            $this->setName($args[0]['src']);
+            $this->setRId($args[0]['rId']);
+            $top = '0';
+            $bottom = '0';
+            $left = '0';
+            $right = '0';
+
+            switch ($attributes['mime']) {
+                case 'image/png':
+                    list($dpiX, $dpiY) = $this->getDpiPng($args[0]['src']);
+                    $tamWordX = round($tamPxX * 2.54 / $dpiX * CreateImage::CONSTWORD);
+                    $tamWordY = round($tamPxY * 2.54 / $dpiY * CreateImage::CONSTWORD);
+
+                    if (isset($args[0]['spacingTop'])) {
+                        $top = round(
+                                $args[0]['spacingTop'] * 2.54 /
+                                $dpiX * CreateImage::CONSTWORD
+                        );
+                    }
+                    if (isset($args[0]['spacingBottom'])) {
+                        $bottom = round(
+                                $args[0]['spacingBottom'] * 2.54 /
+                                $dpiX * CreateImage::CONSTWORD
+                        );
+                    }
+                    if (isset($args[0]['spacingLeft'])) {
+                        $left = round(
+                                $args[0]['spacingLeft'] * 2.54 /
+                                $dpiX * CreateImage::CONSTWORD
+                        );
+                    }
+                    if (isset($args[0]['spacingRight'])) {
+                        $right = round(
+                                $args[0]['spacingRight'] * 2.54 /
+                                $dpiX * CreateImage::CONSTWORD
+                        );
+                    }
+                    break;
+                case 'image/jpg':
+                case 'image/jpeg':
+                    list($dpiX, $dpiY) = $this->getDpiJpg($args[0]['src']);
+                    $tamWordX = round(
+                            $tamPxX * 2.54 /
+                            $dpiX * CreateImage::CONSTWORD
+                    );
+                    $tamWordY = round(
+                            $tamPxY * 2.54 /
+                            $dpiY * CreateImage::CONSTWORD
+                    );
+                    if (isset($args[0]['spacingTop'])) {
+                        $top = round(
+                                $args[0]['spacingTop'] * 2.54 /
+                                $dpiX * CreateImage::CONSTWORD
+                        );
+                    }
+                    if (isset($args[0]['spacingBottom'])) {
+                        $bottom = round(
+                                $args[0]['spacingBottom'] * 2.54 /
+                                $dpiX * CreateImage::CONSTWORD
+                        );
+                    }
+                    if (isset($args[0]['spacingLeft'])) {
+                        $left = round(
+                                $args[0]['spacingLeft'] * 2.54 /
+                                $dpiX * CreateImage::CONSTWORD
+                        );
+                    }
+                    if (isset($args[0]['spacingRight'])) {
+                        $right = round(
+                                $args[0]['spacingRight'] * 2.54 /
+                                $dpiX * CreateImage::CONSTWORD
+                        );
+                    }
+                    break;
+                case 'image/gif':
+                    if ($this->_dpiCustom > 0) {
+                        $this->_dpi = $this->_dpiCustom;
+                    }
+                    $tamWordX = round(
+                            $tamPxX * 2.54 /
+                            $this->_dpi * CreateImage::CONSTWORD
+                    );
+                    $tamWordY = round(
+                            $tamPxY * 2.54 /
+                            $this->_dpi * CreateImage::CONSTWORD
+                    );
+                    if (isset($args[0]['spacingTop'])) {
+                        $top = round(
+                                $args[0]['spacingTop'] * 2.54 /
+                                $this->_dpi * CreateImage::CONSTWORD
+                        );
+                    }
+                    if (isset($args[0]['spacingBottom'])) {
+                        $bottom = round(
+                                $args[0]['spacingBottom'] * 2.54 /
+                                $this->_dpi * CreateImage::CONSTWORD
+                        );
+                    }
+                    if (isset($args[0]['spacingLeft'])) {
+                        $left = round(
+                                $args[0]['spacingLeft'] * 2.54 /
+                                $this->_dpi * CreateImage::CONSTWORD
+                        );
+                    }
+                    if (isset($args[0]['spacingRight'])) {
+                        $right = round(
+                                $args[0]['spacingRight'] * 2.54 /
+                                $this->_dpi * CreateImage::CONSTWORD
+                        );
+                    }
+                    break;
+            }
+
+            $this->generateP();
+            if (isset($args[0]['imageAlign'])) {
+                $this->generatePPR();
+                $this->generateJC($args[0]['imageAlign']);
+            }
+            $this->generateR();
+            $this->generateRPR();
+            $this->generateNOPROOF();
+            $this->generateDRAWING();
+            if ($ajusteTexto == 0) {
+                $this->generateINLINE();
+            } else {
+                if ($ajusteTexto == 3) {
+                    $this->generateANCHOR(1);
+                } else {
+                    $this->generateANCHOR();
+                }
+                $this->generateSIMPLEPOS();
+                $this->generatePOSITIONH();
+                if (isset($args[0]['float']) && ($args[0]['float'] == 'left' || $args[0]['float'] == 'right' || $args[0]['float'] == 'center')) {
+                    $this->generateALIGN($args[0]['float']);
+                }
+                if (isset($args[0]['horizontalOffset']) && is_numeric($args[0]['horizontalOffset'])) {
+                    $this->generatePOSOFFSET($args[0]['horizontalOffset']);
+                } else {
+                    $this->generatePOSOFFSET(0);
+                }
+                $this->generatePOSITIONV();
+                if (isset($args[0]['verticalOffset']) && is_numeric($args[0]['verticalOffset'])) {
+                    $this->generatePOSOFFSET($args[0]['verticalOffset']);
+                } else {
+                    $this->generatePOSOFFSET(0);
+                }
+            }
+
+            $this->generateEXTENT($tamWordX, $tamWordY);
+            $this->generateEFFECTEXTENT($left, $top, $right, $bottom);
+
+            switch ($ajusteTexto) {
+                case 1:
+                    $this->generateWRAPSQUARE();
+                    break;
+                case 2:
+                case 3:
+                    $this->generateWRAPNONE();
+                    break;
+                case 4:
+                    $this->generateWRAPTOPANDBOTTOM();
+                    break;
+                case 5:
+                    $this->generateWRAPTHROUGH();
+                    $this->generateWRAPPOLYGON();
+                    $this->generateSTART();
+                    $this->generateLINETO();
+                    break;
+                default:
+                    break;
+            }
+            $this->generateDOCPR();
+            $this->generateCNVGRAPHICFRAMEPR();
+            $this->generateGRAPHICPRAMELOCKS(1);
+            $this->generateGRAPHIC();
+            $this->generateGRAPHICDATA();
+            $this->generatePIC();
+            $this->generateNVPICPR();
+            $this->generateCNVPR();
+            $this->generateCNVPICPR();
+            $this->generateBLIPFILL();
+            $this->generateBLIP();
+            $this->generateSTRETCH();
+            $this->generateFILLRECT();
+            $this->generateSPPR();
+            $this->generateXFRM();
+            $this->generateOFF();
+            $this->generateEXT($tamWordX, $tamWordY);
+            $this->generatePRSTGEOM();
+            $this->generateAVLST();
+            if (isset($args[0]['borderStyle']) ||
+                    isset($args[0]['borderWidth']) ||
+                    isset($args[0]['borderColor'])) {
+                //width
+                if (isset($args[0]['borderWidth'])) {
+                    $this->generateLN($args[0]['borderWidth'] * CreateImage::TAMBORDER);
+                } else {
+                    $this->generateLN(CreateImage::TAMBORDER);
+                }
+                //color
+                if (isset($args[0]['borderColor'])) {
+                    $this->generateSOLIDFILL($args[0]['borderColor']);
+                } else {
+                    $this->generateSOLIDFILL('000000');
+                }
+                //style
+                if (isset($args[0]['borderStyle'])) {
+                    $this->generatePRSTDASH($args[0]['borderStyle']);
+                } else {
+                    $this->generatePRSTDASH('solid');
+                }
+            }
+
+            $this->cleanTemplate();
+        } else {
+            echo 'There was an error adding the image';
+        }
+    }
+
+    /**
+     * Init image
+     *
+     * @access public
+     * @param array $args[0]
+     */
+    public function initImage()
+    {
+        $args = func_get_args();
+
+        if (!isset($args[0]['src'])) {
+            $args[0]['src'] = '';
+        }
+        if (!isset($args[0]['textWrap'])) {
+            $args[0]['textWrap'] = '';
+        }
+        if (!isset($args[0]['sizeX'])) {
+            $args[0]['sizeX'] = '';
+        }
+        if (!isset($args[0]['sizeY'])) {
+            $args[0]['sizeY'] = '';
+        }
+        if (!isset($args[0]['spacingTop'])) {
+            $args[0]['spacingTop'] = '';
+        }
+        if (!isset($args[0]['spacingBottom'])) {
+            $args[0]['spacingBottom'] = '';
+        }
+        if (!isset($args[0]['spacingLeft'])) {
+            $args[0]['spacingLeft'] = '';
+        }
+        if (!isset($args[0]['spacingRight'])) {
+            $args[0]['spacingRight'] = '';
+        }
+        if (!isset($args[0]['imageAlign'])) {
+            $args[0]['imageAlign'] = '';
+        }
+        if (!isset($args[0]['border'])) {
+            $args[0]['border'] = '';
+        }
+        if (!isset($args[0]['borderDiscontinuous'])) {
+            $args[0]['borderDiscontinuous'] = '';
+        }
+        if (!isset($args[0]['scaling'])) {
+            $args[0]['scaling'] = '';
+        }
+        if (!isset($args[0]['dpi'])) {
+            $args[0]['dpi'] = '';
+        }
+
+
+
+        $this->_name = $args[0]['src'];
+        $this->_ajusteTexto = $args[0]['textWrap'];
+        $this->_sizeX = $args[0]['sizeX'];
+        $this->_sizeY = $args[0]['sizeY'];
+        $this->_spacingTop = $args[0]['spacingTop'];
+        $this->_spacingBottom = $args[0]['spacingBottom'];
+        $this->_spacingLeft = $args[0]['spacingLeft'];
+        $this->_spacingRight = $args[0]['spacingRight'];
+        $this->_jc = $args[0]['imageAlign'];
+        $this->_border = $args[0]['border'];
+        $this->_borderDiscontinuo = $args[0]['borderDiscontinuous'];
+        $this->_scaling = $args[0]['scaling'];
+        $this->_dpiCustom = $args[0]['dpi'];
+    }
+
+    /**
+     * Get image jpg dpi
+     *
+     * @access private
+     * @param string $filename
+     * @return array
+     */
+    private function getDpiJpg($filename)
+    {
+        if ($this->_dpiCustom > 0) {
+            return array($this->_dpiCustom, $this->_dpiCustom);
+        }
+        $a = fopen($filename, 'r');
+        $string = fread($a, 20);
+        fclose($a);
+        $type = hexdec(bin2hex(substr($string, 13, 1)));
+        $data = bin2hex(substr($string, 14, 4));
+        if ($type == 1) {
+            $x = substr($data, 0, 4);
+            $y = substr($data, 4, 4);
+            return array(hexdec($x), hexdec($y));
+        } else if ($type == 2) {
+            $x = floor(hexdec(substr($data, 0, 4)) / 2.54);
+            $y = floor(hexdec(substr($data, 4, 4)) / 2.54);
+            return array($x, $y);
+        } else {
+            return array($this->_dpi, $this->_dpi);
+        }
+    }
+
+    /**
+     * Get image png dpi
+     *
+     * @access private
+     * @param string $filename
+     * @return array
+     */
+    private function getDpiPng($filename)
+    {
+        if ($this->_dpiCustom > 0) {
+            return array($this->_dpiCustom, $this->_dpiCustom);
+        }
+        $a = fopen($filename, 'r');
+        $string = fread($a, 1000);
+        $aux = strpos($string, 'pHYs');
+        if ($aux > 0) {
+            $type = hexdec(bin2hex(substr($string, $aux + strlen('pHYs') + 16, 1)));
+        }
+        if ($aux > 0 && $type = 1) {
+            $data = bin2hex(substr($string, $aux + strlen('pHYs'), 16));
+            fclose($a);
+            $x = substr($data, 0, 8);
+            $y = substr($data, 8, 8);
+            return array(round(hexdec($x) / CreateImage::PNG_SCALE_FACTOR), round(hexdec($y) / CreateImage::PNG_SCALE_FACTOR));
+        } else {
+            return array($this->_dpi, $this->_dpi);
+        }
+    }
+
+}

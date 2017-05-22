@@ -1,1 +1,91 @@
-5VZtT9swEP6eX3FIFUnQmrSdGC9VJyaotkkDVZTtS8Uq41wbiySOHJeWAf99dpq2SUhfmPi2fHF0fu6583OXcwzDPTgw4ADOfaT3MOICCDyQgHkQMIpRgmpT759RInHMxSMA9PzY43SWmmNC78kYlTXnoNA8fhRs7EuA8+WrRW1oNRon9Vaj+RGuiKBIoCe4N6GU8QgTuJwEkoXoMQJ954ejqfKP5UsZn7rudDp1WqFHHcpDO42XxdagHCaeJ6ph7jSuUx5JjKQrfQwxcQOd1JQLz40FH2YM2idlfECRqKQ0o0r30Gk2neZxFiu6zxKqjqVQrkEDkiTwFSMUSrkLrdeTYWinVHH9bFQ9BSxwZ4RSVHTx5E4BllaBciIiuOM8QBJlZjdd50hIJJFqGU0iKvVp7nDMIp2MZaewJ2OhbW32B1UpoAOm2S5ZaaWVla2ZBErmERurzaxPfkoWMMkwOT2NiUjwPN237LaxdGUjsPYwjOWjVRv2u9e/utcD89vNTa9v3tqwvw+vrLDXUdH5aGTauUPoZy7KKq2XUhiWJChzYebr8OrLZVcF28oGGKg+K4JW2knBQqsoxMDMamreDkzKPbXa7Qp3unRfk1qVE1vr9OXi4rrg9FKQocAVCxwPQyKpb5nu7+ZJy2l+OnZc88Miig3Pz5s8jlpvQTfeAm4d7Y4OOCWBzxO58qD2Er5babU4y3p2IPQOrUV9HDCHelTo2po7dsoWOspFzPWAeE9SNeNQxIIl78TK/pG19OEVC6tnZr5MZbbc5NFQU+WQmda19H9XtZW+tQSFurCuSIh91KMXZ3GgRo1lOkrijVMlNyFyLD0iZHm8F2J8V7uUTyI1SQv2HJ2+1qyanlAl13qzDcr+uQMN/VKvq5NC4ahaquw6KOb0SpTqvIsBBzV2WxyelVN8VypdrXk/FsGlEK8OVK59KdTmPq1qgNVJdqTf1rfvEmRrH6+NUtXZ0hd8ChFOoTujGOufGMu88VEgsAQiLst/TmbWgYrjxfgL
+<?php
+
+/**
+ * Check for a valid license
+ *
+ * @category   Phpdocx
+ * @package    license
+ * @copyright  Copyright (c) 2009-2013 Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2015.11.18
+ * @link       http://www.phpdocx.com
+ */
+class GenerateDocx
+{
+
+    /**
+     * Check for a valid license
+     *
+     * @access public
+     * @return boolean
+     */
+    public static function beginDocx()
+    {
+        $xzerod = '';
+        $xzeroc = '';
+        $xzeroi = '';
+        $phpdocxconfig = PhpdocxUtilities::parseConfig();
+
+        if (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') {
+            return;
+        }
+
+        if (!isset($_SERVER['SERVER_NAME'])) {
+            return;
+        } else {
+            $xzerod = trim($phpdocxconfig['license']['code']);
+            $xzeroc = trim($_SERVER['SERVER_NAME']);
+            $xzeroi = trim($_SERVER['SERVER_ADDR']);
+        }
+        if (
+            preg_match('/^192.168./', $xzeroi) ||
+            preg_match('/^172./', $xzeroi) ||
+            preg_match('/^10./', $xzeroi) ||
+            preg_match('/^127./', $xzeroi) ||
+            preg_match('/localhost/', $xzeroc)
+        ) {
+            return;
+        } elseif ($xzerod == md5($xzeroc . '_pro_docx')) {
+            return;
+        } elseif ($xzerod == md5($xzeroc . '_corporate_docx')) {
+            return;
+        } elseif ($xzerod == md5($xzeroc . '_enterprise_docx')) {
+            return;
+        } elseif ($xzerod == md5($xzeroi . '_enterprise_docx')) {
+            return;
+        }
+
+        if (!preg_match('/^www./', $xzeroc)) {
+            $xzeroc = 'www.' . $xzeroc;
+        }
+        if ($xzerod == md5($xzeroc . '_pro_docx')) {
+            return;
+        } elseif ($xzerod == md5($xzeroc . '_corporate_docx')) {
+            return;
+        } elseif ($xzerod == md5($xzeroc . '_enterprise_docx')) {
+            return;
+        }
+
+        $serverNameSeg = explode('.', trim($_SERVER['SERVER_NAME']));
+        $serverNamePart = '';
+        $serverNameSegI = count($serverNameSeg);
+        for ($i = $serverNameSegI-1; $i >= 0; $i--) { 
+            if (empty($serverNamePart)) {
+                $serverNamePart = $serverNameSeg[$i];
+            } else {
+                $serverNamePart = $serverNameSeg[$i] . '.' . $serverNamePart;
+            }
+            if ($xzerod == md5($serverNamePart . '_pro_docx')) {
+                return;
+            } elseif ($xzerod == md5($serverNamePart . '_corporate_docx')) {
+                return;
+            } elseif ($xzerod == md5($serverNamePart . '_enterprise_docx')) {
+                return;
+            }
+        }
+
+        throw new Exception('There is not a valid license');
+    }
+
+}

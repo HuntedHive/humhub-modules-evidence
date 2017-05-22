@@ -1,1 +1,72 @@
-nVPfa9swEH73X3GDQJzi2l3Xl6VkdJQOCmkJK3s2qnx2RGXJSHLcUPK/T5LlzPHah00EJF/ux3fffRdF2dlZBGewllWFyr7cxw0lBiup9gCw2TaFpK+9WTZ7xaqtAbg9PmO6gEeiKBLYKFm0lDIpUMNDyw2rsWAEntJ16hKMT7w1pllmWdd16WVd0JTKeuGrcEZRaHROI5+mx+Hcsq45p1IYFCYzW6xRZ9xB6aQqskbJPGRwMT7jDpW2oFzGy4vPV+mF/X0NtcRLAPR+LeuVRZQTrQcmAlNvUeSiPH3uDBfcEErRujeK7SyNR7M2xDB6/NwRBdooJqpgyvwdoqD3hlnOZQUrePy1Xl9PK8KTjeZopEhAoWmVACZsoKAIsgSP+iNw7TMfgWmIIjXMLJOaVAgP4TYSNIrC3RZGZatBaR3REv0yjeW4Qw7fOZcdFrAjvEW9BKMIxQQKfG6rxKIrZQIdURYwKiVVAiUxhL/PUSDEIx34KFtBjRsl91OIB8hJALDwMW/RoLLeqi2DRCmyj49/uDP3sObJqdGBnNqEtMVxanWNWE6mZt/Z1Oj7HBkXYZrusBLiTxp5uVz6eS9GDbjTK265tJovWdUqjAumhJ1DnOc/7td3eb6AFOZZmma9S2aTXFkROyHPbaVxslEdy8qQukLTP+N5EH/eMzwOP/yBnGUgBd+DljVC4JgodHNnxUljTOQ99f0ohkHpxbTLWb8Na6+jldsNI52YVIj8uI/zb+PYoybGFAfM2sgGQoMOnZ9Kj//E1QEPil6thuFNAbtjtkp2ILCDu1eKjZPmuP7Y9RCdvg5/rzMaIEBbi7IOAk/h3kBtLVBKt1q2IMLm6ecXCEV0+i8bXrNXu5yzPjfcjiv9xw7qo2hCxun2nWotOF0P3R+i3w==
+<?php
+
+/**
+ * Logger
+ *
+ * @category   Phpdocx
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class PhpdocxLogger
+{
+
+    /**
+     *
+     * @access private
+     * @static
+     * @var string
+     */
+    private static $_log = NULL;
+
+    /**
+     * Singleton, return instance of class
+     *
+     * @access public
+     * @param $message Message to send to logging framework
+     * @param $level Allowed values: trace, debug, info, warn, error, fatal
+     * @static
+     */
+    public static function logger($message, $level)
+    {
+        $levels = array(
+            'debug',
+            'info',
+            'notice',
+            'warning',
+            'error',
+            'fatal',
+        );
+
+        if (!self::$_log) {
+            Logger::configure(dirname(__FILE__) . '/../config/log4php.php');
+            self::$_log = Logger::getLogger('phpdocx_logger');
+        }
+
+        // only some levels are valid
+        if (in_array($level, $levels)) {
+            $stringLevel = strtolower($level);
+            self::$_log->$stringLevel($message);
+
+            // stop phpdocx if fatal level
+            if ($level == 'fatal') {
+                throw new Exception($message);
+            }
+        }
+    }
+
+    /**
+     * Set a custom logger. It must follow the PSR3 messages.
+     *
+     * @access public
+     * @param mixed $logger Custom logger
+     * @static
+     */
+    public static function setLogger($logger)
+    {
+        self::$_log = $logger;
+    }
+
+}

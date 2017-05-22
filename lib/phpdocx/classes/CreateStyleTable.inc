@@ -1,1 +1,593 @@
-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
+<?php
+
+/**
+ * Create style table
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateStyleTable extends CreateStyle
+{
+
+    /**
+     * @access protected
+     * @var string
+     */
+    protected $_xml;
+
+    /**
+     * @access private
+     * @var CreateStyleTable
+     * @static
+     */
+    private static $_instance = NULL;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct()
+    {
+        
+    }
+
+    /**
+     * Destruct
+     *
+     * @access public
+     */
+    public function __destruct()
+    {
+        
+    }
+
+    /**
+     *
+     * @access public
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->_xml;
+    }
+
+    /**
+     *
+     * @access public
+     * @return CreateStyleTable
+     * @static
+     */
+    public static function getInstance()
+    {
+        if (self::$_instance == NULL) {
+            self::$_instance = new CreateStyleTable();
+        }
+        return self::$_instance;
+    }
+
+    /**
+     * Add table style
+     *
+     * @access public
+     * @param array $args[0]
+     */
+    public function addStyleTable()
+    {
+        $this->_xml = '';
+        $args = func_get_args();
+        if (isset($args[0]['type'])) {
+            $this->generateTBLSTYLEPR($args[0]['type']);
+        }
+        if (isset($args[0]['name'])) {
+            $this->generateNAME($args[0]['name']);
+        }
+        if (isset($args[0]['basedOn'])) {
+            $this->generateBASEDON($args[0]['basedOn']);
+        }
+        if (isset($args[0]['next'])) {
+            $this->generateNEXT($args[0]['next']);
+        }
+        if (isset($args[0]['link'])) {
+            $this->generateLINK($args[0]['link']);
+        }
+        if (isset($args[0]['autoRedefine'])) {
+            $this->generateAUTOREDEFINE();
+        }
+        if (isset($args[0]['uiPriority'])) {
+            $this->generateUIPRIORITY($args[0]['uiPriority']);
+        }
+        if (isset($args[0]['semiHidden'])) {
+            $this->generateSEMIHIDDEN();
+        }
+        if (isset($args[0]['unhideWhenUsed'])) {
+            $this->generateUNHIDEWHENUSED();
+        }
+        if (isset($args[0]['qFormat'])) {
+            $this->generateQFORMAT();
+        }
+        if (isset($args[0]['rsid'])) {
+            $this->generateRSID($args[0]['rsid']);
+        }
+        if (isset($args[0]['keepNext']) ||
+                isset($args[0]['keepLines']) ||
+                (isset($args[0]['spacing_before']) ||
+                isset($args[0]['spacing_after']) ||
+                isset($args[0]['spacing_line']) ||
+                isset($args[0]['spacing_lineRule'])) ||
+                isset($args[0]['outlineLvl']) ||
+                isset($args[0]['contextualSpacing']) ||
+                isset($args[0]['ilvl']) ||
+                isset($args[0]['ind_left'])
+        ) {
+            $this->generatePPR();
+            if (isset($args[0]['keepNext'])) {
+                $this->generateKEEPNEXT();
+            }
+            if (isset($args[0]['keepLines'])) {
+                $this->generateKEEPLINES($args[0]['keepLines']);
+            }
+            if (isset($args[0]['pBdr_bottom_val']) &&
+                    isset($args[0]['pBdr_bottom_sz']) &&
+                    isset($args[0]['pBdr_bottom_space']) &&
+                    isset($args[0]['pBdr_bottom_color']) &&
+                    isset($args[0]['pBdr_bottom_themeColor'])
+            ) {
+                $this->generatePBDR();
+                $this->generatePBDR_BOTTOM(
+                        $args[0]['pBdr_bottom_val'], $args[0]['pBdr_bottom_sz'], $args[0]['pBdr_bottom_space'], $args[0]['pBdr_bottom_color'], $args[0]['pBdr_bottom_themeColor']
+                );
+            }
+            if (isset($args[0]['tab_center']) || isset($args[0]['tab_right'])) {
+                $this->generateTABS();
+                if (isset($args[0]['tab_center'])) {
+                    $this->generateTABCENTER($args[0]['tab_center']);
+                }
+                if (isset($args[0]['tab_right'])) {
+                    $this->generateTABRIGHT($args[0]['tab_right']);
+                }
+            }
+            if (isset($args[0]['spacing_before']) ||
+                    isset($args[0]['spacing_after']) ||
+                    isset($args[0]['spacing_line']) ||
+                    isset($args[0]['spacing_lineRule'])
+            ) {
+                if (!isset($args[0]['spacing_before'])) {
+                    $args[0]['spacing_before'] = '';
+                }
+                if (!isset($args[0]['spacing_after'])) {
+                    $args[0]['spacing_after'] = '';
+                }
+                if (!isset($args[0]['spacing_line'])) {
+                    $args[0]['spacing_line'] = '';
+                }
+                if (!isset($args[0]['spacing_lineRule'])) {
+                    $args[0]['spacing_lineRule'] = '';
+                }
+
+                $this->generateSPACING(
+                        $args[0]['spacing_before'], $args[0]['spacing_after'], $args[0]['spacing_line'], $args[0]['spacing_lineRule']
+                );
+            }
+            if (isset($args[0]['ind_left'])) {
+                $this->generateIND($args[0]['ind_left']);
+            }
+            if (isset($args[0]['contextualSpacing'])) {
+                $this->generateCONTEXTUALSPACING();
+            }
+            if (isset($args[0]['outlineLvl'])) {
+                $this->generateOUTLINELVL($args[0]['outlineLvl']);
+            }
+            if (isset($args[0]['ilvl'])) {
+                $this->generateNUMPR();
+                $this->generateILVL($args[0]['ilvl']);
+            }
+        }
+        if ((isset($args[0]['rFonts_asciiTheme']) &&
+                isset($args[0]['rFonts_eastAsiaTheme']) &&
+                isset($args[0]['rFonts_hAnsiTheme']) &&
+                isset($args[0]['rFonts_cstheme'])) ||
+                isset($args[0]['b']) ||
+                isset($args[0]['bCs']) ||
+                isset($args[0]['i']) ||
+                isset($args[0]['iCs']) ||
+                isset($args[0]['u']) ||
+                isset($args[0]['color_val']) ||
+                isset($args[0]['sz']) ||
+                isset($args[0]['szCs']) ||
+                isset($args[0]['kern']) ||
+                isset($args[0]['rPr_spacing']) ||
+                isset($args[0]['u'])
+        ) {
+
+            $this->generateRPR();
+            if (isset($args[0]['rFonts_asciiTheme']) &&
+                    isset($args[0]['rFonts_eastAsiaTheme']) &&
+                    isset($args[0]['rFonts_hAnsiTheme']) &&
+                    isset($args[0]['rFonts_cstheme'])
+            ) {
+                $this->generateRFONTS(
+                        $args[0]['rFonts_asciiTheme'], $args[0]['rFonts_eastAsiaTheme'], $args[0]['rFonts_hAnsiTheme'], $args[0]['rFonts_cstheme']
+                );
+            }
+            if (isset($args[0]['rFonts_ascii']) &&
+                    isset($args[0]['rFonts_hAnsi']) &&
+                    isset($args[0]['rFonts_cs'])
+            ) {
+                $this->generateRFONTS2(
+                        $args[0]['rFonts_ascii'], $args[0]['rFonts_hAnsi'], $args[0]['rFonts_cs']
+                );
+            }
+            if (isset($args[0]['b'])) {
+                $this->generateB();
+            }
+            if (isset($args[0]['bCs'])) {
+                $this->generateBCS();
+            }
+            if (isset($args[0]['i'])) {
+                $this->generateI($args[0]['i']);
+            }
+            if (isset($args[0]['iCs'])) {
+                $this->generateICS($args[0]['iCs']);
+            }
+            if (isset($args[0]['u'])) {
+                $this->generateU();
+            }
+            if (isset($args[0]['color_val'])) {
+                if (!isset($args[0]['color_themeColor'])) {
+                    $args[0]['color_themeColor'] = '';
+                }
+                if (!isset($args[0]['color_themeShade'])) {
+                    $args[0]['color_themeShade'] = '';
+                }
+
+                $this->generateCOLOR(
+                        $args[0]['color_val'], $args[0]['color_themeColor'], $args[0]['color_themeShade']
+                );
+            }
+            if (isset($args[0]['u'])) {
+                $this->generateU($args[0]['u']);
+            }
+            if (isset($args[0]['rPr_spacing'])) {
+                $this->generateRPR_SPACING($args[0]['rPr_spacing']);
+            }
+            if (isset($args[0]['kern'])) {
+                $this->generateKERN($args[0]['kern']);
+            }
+            if (isset($args[0]['sz'])) {
+                $this->generateSZ($args[0]['sz']);
+            }
+            if (isset($args[0]['szCs'])) {
+                $this->generateSZCS($args[0]['szCs']);
+            }
+        }
+        if (isset($args[0]['tblPr'])) {
+            $this->generateTBLPR();
+        }
+        if ((isset($args[0]['top_w']) &&
+                isset($args[0]['top_type'])) ||
+                (isset($args[0]['left_w']) &&
+                isset($args[0]['left_type'])) ||
+                (isset($args[0]['bottom_w']) &&
+                isset($args[0]['bottom_type'])) ||
+                (isset($args[0]['right_w']) &&
+                isset($args[0]['right_type'])) ||
+                (isset($args[0]['tblInd_w']) &&
+                isset($args[0]['tblInd_type'])) &&
+                isset($args[0]['tblborder_top_val']) ||
+                isset($args[0]['tblborder_left_val']) ||
+                isset($args[0]['tblborder_bottom_val']) ||
+                isset($args[0]['tblborder_right_val']) ||
+                isset($args[0]['tblborder_insideH_val']) ||
+                isset($args[0]['tblborder_insideV_val']) ||
+                (isset($args[0]['shd_val']) &&
+                isset($args[0]['shd_color']) &&
+                isset($args[0]['shd_fill']) &&
+                isset($args[0]['shd_themeFill']))
+        ) {
+            $this->generateTCPR();
+            if (isset($args[0]['tbl_style_row'])) {
+                $this->generateTBLSTYLEROWBANDSIZE($args[0]['tbl_style_row']);
+            }
+            if (isset($args[0]['tbl_style_col'])) {
+                $this->generateTBLSTYLECOLBANDSIZE($args[0]['tbl_style_col']);
+            }
+
+            if (isset($args[0]['tblInd_w']) &&
+                    isset($args[0]['tblInd_type'])
+            ) {
+
+                $this->generateTBLIND(
+                        $args[0]['tblInd_w'], $args[0]['tblInd_type']
+                );
+            }
+
+            if (isset($args[0]['tblborder_top_val']) ||
+                    isset($args[0]['tblborder_left_val']) ||
+                    isset($args[0]['tblborder_bottom_val']) ||
+                    isset($args[0]['tblborder_right_val']) ||
+                    isset($args[0]['tblborder_insideH_val']) ||
+                    isset($args[0]['tblborder_insideV_val'])
+            ) {
+                $this->generateTCBORDERS();
+                if (isset($args[0]['tblborder_top_val'])) {
+                    if (!isset($args[0]['tblborder_top_sz'])) {
+                        $args[0]['tblborder_top_sz'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_top_space'])) {
+                        $args[0]['tblborder_top_space'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_top_color'])) {
+                        $args[0]['tblborder_top_color'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_top_themeColor'])) {
+                        $args[0]['tblborder_top_themeColor'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideV_themeTint'])) {
+                        $args[0]['tblborder_insideV_themeTint'] = '';
+                    }
+
+                    $this->generateTBLBORDERS_TOP(
+                            $args[0]['tblborder_top_val'], $args[0]['tblborder_top_sz'], $args[0]['tblborder_top_space'], $args[0]['tblborder_top_color'], $args[0]['tblborder_top_themeColor'], $args[0]['tblborder_insideV_themeTint']
+                    );
+                }
+                if (isset($args[0]['tblborder_left_val'])) {
+                    if (!isset($args[0]['tblborder_left_sz'])) {
+                        $args[0]['tblborder_left_sz'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_left_space'])) {
+                        $args[0]['tblborder_left_space'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_left_color'])) {
+                        $args[0]['tblborder_left_color'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_left_themeColor'])) {
+                        $args[0]['tblborder_left_themeColor'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideV_themeTint'])) {
+                        $args[0]['tblborder_insideV_themeTint'] = '';
+                    }
+
+                    $this->generateTBLBORDERS_LEFT(
+                            $args[0]['tblborder_left_val'], $args[0]['tblborder_left_sz'], $args[0]['tblborder_left_space'], $args[0]['tblborder_left_color'], $args[0]['tblborder_left_themeColor'], $args[0]['tblborder_insideV_themeTint']
+                    );
+                }
+                if (isset($args[0]['tblborder_bottom_val'])) {
+                    if (!isset($args[0]['tblborder_bottom_sz'])) {
+                        $args[0]['tblborder_bottom_sz'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_bottom_space'])) {
+                        $args[0]['tblborder_bottom_space'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_bottom_color'])) {
+                        $args[0]['tblborder_bottom_color'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_bottom_themeColor'])) {
+                        $args[0]['tblborder_bottom_themeColor'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideV_themeTint'])) {
+                        $args[0]['tblborder_insideV_themeTint'] = '';
+                    }
+
+                    $this->generateTBLBORDERS_BOTTOM(
+                            $args[0]['tblborder_bottom_val'], $args[0]['tblborder_bottom_sz'], $args[0]['tblborder_bottom_space'], $args[0]['tblborder_bottom_color'], $args[0]['tblborder_bottom_themeColor'], $args[0]['tblborder_insideV_themeTint']
+                    );
+                }
+                if (isset($args[0]['tblborder_right_val'])) {
+                    if (!isset($args[0]['tblborder_right_sz'])) {
+                        $args[0]['tblborder_right_sz'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_right_space'])) {
+                        $args[0]['tblborder_right_space'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_right_color'])) {
+                        $args[0]['tblborder_right_color'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_right_themeColor'])) {
+                        $args[0]['tblborder_right_themeColor'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideV_themeTint'])) {
+                        $args[0]['tblborder_insideV_themeTint'] = '';
+                    }
+
+                    $this->generateTBLBORDERS_RIGHT(
+                            $args[0]['tblborder_right_val'], $args[0]['tblborder_right_sz'], $args[0]['tblborder_right_space'], $args[0]['tblborder_right_color'], $args[0]['tblborder_right_themeColor'], $args[0]['tblborder_insideV_themeTint']
+                    );
+                }
+                if (isset($args[0]['tblborder_insideH_val'])) {
+                    if (!isset($args[0]['tblborder_insideH_sz'])) {
+                        $args[0]['tblborder_insideH_sz'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideH_space'])) {
+                        $args[0]['tblborder_insideH_space'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideH_color'])) {
+                        $args[0]['tblborder_insideH_color'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideH_themeColor'])) {
+                        $args[0]['tblborder_insideH_themeColor'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideV_themeTint'])) {
+                        $args[0]['tblborder_insideV_themeTint'] = '';
+                    }
+
+                    $this->generateTBLBORDERS_INSIDEH(
+                            $args[0]['tblborder_insideH_val'], $args[0]['tblborder_insideH_sz'], $args[0]['tblborder_insideH_space'], $args[0]['tblborder_insideH_color'], $args[0]['tblborder_insideH_themeColor'], $args[0]['tblborder_insideV_themeTint']
+                    );
+                }
+                if (isset($args[0]['tblborder_insideV_val'])) {
+                    if (!isset($args[0]['tblborder_insideV_sz'])) {
+                        $args[0]['tblborder_insideV_sz'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideV_space'])) {
+                        $args[0]['tblborder_insideV_space'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideV_color'])) {
+                        $args[0]['tblborder_insideV_color'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideV_themeColor'])) {
+                        $args[0]['tblborder_insideV_themeColor'] = '';
+                    }
+                    if (!isset($args[0]['tblborder_insideV_themeTint'])) {
+                        $args[0]['tblborder_insideV_themeTint'] = '';
+                    }
+
+                    $this->generateTBLBORDERS_INSIDEV(
+                            $args[0]['tblborder_insideV_val'], $args[0]['tblborder_insideV_sz'], $args[0]['tblborder_insideV_space'], $args[0]['tblborder_insideV_color'], $args[0]['tblborder_insideV_themeColor'], $args[0]['tblborder_insideV_themeTint']
+                    );
+                }
+            }
+            if (isset($args[0]['shd_val']) &&
+                    isset($args[0]['shd_color']) &&
+                    isset($args[0]['shd_fill']) &&
+                    isset($args[0]['shd_themeFill'])
+            ) {
+                if (!isset($args[0]['shd_themeFillTint'])) {
+                    $args[0]['shd_themeFillTint'] = '';
+                }
+
+                $this->generateSHD(
+                        $args[0]['shd_val'], $args[0]['shd_color'], $args[0]['shd_fill'], $args[0]['shd_themeFill'], $args[0]['shd_themeFillTint']
+                );
+            }
+            if ((isset($args[0]['top_w']) &&
+                    isset($args[0]['top_type'])) ||
+                    (isset($args[0]['left_w']) &&
+                    isset($args[0]['left_type'])) ||
+                    (isset($args[0]['bottom_w']) &&
+                    isset($args[0]['bottom_type'])) ||
+                    (isset($args[0]['right_w']) &&
+                    isset($args[0]['right_type']))
+            ) {
+                $this->generateTBLCELLMAR();
+
+                if (isset($args[0]['top_w']) &&
+                        isset($args[0]['top_type'])) {
+                    $this->generateTOP(
+                            $args[0]['top_w'], $args[0]['top_type']
+                    );
+                }
+                if (isset($args[0]['left_w']) &&
+                        isset($args[0]['left_type'])) {
+                    $this->generateLEFT(
+                            $args[0]['left_w'], $args[0]['left_type']
+                    );
+                }
+                if (isset($args[0]['bottom_w']) &&
+                        isset($args[0]['bottom_type'])) {
+                    $this->generateBOTTOM(
+                            $args[0]['bottom_w'], $args[0]['bottom_type']
+                    );
+                }
+                if (isset($args[0]['right_w']) &&
+                        isset($args[0]['right_type'])) {
+                    $this->generateRIGHT(
+                            $args[0]['right_w'], $args[0]['right_type']
+                    );
+                }
+            }
+        }
+        $this->cleanTemplate();
+        $this->_xml .= '__GENERATESTYLE__';
+    }
+
+    /**
+     * Generate w:tblStylePr
+     *
+     * @access protected
+     * @param string $type
+     */
+    protected function generateTBLSTYLEPR($type)
+    {
+        $this->_xml .= '<' . CreateElement::NAMESPACEWORD .
+                ':tblStylePr ' . CreateElement::NAMESPACEWORD .
+                ':type="' . $type . '">__GENERATESTYLE__</' .
+                CreateElement::NAMESPACEWORD . ':tblStylePr>';
+    }
+
+    /**
+     * Generate w:tblPr
+     *
+     * @access protected
+     */
+    protected function generateTBLPR()
+    {
+        $this->_xml = str_replace(
+                '__GENERATESTYLE__', '<' .
+                CreateElement::NAMESPACEWORD .
+                ':tblPr></' . CreateElement::NAMESPACEWORD .
+                ':tblPr>__GENERATESTYLE__', $this->_xml
+        );
+    }
+
+    /**
+     * Generate w:tcPr
+     *
+     * @access protected
+     */
+    protected function generateTCPR()
+    {
+        $this->_xml = str_replace(
+                '__GENERATESTYLE__', '<' .
+                CreateElement::NAMESPACEWORD .
+                ':tcPr>__GENERATETBLPR__</' . CreateElement::NAMESPACEWORD .
+                ':tcPr>__GENERATESTYLE__', $this->_xml
+        );
+    }
+
+    /**
+     * Generate w:tcBorders
+     *
+     * @access protected
+     */
+    protected function generateTCBORDERS()
+    {
+        $this->_xml = str_replace(
+                '__GENERATETBLPR__', '<' .
+                CreateElement::NAMESPACEWORD .
+                ':tcBorders>__GENERATETBLBORDERS__</' .
+                CreateElement::NAMESPACEWORD . ':tcBorders>__GENERATETBLPR__', $this->_xml
+        );
+    }
+
+    /**
+     * Generate w:shd
+     *
+     * @access protected
+     * @param string $val
+     * @param string $color
+     * @param string $fill
+     * @param string $themeFill
+     * @param string $themeFillTint
+     */
+    protected function generateSHD($val, $color = '', $fill = '', $themeFill = '', $themeFillTint = '')
+    {
+        $xmlAux = '<' . CreateElement::NAMESPACEWORD . ':shd ' .
+                CreateElement::NAMESPACEWORD . ':val="' . $val . '"';
+        if ($color != '') {
+            $xmlAux .= ' ' . CreateElement::NAMESPACEWORD .
+                    ':color="' . $color . '"';
+        }
+        if ($fill != '') {
+            $xmlAux .= ' ' . CreateElement::NAMESPACEWORD .
+                    ':fill="' . $fill . '"';
+        }
+        if ($themeFill != '') {
+            $xmlAux .= ' ' . CreateElement::NAMESPACEWORD .
+                    ':themeFill="' . $themeFill . '"';
+        }
+        if ($themeFillTint != '') {
+            $xmlAux .= ' ' . CreateElement::NAMESPACEWORD .
+                    ':themeFillTint="' . $themeFillTint . '"';
+        }
+        $xmlAux .= '></' . CreateElement::NAMESPACEWORD .
+                ':shd>__GENERATETBLPR__';
+        $this->_xml = str_replace('__GENERATETBLPR__', $xmlAux, $this->_xml);
+    }
+
+}

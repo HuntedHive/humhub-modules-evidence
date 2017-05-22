@@ -1,1 +1,41 @@
-rVLRSsMwFH3vV9wHH7qCzRy+OBEmnehwzuEUfJMsuW3D2qSkyeoQ/92krTJ0vi0UGs4995zTexsEJIoCiOCmXCMHrpgtUZoahITpY/Iau5ovTxg1mCm9A4BlXjneewtXlG1ohg4FLLBt/Y0bTWWdKl12OqraaZHlBiD5uYZsAAuqGVJYasUtY0JJrOHBFkaUyAWFVTz3WWD/hLkx1ZiQpmniUclZzFQ5aF0KwVDWrf0ep+qCexppqlOmpHGBicld8JoUPkqjNCeVVm+9gu9pFbeoaxfKK46GZ+fx0D0XvZfc9IEOezkWCYTz0ill2E162g86+AgC39luwZ8IntBYLYFZrR0BZjzuK9+ECV3XbqjM/AC6a9kqwXuMtO/USmZ86gzNjIeDyz9m3dr7SYDSkIoCj2CIXjc8Kalh+UpZt1q4AmmL4kCGW5So3e8FzZgWJsmt3BzlkzvV6/lzcveyuP8nzGfwBQ==
+<?php
+
+/**
+ * Embed documents in DOCX.
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @package    transform
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+interface EmbedDocument
+{
+
+    /**
+     * Return current Id.
+     *
+     * @abstract
+     * @return void
+     */
+    function getId();
+
+    /**
+     * Embed content or file.
+     *
+     * @abstract
+     * @return void
+     */
+    function embed($matchSource = null);
+
+    /**
+     * Generate w:altChunk.
+     *
+     * @abstract
+     * @return void
+     */
+    function generateALTCHUNK($matchSource = null);
+}

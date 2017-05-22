@@ -1,1 +1,282 @@
-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
+<?php
+
+/**
+ * Create Scatter Chart
+ *
+ * @category   Phpdocx
+ * @package    elements
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+class CreateScatterChart extends CreateGraphic implements InterfaceGraphic
+{
+
+    /**
+     * Create embedded xml chart
+     *
+     * @access public
+     */
+    public function createEmbeddedXmlChart()
+    {
+        $this->_xmlChart = '';
+        $this->generateCHARTSPACE();
+        $this->generateDATE1904(1);
+        $this->generateLANG();
+        $this->generateROUNDEDCORNERS($this->_roundedCorners);
+        $color = 2;
+        if ($this->_color) {
+            $color = $this->_color;
+        }
+        $this->generateSTYLE($color);
+        $this->generateCHART();
+        if ($this->_title != '') {
+            $this->generateTITLE();
+            $this->generateTITLETX();
+            $this->generateRICH();
+            $this->generateBODYPR();
+            $this->generateLSTSTYLE();
+            $this->generateTITLEP();
+            $this->generateTITLEPPR();
+            $this->generateDEFRPR();
+            $this->generateTITLER();
+            $this->generateTITLERPR();
+            $this->generateTITLET($this->_title);
+            $this->generateTITLELAYOUT();
+        } else {
+            $this->generateAUTOTITLEDELETED();
+            $title = '';
+        }
+        if (strpos($this->_type, '3D') !== false) {
+            $this->generateVIEW3D();
+            $rotX = 30;
+            $rotY = 30;
+            $perspective = 30;
+            if ($this->_rotX != '') {
+                $rotX = $this->_rotX;
+            }
+            if ($this->_rotY != '') {
+                $rotY = $this->_rotY;
+            }
+            if ($this->_perspective != '') {
+                $perspective = $this->_perspective;
+            }
+            $this->generateROTX($rotX);
+            $this->generateROTY($rotY);
+            $this->generatePERSPECTIVE($perspective);
+        }
+        if ($this->values == '') {
+            exit('You haven`t added data');
+        }
+        $this->generatePLOTAREA();
+        $this->generateLAYOUT();
+
+
+        $this->generateSCATTERCHART();
+        $this->generateSCATTERSTYLE($this->_style);
+
+        $numValues = count($this->values);
+        $legends = array('X values', 'Y values');
+        $this->generateVARYCOLORS($this->_varyColors);
+        $letter = 'A';
+        $this->generateSER();
+        $this->generateIDX(0);
+        $this->generateORDER(0);
+        $letter++;
+
+        $this->generateTX();
+        $this->generateSTRREF();
+        $this->generateF('Sheet1!$' . $letter . '$1');
+        $this->generateSTRCACHE();
+        $this->generatePTCOUNT();
+        $this->generatePT();
+        $this->generateV($legends[0]);
+        if (!empty($this->_symbol)) {
+            if ($this->_symbol == 'line') {
+                $this->generateMARKER('none');
+            } elseif ($this->_symbol == 'dot') {
+                $this->generateSPPR_SER();
+                $this->generateLN(2, 25);
+                $this->generateNOFILL();
+            }
+        }
+        $this->cleanTemplate2();
+
+
+        $this->generateXVAL();
+        $this->generateNUMREF();
+        $this->generateF('Sheet1!$A$2:$A$' . ($numValues + 1));
+        $this->generateNUMCACHE();
+        $this->generateFORMATCODE();
+        $this->generatePTCOUNT($numValues);
+        $num = 0;
+        foreach ($this->values as $datas) {
+            foreach ($datas as $data) {
+                $this->generatePT($num);
+                $this->generateV($data);
+                $num++;
+                break;
+            }
+        }
+        $this->cleanTemplate2();
+        $this->generateYVAL();
+        $this->generateNUMREF();
+        $this->generateF('Sheet1!$B$2:$B$' . ($numValues + 1));
+        $this->generateNUMCACHE();
+        $this->generateFORMATCODE();
+        $this->generatePTCOUNT($numValues);
+        $num = 0;
+        foreach ($this->values as $datas) {
+            $flag = true;
+            foreach ($datas as $data) {
+                if ($flag) {
+                    $flag = false;
+                    continue;
+                }
+                $this->generatePT($num);
+                $this->generateV($data);
+                $num++;
+                break;
+            }
+        }
+        $this->cleanTemplate2();
+        if (!empty($this->_smooth) && $this->_smooth && $this->_symbol != 'dot')
+            $this->generateSMOOTH();
+        $this->cleanTemplate3();
+
+        //Generate labels
+        $this->generateSERDLBLS();
+        $this->generateSHOWLEGENDKEY($this->_showLegendKey);
+        $this->generateSHOWVAL($this->_showValue);
+        $this->generateSHOWCATNAME($this->_showCategory);
+        $this->generateSHOWSERNAME($this->_showSeries);
+        $this->generateSHOWPERCENT($this->_showPercent);
+        $this->generateSHOWBUBBLESIZE($this->_showBubbleSize);
+
+
+        $this->generateAXID();
+        $this->generateAXID(59040512);
+        $this->generateVALAX();
+        $this->generateAXAXID(59034624);
+        $this->generateSCALING();
+        $this->generateDELETE($this->_delete);
+        $this->generateORIENTATION();
+        $this->generateAXPOS();
+        switch ($this->_vgrid) {
+            case 1:
+                $this->generateMAJORGRIDLINES();
+                break;
+            case 2:
+                $this->generateMINORGRIDLINES();
+                break;
+            case 3:
+                $this->generateMAJORGRIDLINES();
+                $this->generateMINORGRIDLINES();
+                break;
+            default:
+                break;
+        }
+        if (!empty($this->_haxLabel)) {
+            $this->generateAXLABEL($this->_haxLabel);
+            $vert = 'horz';
+            $rot = 0;
+            if ($this->_haxLabelDisplay == 'vertical') {
+                $vert = 'wordArtVert';
+            }
+            if ($this->_haxLabelDisplay == 'rotated') {
+                $rot = '-5400000';
+            }
+            $this->generateAXLABELDISP($vert, $rot);
+        }
+        $this->generateNUMFMT();
+        $this->generateTICKLBLPOS();
+        $this->generateCROSSAX();
+        $this->generateCROSSES();
+        $this->generateCROSSBETWEEN('midCat');
+        $this->generateVALAX();
+        $this->generateAXAXID(59040512);
+        $this->generateSCALING();
+        $this->generateDELETE($this->_delete);
+        $this->generateORIENTATION();
+        $this->generateAXPOS('l');
+        switch ($this->_hgrid) {
+            case 1:
+                $this->generateMAJORGRIDLINES();
+                break;
+            case 2:
+                $this->generateMINORGRIDLINES();
+                break;
+            case 3:
+                $this->generateMAJORGRIDLINES();
+                $this->generateMINORGRIDLINES();
+                break;
+            default:
+                break;
+        }
+        if (!empty($this->_vaxLabel)) {
+            $this->generateAXLABEL($this->_vaxLabel);
+            $vert = 'horz';
+            $rot = 0;
+            if ($this->_vaxLabelDisplay == 'vertical') {
+                $vert = 'wordArtVert';
+            }
+            if ($this->_vaxLabelDisplay == 'rotated') {
+                $rot = '-5400000';
+            }
+            $this->generateAXLABELDISP($vert, $rot);
+        }
+        $this->generateNUMFMT();
+        $this->generateTICKLBLPOS();
+        $this->generateCROSSAX(59034624);
+        $this->generateCROSSES();
+        $this->generateCROSSBETWEEN();
+
+        $this->generateLEGEND();
+        $this->generateLEGENDPOS($this->_legendPos);
+        $this->generateLEGENDOVERLAY($this->_legendOverlay);
+        $this->generatePLOTVISONLY();
+
+        if ((!isset($this->_border) || $this->_border == 0 || !is_numeric($this->_border))
+        ) {
+            $this->generateSPPR();
+            $this->generateLN();
+            $this->generateNOFILL();
+        } else {
+            $this->generateSPPR();
+            $this->generateLN($this->_border);
+        }
+
+        if ($this->_font != '') {
+            $this->generateTXPR();
+            $this->generateLEGENDBODYPR();
+            $this->generateLSTSTYLE();
+            $this->generateAP();
+            $this->generateAPPR();
+            $this->generateDEFRPR();
+            $this->generateRFONTS($this->_font);
+            $this->generateENDPARARPR();
+        }
+
+        $this->generateEXTERNALDATA();
+        $this->cleanTemplateDocument();
+        return $this->_xmlChart;
+    }
+
+    public function dataTag()
+    {
+        return array('xVal', 'yVal');
+    }
+
+    /**
+     * Return the type of the xlsx object
+     *
+     * @access public
+     */
+    public function getXlsxType()
+    {
+        return CreateScatterXlsx::getInstance();
+    }
+
+}

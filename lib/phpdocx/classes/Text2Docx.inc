@@ -1,1 +1,409 @@
-1Vrrb9u6Ff88/xW8QXBtF66VePuyBCm69T5WIN2MJR82tIFBS7RNRCI1ko6T7fZ/3zmkKMl6WU6TYhOKWubjnMPfefLEg0Hw5s2AvCG37NGQGYlk+AhfceR9SA1bS/VECJlv0myGvE9peE/XDEaJUVTolVSJWy/TJ8XXG0PIh/x1FI7JX6kKGSVzJaNtGHIpmCaftrHhCYs4JTfT6ykSKD+jjTHpRRDsdrvpLInCaSiTseUS85AJbdmX1qROQFwW7NK3oRSGCROYDUuYDmIUZSdVFKRKLjIKuMdSfGBKg1BIcXZ2/ofpGfz7Y8ZL3GcCNfOCVcFAsX9tuWILKUJGIq4ETdhosfjl4/XPi8WYTMkw+NPWyGtJI6amXITDy0ExcHERw+dofDkYhDHV2mpi9hOi/Z/BAFlbDeHzhjxQxekyZmS3YQr+Z0TTB0bgmCQ7MpEr+xUk3CbwffqYxH73e9hOtFFcrPMhGoYMmKaKP4C6s+HAfmZj5NTTuqzJE7EVBUUC0ScQykjLOuba7LGkStGnozhaete6L8eUKrpWNN28BNt5T6YGFfESDG+XcZ3l75CFfkqWMgZu1JAdj2MQxDCVcMHcGAWs4R1Vju67ZLEUa40C0roWnqF4x/+aNymibHMrJROHCYqx4gASOkFkX/HtWwVBunURPHUEgBa8v5lZE6+llDGjovBAAPleyB3hK3TDPBJmWKAssKKmhIzMsfLMGn2hS6YWgZo95blSNbjK83Cq+9JzRWp0pg9SgB1sQ6+LGtXtEpLCPlE7RFZbERpMDotF6ImMkBG5ImIbx5PMhzV8t+4/Go/t/ix243NqNly/fWfPekWGEP0rM2glNwxVY6SCJSdfzEltkYWovqq2zGEA8yArq1NxttQ1Pa9NBgEX3HAa83+7XOPjoT0xep/DoErNR7ccm+Htn69vbv95/fMDjYfk6h0Z3uKpflU8mv9l/tPfPvxjOC7YgsWMfmBJap5GGcifh57k8C7DuZ1lw546XD7RFCJ60c77SAI7OyVxlBv2tEgyL8yoB/d5J+95jfPc8m3QOa60Ua8y5RN/xWyDQDEaVQJ+vhbcGQYVDQ3hpkoRN/4Cy60PjfdNTDNlCqIxv2eEgm+6aotwYdOafS+ifEHZ7cfiyWP3tRYH/OcnugbfTpjZyKgy1+b9Rt7YTDLy7u3ZK2a2SlQRa5PghhnI4M8PQ5qZm8ycvTFUBWr1hDaZfv1GmdYlmbrRKcqd10UHXKwPOnve+drooEw90LGJ/nXRmffBZv79kJn3wWX+iqjcupx5AJYis74+Ll6ibmDyeudVkTnsTEVR8X2QOexKecn8qsgcciRfTX0fVA65UVawN8uQZ0abEzHvcuFTb3VNo2jYF1LU3QIjami5GTAlFRLN56BRhFfN0Snur0EqcQ7A/AAlhGH45eICTv4RinIqQlYumNzat+/CfKmjOalG2nF7xTO9IiN3dxxn9Nqg+6RfGrO929AhyGwF3YKZJZRjZle2g2YXe9BKVCfV7N0XNUuwDbWPRblX6VwVJWW9+sMeXl5p9sK4Gbdysdjiu+62BodZKJbGFMA6+SK+qJMJGcLLyXBSXjm+tEWxXWcPwUSE57HtGXvT3XERyZ0mFCb8wh03G1yyfSyvLyTJL+t4u2SPaSwjK8VJnbdOY272Gn+OekWWCdES44UTbPlUYYj3dCj10yGSpFoDoaz5xAAJqjKitNpGwL3WgBtuL6d6u2ybW0kwtnBDRuWjgtZP03FJI9ZySie0sltB8AT+LgrWpglcjG3fLGUhX4HCtb8v7xE7tWsLSBtv2BOU4nJvnwamKG0otwK7AEBlXBUUn5BqRs4uauN2DowdNM4um3edXwQBKrVxb4D9bMUI10TYngmRDUe1OgaoEkaFduqDDVLET861ACNuh1yPkOw2HA5VUm8TgjDCsRfYKBdeUEHL4Csj8P3EIfP57G48IWcTuEiTq6urPIjkLUVADm59ZUmsDCx6phRekpEzY7BjMyS//UaKr7PhmPz4Y6V6cmK40JMq9sDlVmcmRlEyaxUT9ICNbbVL4iKknyqktVa+jrcsapUPn4x9JXRbj4uijGaSpxQfAKtzrSy+ts5YRp/vMKo1K+t8XLfKfHMWG+Jh85qvhMVgv3Vn8E8Q5CbYseaQItB60Vb2FMLLuSQ6TiNoMfZsP9jAh/YxqhT8aEN7ZWWj01eJHm+GnSTxabGczn1OL/aU+8U6SuBFiofHsS+VaQe4d3tCW17oT6boG2FoQ3rtFpyl9KwYgi+ttVDj1rw0wqrBe80k7/p27e4qkli571bbWmTkZq9rHF2CnPctCWYGCcYGW0yVzqPA5XYQ1WS8TYRuDfBZA9JHCx82V1xpG8Pt/KSSeKz77lUOLms5zs3Zuco4t1JtzTSPEa6EYVhD2AghmMbk4aJDHqMh1JX/LteGcx4afbnSbdddRU3j+gPRE592I7cNYC4WjhXS8mYHBCdoHeMDia2KVTmt7RQ3rLh34CWmXEc+J5e9tteX1GXt8fzu2xMXFFfeHWadzoDPXtaAgJ5HU5dFHPRFVrInBtj3UtjBDFJKIK+bHf5PY3/FCg6bACjqpcLo7w+EURzXeOls0XNDREUbKg+d31WdOkvbHZEAQ6QLzV3MLSZZBCt50ayHF+m+btQvpNtaqNv6nmF5/W2rKI76l0L/GzGvh7W/hLFnt+uLUnRMMIlAdhcH4uQxij5Syb3gPFq5xyq2nxSNo72UeUiRDSoruBVvRRFAtSkuVEKaciNnQqr5yvUFuFvpJkv3qMq9qYprD9h76Lw1PfVRVRWL9qb33/1fs13XUUTuV3VZIeR+lZf/nqX5h029+ryu6Cen5d8t5R3P/Ad73R3f4g/onkqtgbmGQtj+QmQlUyaKhRNyopYn9e5t0epkNFnAlWiRdWT1KKNVbtmFsdSsMgHQfh38Fw==
+<?php
+
+/**
+ * Text 2 docx
+ *
+ * @category   Phpdocx
+ * @package    transform
+ * @copyright  Copyright (c) Narcea Producciones Multimedia S.L.
+ *             (http://www.2mdc.com)
+ * @license    http://www.phpdocx.com/wp-content/themes/lightword/pro_license.php
+ * @version    2014.04.09
+ * @link       http://www.phpdocx.com
+ */
+require_once dirname(__FILE__) . '/AutoLoader.inc';
+AutoLoader::load();
+
+class Text2Docx
+{
+
+    /**
+     * variable where we save the content of the document.xml
+     * @var string
+     * @access private
+     */
+    private $document;
+
+    /**
+     * default style to the list
+     * @var array
+     * @access private
+     */
+    private $styleLst;
+
+    /**
+     * default style to the paragraph
+     * @var array
+     * @access private
+     */
+    private $styleP;
+
+    /**
+     * default style to the table
+     * @var array
+     * @access private
+     */
+    private $styleTbl;
+
+    /**
+     * 	the symbol that will determine that a line of text belongs to a list
+     * @var string
+     * @access private
+     */
+    private $symbolList;
+
+    /**
+     * the content from the text file named filename
+     * @var string
+     * @access private
+     */
+    private $text;
+
+    /**
+     * filename of a text file
+     * @var string
+     * @access private
+     */
+    private $txt;
+
+    /**
+     * boolean variable to know if we transform from text to list
+     * @var boolean
+     * @access private
+     */
+    private $txt2Lst;
+
+    /**
+     * boolean variable to know if transform from text to paragraph
+     * @var boolean
+     * @access private
+     */
+    private $txt2P;
+
+    /**
+     * boolean variable to know if we transform from text to table
+     * @var boolean
+     * @access private
+     */
+    private $txt2Tbl;
+
+    /**
+     * Construct
+     *
+     * @access public
+     */
+    public function __construct($txt = null, $styles = array())
+    {
+
+        $this->text = '';
+        $this->listSeparator = "\t";
+        $this->tableSeparator = "\t";
+
+        $this->txt2Tbl = true;
+        $this->txt2Lst = true;
+        $this->txt2P = true;
+        //initialize the default array of styles
+        $this->styleTbl = array('TBLSTYLEval' => 'TableGridPHPDOCX');
+        if (!empty($styles['styleTbl']))
+            $this->styleTbl = $styles['styleTbl'];
+
+        $this->styleLst = array('val' => 1);
+        if (!empty($styles['styleLst']))
+            $this->styleLst = $styles['styleLst'];
+
+        $this->styleP = array();
+        if (!empty($styles['styleP']))
+            $this->styleP = $styles['styleP'];
+
+
+        $this->txt = $txt;
+        $this->document = '';
+        //read the text file document to extract it
+        $this->readFile($txt);
+        //insert the text like as phpdocx into a docx file
+        $this->insertText();
+    }
+
+    /**
+     * 
+     * Magic method
+     * 
+     */
+    public function __toString()
+    {
+        return $this->document;
+    }
+
+    /**
+     * Setter
+     *
+     * @access public
+     */
+    public function setStyleTbl($styles)
+    {
+        $this->styleTbl = $styles;
+    }
+
+    /**
+     * Getter
+     *
+     * @access public
+     */
+    public function getStyleTbl()
+    {
+        return $this->styleTbl;
+    }
+
+    /**
+     * Setter
+     *
+     * @access public
+     */
+    public function setStyleLst($styles)
+    {
+        $this->styleLst = $styles;
+    }
+
+    /**
+     * Getter
+     *
+     * @access public
+     */
+    public function getStyleLst()
+    {
+        return $this->styleLst;
+    }
+
+    /**
+     * Setter
+     *
+     * @access public
+     */
+    public function setStyleP($styles)
+    {
+        $this->styleP = $styles;
+    }
+
+    /**
+     * Getter
+     *
+     * @access public
+     */
+    public function getStyleP()
+    {
+        return $this->styleP;
+    }
+
+    /**
+     * Setter
+     *
+     * @access public
+     */
+    public function setTxt2Tbl($styles)
+    {
+        $this->txt2Tbl = $styles;
+    }
+
+    /**
+     * Getter
+     *
+     * @access public
+     */
+    public function getTxt2Tbl()
+    {
+        return $this->txt2Tbl;
+    }
+
+    /**
+     * Setter
+     *
+     * @access public
+     */
+    public function setTxt2Lst($styles)
+    {
+        $this->txt2Lst = $styles;
+    }
+
+    /**
+     * Getter
+     *
+     * @access public
+     */
+    public function getTxt2Lst()
+    {
+        return $this->txt2Lst;
+    }
+
+    /**
+     * Setter
+     *
+     * @access public
+     */
+    public function setTxt2P($styles)
+    {
+        $this->txt2P = $styles;
+    }
+
+    /**
+     * Getter
+     *
+     * @access public
+     */
+    public function getTxt2P()
+    {
+        return $this->txt2P;
+    }
+
+    /**
+     * 
+     * Method as in phpdocx
+     * 
+     * @access public
+     * @param the data to the list. 
+     * 
+     */
+    public function addList($data)
+    {
+        $oList = CreateList::getInstance();
+        $oList->createList($data, $this->styleLst);
+        $this->document .= (string) $oList;
+    }
+
+    /**
+     * Msethod as in phpdocx
+     * 
+     * @access public
+     * @param the data to the table
+     * 
+     */
+    public function addTable($data)
+    {
+        $table = CreateTable::getInstance();
+        $table->createTable($data, $this->styleTbl);
+        $this->document .= (string) $table;
+    }
+
+    /**
+     * Insert the content of the text file as phpdocx into a word document
+     * 
+     * @access public
+     */
+    public function insertText()
+    {
+        $this->text = str_replace("\n\r", '"\n"', $this->text); //replace the end of line from windows and replace with linux end of line
+        $paragraphs = explode("\n", $this->text); //split the document with the end of line, so get line by line
+        $now = 'p'; //assume that we start with a paragraph
+        $data = array();
+        $subdata = array();
+        foreach ($paragraphs as $p) {
+            //split the line with  by default tabs or the specific separator
+            $tabs = explode($this->tableSeparator, $p);
+            switch (count($tabs)) {
+                case 0:
+                    continue;
+                case 1://text
+                    //there is no tab o specific separator, so it means that is only text or it is a list which start with the specific separate simbol
+                    if (substr(trim($tabs[0]), 0, 1) === $this->symbolList) {//it is a list started with the specific separate simbol
+                        if (($now == 't' || $now == 't2') && $this->txt2Tbl) {//if the previous line was a table, we have to create a table with the data glued
+                            $this->addTable($data); //add table method as phpdocx add table method
+                        }
+                        $data[] = substr(trim($tabs[0]), 1);
+                        $now = 'l';
+                    } else {
+                        //only text
+                        //if the previous line was a table or list, we have to insert the code with the data glued
+                        if ($now != 'p' && ($this->txt2Tbl || $this->txt2Lst)) {
+                            if (($now == 't' || $now == 't2') && $this->txt2Tbl) {
+                                $this->addTable($data);
+                            } elseif ($this->txt2Lst && $now == 'l') {
+                                $this->addList($data);
+                            }
+                            $data = array();
+                        }
+                        //insert text data
+                        $text = CreateText::getInstance();
+                        $text->createText($tabs[0], array());
+                        $this->document .= (string) $text;
+                        $now = 'p';
+                    }
+                    break;
+                case 2://list or table of two columns
+                    if (empty($tabs[0])) {//if first is empty, it means that line start with a tab o table separator
+                        if ($now == 'sl') {//if the line before was nested list, create a sub array
+                            $data[] = $subdata;
+                            $subdata = array();
+                            $now = 'l';
+                        }
+                        if (!in_array($now, array('l', 'p')) && $this->txt2Tbl) {//if the line before was a table, we write the table in the document
+                            $this->addTable($data);
+                            $data = array();
+                        }
+                        $data[] = $tabs[1];
+                        $now = 'l';
+                    } else {//table of 2 columns
+                        if ($now != 't2' && $now != 'p') {//insert the data as table or list
+                            if ($now == 't') {
+                                $this->addTable($data);
+                            } else {
+                                $this->addList($data);
+                            }
+                            $data = array();
+                        }
+                        $data[] = $tabs;
+                        $now = 't2';
+                    }
+                    break;
+                case 3://list or table of two columns or sublist
+                    if (empty($tabs[0]) && empty($tabs[1]) && $this->txt2Lst && in_array($now, array('l', 'sl'))) {//sublist
+                        $subdata[] = $tabs[2];
+                        $now = 'sl';
+                    } else {//table 
+                        if ($now == 't2') {
+                            $this->addList($data);
+                            $data = array();
+                        } elseif ($now == 'l') {
+                            $this->addTable($data);
+                            $data = array();
+                        }
+                        $data[] = $tabs;
+                        $now = 't';
+                    }
+                    break;
+                default://table of more than 2 columns
+                    if ($now == 't2') {
+                        $this->addList($data);
+                        $data = array();
+                    } elseif ($now == 'l') {
+                        $this->addTable($data);
+                        $data = array();
+                    }
+                    $data[] = $tabs;
+                    $now = 't';
+                    break;
+            }
+        }
+        //if the last line was not a paragraph, insert the data which is not inserted
+        if ($now != 'p') {
+            if ($now == 'l') {
+                $this->addList($data);
+            } else {
+                $this->addTable($data);
+            }
+        }
+    }
+
+    /**
+     * 
+     * Read the file and save in the class variable named filename
+     * 
+     * @access public
+     * @param string $filename of the text document. 
+     */
+    public function readFile($filename)
+    {
+        $gestor = fopen($filename, "rb");
+        $this->text = stream_get_contents($gestor);
+        fclose($gestor);
+    }
+
+}
